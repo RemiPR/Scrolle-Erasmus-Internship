@@ -5,9 +5,8 @@ services:
     build: ./auth-service  # Path to the Dockerfile
     ports:
       - "3001:3001"  # Expose port 3000 on host
-    #environment:
-    #  - NODE_ENV=development
-    #  - MONGO_URI=mongodb://mongodb:27017/microservice_a_db  # MongoDB connection string
+    env_file:
+      - .env
     #networks:
     #  - microservices-network
 
@@ -15,6 +14,8 @@ services:
     build: ./users-service
     ports:
       - "3002:3002"
+    env_file:
+      - .env
     #environment:
     #  - MONGODB_URI="mongodb+srv://admin:Turiba333@cluster0.wkfnyom.mongodb.net/LMS?retryWrites=true&w=majority&appName=Cluster0"
     #  - JWT_SECRET=""
