@@ -1,36 +1,36 @@
 <template>
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
+    <div class="bg-white p-8 rounded-xl shadow-lg max-w-sm w-full">
       <div class="mb-6 relative">
-        <div class="flex justify-center">
-          <button
-            @click="toggleForm('login')"
-            :class="{
-              'rounded-l': true,
-              'bg-blue-500': isLogin,
-              'bg-gray-300': !isLogin,
-            }"
-            class="text-white px-4 py-2 hover:bg-blue-600 transition-opacity duration-300"
-          >
-            Login
-          </button>
-          <button
-            @click="toggleForm('register')"
-            :class="{
-              'rounded-r': true,
-              'bg-blue-500': !isLogin,
-              'bg-gray-300': isLogin,
-            }"
-            class="text-white px-4 py-2 hover:bg-blue-600 transition-opacity duration-300"
-          >
-            Register
-          </button>
+        <div
+          class="border rounded-lg overflow-hidden"
+          style="border-color: #ddd"
+        >
+          <div class="flex">
+            <button
+              @click="toggleForm('login')"
+              :class="{
+                'bg-blue-500 text-white hover:bg-blue-600': isLogin,
+                'bg-white text-gray-700 hover:bg-gray-100 hover:font-semibold':
+                  !isLogin,
+              }"
+              class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500"
+            >
+              Login
+            </button>
+            <button
+              @click="toggleForm('register')"
+              :class="{
+                'bg-blue-500 text-white hover:bg-blue-600': !isLogin,
+                'bg-white text-gray-700 hover:bg-gray-100 hover:font-semibold':
+                  isLogin,
+              }"
+              class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500"
+            >
+              Register
+            </button>
+          </div>
         </div>
-        <span
-          v-if="!isLogin"
-          class="absolute inset-y-0 bg-blue-500 transition-opacity duration-300"
-          :class="{ 'left-0': isLogin, 'right-0': !isLogin }"
-        ></span>
       </div>
       <form @submit.prevent="handleSubmit">
         <label class="font-semibold">Email address</label>
