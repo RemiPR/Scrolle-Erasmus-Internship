@@ -19,6 +19,10 @@ app.get("/", (req, res) => {
   res.send("Hello World! Auth micro service");
 });
 
+app.get("/newauth", (req, res) => {
+  res.send("Hello World! NEW!! Auth micro service");
+});
+
 app.listen(PORT, () => {
   console.log(`auth micro-service running on port ${PORT}`);
 });

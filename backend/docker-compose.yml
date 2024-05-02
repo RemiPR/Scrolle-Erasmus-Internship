@@ -1,25 +1,29 @@
 version: '3.9'  # Docker Compose version
 
+
 services:
+
+  traefik:
+    image: traefik:v3.0  # Traefik version
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "80:80"  # Expose HTTP port
+      - "8080:8080" # The Web UI (enabled by --api.insecure=true)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # Allows Traefik to interact with Docker
+
   auth-service:
     build: ./auth-service  # Path to the Dockerfile
-    ports:
-      - "3001:3001"  # Expose port 3000 on host
+    labels:
+      - "traefik.http.routers.auth-service.rule=Host(`auth.localhost`)" 
+      - "traefik.http.services.auth-service.loadbalancer.server.port=3001" 
     env_file:
       - .env
-    #networks:
-    #  - microservices-network
 
   users-service:
     build: ./users-service
-    ports:
-      - "3002:3002"
+    labels:
+      - "traefik.http.routers.users-service.rule=Host(`users.localhost`)" 
+      - "traefik.http.services.users-service.loadbalancer.server.port=3002" 
     env_file:
       - .env
-    #environment:
-    #  - MONGODB_URI="mongodb+srv://admin:Turiba333@cluster0.wkfnyom.mongodb.net/LMS?retryWrites=true&w=majority&appName=Cluster0"
-    #  - JWT_SECRET=""
-    #  - PORT="3002"
-    #  - NODE_ENV=development
-    #networks:
-    #  - microservices-network
