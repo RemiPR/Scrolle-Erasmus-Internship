@@ -2,7 +2,7 @@
 FROM node:18-alpine
 
 # Set the working directory in the container
-WORKDIR /auth/src/app
+WORKDIR /users/src/app
 
 # Copy package.json and install dependencies
 COPY package*.json ./
@@ -12,7 +12,7 @@ RUN npm install
 COPY . .
 
 # Expose the port your application uses
-EXPOSE 3000
+EXPOSE 3001
 
 # Define the command to start the application
 CMD ["npm", "start"]

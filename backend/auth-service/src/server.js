@@ -1,17 +1,21 @@
-require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
+import express, { json } from "express";
+import { connect } from "mongoose";
+import cors from "cors";
+import userRoutes from "./routes/userRoutes.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT_AUTH || 3001;
+const PORT = process.env.PORT_AUTH;
 
 app.use(cors());
-app.use(express.json());
+app.use(json());
+
+app.use("/api", userRoutes);
 
 // Database connection
-mongoose
-  .connect(process.env.MONGODB_URI, {})
+connect(process.env.MONGODB_URI_USERS, {})
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
@@ -19,10 +23,6 @@ app.get("/", (req, res) => {
   res.send("Hello World! Auth micro service");
 });
 
-app.get("/newauth", (req, res) => {
-  res.send("Hello World! NEW!! Auth micro service");
-});
-
 app.listen(PORT, () => {
-  console.log(`auth micro-service running on port ${PORT}`);
+  console.log(`users micro-service running on port ${PORT}`);
 });
