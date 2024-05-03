@@ -15,15 +15,7 @@ services:
   auth-service:
     build: ./auth-service  # Path to the Dockerfile
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.auth-service.rule=Host(`auth.localhost`)" 
-      - "traefik.http.services.auth-service.loadbalancer.server.port=3001" 
-    env_file:
-      - .env
-
-  users-service:
-    build: ./users-service
-    labels:
-      - "traefik.http.routers.users-service.rule=Host(`users.localhost`)" 
-      - "traefik.http.services.users-service.loadbalancer.server.port=3002" 
     env_file:
       - .env
