@@ -38,13 +38,13 @@
     </div>
     <div class="mt-1 flex justify-between">
       <button
-        class="group text-gray-800 px-8 py-3 rounded border border-gray-300 hover:bg-gray-200 hover:text-gray-900 flex items-center"
+        class="group text-gray-800 px-8 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center"
       >
         <img src="@/public/google_logo.png" alt="Google" class="h-5 mr-2" />
         <span class="font-semibold group-hover:text-black">Google</span>
       </button>
       <button
-        class="group text-gray-800 px-6 py-3 rounded border border-gray-300 hover:bg-gray-200 hover:text-gray-900 flex items-center hover:font-thin"
+        class="group text-gray-800 px-6 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center hover:font-thin"
       >
         <img src="@/public/facebook_logo.png" alt="Facebook" class="h-5 mr-2" />
         <span class="font-semibold group-hover:text-black">Facebook</span>

@@ -13,7 +13,7 @@
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6 mr-2"
+            class="w-9 h-9 mr-2"
           >
             <path
               stroke-linecap="round"
@@ -28,13 +28,16 @@
         <span></span>
         <!-- Placeholder for flex spacing -->
       </div>
+      <h3 class="text-gray-800 font-semibold text-lg spac">
+        Enter your email address
+        <span class="block">to reset your password</span>
+      </h3>
     </div>
     <form @submit.prevent="onSubmit">
       <label class="font-semibold">Email address</label>
       <input
         type="email"
         class="block w-full px-4 py-2 border border-gray-300 rounded mt-2 mb-7 hover:border-blue-500"
-        placeholder="Enter your email address"
         required
       />
       <button
