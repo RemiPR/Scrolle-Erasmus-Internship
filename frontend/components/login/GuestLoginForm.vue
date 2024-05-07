@@ -96,17 +96,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  methods: {
-    loginWithGoogle() {
-      window.location.href = "http://localhost/auth/google"; // Initiates the Google OAuth flow
-    },
-  },
-};
-</script>
-
 <script setup>
+
 import { ref } from "vue";
 import { useForm, Field, ErrorMessage } from "vee-validate";
 import { required, email as emailRule } from "@vee-validate/rules";
@@ -119,6 +110,10 @@ const { handleSubmit, errors, validateField } = useForm(); // Include validateFi
 const rules = {
   email: [required, emailRule],
   password: [required],
+};
+
+const loginWithGoogle = () => {
+  window.location.href = "http://localhost/auth/google"; // Initiates the Google OAuth flow
 };
 
 const onSubmit = handleSubmit((values) => {
