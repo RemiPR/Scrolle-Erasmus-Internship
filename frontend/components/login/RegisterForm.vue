@@ -56,6 +56,7 @@
     >
       Register
     </button>
+
     <div class="flex items-center my-6">
       <hr class="text-black flex-grow" />
       <p class="mx-4 font-semibold">Or continue with</p>

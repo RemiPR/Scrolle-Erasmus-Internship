@@ -16,6 +16,6 @@ services:
     build: ./auth-service  # Path to the Dockerfile
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.auth-service.rule=Host(`auth.localhost`)" 
+      - "traefik.http.routers.auth-service.rule=Host(`localhost`)" 
     env_file:
       - .env

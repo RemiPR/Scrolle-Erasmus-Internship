@@ -78,10 +78,11 @@
         <p class="mx-4 font-semibold">Or continue with</p>
         <hr class="text-black flex-grow" />
       </div>
-      <!-- Login with Social Buttons -->
       <div class="mt-1 flex justify-between">
         <button
           class="group text-gray-800 px-8 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center"
+          @click="loginWithGoogle"
+          type="button"
         >
           <Icon name="logos:google-icon" class="mr-2" alt="Google Logo" />
           <span class="font-semibold group-hover:text-black">Google</span>
@@ -98,6 +99,7 @@
 </template>
 
 <script setup>
+
 import { ref } from "vue";
 import { useForm, Field, ErrorMessage } from "vee-validate";
 import { required, email as emailRule } from "@vee-validate/rules";
@@ -110,6 +112,10 @@ const { handleSubmit, errors, validateField } = useForm(); // Include validateFi
 const rules = {
   email: [required, emailRule],
   password: [required],
+};
+
+const loginWithGoogle = () => {
+  window.location.href = "http://localhost/api/google"; // Initiates the Google OAuth flow
 };
 
 const onSubmit = handleSubmit((values) => {
