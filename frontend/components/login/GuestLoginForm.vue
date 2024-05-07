@@ -76,7 +76,6 @@
         <p class="mx-4 font-semibold">Or continue with</p>
         <hr class="text-black flex-grow" />
       </div>
-      <!-- Login with Social Buttons -->
       <div class="mt-1 flex justify-between">
         <button
           class="group text-gray-800 px-8 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center"

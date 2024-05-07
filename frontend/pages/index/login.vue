@@ -4,8 +4,10 @@
       <div v-if="currentForm !== 'forgot'" class="relative">
         <h1 class="text-center font-bold text-xl mb-6">
           {{
-            currentForm === "login"
-              ? "Enter your login details"
+            currentForm === "org"
+              ? "Organisation Login"
+              : currentForm === "guest"
+              ? "Guest Login"
               : "Register a new account"
           }}
         </h1>
@@ -13,40 +15,42 @@
           <div class="border rounded-lg overflow-hidden w-full">
             <div class="flex">
               <button
-                @click="setCurrentForm('login')"
-                :class="buttonClass('login')"
+                @click="setCurrentForm('org')"
+                :class="buttonClass('org')"
                 class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500"
               >
-                Login
+                Organisation
               </button>
               <button
-                @click="setCurrentForm('register')"
-                :class="buttonClass('register')"
+                @click="setCurrentForm('guest')"
+                :class="buttonClass('guest')"
                 class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500"
               >
-                Register
+                Guest
               </button>
             </div>
           </div>
         </div>
       </div>
-      <LoginForm
-        v-if="currentForm === 'login'"
+      <OrgLoginForm
+        v-if="currentForm === 'org'"
         @forgot-password="setCurrentForm('forgot')"
       />
+      <GuestLoginForm v-else-if="currentForm === 'guest'" />
       <RegisterForm v-else-if="currentForm === 'register'" />
-      <ForgotPasswordForm v-else @login="setCurrentForm('login')" />
+      <ForgotPasswordForm v-else @login="setCurrentForm('org')" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import LoginForm from "@/components/index/forms/LoginForm.vue";
-import RegisterForm from "@/components/index/forms/RegisterForm.vue";
-import ForgotPasswordForm from "@/components/index/forms/ForgotPasswordForm.vue";
+import OrgLoginForm from "@/components/login/OrgLoginForm.vue";
+import GuestLoginForm from "@/components/login/GuestLoginForm.vue";
+import RegisterForm from "@/components/login/RegisterForm.vue";
+import ForgotPasswordForm from "@/components/login/ForgotPasswordForm.vue";
 
-const currentForm = ref("login");
+const currentForm = ref("org"); // default form when page loads
 
 function setCurrentForm(form) {
   currentForm.value = form;
