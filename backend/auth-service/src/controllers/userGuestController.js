@@ -1,4 +1,4 @@
-import { User } from "../schema/userSchema.js";
+import { UserGuest } from "../schema/userGuestSchema.js";
 
 const createUser = async (request, response) => {
   try {
@@ -12,7 +12,7 @@ const createUser = async (request, response) => {
         message: "Missing required fields",
       });
     }
-    const newUser = new User({
+    const newUser = new UserGuest({
       name: request.body.name,
       surname: request.body.surname,
       email: request.body.email,
@@ -20,7 +20,7 @@ const createUser = async (request, response) => {
     });
 
     // Save the new user to the database
-    const user = await User.create(newUser);
+    const user = await UserGuest.create(newUser);
 
     return response.status(201).send(user);
   } catch (error) {
