@@ -37,7 +37,7 @@
       <hr class="text-black flex-grow" />
     </div>
     <div class="mt-1 flex justify-between">
-      <button
+      <button @click="loginWithGoogle" type="button"
         class="group text-gray-800 px-8 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center"
       >
         <img src="@/public/google_logo.png" alt="Google" class="h-5 mr-2" />
@@ -52,7 +52,18 @@
     </div>
   </form>
 </template>
+
+<script>
+export default {
+    methods: {
+        loginWithGoogle() {
+            window.location.href = 'http://localhost/auth/google';  // Initiates the Google OAuth flow
+        }
+    }
+};
+</script>
 <script setup>
+
 const onSubmit = () => {
   // Implement login logic here
 };
