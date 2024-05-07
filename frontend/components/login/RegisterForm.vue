@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="onSubmit">
+    <!-- Form Input fields -->
     <label for="FirstName" class="font-semibold">First Name</label>
     <input
       type="text"
@@ -25,29 +26,29 @@
         class="block w-full px-4 py-2 border border-gray-300 rounded mt-2 mb-7 hover:border-blue-500"
         required
       />
+      <!-- Shows hide/show text for password field-->
       <span
         class="absolute inset-y-0 right-0 pr-3 pl-6 flex items-center text-sm leading-5 cursor-pointer"
         @click="showPassword = !showPassword"
         style="user-select: none"
       >
-        <!-- Icon to indicate show/hide -->
         {{ showPassword ? "Hide" : "Show" }}
       </span>
     </div>
     <label for="ConfirmPassword" class="font-semibold">Confirm Password</label>
     <div class="relative">
       <input
-        :type="showPassword ? 'text' : 'password'"
+        :type="showConfirmPassword ? 'text' : 'password'"
         class="block w-full px-4 py-2 border border-gray-300 rounded mt-2 mb-7 hover:border-blue-500"
         required
       />
+      <!-- Shows hide/show text for confirm password field-->
       <span
         class="absolute inset-y-0 right-0 pr-3 pl-6 flex items-center text-sm leading-5 cursor-pointer"
-        @click="showPassword = !showPassword"
+        @click="showConfirmPassword = !showConfirmPassword"
         style="user-select: none"
       >
-        <!-- Icon to indicate show/hide -->
-        {{ showPassword ? "Hide" : "Show" }}
+        {{ showConfirmPassword ? "Hide" : "Show" }}
       </span>
     </div>
     <button
@@ -85,4 +86,5 @@ const onSubmit = () => {
   // Implement registration logic here
 };
 const showPassword = ref(false);
+const showConfirmPassword = ref(false);
 </script>
