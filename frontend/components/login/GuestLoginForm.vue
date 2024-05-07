@@ -113,7 +113,7 @@ const rules = {
 };
 
 const loginWithGoogle = () => {
-  window.location.href = "http://localhost/auth/google"; // Initiates the Google OAuth flow
+  window.location.href = "http://localhost/api/google"; // Initiates the Google OAuth flow
 };
 
 const onSubmit = handleSubmit((values) => {
