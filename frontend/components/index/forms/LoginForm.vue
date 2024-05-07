@@ -25,22 +25,24 @@
 
       <div class="relative">
         <label for="password" class="font-semibold">Password</label>
-        <Field
-          :type="showPassword ? 'text' : 'password'"
-          name="password"
-          v-model="password"
-          class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out"
-          :rules="rules.password"
-          :class="{ 'border-red-500': errors.password }"
-        />
-        <span
-          class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
-          @click="showPassword = !showPassword"
-        >
-          <span class="material-icons">{{
-            showPassword ? "visibility_off" : "visibility"
-          }}</span>
-        </span>
+        <div class="flex items-center relative">
+          <Field
+            :type="showPassword ? 'text' : 'password'"
+            name="password"
+            v-model="password"
+            class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out"
+            :rules="rules.password"
+            :class="{ 'border-red-500': errors.password }"
+          />
+          <span
+            class="absolute inset-y-0 right-0 pr-3 pl-6 flex items-center text-sm leading-5 cursor-pointer mt-2"
+            @click="showPassword = !showPassword"
+            style="user-select: none"
+          >
+            <!-- Icon to indicate show/hide -->
+            {{ showPassword ? "Hide" : "Show" }}
+          </span>
+        </div>
         <ErrorMessage
           name="password"
           class="flex items-center text-red-500 mt-1"

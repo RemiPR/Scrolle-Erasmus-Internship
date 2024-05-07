@@ -16,7 +16,8 @@
     "nuxt": "^3.11.2",
     "vee-validate": "^4.5.8",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",
