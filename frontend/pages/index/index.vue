@@ -57,7 +57,6 @@ import Communication from "@/public/Communication.jpg";
 definePageMeta({
   layout: "nav",
 });
-
 const open = ref(false);
 const selectedLanguage = ref("English");
 

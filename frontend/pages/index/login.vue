@@ -7,7 +7,7 @@
       <button
         v-if="currentForm === 'register' || currentForm === 'forgot'"
         @click="setCurrentForm('guest')"
-        class="absolute top-12 left-1/4 my-4 text-blue-500 hover:text-blue-600 transition duration-300 text-lg flex items-center"
+        class="absolute top-12 left-1/4 my-4 text-blue-500 hover:text-blue-600 transition duration-300 text-lg flex items-center dark:text-white"
       >
         <span class="text-5xl">&#x2190;</span>
         <span class="text-2xl ml-2">Go back to login</span>
