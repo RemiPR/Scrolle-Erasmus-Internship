@@ -34,8 +34,6 @@
         <ColorModeToggle />
       </nav>
     </header>
-    <!-- Page Content -->
-    <NuxtPage />
   </div>
 </template>
 

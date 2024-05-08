@@ -1,25 +1,41 @@
 <template>
   <div>
-    <NuxtLayout :name="nav"></NuxtLayout>
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
-      <div class="bg-white p-8 rounded-xl shadow-lg max-w-sm w-full">
+    <div
+      class="relative flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-800"
+    >
+      <!-- Back Button outside and top-left aligned -->
+      <button
+        v-if="currentForm === 'register' || currentForm === 'forgot'"
+        @click="setCurrentForm('guest')"
+        class="absolute top-0 left-0 m-4 text-blue-500 hover:text-blue-600 transition duration-300 text-lg flex items-center"
+      >
+        <span class="text-2xl">&#x2190;</span>
+        <span class="ml-2">Go back to login</span>
+      </button>
+
+      <!-- Form container -->
+      <div
+        class="bg-white p-8 rounded-xl shadow-lg max-w-sm w-full dark:bg-gray-700 dark:text-white"
+      >
         <div v-if="currentForm !== 'forgot'" class="relative">
           <!-- Title Section -->
-          <h1 class="text-center font-bold text-xl mb-6">{{ titleText }}</h1>
+          <h1 class="text-center font-bold text-xl mb-6 dark:font-semibold">
+            {{ titleText }}
+          </h1>
 
           <!-- Toggle Buttons Section -->
           <div class="mb-6 flex justify-center">
             <div
               v-if="currentForm !== 'register'"
-              class="border rounded-lg overflow-hidden w-full"
+              class="border rounded-lg overflow-hidden w-full dark:border-gray-700"
             >
               <div class="flex">
                 <button
                   @click="setCurrentForm('org')"
                   :class="{
-                    'bg-blue-500 text-white hover:bg-blue-600':
+                    'bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700':
                       currentForm === 'org',
-                    'bg-white text-gray-700 hover:bg-gray-100 hover:font-semibold':
+                    'bg-white text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-300':
                       currentForm !== 'org',
                   }"
                   class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500"
@@ -29,9 +45,9 @@
                 <button
                   @click="setCurrentForm('guest')"
                   :class="{
-                    'bg-blue-500 text-white hover:bg-blue-600':
+                    'bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700':
                       currentForm === 'guest',
-                    'bg-white text-gray-700 hover:bg-gray-100 hover:font-semibold':
+                    'bg-white text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-300':
                       currentForm !== 'guest',
                   }"
                   class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500"
@@ -39,15 +55,6 @@
                   Guest
                 </button>
               </div>
-            </div>
-            <div v-else class="w-full text-center">
-              <button
-                @click="setCurrentForm('guest')"
-                class="hover:text-blue-600 transition duration-300 text-lg"
-              >
-                <span class="text-2xl text-blue-500">&#x2190;</span> Go back to
-                login
-              </button>
             </div>
           </div>
         </div>
@@ -66,7 +73,7 @@
             </label>
             <a
               href="#"
-              class="text-sm text-blue-600 hover:font-semibold"
+              class="text-blue-600 hover:font-semibold hover:underline dark:font-medium dark:text-blue-400 dark:hover:text-blue-500"
               @click.prevent="setCurrentForm('forgot')"
             >
               Forgot password?
@@ -75,21 +82,21 @@
           <!-- Sign In Button -->
           <button
             type="submit"
-            class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
           >
-            Sign in as {{ currentForm === "org" ? "Organization" : "Guest" }}
+            Sign in
           </button>
 
           <!-- Guest-Specific Section -->
           <template v-if="currentForm === 'guest'">
             <button
-              class="group text-gray-700 mt-6"
+              class="group text-gray-700 mt-6 dark:text-white"
               @click.prevent="setCurrentForm('register')"
               type="button"
             >
               Don't have an account yet?
               <span
-                class="font-medium text-blue-500 group-hover:underline group-hover:text-blue-600"
+                class="font-medium text-blue-500 group-hover:underline group-hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500"
                 >Sign up</span
               >
             </button>
@@ -102,7 +109,7 @@
             </div>
             <div class="mt-1 flex justify-between">
               <button
-                class="group text-gray-800 px-8 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center"
+                class="group text-gray-800 px-8 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center dark:bg-white dark:hover:bg-gray-200"
                 @click="loginWithGoogle"
                 type="button"
               >
@@ -110,7 +117,7 @@
                 <span class="font-semibold group-hover:text-black">Google</span>
               </button>
               <button
-                class="group text-gray-800 px-6 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center"
+                class="group text-gray-800 px-6 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center dark:bg-white dark:hover:bg-gray-200"
               >
                 <Icon name="logos:facebook" class="mr-2" alt="Facebook Logo" />
                 <span class="font-semibold group-hover:text-black"
@@ -161,3 +168,9 @@ function loginWithGoogle() {
   window.location.href = "http://localhost/auth/google";
 }
 </script>
+
+<style scoped>
+/* .test {
+  color: rgb(64, 129, 233);
+} */
+</style>

@@ -57,7 +57,7 @@
     >
       Register
     </button>
-
+    <!-- Social Media Options -->
     <div class="flex items-center my-6">
       <hr class="text-black flex-grow" />
       <p class="mx-4 font-semibold">Or continue with</p>
@@ -65,15 +65,17 @@
     </div>
     <div class="mt-1 flex justify-between">
       <button
-        class="group text-gray-800 px-8 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center"
+        class="group text-gray-800 px-8 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center dark:bg-white dark:hover:bg-gray-200"
+        @click="loginWithGoogle"
+        type="button"
       >
         <Icon name="logos:google-icon" class="mr-2" alt="Google Logo" />
         <span class="font-semibold group-hover:text-black">Google</span>
       </button>
       <button
-        class="group text-gray-800 px-6 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center hover:font-thin"
+        class="group text-gray-800 px-6 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center dark:bg-white dark:hover:bg-gray-200"
       >
-        <Icon name="logos:facebook" class="mr-2" alt="Google Logo" />
+        <Icon name="logos:facebook" class="mr-2" alt="Facebook Logo" />
         <span class="font-semibold group-hover:text-black">Facebook</span>
       </button>
     </div>

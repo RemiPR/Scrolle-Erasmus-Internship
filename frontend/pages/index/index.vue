@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NuxtLayout :name="nav"></NuxtLayout>
     <div class="mx-auto px-4 bg-white dark:bg-gray-800">
       <main class="text-center text-black dark:text-white">
         <div class="h-screen pt-64">
