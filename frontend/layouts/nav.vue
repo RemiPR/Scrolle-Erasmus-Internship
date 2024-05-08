@@ -3,7 +3,7 @@
     <!-- Header (Nav Menu) -->
     <header
       class="flex justify-between items-center p-4 bg-white dark:bg-gray-800 shadow sticky top-0 z-10"
-      style="position: sticky; top: 0; z-index: 50"
+      style="position: sticky; top: 0; z-index: 500"
     >
       <nav class="flex items-center">
         <NuxtLink to="#" class="flex items-center">
@@ -34,7 +34,11 @@
         <ColorModeToggle />
       </nav>
     </header>
+    <!-- Page content -->
+    <NuxtPage />
   </div>
 </template>
+
+<script setup></script>
 
 <script setup></script>
