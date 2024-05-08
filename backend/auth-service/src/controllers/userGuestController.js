@@ -30,6 +30,14 @@ const createUser = async (request, response) => {
   }
 };
 
+const loginUser = async (request, response) => {
+  try {
+    const { email, password } = request.body;
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+  }
+};
+
 const registerUser = async (request, response) => {
   try {
     const { name, surname, email, password } = request.body;
@@ -47,26 +55,18 @@ const registerUser = async (request, response) => {
       return response.status(409).send({ message: "Email already exists" });
     }
 
-    // Password hashing
-    async function hashPassword(password) {
-      try {
-        const hash = await bcrypt.hash(password, 12);
-        return hash; // Return the hash to be used elsewhere
-      } catch (err) {
-        return response.status(500).send({ message: "Hashing error" });
-      }
-    }
-    const hashedPassword = await hashPassword(password);
+    // TODO: add password validation https://www.reddit.com/r/dataisbeautiful/comments/1cb48y6/oc_i_updated_our_password_table_for_2024_with/#lightbox
 
     // Creates newGuestUser object
     const newGuestUser = new UserGuest({
       name: name,
       surname: surname,
       email: email,
-      password: hashedPassword,
+      password: password,
     });
 
     // Save the new user to the database
+    // Hashing done in the userGuestSchema.js
     const user = await UserGuest.create(newGuestUser);
 
     return response.status(201).send(user);

@@ -41,8 +41,6 @@ const authenticate = async (request, response) => {
     }
 
     const payload = ticket.getPayload(); // Extract user information
-    console.log("payload:");
-    console.log(payload);
     const userId = payload["sub"]; // Google user ID
     const email = payload["email"];
     const name = payload["name"];
