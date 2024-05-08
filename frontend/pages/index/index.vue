@@ -92,7 +92,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import LeftTextAd from "@/components/index/LeftTextAd.vue";
 import RightTextAd from "@/components/index/RightTextAd.vue";
 
@@ -106,11 +105,5 @@ const selectedLanguage = ref("English");
 const changeLanguage = (language) => {
   selectedLanguage.value = language;
   open.value = false;
-};
-</script>
-
-<script>
-export default {
-  layout: "nav",
 };
 </script>

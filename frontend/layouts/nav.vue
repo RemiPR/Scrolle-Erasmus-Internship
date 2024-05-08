@@ -5,9 +5,15 @@
     <header
       class="flex justify-between items-center p-4 bg-white dark:bg-gray-800 shadow"
     >
-      <h1 class="text-2xl font-bold text-gray-800 dark:text-white">
-        My Nuxt App
-      </h1>
+      <NuxtLink to="#">
+        <Icon
+          name="fluent:hat-graduation-24-regular"
+          class="mr-2 h-8 w-8"
+          alt="Graduation hat icon"
+        />
+        <span class="text-xl">Scroll</span>
+      </NuxtLink>
+
       <nav class="flex gap-4">
         <NuxtLink to="/" class="text-gray-800 dark:text-white hover:underline"
           >Home</NuxtLink
