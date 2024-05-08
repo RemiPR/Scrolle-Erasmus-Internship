@@ -1,5 +1,5 @@
 import { UserGuest } from "../schema/userGuestSchema.js";
-import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const createUser = async (request, response) => {
   try {
@@ -30,11 +30,47 @@ const createUser = async (request, response) => {
   }
 };
 
+const logoutUser = async (request, response) => {
+  try {
+    response.clearCookie("authToken"); // if using HttpOnly cookies to store JWT
+    return response.status(200).send("Logged out");
+  } catch (error) {
+    return response.status(500).send({ message: error.message });
+  }
+};
+
 const loginUser = async (request, response) => {
   try {
     const { email, password } = request.body;
+
+    // Checks if credentials are valid
+    const userGuest = await UserGuest.findOne({ email });
+    if (!userGuest || !(await userGuest.isValidPassword(password))) {
+      return response.status(401).send("Invalid Credentials");
+    }
+
+    // Signs JWT token
+    const token = jwt.sign({ id: userGuest }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    // Response with a cookie which stores the token
+    // httpOnly makes cookie inaccessible to JavaScript running in the browser.
+    // set secure to true when using HTTPS
+    // sameSite Lax balanced safety vulnerable to phishing but maintains session,
+    // sameSite Strict very safe  have to reauthenticate while accessing web from other sources
+    // maxAge how long the cookie lasts, 3600000 = 1 hour
+    return response
+      .status(200)
+      .cookie("authToken", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "Lax",
+        maxAge: 3600000,
+      })
+      .send("Logged in");
   } catch (error) {
-    response.status(500).send({ message: error.message });
+    return response.status(500).send({ message: error.message });
   }
 };
 
@@ -75,4 +111,9 @@ const registerUser = async (request, response) => {
   }
 };
 
-export const UserGuestController = { createUser, registerUser };
+export const UserGuestController = {
+  createUser,
+  registerUser,
+  loginUser,
+  logoutUser,
+};
