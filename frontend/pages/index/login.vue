@@ -1,60 +1,61 @@
 <template>
   <div>
     <div
-      class="relative flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-800"
+      class="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-800"
     >
-      <!-- Back Button outside and top-left aligned -->
-      <button
-        v-if="currentForm === 'register' || currentForm === 'forgot'"
-        @click="setCurrentForm('guest')"
-        class="absolute top-12 left-1/4 my-4 text-blue-500 hover:text-blue-600 transition duration-300 text-lg flex items-center dark:text-white"
-      >
-        <span class="text-5xl">&#x2190;</span>
-        <span class="text-2xl ml-2">Go back to login</span>
-      </button>
-
       <!-- Form container -->
       <div
-        class="bg-white p-8 rounded-xl shadow-lg max-w-sm w-full dark:bg-gray-700 dark:text-white"
+        class="relative bg-white p-8 rounded-xl shadow-lg max-w-sm w-full dark:bg-gray-700 dark:text-white"
       >
-        <div v-if="currentForm !== 'forgot'" class="relative">
-          <!-- Title Section -->
-          <h1 class="text-center font-bold text-xl mb-6 dark:font-semibold">
+        <!-- Header Section with Back Button and Title -->
+        <div class="flex items-center justify-between mb-6">
+          <button
+            v-if="currentForm === 'register' || currentForm === 'forgot'"
+            @click="setCurrentForm('guest')"
+            class="flex items-center justify-center w-12 h-12 bg-transparent rounded-full transition duration-300 hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-white"
+          >
+            <span
+              class="text-4xl text-blue-500 hover:text-blue-600 dark:text-white"
+              >&#x2190;</span
+            >
+          </button>
+          <h1
+            class="text-center font-bold text-xl flex-grow text-gray-800 dark:text-white"
+          >
             {{ titleText }}
           </h1>
+        </div>
 
-          <!-- Toggle Buttons Section -->
-          <div class="mb-6 flex justify-center">
-            <div
-              v-if="currentForm !== 'register'"
-              class="border rounded-lg overflow-hidden w-full dark:border-gray-700"
-            >
-              <div class="flex">
-                <button
-                  @click="setCurrentForm('org')"
-                  :class="{
-                    'bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700':
-                      currentForm === 'org',
-                    'bg-white text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-300':
-                      currentForm !== 'org',
-                  }"
-                  class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500"
-                >
-                  Organisation
-                </button>
-                <button
-                  @click="setCurrentForm('guest')"
-                  :class="{
-                    'bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700':
-                      currentForm === 'guest',
-                    'bg-white text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-300':
-                      currentForm !== 'guest',
-                  }"
-                  class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500"
-                >
-                  Guest
-                </button>
-              </div>
+        <!-- Toggle Buttons Section -->
+        <div v-if="currentForm !== 'register'" class="mb-6 flex justify-center">
+          <div
+            class="border rounded-lg overflow-hidden w-full dark:border-gray-700"
+          >
+            <div class="flex">
+              <button
+                @click="setCurrentForm('org')"
+                :class="{
+                  'bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700':
+                    currentForm === 'org',
+                  'bg-white text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-300':
+                    currentForm !== 'org',
+                }"
+                class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500"
+              >
+                Organisation
+              </button>
+              <button
+                @click="setCurrentForm('guest')"
+                :class="{
+                  'bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700':
+                    currentForm === 'guest',
+                  'bg-white text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-300':
+                    currentForm !== 'guest',
+                }"
+                class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500"
+              >
+                Guest
+              </button>
             </div>
           </div>
         </div>
