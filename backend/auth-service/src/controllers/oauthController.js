@@ -5,6 +5,8 @@ import { OAuth2Client } from "google-auth-library";
 
 dotenv.config();
 
+const JWT_EXPIRY = process.env.JWT_EXPIRY;
+
 const client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID,
   process.env.GOOGLE_CLIENT_SECRET,
@@ -53,7 +55,7 @@ const authenticateGoogle = async (request, response) => {
     const token = jwt.sign(
       { userId, email, name },
       process.env.JWT_SECRET, // JWT secret key
-      { expiresIn: "1h" } // Token expiration
+      { expiresIn: JWT_EXPIRY } // Token expiration
     );
 
     // Set the JWT in a secure HTTP-only cookie
