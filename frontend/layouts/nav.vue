@@ -5,6 +5,7 @@
       class="flex justify-between items-center p-4 bg-white dark:bg-gray-800 shadow sticky top-0 z-10"
       style="position: sticky; top: 0; z-index: 500"
     >
+      <!-- Left nav: Logo + Logo Text and Home button -->
       <nav class="flex items-center">
         <NuxtLink to="#" class="flex items-center">
           <Icon
@@ -17,15 +18,16 @@
           >
         </NuxtLink>
         <NuxtLink
-          to="/"
+          :to="localePath('/')"
           class="text-gray-800 ml-5 dark:text-white hover:underline"
           >Home</NuxtLink
         >
       </nav>
+      <!-- Right nav: Language toggler, Login button, Light/Dark theme toggler -->
       <nav class="flex items-center gap-4">
         <LangSwitcher class="text-gray-800 dark:text-white hover:underline" />
         <NuxtLink
-          to="/login"
+          :to="localePath('/login')"
           class="text-gray-800 dark:text-white hover:underline"
           >Login</NuxtLink
         >
@@ -39,4 +41,7 @@
 
 <script setup>
 import LangSwitcher from "~/components/index/LangSwitcher.vue";
+import { useLocalePath } from "#imports";
+
+const localePath = useLocalePath();
 </script>
