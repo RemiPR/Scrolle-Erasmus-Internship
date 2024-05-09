@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import axios from "axios";
 import { OAuth2Client } from "google-auth-library";
 
 dotenv.config();
@@ -10,7 +11,8 @@ const client = new OAuth2Client(
   process.env.GOOGLE_CALLBACK_URL
 );
 
-const init = async (request, response) => {
+// To initiate google login
+const initGoogle = async (request, response) => {
   try {
     const url = client.generateAuthUrl({
       scope: ["profile", "email"], // Scope for user profile and email
@@ -22,7 +24,9 @@ const init = async (request, response) => {
   }
 };
 
-const authenticate = async (request, response) => {
+// Further authentication after succesfull login
+// TODO: Add userGuest to database and perform a check if he already exists.
+const authenticateGoogle = async (request, response) => {
   const { code } = request.query; // Get the OAuth authorization code
 
   try {
@@ -61,4 +65,70 @@ const authenticate = async (request, response) => {
     response.status(500).send("Authentication failed");
   }
 };
-export const OauthController = { init, authenticate };
+
+// To initiate facebook login
+const initFacebook = async (request, response) => {
+  try {
+    const authUrl = `https://www.facebook.com/v15.0/dialog/oauth?client_id=${process.env.FACEBOOK_CLIENT_ID}&redirect_uri=${process.env.FACEBOOK_CALLBACK_URL}&scope=email,public_profile`;
+    response.redirect(authUrl);
+  } catch (error) {
+    response.status(500).send(error);
+  }
+};
+
+// Further authentication after succesfull login
+// TODO: Add userGuest to database and perform a check if he already exists.
+const authenticateFacebook = async (request, response) => {
+  try {
+    const { code } = request.query;
+    const accessToken = await getAccessToken(code);
+    const userProfile = await getUserProfile(accessToken);
+    response.status(200).send(userProfile);
+  } catch (error) {
+    response.status(500).send("Authentication failed");
+  }
+};
+
+// ADDITIONAL FUNCTIONS -----------------------------------------------
+
+async function getAccessToken(code) {
+  try {
+    const response = await axios.get(
+      "https://graph.facebook.com/v15.0/oauth/access_token",
+      {
+        params: {
+          client_id: process.env.FACEBOOK_CLIENT_ID,
+          client_secret: process.env.FACEBOOK_CLIENT_SECRET,
+          redirect_uri: process.env.FACEBOOK_CALLBACK_URL,
+          code: code,
+        },
+      }
+    );
+    return response.data.access_token;
+  } catch (error) {
+    //console.error("Error fetching access token:", error);
+    throw error;
+  }
+}
+
+async function getUserProfile(accessToken) {
+  try {
+    const response = await axios.get("https://graph.facebook.com/me", {
+      params: {
+        fields: "id,name,email",
+        access_token: accessToken,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    //console.error("Error fetching user profile:", error);
+    throw error;
+  }
+}
+
+export const OauthController = {
+  initGoogle,
+  initFacebook,
+  authenticateGoogle,
+  authenticateFacebook,
+};
