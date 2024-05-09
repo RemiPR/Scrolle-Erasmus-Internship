@@ -14,19 +14,19 @@ const language = computed({
     <select
       id="language"
       v-model="language"
-      class="appearance-none dark:bg-gray-800 border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:border-blue-500"
+      class="appearance-none bg-gray-800 dark:bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:border-blue-500"
     >
       <option
         v-for="item in locales"
         :key="typeof item === 'object' ? item.code : item"
         :value="typeof item === 'object' ? item.code : item"
-        class="dark:text-white"
+        class="dark:text-black"
       >
         {{ typeof item === "object" ? item.name : item }}
       </option>
     </select>
     <div
-      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-black dark:text-white"
+      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white dark:text-black"
     >
       <svg
         class="w-4 h-4 fill-current"
