@@ -1,4 +1,3 @@
-<!-- SharedLoginForm.vue -->
 <template>
   <Form
     @submit="onSubmit"
@@ -21,8 +20,13 @@
         />
       </Field>
       <ErrorMessage name="email" v-slot="{ message }">
-        <div class="flex items-center text-red-500 dark:text-gray-200 mt-1">
-          <Icon name="material-symbols:error" class="mr-2 dark:text-red-500" />
+        <div
+          class="flex items-center text-red-500 dark:text-gray-50 dark:font-semibold mt-1"
+        >
+          <Icon
+            name="material-symbols:error"
+            class="h-5 w-5 mr-2 dark:text-red-500"
+          />
           <span>{{ message }}</span>
         </div>
       </ErrorMessage>
@@ -53,8 +57,13 @@
         </span>
       </div>
       <ErrorMessage name="password" v-slot="{ message }">
-        <div class="flex items-center text-red-500 dark:text-gray-200 mt-1">
-          <Icon name="material-symbols:error" class="mr-2 dark:text-red-500" />
+        <div
+          class="flex items-center text-red-500 dark:text-gray-50 dark:font-semibold mt-1"
+        >
+          <Icon
+            name="material-symbols:error"
+            class="h-5 w-5 mr-2 dark:text-red-500"
+          />
           <span>{{ message }}</span>
         </div>
       </ErrorMessage>

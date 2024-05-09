@@ -15,7 +15,7 @@
             class="flex items-center justify-center w-12 h-12 bg-transparent rounded-full transition duration-300 hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-white"
           >
             <span
-              class="text-4xl text-blue-500 hover:text-blue-600 dark:text-white"
+              class="text-4xl text-blue-500 hover:text-blue-600 dark:text-white select-none"
               >&#x2190;</span
             >
           </button>
@@ -40,7 +40,7 @@
                   'bg-white text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-300':
                     currentForm !== 'org',
                 }"
-                class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500"
+                class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500 select-none"
               >
                 Organisation
               </button>
@@ -52,7 +52,7 @@
                   'bg-white text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-300':
                     currentForm !== 'guest',
                 }"
-                class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500"
+                class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500 select-none"
               >
                 Guest
               </button>
@@ -70,7 +70,7 @@
           <div class="flex justify-between mb-6">
             <label class="flex items-center">
               <input type="checkbox" class="mr-2 rounded-lg border-2" />
-              <span>Remember me</span>
+              <span class="select-none">Remember me</span>
             </label>
             <a
               href="#"
@@ -83,7 +83,7 @@
           <!-- Sign In Button -->
           <button
             type="submit"
-            class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
+            class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 select-none"
           >
             Sign in
           </button>
@@ -115,13 +115,15 @@
                 type="button"
               >
                 <Icon name="logos:google-icon" class="mr-2" alt="Google Logo" />
-                <span class="font-semibold group-hover:text-black">Google</span>
+                <span class="font-semibold group-hover:text-black select-none"
+                  >Google</span
+                >
               </button>
               <button
                 class="group text-gray-800 px-6 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center dark:bg-white dark:hover:bg-gray-200"
               >
                 <Icon name="logos:facebook" class="mr-2" alt="Facebook Logo" />
-                <span class="font-semibold group-hover:text-black"
+                <span class="font-semibold group-hover:text-black select-none"
                   >Facebook</span
                 >
               </button>

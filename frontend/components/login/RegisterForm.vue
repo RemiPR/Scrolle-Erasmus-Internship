@@ -24,8 +24,13 @@
         />
       </Field>
       <ErrorMessage name="firstName" v-slot="{ message }">
-        <div class="flex items-center text-red-500 dark:text-gray-200 mt-1">
-          <Icon name="material-symbols:error" class="mr-2 dark:text-red-500" />
+        <div
+          class="flex items-center text-red-500 dark:text-gray-50 dark:font-semibold mt-1"
+        >
+          <Icon
+            name="material-symbols:error"
+            class="h-5 w-5 mr-2 dark:text-red-500"
+          />
           <span>{{ message }}</span>
         </div>
       </ErrorMessage>
@@ -45,8 +50,13 @@
         />
       </Field>
       <ErrorMessage name="lastName" v-slot="{ message }">
-        <div class="flex items-center text-red-500 dark:text-gray-200 mt-1">
-          <Icon name="material-symbols:error" class="mr-2 dark:text-red-500" />
+        <div
+          class="flex items-center text-red-500 dark:text-gray-50 dark:font-semibold mt-1"
+        >
+          <Icon
+            name="material-symbols:error"
+            class="h-5 w-5 mr-2 dark:text-red-500"
+          />
           <span>{{ message }}</span>
         </div>
       </ErrorMessage>
@@ -66,8 +76,13 @@
         />
       </Field>
       <ErrorMessage name="email" v-slot="{ message }">
-        <div class="flex items-center text-red-500 dark:text-gray-200 mt-1">
-          <Icon name="material-symbols:error" class="mr-2 dark:text-red-500" />
+        <div
+          class="flex items-center text-red-500 dark:text-gray-50 dark:font-semibold mt-1"
+        >
+          <Icon
+            name="material-symbols:error"
+            class="h-5 w-5 mr-2 dark:text-red-500"
+          />
           <span>{{ message }}</span>
         </div>
       </ErrorMessage>
@@ -98,8 +113,13 @@
         </span>
       </div>
       <ErrorMessage name="password" v-slot="{ message }">
-        <div class="flex items-center text-red-500 dark:text-gray-200 mt-1">
-          <Icon name="material-symbols:error" class="mr-2 dark:text-red-500" />
+        <div
+          class="flex items-center text-red-500 dark:text-gray-50 dark:font-semibold mt-1"
+        >
+          <Icon
+            name="material-symbols:error"
+            class="h-5 w-5 mr-2 dark:text-red-500"
+          />
           <span>{{ message }}</span>
         </div>
       </ErrorMessage>
@@ -132,8 +152,13 @@
         </span>
       </div>
       <ErrorMessage name="confirmPassword" v-slot="{ message }">
-        <div class="flex items-center text-red-500 dark:text-gray-200 mt-1">
-          <Icon name="material-symbols:error" class="mr-2 dark:text-red-500" />
+        <div
+          class="flex items-center text-red-500 dark:text-gray-50 dark:font-semibold mt-1"
+        >
+          <Icon
+            name="material-symbols:error"
+            class="h-5 w-5 mr-2 dark:text-red-500"
+          />
           <span>{{ message }}</span>
         </div>
       </ErrorMessage>
@@ -142,7 +167,7 @@
     <!-- Register button -->
     <button
       type="submit"
-      class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
+      class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 select-none"
     >
       Register
     </button>
@@ -160,14 +185,18 @@
         type="button"
       >
         <Icon name="logos:google-icon" class="mr-2" alt="Google Logo" />
-        <span class="font-semibold group-hover:text-black">Google</span>
+        <span class="font-semibold group-hover:text-black select-none"
+          >Google</span
+        >
       </button>
       <button
         class="group text-gray-800 px-6 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center dark:bg-white dark:hover:bg-gray-200"
         @click="loginWithFacebook"
       >
         <Icon name="logos:facebook" class="mr-2" alt="Facebook Logo" />
-        <span class="font-semibold group-hover:text-black">Facebook</span>
+        <span class="font-semibold group-hover:text-black select-none"
+          >Facebook</span
+        >
       </button>
     </div>
   </Form>
