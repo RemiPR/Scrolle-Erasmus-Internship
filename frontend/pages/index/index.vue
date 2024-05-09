@@ -1,116 +1,67 @@
 <template>
   <div>
-    <NuxtLayout :name="nav"></NuxtLayout>
-    <div class="mx-auto px-4 bg-slate-800 text-white">
-      <header class="flex justify-between items-center py-6">
-        <div>
-          <Icon name="logos:google-icon" class="mr-2" alt="Google Logo" />
-        </div>
-        <nav>
-          <ul class="flex space-x-8 items-center">
-            <div class="relative w-32">
-              <button
-                @click="open = !open"
-                class="relative z-10 text-sm flex items-center w-full"
-              >
-                {{ selectedLanguage }}
-                <svg
-                  class="w-5 h-5 ml-2 -mr-1"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </button>
-              <div
-                v-show="open"
-                @click="open = false"
-                class="fixed inset-0 h-full w-full z-10"
-              ></div>
-              <div
-                v-show="open"
-                class="absolute right-0 mt-2 py-2 w-full bg-white rounded-lg shadow-xl z-20"
-              >
-                <a
-                  href="#"
-                  @click="changeLanguage('English')"
-                  class="block px-4 py-2 text-sm text-black"
-                  >English</a
-                >
-                <a
-                  href="#"
-                  @click="changeLanguage('Latvian')"
-                  class="block px-4 py-2 text-sm text-black"
-                  >Latvian</a
-                >
-                <a
-                  href="#"
-                  @click="changeLanguage('Russian')"
-                  class="block px-4 py-2 text-sm text-black"
-                  >Russian</a
-                >
-              </div>
-            </div>
-            <li>
-              <NuxtLink to="/login" class="text-sm mr-8">Sign in</NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/login" class="text-sm mr-8">Register</NuxtLink>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <main class="text-center y-20">
-        <div class="mt-80">
-          <h1 class="text-4xl mb-10">
+    <div class="mx-auto px-4 bg-white dark:bg-gray-800">
+      <main class="text-center text-black dark:text-white">
+        <div class="h-screen pt-64">
+          <h1 class="text-5xl mb-14">
             Free courses, Interactive learning materials, and more
           </h1>
-          <p class="text-xl mb-8">
+          <p class="text-2xl mb-8">
             Welcome to Scroll — Your Pathway to Online Learning Excellence!
           </p>
-          <form class="flex justify-center">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              class="border p-2 rounded-l-md"
+          <div class="mt-52">
+            <p class="text-2xl mb-8">
+              Ready to learn? Enter your email to create your account.
+            </p>
+            <form class="flex justify-center">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="border p-2 rounded-lg w-80 h-12"
+              />
+              <button
+                class="bg-blue-500 text-white p-2 rounded-r-md ml-2 rounded-l-lg"
+              >
+                Start learning
+              </button>
+            </form>
+            <Icon
+              name="heroicons-outline:arrow-down"
+              class="mt-10 h-16 w-11"
+              alt="Down arrow"
             />
-            <button class="bg-blue-500 text-white p-2 rounded-r-md">
-              Start learning
-            </button>
-          </form>
+          </div>
         </div>
-        <LeftTextAd />
-        <RightTextAd />
-        <LeftTextAd />
+        <TextLeftAd
+          Subtitle1="Free courses"
+          Paragraph1="Learn for free from Scroll's free courses which are made by the best tutors in Latvia."
+          :Photo1="FreeCourses"
+        />
+        <TextRightAd />
+        <TextLeftAd
+          Subtitle1="Communicate easily"
+          Paragraph1="Communicate with your colleagues, freinds using Scroll's unique chatting system."
+          :Photo1="Communication"
+        />
       </main>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import LeftTextAd from "@/components/index/LeftTextAd.vue";
-import RightTextAd from "@/components/index/RightTextAd.vue";
+import TextLeftAd from "~/components/index/TextLeftAd.vue";
+import TextRightAd from "~/components/index/TextRightAd.vue";
+import FreeCourses from "@/public/FreeCourses.jpg";
+import Communication from "@/public/Communication.jpg";
 
 definePageMeta({
   layout: "nav",
 });
-
 const open = ref(false);
 const selectedLanguage = ref("English");
 
 const changeLanguage = (language) => {
   selectedLanguage.value = language;
   open.value = false;
-};
-</script>
-
-<script>
-export default {
-  layout: "nav",
 };
 </script>

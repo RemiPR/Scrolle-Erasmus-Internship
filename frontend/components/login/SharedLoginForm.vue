@@ -9,9 +9,9 @@
           name="email"
           type="email"
           v-model="email"
-          class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out"
+          class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
           :rules="rules.email"
-          :class="{ 'border-red-500': errors.email }"
+          :class="{ 'border-red-500 dark:border-red-500': errors.email }"
         />
         <ErrorMessage
           name="email"
@@ -19,8 +19,11 @@
           v-if="errors.email"
           v-slot="{ message }"
         >
-          <div class="flex items-center text-red-500 mt-1">
-            <Icon name="material-symbols:error" class="text-red-500 mr-2" />
+          <div class="flex items-center text-red-500 dark:text-gray-200 mt-1">
+            <Icon
+              name="material-symbols:error"
+              class="mr-2 dark:text-red-500"
+            />
             <span class="">{{ message }}</span>
           </div>
         </ErrorMessage>
@@ -34,15 +37,15 @@
             :type="showPassword ? 'text' : 'password'"
             name="password"
             v-model="password"
-            class="w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out"
+            class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
             :rules="rules.password"
-            :class="{ 'border-red-500': errors.password }"
+            :class="{ 'border-red-500 dark:border-red-500': errors.password }"
           />
           <span
             class="absolute inset-y-0 right-0 pr-3 flex items-center justify-center cursor-pointer"
             @click="toggleShowPassword"
           >
-            <span class="material-icons">
+            <span class="material-icons select-none dark:font-semibold">
               {{ showPassword ? "hide" : "show" }}
             </span>
           </span>
@@ -52,8 +55,11 @@
           v-if="errors.password"
           v-slot="{ message }"
         >
-          <div class="flex items-center text-red-500 mt-1">
-            <Icon name="material-symbols:error" class="text-red-500 mr-2" />
+          <div class="flex items-center text-red-500 dark:text-gray-200 mt-1">
+            <Icon
+              name="material-symbols:error"
+              class="mr-2 dark:text-red-500"
+            />
             <span class="">{{ message }}</span>
           </div>
         </ErrorMessage>
