@@ -1,5 +1,11 @@
 import { UserGuest } from "../schema/userGuestSchema.js";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const JWT_EXPIRY = process.env.JWT_EXPIRY;
+const COOKIE_AGE = process.env.COOKIE_AGE;
 
 const createUser = async (request, response) => {
   try {
@@ -51,7 +57,7 @@ const loginUser = async (request, response) => {
 
     // Signs JWT token
     const token = jwt.sign({ id: userGuest }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: JWT_EXPIRY,
     });
 
     // Response with a cookie which stores the token
@@ -66,7 +72,7 @@ const loginUser = async (request, response) => {
         httpOnly: true,
         secure: true,
         sameSite: "Lax",
-        maxAge: 3600000,
+        maxAge: COOKIE_AGE,
       })
       .send("Logged in");
   } catch (error) {
