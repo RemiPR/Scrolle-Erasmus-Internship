@@ -1,6 +1,6 @@
 <template>
   <Form
-    @submit.prevent="onSubmit"
+    @submit="onSubmit"
     :validation-schema="validationSchema"
     validate-on-input
     v-slot="{ validateField }"
@@ -19,7 +19,7 @@
           @input="validateField('firstName')"
           class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
           :class="{
-            'border-red-500 dark:border-red-500': meta.touched && meta.invalid,
+            'border-red-500 dark:border-red-500': meta.touched && meta.valid,
           }"
         />
       </Field>
@@ -40,7 +40,7 @@
           @input="validateField('lastName')"
           class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
           :class="{
-            'border-red-500 dark:border-red-500': meta.touched && meta.invalid,
+            'border-red-500 dark:border-red-500': meta.touched && meta.valid,
           }"
         />
       </Field>
@@ -61,7 +61,7 @@
           @input="validateField('email')"
           class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
           :class="{
-            'border-red-500 dark:border-red-500': meta.touched && meta.invalid,
+            'border-red-500 dark:border-red-500': meta.touched && meta.valid,
           }"
         />
       </Field>
@@ -87,8 +87,7 @@
             @input="validateField('password')"
             class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
             :class="{
-              'border-red-500 dark:border-red-500':
-                meta.touched && meta.invalid,
+              'border-red-500 dark:border-red-500': meta.touched && meta.valid,
             }"
           />
         </Field>
@@ -125,8 +124,7 @@
             @input="validateField('confirmPassword')"
             class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
             :class="{
-              'border-red-500 dark:border-red-500':
-                meta.touched && meta.invalid,
+              'border-red-500 dark:border-red-500': meta.touched && meta.valid,
             }"
           />
         </Field>
@@ -227,11 +225,9 @@ const { handleSubmit, validateField, values } = useForm({
 });
 
 // Form submission handler
-const onSubmit = handleSubmit((values) => {
-  console.log(JSON.stringify(values, null, 2));
-  // Emit an event with the values for parent component handling
-  // emit("submit", values);
-});
+const onSubmit: any = (e: any) => {
+  console.log(JSON.stringify(e, null, 2));
+};
 
 // Dummy functions for login buttons
 const loginWithGoogle = () => {
