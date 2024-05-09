@@ -20,7 +20,7 @@
             >
           </button>
           <h1
-            class="text-center font-bold text-xl flex-grow text-gray-800 dark:text-white"
+            class="text-center font-bold text-xl flex-grow text-gray-800 dark:text-white select-none"
           >
             {{ titleText }}
           </h1>
