@@ -77,14 +77,11 @@
     <div class="mb-4 relative flex flex-col">
       <label for="password" class="font-semibold">Password</label>
       <div class="relative">
-        <Field
-          name="password"
-          :type="showPassword ? 'text' : 'password'"
-          v-slot="{ field, meta }"
-        >
+        <Field name="password" v-slot="{ field, meta }">
           <input
             v-bind="field"
             @input="validateField('password')"
+            :type="showPassword ? 'text' : 'password'"
             class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
             :class="{
               'border-red-500 dark:border-red-500': meta.touched && meta.valid,
@@ -114,14 +111,11 @@
         >Confirm Password</label
       >
       <div class="relative">
-        <Field
-          name="confirmPassword"
-          :type="showConfirmPassword ? 'text' : 'password'"
-          v-slot="{ field, meta }"
-        >
+        <Field name="confirmPassword" v-slot="{ field, meta }">
           <input
             v-bind="field"
             @input="validateField('confirmPassword')"
+            :type="showConfirmPassword ? 'text' : 'password'"
             class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
             :class="{
               'border-red-500 dark:border-red-500': meta.touched && meta.valid,

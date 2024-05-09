@@ -169,9 +169,3 @@ function loginWithGoogle() {
   window.location.href = "http://localhost/auth/google";
 }
 </script>
-
-<style scoped>
-/* .test {
-  color: rgb(64, 129, 233);
-} */
-</style>
