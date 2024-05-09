@@ -23,9 +23,7 @@
         >
       </nav>
       <nav class="flex items-center gap-4">
-        <NuxtLink to="/" class="text-gray-800 dark:text-white hover:underline"
-          >Language</NuxtLink
-        >
+        <LangSwitcher class="text-gray-800 dark:text-white hover:underline" />
         <NuxtLink
           to="/login"
           class="text-gray-800 dark:text-white hover:underline"
@@ -38,3 +36,7 @@
     <NuxtPage />
   </div>
 </template>
+
+<script setup>
+import LangSwitcher from "~/components/index/LangSwitcher.vue";
+</script>

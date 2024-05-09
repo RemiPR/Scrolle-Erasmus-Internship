@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
@@ -14,24 +15,30 @@ export default defineNuxtConfig({
   },
   plugins: [{ src: "~/plugins/pinia.js", mode: "client" }],
   i18n: {
+    lazy: true,
+    langDir: "locales",
+    strategy: "prefix",
     locales: [
       {
-        code: "en",
+        code: "en-US",
         name: "English",
         iso: "en-US",
-        file: "en.json",
+        file: "en-US.json",
       },
       {
-        code: "fr",
-        name: "French",
-        iso: "fr-FR",
-        file: "fr.json",
+        code: "lv-LV",
+        name: "Latviski",
+        iso: "lv-LV",
+        file: "lv-LV.json",
+      },
+      {
+        code: "ru-RU",
+        name: "Русский",
+        iso: "ru-RU",
+        file: "ru-RU.json",
       },
     ],
-    defaultLocale: "en",
-    lazy: true,
-    langDir: "locales/",
-    strategy: "prefix",
+    defaultLocale: "en-US",
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: "i18n_redirected",
