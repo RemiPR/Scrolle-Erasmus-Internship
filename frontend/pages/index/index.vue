@@ -4,14 +4,14 @@
       <main class="text-center text-black dark:text-white">
         <div class="h-screen pt-64">
           <h1 class="text-5xl mb-14">
-            Free courses, Interactive learning materials, and more
+            {{ $t("page_title") }}
           </h1>
           <p class="text-2xl mb-8">
-            Welcome to Scroll — Your Pathway to Online Learning Excellence!
+            {{ $t("page_subtitle") }}
           </p>
-          <div class="mt-52">
+          <div class="mt-44">
             <p class="text-2xl mb-8">
-              Ready to learn? Enter your email to create your account.
+              {{ $t("before_input_msg") }}
             </p>
             <form class="flex justify-center">
               <input
@@ -22,25 +22,28 @@
               <button
                 class="bg-blue-500 text-white p-2 rounded-r-md ml-2 rounded-l-lg"
               >
-                Start learning
+                {{ $t("email_input_btn") }}
               </button>
             </form>
-            <Icon
-              name="heroicons-outline:arrow-down"
-              class="mt-10 h-16 w-11"
-              alt="Down arrow"
-            />
+            <div @click="scrollToSection" class="cursor-pointer">
+              <Icon
+                name="heroicons-outline:arrow-down"
+                class="mt-10 h-16 w-11"
+                alt="Down arrow"
+              />
+            </div>
           </div>
         </div>
         <TextLeftAd
-          Subtitle1="Free courses"
-          Paragraph1="Learn for free from Scroll's free courses which are made by the best tutors in Latvia."
+          id="text-left-ad"
+          SubtitleKey="text_left_ad_header1"
+          ParagraphKey="text_left_ad_paragraph1"
           :Photo1="FreeCourses"
         />
         <TextRightAd />
         <TextLeftAd
-          Subtitle1="Communicate easily"
-          Paragraph1="Communicate with your colleagues, freinds using Scroll's unique chatting system."
+          SubtitleKey="text_left_ad_header2"
+          ParagraphKey="text_left_ad_paragraph2"
           :Photo1="Communication"
         />
       </main>
@@ -57,11 +60,11 @@ import Communication from "@/public/Communication.jpg";
 definePageMeta({
   layout: "nav",
 });
-const open = ref(false);
-const selectedLanguage = ref("English");
 
-const changeLanguage = (language) => {
-  selectedLanguage.value = language;
-  open.value = false;
+const scrollToSection = () => {
+  // Scroll to the section with a 50-pixel offset
+  const targetSection = document.getElementById("text-left-ad");
+  const offset = targetSection.offsetTop - 100;
+  window.scrollTo({ top: offset, behavior: "smooth" });
 };
 </script>

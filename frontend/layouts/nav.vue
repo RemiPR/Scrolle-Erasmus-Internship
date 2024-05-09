@@ -19,7 +19,7 @@
         <NuxtLink
           to="/"
           class="text-gray-800 ml-5 dark:text-white hover:underline"
-          >Home</NuxtLink
+          >{{ $t("home_btn") }}</NuxtLink
         >
       </nav>
       <nav class="flex items-center gap-4">
@@ -27,7 +27,7 @@
         <NuxtLink
           to="/login"
           class="text-gray-800 dark:text-white hover:underline"
-          >Login</NuxtLink
+          >{{ $t("login_btn") }}</NuxtLink
         >
         <ColorModeToggle />
       </nav>
