@@ -15,12 +15,12 @@
             class="flex items-center justify-center w-12 h-12 bg-transparent rounded-full transition duration-300 hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-white"
           >
             <span
-              class="text-4xl text-blue-500 hover:text-blue-600 dark:text-white select-none"
+              class="text-4xl text-blue-500 hover:text-blue-600 dark:text-white"
               >&#x2190;</span
             >
           </button>
           <h1
-            class="text-center font-bold text-xl flex-grow text-gray-800 dark:text-white select-none"
+            class="text-center font-bold text-xl flex-grow text-gray-800 dark:text-white"
           >
             {{ titleText }}
           </h1>
