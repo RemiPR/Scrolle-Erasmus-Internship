@@ -9,7 +9,7 @@ const userGuestSchema = mongoose.Schema(
     },
     surname: {
       type: String,
-      required: true,
+      default: null, // null if user registers/logs in with google that has no surname
     },
     email: {
       type: String,
@@ -17,7 +17,7 @@ const userGuestSchema = mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      default: null, // null if user registers/logs in with facebook or google
     },
     socialIds: {
       facebook: { type: String, default: null },
