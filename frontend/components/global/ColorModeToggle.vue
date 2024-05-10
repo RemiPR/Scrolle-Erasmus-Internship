@@ -1,5 +1,6 @@
+<!-- colormodetoggler.vue -->
 <template>
-  <label class="flex items-center space-x-2 cursor-pointer">
+  <label class="flex items-center space-x-2 cursor-pointer select-none">
     <input
       type="checkbox"
       value=""
@@ -8,22 +9,22 @@
       :checked="isHydrated && colorMode === 'light'"
     />
     <div
-      class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-600"
+      class="relative w-16 h-8 peer-focus:outline-none rounded-full peer dark:bg-gray-500 peer-checked:bg-gray-400"
     >
       <span
-        class="absolute inset-y-0.5 inset-x-0.5 flex items-center justify-center w-6 h-6 rounded-full bg-white shadow-md transition-all transform peer-checked:translate-x-full rtl:peer-checked:-translate-x-full peer-checked:bg-blue-600 peer-checked:text-yellow-300"
+        class="absolute inset-y-0 inset-x-0 flex items-center justify-center w-7 h-7 rounded-full bg-white shadow-md transition-all transform peer-checked:translate-x-full rtl:peer-checked:-translate-x-full"
       >
         <Icon
           v-if="isHydrated && colorMode === 'light'"
           name="ph:sun-fill"
-          class="transition-opacity duration-300"
+          class="transition-opacity duration-300 sun-icon text-yellow-300"
           alt="Sun"
           aria-label="Switch to Dark Mode"
         />
         <Icon
           v-else
           name="ph:moon"
-          class="transition-opacity duration-300"
+          class="transition-opacity duration-300 moon-icon text-white"
           alt="Moon"
           aria-label="Switch to Light Mode"
         />
@@ -46,17 +47,17 @@ onMounted(() => {
 function toggleColorMode() {
   colorModeState.preference =
     colorModeState.preference === "dark" ? "light" : "dark";
+  emit("themeChange");
 }
 </script>
 
 <style scoped>
-/* Ensure smooth sliding effect for the toggle knob */
+/* Separate styles for the sun and moon outlines */
 input[type="checkbox"] + div > span {
   position: absolute;
   inset: 0.125rem; /* inset-y and inset-x combined */
-  width: 1.5rem; /* Make sure this matches your actual icon size */
-  height: 1.5rem;
-  background-color: #fff;
+  width: 1.75rem; /* Make sure this matches your actual icon size */
+  height: 1.75rem;
   border-radius: 9999px;
   transition: all 0.3s ease;
   display: flex;
@@ -64,7 +65,17 @@ input[type="checkbox"] + div > span {
   justify-content: center;
 }
 
+/* Transform effect for the checked state */
 input[type="checkbox"]:checked + div > span {
-  transform: translateX(1.75rem);
+  transform: translateX(2rem); /* Adjust for increased size */
+}
+
+/* Outline styles for sun and moon icons */
+input[type="checkbox"]:has(~ div > span > .sun-icon) + div > span {
+  background-color: white;
+}
+
+input[type="checkbox"]:has(~ div > span > .moon-icon) + div > span {
+  background-color: black;
 }
 </style>

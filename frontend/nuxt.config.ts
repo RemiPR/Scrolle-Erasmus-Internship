@@ -7,7 +7,11 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "@nuxtjs/color-mode",
     "@nuxtjs/i18n",
+    "@formkit/auto-animate/nuxt",
   ],
+  app: {
+    pageTransition: { name: "page", mode: "out-in" },
+  },
   colorMode: {
     preference: "system", // default value of $colorMode.preference
     fallback: "light", // fallback value if no system preference is detected
