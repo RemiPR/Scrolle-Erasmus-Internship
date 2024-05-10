@@ -5,16 +5,10 @@
         <!-- Call to action -->
         <div class="h-screen flex flex-col justify-center items-center">
           <div>
-            <h1 class="text-5xl mb-14">
-              {{ $t("page_title") }}
-            </h1>
-            <p class="text-2xl mb-8">
-              {{ $t("page_subtitle") }}
-            </p>
+            <h1 class="text-5xl mb-14">{{ $t("page_title") }}</h1>
+            <p class="text-2xl mb-8">{{ $t("page_subtitle") }}</p>
             <div class="mt-44">
-              <p class="text-2xl mb-8">
-                {{ $t("before_input_msg") }}
-              </p>
+              <p class="text-2xl mb-8">{{ $t("before_input_msg") }}</p>
               <!-- Input with CTA button -->
               <div class="flex justify-center mb-10">
                 <input
@@ -25,6 +19,7 @@
                 />
                 <NuxtLink
                   :to="loginLink"
+                  @click.native="storeEmail"
                   class="bg-blue-500 text-white p-2 rounded-r-md ml-2 rounded-l-lg flex items-center justify-center"
                 >
                   {{ $t("email_input_btn") }}
@@ -32,7 +27,6 @@
               </div>
             </div>
           </div>
-
           <!-- Arrow -->
           <div
             class="w-11 h-16 flex justify-center items-center cursor-pointer"
@@ -70,20 +64,32 @@ import TextLeftAd from "~/components/index/TextLeftAd.vue";
 import TextRightAd from "~/components/index/TextRightAd.vue";
 import FreeCourses from "@/public/FreeCourses.jpg";
 import Communication from "@/public/Communication.jpg";
+import { useCtaStore } from "~/stores/ctaStore";
+import { createApp } from "vue";
+import { createPinia } from "pinia";
+import App from "@/app.vue";
+
+const pinia = createPinia();
+const app = createApp(App);
+app.use(pinia);
 
 definePageMeta({
   layout: "nav",
 });
-
+const ctaStore = useCtaStore();
 const ctaEmail = ref("");
 const localePath = useLocalePath();
 
 const loginLink = computed(() => {
   const baseLoginPath = localePath("/login");
-  return ctaEmail.value
-    ? `${baseLoginPath}?email=${ctaEmail.value}&register=true`
-    : `${baseLoginPath}?register=true`;
+  return `${baseLoginPath}?register=true`;
 });
+
+const storeEmail = () => {
+  if (ctaEmail.value) {
+    ctaStore.setEmail(ctaEmail.value);
+  }
+};
 
 const scrollToSection = () => {
   const targetSection = document.getElementById("text-left-ad");

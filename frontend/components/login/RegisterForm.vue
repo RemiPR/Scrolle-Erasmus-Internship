@@ -1,6 +1,8 @@
+<!-- components/RegisterForm.vue -->
 <template>
   <Form
     @submit="onSubmit"
+    :initial-values="formInitialValues"
     :validation-schema="validationSchema"
     validate-on-input
     v-slot="{ validateField }"
@@ -19,7 +21,7 @@
           @input="validateField('firstName')"
           class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
           :class="{
-            'border-red-500 dark:border-red-500': meta.touched && meta.valid,
+            'border-red-500 dark:border-red-500': meta.touched && meta.invalid,
           }"
         />
       </Field>
@@ -45,7 +47,7 @@
           @input="validateField('lastName')"
           class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
           :class="{
-            'border-red-500 dark:border-red-500': meta.touched && meta.valid,
+            'border-red-500 dark:border-red-500': meta.touched && meta.invalid,
           }"
         />
       </Field>
@@ -69,10 +71,9 @@
         <input
           v-bind="field"
           @input="validateField('email')"
-          v-model="email"
           class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
           :class="{
-            'border-red-500 dark:border-red-500': meta.touched && meta.valid,
+            'border-red-500 dark:border-red-500': meta.touched && meta.invalid,
           }"
         />
       </Field>
@@ -100,7 +101,8 @@
             :type="showPassword ? 'text' : 'password'"
             class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
             :class="{
-              'border-red-500 dark:border-red-500': meta.touched && meta.valid,
+              'border-red-500 dark:border-red-500':
+                meta.touched && meta.invalid,
             }"
           />
         </Field>
@@ -108,9 +110,9 @@
           class="absolute inset-y-0 right-0 pr-3 flex items-center justify-center cursor-pointer"
           @click="toggleShowPassword"
         >
-          <span class="material-icons select-none dark:font-semibold">
-            {{ showPassword ? "hide" : "show" }}
-          </span>
+          <span class="material-icons select-none dark:font-semibold">{{
+            showPassword ? "hide" : "show"
+          }}</span>
         </span>
       </div>
       <ErrorMessage name="password" v-slot="{ message }">
@@ -139,7 +141,8 @@
             :type="showConfirmPassword ? 'text' : 'password'"
             class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
             :class="{
-              'border-red-500 dark:border-red-500': meta.touched && meta.valid,
+              'border-red-500 dark:border-red-500':
+                meta.touched && meta.invalid,
             }"
           />
         </Field>
@@ -147,9 +150,9 @@
           class="absolute inset-y-0 right-0 pr-3 flex items-center justify-center cursor-pointer"
           @click="toggleShowConfirmPassword"
         >
-          <span class="material-icons select-none dark:font-semibold">
-            {{ showConfirmPassword ? "hide" : "show" }}
-          </span>
+          <span class="material-icons select-none dark:font-semibold">{{
+            showConfirmPassword ? "hide" : "show"
+          }}</span>
         </span>
       </div>
       <ErrorMessage name="confirmPassword" v-slot="{ message }">
@@ -176,9 +179,10 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, computed } from "vue";
 import { useForm, Field, ErrorMessage, Form } from "vee-validate";
 import { object, string } from "yup";
+import { useCtaStore } from "@/stores/ctaStore";
 
 const props = defineProps({
   initialEmail: {
@@ -187,26 +191,23 @@ const props = defineProps({
   },
 });
 
-const email = ref(props.initialEmail);
-
-// Update the email field when the prop changes
-watch(
-  () => props.initialEmail,
-  (newEmail) => {
-    email.value = newEmail;
-  }
-);
-
-// Set the initial email value once the component is mounted
-onMounted(() => {
-  email.value = props.initialEmail;
-});
-
+const ctaStore = useCtaStore();
 const showPassword = ref(false);
 const showConfirmPassword = ref(false);
+
+// Use computed to generate the initial values for the form
+const formInitialValues = computed(() => ({
+  firstName: "",
+  lastName: "",
+  email: props.initialEmail || ctaStore.email || "",
+  password: "",
+  confirmPassword: "",
+}));
+
 const toggleShowPassword = () => {
   showPassword.value = !showPassword.value;
 };
+
 const toggleShowConfirmPassword = () => {
   showConfirmPassword.value = !showConfirmPassword.value;
 };
@@ -241,5 +242,7 @@ const { handleSubmit, validateField } = useForm({
 
 const onSubmit = handleSubmit((values) => {
   console.log(JSON.stringify(values, null, 2));
+  // Clear CTA email from store once registration is complete
+  ctaStore.clearEmail();
 });
 </script>

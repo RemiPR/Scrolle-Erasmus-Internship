@@ -1,3 +1,4 @@
+<!-- pages/login.vue -->
 <template>
   <div>
     <div
@@ -25,7 +26,6 @@
             {{ titleText }}
           </h1>
         </div>
-
         <!-- Toggle Buttons Section -->
         <div v-if="currentForm !== 'register'" class="mb-6 flex justify-center">
           <div
@@ -59,7 +59,6 @@
             </div>
           </div>
         </div>
-
         <!-- Forms Section -->
         <SharedLoginForm
           v-if="['org', 'guest'].includes(currentForm)"
@@ -88,7 +87,6 @@
           >
             Sign in
           </button>
-
           <!-- Guest-Specific Section -->
           <template v-if="currentForm === 'guest'">
             <button
@@ -102,7 +100,6 @@
                 >Sign up</span
               >
             </button>
-
             <!-- Social Media Options -->
             <div class="flex items-center my-6">
               <hr class="text-black flex-grow" />
@@ -147,6 +144,7 @@ import { useRoute } from "vue-router";
 import SharedLoginForm from "@/components/login/SharedLoginForm.vue";
 import RegisterForm from "@/components/login/RegisterForm.vue";
 import ForgotPasswordForm from "@/components/login/ForgotPasswordForm.vue";
+import { useCtaStore } from "@/stores/ctaStore";
 
 const formTitles = {
   org: "Organisation Login",
@@ -155,8 +153,10 @@ const formTitles = {
   forgot: "Forgot Password",
 };
 
+const ctaStore = useCtaStore();
 const route = useRoute();
-const prefilledEmail = ref(route.query.email || "");
+
+const prefilledEmail = ref(ctaStore.email || route.query.email || "");
 const currentForm = ref(route.query.register === "true" ? "register" : "guest");
 
 const titleText = computed(() => formTitles[currentForm.value]);
