@@ -9,12 +9,7 @@ const COOKIE_AGE = process.env.COOKIE_AGE;
 
 const createUser = async (request, response) => {
   try {
-    if (
-      !request.body.name ||
-      !request.body.surname ||
-      !request.body.password ||
-      !request.body.email
-    ) {
+    if (!request.body.name || !request.body.email) {
       return response.status(400).send({
         message: "Missing required fields",
       });
