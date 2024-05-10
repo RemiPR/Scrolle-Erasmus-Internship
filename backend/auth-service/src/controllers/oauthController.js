@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import axios from "axios";
 import { OAuth2Client } from "google-auth-library";
+import { UserGuest } from "../schema/userGuestSchema.js";
 
 dotenv.config();
 
@@ -26,8 +27,7 @@ const initGoogle = async (request, response) => {
   }
 };
 
-// Further authentication after succesfull login
-// TODO: Add userGuest to database and perform a check if he already exists.
+// Authentication after succesfull login
 const authenticateGoogle = async (request, response) => {
   const { code } = request.query; // Get the OAuth authorization code
 
@@ -46,21 +46,45 @@ const authenticateGoogle = async (request, response) => {
       throw new Error("Invalid ticket");
     }
 
+    // User info from the google account
     const payload = ticket.getPayload(); // Extract user information
-    const userId = payload["sub"]; // Google user ID
+    const googleId = payload["sub"];
     const email = payload["email"];
-    const name = payload["name"];
+    const name = payload["given_name"];
+    const surname = payload["family_name"];
 
-    // Generate a JWT with the user information
-    const token = jwt.sign(
-      { userId, email, name },
-      process.env.JWT_SECRET, // JWT secret key
-      { expiresIn: JWT_EXPIRY } // Token expiration
-    );
+    // check if such user with such email already exists
+    const userGuest = await UserGuest.findOne({ email: email });
+    if (userGuest) {
+      // user with email exists, checks if user already has googleId
+      if (userGuest.socialIds.google != googleId) {
+        // if user doesn't have googleId, he gets updated with one before logging in
+        await UserGuest.findByIdAndUpdate(
+          userGuest.id,
+          { $set: { "socialIds.google": googleId } },
+          { runValidators: true }
+        ).catch((error) => {
+          response.status(500).send({ message: error.message });
+        });
+      }
+      loginUser(userGuest.id, userGuest.email, userGuest.name);
+    } else {
+      // if user doesn't exist at all, new account is created
+      const newGuestUser = new UserGuest({
+        name: name,
+        surname: surname,
+        email: email,
+        socialIds: {
+          google: googleId,
+        },
+      });
+      const user = await UserGuest.create(newGuestUser).catch((error) => {
+        response.status(500).send({ message: error.message });
+      });
+      loginUser(user.id, user.email, user.name);
+    }
 
-    // Set the JWT in a secure HTTP-only cookie
-    response.cookie("authToken", token, { httpOnly: true, secure: true });
-    // Redirect to the home page or a specific location
+    // Redirect user after successfull log in
     response.redirect("/");
   } catch (error) {
     console.error("Google OAuth error:", error);
@@ -92,6 +116,30 @@ const authenticateFacebook = async (request, response) => {
 };
 
 // ADDITIONAL FUNCTIONS -----------------------------------------------
+
+async function loginUser(userId, email, name) {
+  console.log("Logged in with payload:");
+  console.log(userId, email, name);
+
+  // TODO: uncomment this:
+  // Generate a JWT with the user information
+  /*
+  const token = jwt.sign(
+    { userId, email, name },
+    process.env.JWT_SECRET, // JWT secret key
+    { expiresIn: JWT_EXPIRY } // Token expiration
+  );
+
+  return response
+    .status(200)
+    .cookie("authToken", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "Lax",
+      maxAge: COOKIE_AGE,
+    })
+    .redirect("/");*/
+}
 
 async function getAccessToken(code) {
   try {
