@@ -2,6 +2,7 @@
   <div>
     <div class="mx-auto px-4 bg-white dark:bg-gray-800">
       <main class="text-center text-black dark:text-white">
+        <!-- Call to action -->
         <div class="h-screen flex flex-col justify-center items-center">
           <div>
             <h1 class="text-5xl mb-14">
@@ -14,20 +15,25 @@
               <p class="text-2xl mb-8">
                 {{ $t("before_input_msg") }}
               </p>
-              <form class="flex justify-center mb-10">
+              <!-- Input with CTA button -->
+              <div class="flex justify-center mb-10">
                 <input
                   type="email"
+                  v-model="ctaEmail"
                   :placeholder="$t('email_field_placeholder')"
-                  class="border p-2 rounded-lg w-80 h-12"
+                  class="border p-2 rounded-lg w-80 h-12 text-black"
                 />
-                <button
-                  class="bg-blue-500 text-white p-2 rounded-r-md ml-2 rounded-l-lg"
+                <NuxtLink
+                  :to="loginLink"
+                  class="bg-blue-500 text-white p-2 rounded-r-md ml-2 rounded-l-lg flex items-center justify-center"
                 >
                   {{ $t("email_input_btn") }}
-                </button>
-              </form>
+                </NuxtLink>
+              </div>
             </div>
           </div>
+
+          <!-- Arrow -->
           <div
             class="w-11 h-16 flex justify-center items-center cursor-pointer"
             @click="scrollToSection"
@@ -39,6 +45,7 @@
             />
           </div>
         </div>
+        <!-- Cards -->
         <TextLeftAd
           id="text-left-ad"
           SubtitleKey="text_left_ad_header1"
@@ -57,6 +64,8 @@
 </template>
 
 <script setup>
+import { ref, computed } from "vue";
+import { useLocalePath } from "#imports";
 import TextLeftAd from "~/components/index/TextLeftAd.vue";
 import TextRightAd from "~/components/index/TextRightAd.vue";
 import FreeCourses from "@/public/FreeCourses.jpg";
@@ -66,8 +75,17 @@ definePageMeta({
   layout: "nav",
 });
 
+const ctaEmail = ref("");
+const localePath = useLocalePath();
+
+const loginLink = computed(() => {
+  const baseLoginPath = localePath("/login");
+  return ctaEmail.value
+    ? `${baseLoginPath}?email=${ctaEmail.value}&register=true`
+    : `${baseLoginPath}?register=true`;
+});
+
 const scrollToSection = () => {
-  // Scroll to the section with a 100-pixel offset
   const targetSection = document.getElementById("text-left-ad");
   const offset = targetSection.offsetTop - 100;
   window.scrollTo({ top: offset, behavior: "smooth" });

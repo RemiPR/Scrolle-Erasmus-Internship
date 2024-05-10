@@ -47,7 +47,6 @@ onMounted(() => {
 function toggleColorMode() {
   colorModeState.preference =
     colorModeState.preference === "dark" ? "light" : "dark";
-  emit("themeChange");
 }
 </script>
 

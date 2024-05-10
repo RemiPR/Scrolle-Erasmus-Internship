@@ -69,6 +69,7 @@
         <input
           v-bind="field"
           @input="validateField('email')"
+          v-model="email"
           class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
           :class="{
             'border-red-500 dark:border-red-500': meta.touched && meta.valid,
@@ -171,43 +172,36 @@
     >
       Register
     </button>
-
-    <!-- Social Media Options -->
-    <div class="flex items-center my-6">
-      <hr class="text-black flex-grow" />
-      <p class="mx-4 font-semibold">Or continue with</p>
-      <hr class="text-black flex-grow" />
-    </div>
-    <div class="mt-1 flex justify-between">
-      <button
-        class="group text-gray-800 px-8 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center dark:bg-white dark:hover:bg-gray-200"
-        @click="loginWithGoogle"
-        type="button"
-      >
-        <Icon name="logos:google-icon" class="mr-2" alt="Google Logo" />
-        <span class="font-semibold group-hover:text-black select-none"
-          >Google</span
-        >
-      </button>
-      <button
-        class="group text-gray-800 px-6 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center dark:bg-white dark:hover:bg-gray-200"
-        @click="loginWithFacebook"
-      >
-        <Icon name="logos:facebook" class="mr-2" alt="Facebook Logo" />
-        <span class="font-semibold group-hover:text-black select-none"
-          >Facebook</span
-        >
-      </button>
-    </div>
   </Form>
 </template>
 
-<script setup lang="ts">
-import { ref } from "vue";
+<script setup>
+import { ref, watch, onMounted } from "vue";
 import { useForm, Field, ErrorMessage, Form } from "vee-validate";
 import { object, string } from "yup";
 
-// Toggle password visibility
+const props = defineProps({
+  initialEmail: {
+    type: String,
+    default: "",
+  },
+});
+
+const email = ref(props.initialEmail);
+
+// Update the email field when the prop changes
+watch(
+  () => props.initialEmail,
+  (newEmail) => {
+    email.value = newEmail;
+  }
+);
+
+// Set the initial email value once the component is mounted
+onMounted(() => {
+  email.value = props.initialEmail;
+});
+
 const showPassword = ref(false);
 const showConfirmPassword = ref(false);
 const toggleShowPassword = () => {
@@ -217,7 +211,6 @@ const toggleShowConfirmPassword = () => {
   showConfirmPassword.value = !showConfirmPassword.value;
 };
 
-// Validation schema
 const validationSchema = object({
   firstName: string()
     .required("Please enter your first name")
@@ -242,22 +235,11 @@ const validationSchema = object({
     .oneOf([ref("password").value], "Passwords must match"),
 });
 
-// Form setup with validation schema
-const { handleSubmit, validateField, values } = useForm({
+const { handleSubmit, validateField } = useForm({
   validationSchema,
 });
 
-// Form submission handler
-const onSubmit: any = (e: any) => {
-  console.log(JSON.stringify(e, null, 2));
-};
-
-// Dummy functions for login buttons
-const loginWithGoogle = () => {
-  // Logic for Google login
-  console.log("Logging in with Google");
-};
-const loginWithFacebook = () => {
-  console.log("Logging in with Facebook");
-};
+const onSubmit = handleSubmit((values) => {
+  console.log(JSON.stringify(values, null, 2));
+});
 </script>

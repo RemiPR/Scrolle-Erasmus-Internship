@@ -64,6 +64,7 @@
         <SharedLoginForm
           v-if="['org', 'guest'].includes(currentForm)"
           :key="currentForm"
+          :initialEmail="prefilledEmail"
           @submit="handleLogin"
         >
           <!-- Remember Me and Forgot Password -->
@@ -130,7 +131,10 @@
             </div>
           </template>
         </SharedLoginForm>
-        <RegisterForm v-else-if="currentForm === 'register'" />
+        <RegisterForm
+          v-else-if="currentForm === 'register'"
+          :initialEmail="prefilledEmail"
+        />
         <ForgotPasswordForm v-else @login="setCurrentForm('org')" />
       </div>
     </div>
@@ -139,13 +143,10 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { useRoute } from "vue-router";
 import SharedLoginForm from "@/components/login/SharedLoginForm.vue";
 import RegisterForm from "@/components/login/RegisterForm.vue";
 import ForgotPasswordForm from "@/components/login/ForgotPasswordForm.vue";
-
-definePageMeta({
-  layout: "nav",
-});
 
 const formTitles = {
   org: "Organisation Login",
@@ -154,7 +155,9 @@ const formTitles = {
   forgot: "Forgot Password",
 };
 
-const currentForm = ref("org");
+const route = useRoute();
+const prefilledEmail = ref(route.query.email || "");
+const currentForm = ref(route.query.register === "true" ? "register" : "guest");
 
 const titleText = computed(() => formTitles[currentForm.value]);
 
