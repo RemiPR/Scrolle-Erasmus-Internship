@@ -19,6 +19,10 @@ const userGuestSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    socialIds: {
+      facebook: { type: String, default: null },
+      google: { type: String, default: null },
+    },
   },
   {
     timestamps: true,
