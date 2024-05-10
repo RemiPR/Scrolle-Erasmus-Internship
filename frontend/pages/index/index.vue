@@ -10,21 +10,49 @@
             <div class="mt-44">
               <p class="text-2xl mb-8">{{ $t("before_input_msg") }}</p>
               <!-- Input with CTA button -->
-              <div class="flex justify-center mb-10">
-                <input
-                  type="email"
-                  v-model="ctaEmail"
-                  :placeholder="$t('email_field_placeholder')"
-                  class="border p-2 rounded-lg w-80 h-12 text-black"
-                />
-                <NuxtLink
-                  :to="loginLink"
-                  @click.native="storeEmail"
-                  class="bg-blue-500 text-white p-2 rounded-r-md ml-2 rounded-l-lg flex items-center justify-center"
-                >
-                  {{ $t("email_input_btn") }}
-                </NuxtLink>
-              </div>
+              <Form
+                @submit="onCtaSubmit"
+                :initial-values="ctaFormInitialValues"
+                :validation-schema="ctaValidationSchema"
+                validate-on-input
+                v-slot="{ validateField }"
+              >
+                <div class="flex flex-col items-center mb-10">
+                  <div class="flex items-center">
+                    <Field name="email" type="email" v-slot="{ field, meta }">
+                      <input
+                        v-bind="field"
+                        v-model="ctaEmail"
+                        @input="validateField('email')"
+                        :placeholder="$t('email_field_placeholder')"
+                        class="border p-2 rounded-lg w-80 h-12 text-black hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
+                        :class="{
+                          'border-red-500 dark:border-red-500':
+                            meta.touched && meta.invalid,
+                        }"
+                      />
+                    </Field>
+                    <NuxtLink
+                      :to="loginLink"
+                      @click.native="storeEmail"
+                      class="bg-blue-500 text-white p-2 rounded-r-md ml-2 rounded-l-lg flex items-center justify-center"
+                    >
+                      {{ $t("email_input_btn") }}
+                    </NuxtLink>
+                  </div>
+                  <ErrorMessage name="email" v-slot="{ message }">
+                    <div
+                      class="flex items-center text-red-500 dark:text-gray-50 dark:font-semibold mt-2"
+                    >
+                      <Icon
+                        name="material-symbols:error"
+                        class="h-5 w-5 mr-2 dark:text-red-500"
+                      />
+                      <span>{{ message }}</span>
+                    </div>
+                  </ErrorMessage>
+                </div>
+              </Form>
             </div>
           </div>
           <!-- Arrow -->
@@ -60,6 +88,8 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useLocalePath } from "#imports";
+import { useForm, Field, ErrorMessage, Form } from "vee-validate";
+import { object, string } from "yup";
 import TextLeftAd from "~/components/index/TextLeftAd.vue";
 import TextRightAd from "~/components/index/TextRightAd.vue";
 import FreeCourses from "@/public/FreeCourses.jpg";
@@ -77,23 +107,41 @@ definePageMeta({
   layout: "nav",
 });
 const ctaStore = useCtaStore();
-const ctaEmail = ref("");
 const localePath = useLocalePath();
-
 const loginLink = computed(() => {
   const baseLoginPath = localePath("/login");
   return `${baseLoginPath}?register=true`;
 });
-
-const storeEmail = () => {
-  if (ctaEmail.value) {
-    ctaStore.setEmail(ctaEmail.value);
-  }
-};
 
 const scrollToSection = () => {
   const targetSection = document.getElementById("text-left-ad");
   const offset = targetSection.offsetTop - 100;
   window.scrollTo({ top: offset, behavior: "smooth" });
 };
+
+// Initialize Vee Validate form
+const ctaFormInitialValues = {
+  email: "",
+};
+const ctaValidationSchema = object({
+  email: string()
+    .required("Please enter your email address")
+    .email("Please enter a valid email address"),
+});
+
+const { handleSubmit, validateField } = useForm({
+  validationSchema: ctaValidationSchema,
+  initialValues: ctaFormInitialValues,
+});
+
+const ctaEmail = ref("");
+
+const storeEmail = () => {
+  ctaStore.setEmail(ctaEmail.value);
+};
+
+const onCtaSubmit = handleSubmit((values) => {
+  ctaEmail.value = values.email;
+  storeEmail();
+});
 </script>

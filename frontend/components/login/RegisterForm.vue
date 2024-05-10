@@ -179,27 +179,19 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from "vue";
+import { ref, computed } from "vue";
 import { useForm, Field, ErrorMessage, Form } from "vee-validate";
 import { object, string } from "yup";
 import { useCtaStore } from "@/stores/ctaStore";
-
-const props = defineProps({
-  initialEmail: {
-    type: String,
-    default: "",
-  },
-});
 
 const ctaStore = useCtaStore();
 const showPassword = ref(false);
 const showConfirmPassword = ref(false);
 
-// Use computed to generate the initial values for the form
 const formInitialValues = computed(() => ({
   firstName: "",
   lastName: "",
-  email: props.initialEmail || ctaStore.email || "",
+  email: ctaStore.email || "",
   password: "",
   confirmPassword: "",
 }));
@@ -212,6 +204,7 @@ const toggleShowConfirmPassword = () => {
   showConfirmPassword.value = !showConfirmPassword.value;
 };
 
+// Form validation schema
 const validationSchema = object({
   firstName: string()
     .required("Please enter your first name")
@@ -236,9 +229,26 @@ const validationSchema = object({
     .oneOf([ref("password").value], "Passwords must match"),
 });
 
-const { handleSubmit, validateField } = useForm({
+const { handleSubmit, validateField, resetForm } = useForm({
   validationSchema,
+  initialValues: formInitialValues.value,
 });
+
+watch(
+  () => ctaStore.email,
+  (newEmail) => {
+    console.log(`Email changed to: ${newEmail}`);
+    resetForm({
+      values: {
+        firstName: "",
+        lastName: "",
+        email: newEmail,
+        password: "",
+        confirmPassword: "",
+      },
+    });
+  }
+);
 
 const onSubmit = handleSubmit((values) => {
   console.log(JSON.stringify(values, null, 2));
