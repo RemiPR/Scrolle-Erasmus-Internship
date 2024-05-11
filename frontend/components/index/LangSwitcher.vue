@@ -1,14 +1,3 @@
-<script setup lang="ts">
-const { locales, locale, setLocale } = useI18n();
-
-const language = computed({
-  get: () => locale.value,
-  set: (value) => {
-    setLocale(value);
-  },
-});
-</script>
-
 <template>
   <div class="relative">
     <select
@@ -42,3 +31,14 @@ const language = computed({
     </div>
   </div>
 </template>
+
+<script setup>
+const { locales, locale, setLocale } = useI18n();
+
+const language = computed({
+  get: () => locale.value,
+  set: (value) => {
+    setLocale(value);
+  },
+});
+</script>

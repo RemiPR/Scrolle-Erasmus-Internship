@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <div class="mx-auto px-4 bg-white dark:bg-gray-800">
-      <main class="text-center text-black dark:text-white">
+  <div class="">
+    <div class="px-4 bg-white dark:bg-gray-800">
+      <main class="text-center text-black dark:text-white w-3/4 mx-auto pb-32">
         <!-- Hero section -->
         <div
           class="h-screen flex flex-col justify-center items-center relative"
@@ -76,44 +76,49 @@
           </div>
         </div>
         <!-- Cards -->
-        <TextLeftAd
-          id="text-left-ad"
-          SubtitleKey="text_left_ad_header1"
-          ParagraphKey="text_left_ad_paragraph1"
-          :Photo1="FreeCourses"
-        />
-        <TextRightAd />
-        <TextLeftAd
-          SubtitleKey="text_left_ad_header2"
-          ParagraphKey="text_left_ad_paragraph2"
-          :Photo1="Communication"
-        />
+
+        <!-- Test -->
+        <div ref="firstSection" class="scroll-mt-28">
+          <FlexibleTreeSection
+            :title="$t('tree_section_one_title')"
+            :content="$t('tree_section_one_content')"
+            :imageSrc="FreeCourses"
+            textOnLeft
+          />
+          <FlexibleTreeSection
+            :title="$t('tree_section_two_title')"
+            :content="$t('tree_section_two_content')"
+            :imageSrc="Communication"
+            class="my-44"
+          />
+          <FlexibleTreeSection
+            :title="$t('tree_section_three_title')"
+            :content="$t('tree_section_three_content')"
+            :imageSrc="Grades"
+            textOnLeft
+          />
+        </div>
       </main>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useLocalePath } from "#imports";
 import { useForm, Field, ErrorMessage, Form } from "vee-validate";
 import { object, string } from "yup";
-import TextLeftAd from "~/components/index/TextLeftAd.vue";
-import TextRightAd from "~/components/index/TextRightAd.vue";
+import FlexibleTreeSection from "~/components/index/FlexibleTreeSection.vue";
 import FreeCourses from "@/public/FreeCourses.jpg";
 import Communication from "@/public/Communication.jpg";
+import Grades from "@/public/Grades.jpg";
 import { useCtaStore } from "~/stores/ctaStore";
-import { createApp } from "vue";
-import { createPinia } from "pinia";
-import App from "@/app.vue";
-
-const pinia = createPinia();
-const app = createApp(App);
-app.use(pinia);
+import { nextTick } from "vue";
 
 definePageMeta({
   layout: "nav",
 });
+
 const ctaStore = useCtaStore();
 const localePath = useLocalePath();
 const loginLink = computed(() => {
@@ -121,10 +126,13 @@ const loginLink = computed(() => {
   return `${baseLoginPath}?register=true`;
 });
 
-const scrollToSection = () => {
-  const targetSection = document.getElementById("text-left-ad");
-  const offset = targetSection.offsetTop - 100;
-  window.scrollTo({ top: offset, behavior: "smooth" });
+const firstSection = ref(null);
+
+const scrollToSection = async () => {
+  await nextTick();
+  if (firstSection.value) {
+    firstSection.value.scrollIntoView({ behavior: "smooth" });
+  }
 };
 
 // Initialize Vee Validate form

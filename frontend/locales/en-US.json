@@ -1,15 +1,15 @@
 {
+  "home_btn": "Home",
+  "login_btn": "Login",
   "page_title": "Free courses, Interactive learning materials, and more",
   "page_subtitle": "Welcome to Scroll — Your Pathway to Online Learning Excellence!",
   "before_input_msg": "Ready to learn? Enter your email to create your account.",
+  "email_field_placeholder": "Enter your email address",
   "email_input_btn": "Start learning",
-  "home_btn": "Home",
-  "login_btn": "Login",
-  "text_left_ad_header1": "Free courses",
-  "text_left_ad_header2": "Communicate easily",
-  "text_left_ad_paragraph1": "Learn for free from Scroll's free courses which are made by the best tutors in Latvia.",
-  "text_left_ad_paragraph2": "Communicate with your colleagues, freinds using Scroll's unique chatting system.",
-  "text_right_ad_header": "Check your grades",
-  "text_right_ad_paragraph": "Scroll offers an easy system for teachers and pupils to check or input grades.",
-  "email_field_placeholder": "Enter your email"
+  "tree_section_one_title": "Free courses",
+  "tree_section_two_title": "Communicate easily",
+  "tree_section_one_content": "Learn for free from Scroll's free courses which are made by the best tutors in Latvia.",
+  "tree_section_two_content": "Communicate with your colleagues, friends using Scroll's unique chatting system.",
+  "tree_section_three_title": "Check your grades",
+  "tree_section_three_content": "Scroll offers an easy system for teachers and pupils to check or input grades."
 }
