@@ -45,8 +45,12 @@ onMounted(() => {
 });
 
 function toggleColorMode() {
+  document.documentElement.classList.add("color-transition");
   colorModeState.preference =
     colorModeState.preference === "dark" ? "light" : "dark";
+  setTimeout(() => {
+    document.documentElement.classList.remove("color-transition");
+  }, 300); // This duration should match the CSS transition duration
 }
 </script>
 

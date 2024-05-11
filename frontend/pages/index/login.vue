@@ -60,79 +60,93 @@
           </div>
         </div>
         <!-- Forms Section -->
-        <SharedLoginForm
-          v-if="['org', 'guest'].includes(currentForm)"
-          :key="currentForm"
-          :initialEmail="prefilledEmail"
-          @submit="handleLogin"
-        >
-          <!-- Remember Me and Forgot Password -->
-          <div class="flex justify-between mb-6">
-            <label class="flex items-center">
-              <input type="checkbox" class="mr-2 rounded-lg border-2" />
-              <span class="select-none">Remember me</span>
-            </label>
-            <a
-              href="#"
-              class="text-blue-600 hover:font-semibold hover:underline dark:font-medium dark:text-blue-400 dark:hover:text-blue-500"
-              @click.prevent="setCurrentForm('forgot')"
+        <Transition name="fade" mode="out-in">
+          <div :key="currentForm">
+            <SharedLoginForm
+              v-if="['org', 'guest'].includes(currentForm)"
+              :key="currentForm"
+              :initialEmail="prefilledEmail"
+              @submit="handleLogin"
             >
-              Forgot password?
-            </a>
+              <!-- Remember Me and Forgot Password -->
+              <div class="flex justify-between mb-6">
+                <label class="flex items-center">
+                  <input type="checkbox" class="mr-2 rounded-lg border-2" />
+                  <span class="select-none">Remember me</span>
+                </label>
+                <a
+                  href="#"
+                  class="text-blue-600 hover:font-semibold hover:underline dark:font-medium dark:text-blue-400 dark:hover:text-blue-500"
+                  @click.prevent="setCurrentForm('forgot')"
+                >
+                  Forgot password?
+                </a>
+              </div>
+              <!-- Sign In Button -->
+              <button
+                type="submit"
+                class="w-full font-semibold text-white px-4 py-2 rounded bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 select-none"
+              >
+                Sign in
+              </button>
+              <!-- Guest-Specific Section -->
+              <template v-if="currentForm === 'guest'">
+                <button
+                  class="group text-gray-700 mt-6 dark:text-white"
+                  @click.prevent="setCurrentForm('register')"
+                  type="button"
+                >
+                  Don't have an account yet?
+                  <span
+                    class="font-medium text-blue-500 group-hover:underline group-hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500"
+                    >Sign up</span
+                  >
+                </button>
+                <!-- Social Media Options, available in guest form and registration form-->
+                <div class="flex items-center my-6">
+                  <hr class="text-black flex-grow" />
+                  <p class="mx-4 font-semibold">Or continue with</p>
+                  <hr class="text-black flex-grow" />
+                </div>
+                <div class="mt-1 flex justify-between">
+                  <button
+                    class="group text-gray-800 px-8 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center dark:bg-white dark:hover:bg-gray-200"
+                    @click="loginWithGoogle"
+                    type="button"
+                  >
+                    <Icon
+                      name="logos:google-icon"
+                      class="mr-2"
+                      alt="Google Logo"
+                    />
+                    <span
+                      class="font-semibold group-hover:text-black select-none"
+                      >Google</span
+                    >
+                  </button>
+                  <button
+                    class="group text-gray-800 px-6 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center dark:bg-white dark:hover:bg-gray-200"
+                  >
+                    <Icon
+                      name="logos:facebook"
+                      class="mr-2"
+                      alt="Facebook Logo"
+                    />
+                    <span
+                      class="font-semibold group-hover:text-black select-none"
+                      >Facebook</span
+                    >
+                  </button>
+                </div>
+              </template>
+            </SharedLoginForm>
+            <RegisterForm
+              v-else-if="currentForm === 'register'"
+              :initialEmail="prefilledEmail"
+            />
+            <ForgotPasswordForm v-else @login="setCurrentForm('org')" />
           </div>
-          <!-- Sign In Button -->
-          <button
-            type="submit"
-            class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 select-none"
-          >
-            Sign in
-          </button>
-          <!-- Guest-Specific Section -->
-          <template v-if="currentForm === 'guest'">
-            <button
-              class="group text-gray-700 mt-6 dark:text-white"
-              @click.prevent="setCurrentForm('register')"
-              type="button"
-            >
-              Don't have an account yet?
-              <span
-                class="font-medium text-blue-500 group-hover:underline group-hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500"
-                >Sign up</span
-              >
-            </button>
-            <!-- Social Media Options -->
-            <div class="flex items-center my-6">
-              <hr class="text-black flex-grow" />
-              <p class="mx-4 font-semibold">Or continue with</p>
-              <hr class="text-black flex-grow" />
-            </div>
-            <div class="mt-1 flex justify-between">
-              <button
-                class="group text-gray-800 px-8 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center dark:bg-white dark:hover:bg-gray-200"
-                @click="loginWithGoogle"
-                type="button"
-              >
-                <Icon name="logos:google-icon" class="mr-2" alt="Google Logo" />
-                <span class="font-semibold group-hover:text-black select-none"
-                  >Google</span
-                >
-              </button>
-              <button
-                class="group text-gray-800 px-6 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center dark:bg-white dark:hover:bg-gray-200"
-              >
-                <Icon name="logos:facebook" class="mr-2" alt="Facebook Logo" />
-                <span class="font-semibold group-hover:text-black select-none"
-                  >Facebook</span
-                >
-              </button>
-            </div>
-          </template>
-        </SharedLoginForm>
-        <RegisterForm
-          v-else-if="currentForm === 'register'"
-          :initialEmail="prefilledEmail"
-        />
-        <ForgotPasswordForm v-else @login="setCurrentForm('org')" />
+        </Transition>
       </div>
     </div>
   </div>
@@ -174,3 +188,13 @@ function loginWithGoogle() {
   window.location.href = "http://localhost/auth/google";
 }
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0.2;
+}
+</style>

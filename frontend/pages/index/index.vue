@@ -4,11 +4,11 @@
       <main class="text-center text-black dark:text-white">
         <!-- Call to action -->
         <div class="h-screen flex flex-col justify-center items-center">
-          <div>
-            <h1 class="text-5xl mb-14">{{ $t("page_title") }}</h1>
-            <p class="text-2xl mb-8">{{ $t("page_subtitle") }}</p>
-            <div class="mt-44">
-              <p class="text-2xl mb-8">{{ $t("before_input_msg") }}</p>
+          <div class="mb-24">
+            <h1 class="text-5xl mb-8 font-bold">{{ $t("page_title") }}</h1>
+            <p class="text-3xl mb-12">{{ $t("page_subtitle") }}</p>
+            <div class="">
+              <p class="text-2xl mb-4">{{ $t("before_input_msg") }}</p>
               <!-- Input with CTA button -->
               <Form
                 @submit="onCtaSubmit"
@@ -25,7 +25,7 @@
                         v-model="ctaEmail"
                         @input="validateField('email')"
                         :placeholder="$t('email_field_placeholder')"
-                        class="border p-2 rounded-lg w-80 h-12 text-black hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
+                        class="border p-2 rounded-lg w-96 h-14 text-black hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
                         :class="{
                           'border-red-500 dark:border-red-500':
                             meta.touched && meta.invalid,
@@ -35,12 +35,12 @@
                     <NuxtLink
                       :to="loginLink"
                       @click.native="storeEmail"
-                      class="bg-blue-500 text-white p-2 rounded-r-md ml-2 rounded-l-lg flex items-center justify-center"
+                      class="text-white w-40 h-14 rounded-r-md ml-2 rounded-l-lg flex items-center justify-center bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
                     >
                       {{ $t("email_input_btn") }}
                     </NuxtLink>
                   </div>
-                  <ErrorMessage name="email" v-slot="{ message }">
+                  <ErrorMessage class="" name="email" v-slot="{ message }">
                     <div
                       class="flex items-center text-red-500 dark:text-gray-50 dark:font-semibold mt-2"
                     >

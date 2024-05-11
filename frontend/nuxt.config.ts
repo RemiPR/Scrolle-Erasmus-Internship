@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: [
     "@nuxtjs/tailwindcss",
     "nuxt-icon",
@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: "page", mode: "out-in" },
   },
+  css: ["@/assets/css/transitions.css"],
   colorMode: {
     preference: "system", // default value of $colorMode.preference
     fallback: "light", // fallback value if no system preference is detected
