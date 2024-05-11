@@ -1,9 +1,7 @@
-/* assets/css/transitions.css */
 :root {
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
-/* You might want to be specific to certain elements if the above is too broad */
 body,
 h1,
 h2,
