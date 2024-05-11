@@ -76,26 +76,29 @@
           </div>
         </div>
         <!-- Cards -->
-
-        <!-- Test -->
         <div ref="firstSection" class="scroll-mt-28">
           <FlexibleTreeSection
             :title="$t('tree_section_one_title')"
             :content="$t('tree_section_one_content')"
             :imageSrc="FreeCourses"
-            textOnLeft
+            :borderColor="'border-red-600'"
+            :circleColorClass="'bg-blue-600'"
+            :circleBorderColor="'border-blue-500'"
+            :index="0"
           />
           <FlexibleTreeSection
             :title="$t('tree_section_two_title')"
             :content="$t('tree_section_two_content')"
             :imageSrc="Communication"
-            class="my-44"
+            :index="1"
           />
           <FlexibleTreeSection
             :title="$t('tree_section_three_title')"
             :content="$t('tree_section_three_content')"
             :imageSrc="Grades"
             textOnLeft
+            horizontalLineRight
+            :index="2"
           />
         </div>
       </main>
@@ -195,5 +198,12 @@ const onCtaSubmit = handleSubmit((values) => {
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: all 0.3s ease-in-out;
+}
+.tree-card-blue-gradient {
+  background-color: linear-gradient(
+    90deg,
+    rgb(48, 7, 125) 0px,
+    rgb(15, 81, 191)
+  );
 }
 </style>
