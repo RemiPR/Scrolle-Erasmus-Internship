@@ -3,11 +3,16 @@
     <div class="mx-auto px-4 bg-white dark:bg-gray-800">
       <main class="text-center text-black dark:text-white">
         <!-- Hero section -->
-        <div class="h-screen flex flex-col justify-center items-center">
+        <div
+          class="h-screen flex flex-col justify-center items-center relative"
+        >
+          <!-- Added 'relative' here -->
           <div class="mb-24">
-            <h1 class="text-5xl mb-8 font-bold">{{ $t("page_title") }}</h1>
+            <h1 class="text-5xl mb-8 font-bold text-gray-700 dark:text-white">
+              {{ $t("page_title") }}
+            </h1>
             <p class="text-3xl mb-12">{{ $t("page_subtitle") }}</p>
-            <div class="">
+            <div>
               <p class="text-2xl mb-4">{{ $t("before_input_msg") }}</p>
               <!-- Input with CTA button -->
               <Form
@@ -25,7 +30,7 @@
                         v-model="ctaEmail"
                         @input="validateField('email')"
                         :placeholder="$t('email_field_placeholder')"
-                        class="border p-2 rounded-l-lg w-96 h-14 text-black hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
+                        class="border-2 p-2 rounded-l-lg w-96 h-14 text-black dark:text-white hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
                         :class="{
                           'border-red-500 dark:border-red-500':
                             meta.touched && meta.invalid,
@@ -35,7 +40,7 @@
                     <NuxtLink
                       :to="loginLink"
                       @click.native="storeEmail"
-                      class="text-white w-40 h-14 rounded-r-md flex items-center justify-center bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
+                      class="text-white font-bold w-40 h-14 rounded-r-md flex items-center justify-center bg-gray-700 hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700"
                     >
                       {{ $t("email_input_btn") }}
                     </NuxtLink>
@@ -56,14 +61,16 @@
               </Form>
             </div>
           </div>
-          <!-- Arrow -->
+          <!-- Arrow positioned at the bottom -->
           <div
-            class="w-11 h-16 flex justify-center items-center cursor-pointer"
+            class="absolute bottom-20 flex justify-center items-center cursor-pointer animate-bounce hover-effect"
+            style="width: 80px; height: 80px"
             @click="scrollToSection"
           >
             <Icon
               name="heroicons-outline:arrow-down"
-              class="h-full w-full"
+              class="h-20 w-14 text-gray-700 dark:text-white transition-all duration-300 ease-in-out hover:text-blue-500 dark:hover:text-blue-400"
+              style="filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2))"
               alt="Down arrow"
             />
           </div>
@@ -146,3 +153,39 @@ const onCtaSubmit = handleSubmit((values) => {
   storeEmail();
 });
 </script>
+
+<style scoped>
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+.animate-bounce {
+  animation: bounce 2s infinite;
+}
+
+/* Hover effect for arrow */
+.hover-effect:hover::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  border: 2px solid rgba(59, 130, 246, 0.5); /* Tailwind blue-500 at 50% opacity */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease-in-out;
+}
+</style>
