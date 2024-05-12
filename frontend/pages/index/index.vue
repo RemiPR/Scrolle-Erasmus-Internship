@@ -81,23 +81,27 @@
             :title="$t('tree_section_one_title')"
             :content="$t('tree_section_one_content')"
             :imageSrc="FreeCourses"
-            :borderColor="'border-red-600'"
             :circleColorClass="'bg-blue-600'"
             :circleBorderColor="'border-blue-500'"
+            !textOnLeft
             :index="0"
           />
           <FlexibleTreeSection
             :title="$t('tree_section_two_title')"
             :content="$t('tree_section_two_content')"
             :imageSrc="Communication"
+            :circleColorClass="'tree-card-blue-gradient'"
+            :circleBorderColor="'border-orange-500'"
+            textOnLeft
+            horizontalLineRight
             :index="1"
           />
           <FlexibleTreeSection
             :title="$t('tree_section_three_title')"
             :content="$t('tree_section_three_content')"
             :imageSrc="Grades"
-            textOnLeft
-            horizontalLineRight
+            :circleColorClass="'bg-pink-500'"
+            :circleBorderColor="'border-pink-400'"
             :index="2"
           />
         </div>
@@ -198,12 +202,5 @@ const onCtaSubmit = handleSubmit((values) => {
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: all 0.3s ease-in-out;
-}
-.tree-card-blue-gradient {
-  background-color: linear-gradient(
-    90deg,
-    rgb(48, 7, 125) 0px,
-    rgb(15, 81, 191)
-  );
 }
 </style>

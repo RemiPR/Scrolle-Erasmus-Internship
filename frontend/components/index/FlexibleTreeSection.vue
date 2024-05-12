@@ -1,8 +1,9 @@
 <template>
-  <div class="flex items-center justify-between relative">
+  <div class="flex items-center justify-center relative gap-x-20">
     <!-- Text content, conditionally placed before or after the vertical line -->
     <div
       :class="[
+        'border-l-8 border-blue-500',
         'flex-1',
         'p-4',
         'bg-white',
@@ -15,14 +16,14 @@
       ]"
     >
       <!-- Index circle moved up to be in the same row as the title -->
-      <div class="flex items-center space-x-4">
+      <div class="flex items-center space-x-4 w-[470px] min-h-[128px]">
         <div
           :class="`flex items-center justify-center min-w-[65px] h-[65px] rounded-full text-white font-bold text-2xl ${circleColorClass}`"
         >
           {{ formattedIndex }}
         </div>
         <div class="flex flex-col">
-          <h2 class="text-xl font-bold text-gray-800 text-left">
+          <h2 class="text-2xl font-bold text-gray-800 text-left mb-3">
             {{ props.title }}
           </h2>
           <p class="text-gray-600 text-left">{{ props.content }}</p>
@@ -38,8 +39,11 @@
         class="w-0.5 h-6 bg-gray-400 mb-2"
       ></div>
       <div
-        class="w-3 h-3 rounded-full mb-2 relative bg-white"
-        :class="`border-2 ${circleBorderColor}`"
+        class="circle-with-line w-4 h-4 rounded-full mb-2 relative bg-white"
+        :class="[
+          `border-2 ${circleBorderColor}`,
+          props.textOnLeft ? 'line-left' : '',
+        ]"
       ></div>
       <div
         v-for="i in 4"
@@ -50,13 +54,15 @@
 
     <!-- Image section, conditionally placed before or after the vertical line -->
     <div
-      :class="{ 'order-3': props.textOnLeft, 'order-1': !props.textOnLeft }"
-      class="flex-1 max-w-sm"
+      :class="[
+        { 'order-3': props.textOnLeft, 'order-1': !props.textOnLeft },
+        'flex-1 max-w-custom',
+      ]"
     >
       <img
         :src="props.imageSrc"
         alt="Description Image"
-        class="w-full h-auto"
+        class="w-[470px] h-[160px] object-cover"
       />
     </div>
   </div>
@@ -84,3 +90,31 @@ const formattedIndex = computed(() => {
   return "00";
 });
 </script>
+
+<style scoped>
+.flex-1.max-w-custom {
+  max-width: 470px; /* Match text card width */
+}
+.tree-card-blue-gradient {
+  background-image: linear-gradient(
+    90deg,
+    rgb(48, 7, 125) 0%,
+    rgb(15, 81, 191)
+  );
+}
+.circle-with-line::after {
+  content: "";
+  position: absolute;
+  top: 50%; /* Center it vertically to the circle */
+  left: 100%; /* Start from the right edge of the circle */
+  width: 100px; /* Length of the horizontal line */
+  height: 0.5px; /* Thickness of the line to match vertical lines */
+  background-color: #a0aec0; /* Tailwind gray-400 color */
+  transform: translateY(-50%); /* Ensures it remains centered */
+}
+
+.circle-with-line.line-left::after {
+  left: auto; /* Remove the left positioning */
+  right: 100%; /* Start from the left edge of the circle */
+}
+</style>
