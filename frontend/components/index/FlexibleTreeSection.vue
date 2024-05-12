@@ -3,30 +3,35 @@
     <!-- Text content, conditionally placed before or after the vertical line -->
     <div
       :class="[
-        'border-l-8 border-blue-500',
+        'border-l-8',
         'flex-1',
         'p-4',
         'bg-white',
+        'dark:bg-gray-700',
         'shadow-lg',
         'rounded-lg',
         'overflow-hidden',
-        borderColor,
+        `${circleBorderColor}`,
         props.textOnLeft ? 'order-1' : 'order-3',
         'max-w-[470px]',
       ]"
     >
       <!-- Index circle moved up to be in the same row as the title -->
-      <div class="flex items-center space-x-4 w-[470px] min-h-[128px]">
+      <div class="flex items-center space-x-8 max-w-[500px] min-h-[128px]">
         <div
-          :class="`flex items-center justify-center min-w-[65px] h-[65px] rounded-full text-white font-bold text-2xl ${circleColorClass}`"
+          :class="`flex items-center justify-center min-w-[65px] h-[65px] rounded-full text-white font-bold text-3xl ${circleColorClass}`"
         >
           {{ formattedIndex }}
         </div>
         <div class="flex flex-col">
-          <h2 class="text-2xl font-bold text-gray-800 text-left mb-3">
+          <h2
+            class="text-3xl font-bold text-gray-700 dark:text-white text-left mb-3"
+          >
             {{ props.title }}
           </h2>
-          <p class="text-gray-600 text-left">{{ props.content }}</p>
+          <p class="text-gray-600 text-left text-xl dark:text-white">
+            {{ props.content }}
+          </p>
         </div>
       </div>
     </div>
@@ -39,7 +44,7 @@
         class="w-0.5 h-6 bg-gray-400 mb-2"
       ></div>
       <div
-        class="circle-with-line w-4 h-4 rounded-full mb-2 relative bg-white"
+        class="circle-with-line w-6 h-6 rounded-full mb-2 relative bg-white"
         :class="[
           `border-2 ${circleBorderColor}`,
           props.textOnLeft ? 'line-left' : '',
@@ -94,13 +99,6 @@ const formattedIndex = computed(() => {
 <style scoped>
 .flex-1.max-w-custom {
   max-width: 470px; /* Match text card width */
-}
-.tree-card-blue-gradient {
-  background-image: linear-gradient(
-    90deg,
-    rgb(48, 7, 125) 0%,
-    rgb(15, 81, 191)
-  );
 }
 .circle-with-line::after {
   content: "";

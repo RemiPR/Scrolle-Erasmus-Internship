@@ -83,14 +83,14 @@
             :imageSrc="FreeCourses"
             :circleColorClass="'bg-blue-600'"
             :circleBorderColor="'border-blue-500'"
-            !textOnLeft
+            :textOnLeft="false"
             :index="0"
           />
           <FlexibleTreeSection
             :title="$t('tree_section_two_title')"
             :content="$t('tree_section_two_content')"
             :imageSrc="Communication"
-            :circleColorClass="'tree-card-blue-gradient'"
+            :circleColorClass="'bg-orange-600'"
             :circleBorderColor="'border-orange-500'"
             textOnLeft
             horizontalLineRight
