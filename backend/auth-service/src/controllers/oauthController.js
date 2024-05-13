@@ -48,20 +48,20 @@ const authenticateGoogle = async (request, response) => {
 
     // User info from the google account
     const payload = ticket.getPayload(); // Extract user information
-    const googleId = payload["sub"];
-    const email = payload["email"];
-    const name = payload["given_name"];
-    const surname = payload["family_name"];
+    const userGoogleId = payload["sub"];
+    const userEmail = payload["email"];
+    const userName = payload["given_name"];
+    const userSurname = payload["family_name"];
 
     // check if such user with such email already exists
-    const userGuest = await UserGuest.findOne({ email: email });
+    const userGuest = await UserGuest.findOne({ email: userEmail });
     if (userGuest) {
       // user with email exists, checks if user already has googleId
-      if (userGuest.socialIds.google != googleId) {
+      if (userGuest.socialIds.google != userGoogleId) {
         // if user doesn't have googleId, he gets updated with one before logging in
         await UserGuest.findByIdAndUpdate(
           userGuest.id,
-          { $set: { "socialIds.google": googleId } },
+          { $set: { "socialIds.google": userGoogleId } },
           { runValidators: true }
         ).catch((error) => {
           response.status(500).send({ message: error.message });
@@ -71,11 +71,11 @@ const authenticateGoogle = async (request, response) => {
     } else {
       // if user doesn't exist at all, new account is created
       const newGuestUser = new UserGuest({
-        name: name,
-        surname: surname,
-        email: email,
+        name: userName,
+        surname: userSurname,
+        email: userEmail,
         socialIds: {
-          google: googleId,
+          google: userGoogleId,
         },
       });
       const user = await UserGuest.create(newGuestUser).catch((error) => {
@@ -85,7 +85,7 @@ const authenticateGoogle = async (request, response) => {
     }
 
     // Redirect user after successfull log in
-    response.redirect("/");
+    response.status(200).redirect("/");
   } catch (error) {
     console.error("Google OAuth error:", error);
     response.status(500).send("Authentication failed");
@@ -108,8 +108,44 @@ const authenticateFacebook = async (request, response) => {
   try {
     const { code } = request.query;
     const accessToken = await getAccessToken(code);
-    const userProfile = await getUserProfile(accessToken);
-    response.status(200).send(userProfile);
+    const userFacebookProfile = await getUserProfile(accessToken);
+
+    let fullnameSplit = userFacebookProfile.name.split(" ");
+    const userName = fullnameSplit[0];
+    const userSurname = fullnameSplit[1];
+
+    const userGuest = await UserGuest.findOne({
+      email: userFacebookProfile.email,
+    });
+    if (userGuest) {
+      // user with email exists, checks if user already has facebookId
+      if (userGuest.socialIds.facebook != userFacebookProfile.id) {
+        // if user doesn't have facebookId, he gets updated with one before logging in
+        await UserGuest.findByIdAndUpdate(
+          userGuest.id,
+          { $set: { "socialIds.facebook": userFacebookProfile.id } },
+          { runValidators: true }
+        ).catch((error) => {
+          response.status(500).send({ message: error.message });
+        });
+      }
+      loginUser(userGuest.id, userGuest.email, userGuest.name);
+    } else {
+      // if user doesn't exist at all, new account is created
+      const newGuestUser = new UserGuest({
+        name: userName,
+        surname: userSurname,
+        email: userFacebookProfile.email,
+        socialIds: {
+          facebook: userFacebookProfile.id,
+        },
+      });
+      const user = await UserGuest.create(newGuestUser).catch((error) => {
+        response.status(500).send({ message: error.message });
+      });
+      loginUser(user.id, userFacebookProfile.email, userName);
+    }
+    response.status(200).redirect("/");
   } catch (error) {
     response.status(500).send("Authentication failed");
   }
