@@ -7,6 +7,8 @@ import { UserGuest } from "../schema/userGuestSchema.js";
 dotenv.config();
 
 const JWT_EXPIRY = process.env.JWT_EXPIRY;
+const COOKIE_AGE = process.env.COOKIE_AGE;
+const FRONTEND_DOMAIN = process.env.FRONTEND_DOMAIN;
 
 const client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID,
@@ -67,7 +69,7 @@ const authenticateGoogle = async (request, response) => {
           response.status(500).send({ message: error.message });
         });
       }
-      loginUser(userGuest.id, userGuest.email, userGuest.name);
+      loginUser(userGuest.id, userGuest.email, userGuest.name, response);
     } else {
       // if user doesn't exist at all, new account is created
       const newGuestUser = new UserGuest({
@@ -81,14 +83,14 @@ const authenticateGoogle = async (request, response) => {
       const user = await UserGuest.create(newGuestUser).catch((error) => {
         response.status(500).send({ message: error.message });
       });
-      loginUser(user.id, user.email, user.name);
+      loginUser(user.id, user.email, user.name, response);
     }
-
-    // Redirect user after successfull log in
-    response.status(200).redirect("/");
   } catch (error) {
     console.error("Google OAuth error:", error);
-    response.status(500).send("Authentication failed");
+    response
+      .status(500)
+      .send("Authentication failed")
+      .redirect(`${FRONTEND_DOMAIN}`);
   }
 };
 
@@ -103,7 +105,6 @@ const initFacebook = async (request, response) => {
 };
 
 // Further authentication after succesfull login
-// TODO: Add userGuest to database and perform a check if he already exists.
 const authenticateFacebook = async (request, response) => {
   try {
     const { code } = request.query;
@@ -129,7 +130,7 @@ const authenticateFacebook = async (request, response) => {
           response.status(500).send({ message: error.message });
         });
       }
-      loginUser(userGuest.id, userGuest.email, userGuest.name);
+      loginUser(userGuest.id, userGuest.email, userGuest.name, response);
     } else {
       // if user doesn't exist at all, new account is created
       const newGuestUser = new UserGuest({
@@ -143,23 +144,23 @@ const authenticateFacebook = async (request, response) => {
       const user = await UserGuest.create(newGuestUser).catch((error) => {
         response.status(500).send({ message: error.message });
       });
-      loginUser(user.id, userFacebookProfile.email, userName);
+      loginUser(user.id, userFacebookProfile.email, userName, response);
     }
-    response.status(200).redirect("/");
   } catch (error) {
-    response.status(500).send("Authentication failed");
+    response
+      .status(500)
+      .send("Authentication failed")
+      .redirect(`${FRONTEND_DOMAIN}`);
   }
 };
 
 // ADDITIONAL FUNCTIONS -----------------------------------------------
 
-async function loginUser(userId, email, name) {
+const loginUser = async function (userId, email, name, response) {
   console.log("Logged in with payload:");
   console.log(userId, email, name);
 
-  // TODO: uncomment this:
   // Generate a JWT with the user information
-  /*
   const token = jwt.sign(
     { userId, email, name },
     process.env.JWT_SECRET, // JWT secret key
@@ -174,8 +175,8 @@ async function loginUser(userId, email, name) {
       sameSite: "Lax",
       maxAge: COOKIE_AGE,
     })
-    .redirect("/");*/
-}
+    .redirect(`${FRONTEND_DOMAIN}/guest`);
+};
 
 async function getAccessToken(code) {
   try {
