@@ -1,7 +1,7 @@
 import express, { json } from "express";
 import { connect } from "mongoose";
 import cors from "cors";
-import userGuestRoutes from "./routes/userGuestRoutes.js";
+import guestRoutes from "./routes/guestRoutes.js";
 import oauthRoutes from "./routes/oauthRoutes.js";
 import debugRoutes from "./routes/debugRoutes.js";
 import dotenv from "dotenv";
@@ -16,9 +16,9 @@ app.use(cors());
 app.use(json());
 app.use(cookieParser());
 
-app.use("/api/guest", userGuestRoutes);
-app.use("/api", oauthRoutes);
-app.use("/debug", debugRoutes);
+app.use("/api/auth/guest", guestRoutes);
+app.use("/api/oauth", oauthRoutes);
+app.use("/api/debug", debugRoutes);
 
 // Database connection
 connect(process.env.MONGODB_URI_USERS, {})
