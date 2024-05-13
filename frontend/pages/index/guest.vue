@@ -53,6 +53,9 @@ const toggleVideo = () => {
   }
   videoPlaying.value = !videoPlaying.value;
 };
+definePageMeta({
+  navigation: "guest",
+});
 </script>
 
 <style></style>

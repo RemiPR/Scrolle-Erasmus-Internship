@@ -1,6 +1,10 @@
 {
-  "home_btn": "Home",
-  "login_btn": "Login",
+  "nav_home_btn": "Home",
+  "nav_my_courses_btn": "My Courses",
+  "nav_admission_btn": "Admission",
+  "nav_faq_btn": "FAQ",
+  "nav_contacts_btn": "Contacts",
+  "nav_login_btn": "Login",
   "page_title": "Free courses, Interactive learning materials, and more",
   "page_subtitle": "Welcome to Scroll — Your Pathway to Online Learning Excellence!",
   "before_input_msg": "Ready to learn? Enter your email to create your account.",

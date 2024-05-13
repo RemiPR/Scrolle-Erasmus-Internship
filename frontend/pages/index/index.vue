@@ -63,7 +63,7 @@
           </div>
           <!-- Arrow positioned at the bottom -->
           <div
-            class="absolute bottom-20 flex justify-center items-center cursor-pointer animate-bounce hover-effect"
+            class="absolute bottom-5 flex justify-center items-center cursor-pointer animate-bounce hover-effect"
             style="width: 80px; height: 80px"
             @click="scrollToSection"
           >
@@ -166,6 +166,9 @@ const storeEmail = () => {
 const onCtaSubmit = handleSubmit((values) => {
   ctaEmail.value = values.email;
   storeEmail();
+});
+definePageMeta({
+  navigation: "index",
 });
 </script>
 
