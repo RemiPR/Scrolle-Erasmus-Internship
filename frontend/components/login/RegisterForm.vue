@@ -203,6 +203,8 @@
         >
       </button>
       <button
+        @click="loginWithFacebook"
+        type="button"
         class="group text-gray-800 px-6 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center dark:bg-white dark:hover:bg-gray-200"
       >
         <Icon name="logos:facebook" class="mr-2" alt="Facebook Logo" />

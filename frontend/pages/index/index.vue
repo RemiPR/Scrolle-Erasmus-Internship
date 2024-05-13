@@ -40,7 +40,7 @@
                     <NuxtLink
                       :to="loginLink"
                       @click.native="storeEmail"
-                      class="text-white font-bold w-40 h-14 rounded-r-md flex items-center justify-center bg-gray-700 hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700"
+                      class="text-white font-bold w-40 h-14 rounded-r-md flex items-center justify-center bg-gray-700 hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700 select-none"
                     >
                       {{ $t("email_input_btn") }}
                     </NuxtLink>

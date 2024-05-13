@@ -126,6 +126,8 @@
                   </button>
                   <button
                     class="group text-gray-800 px-6 py-3 rounded border border-gray-300 hover:bg-gray-100 hover:text-gray-900 flex items-center dark:bg-white dark:hover:bg-gray-200"
+                    @click="loginWithFacebook"
+                    type="button"
                   >
                     <Icon
                       name="logos:facebook"
@@ -186,6 +188,9 @@ function handleLogin(values) {
 function loginWithGoogle() {
   console.log("Google Login Triggered");
   window.location.href = "http://localhost/auth/google";
+}
+function loginWithFacebook() {
+  console.log("Facebook Login Triggered");
 }
 </script>
 
