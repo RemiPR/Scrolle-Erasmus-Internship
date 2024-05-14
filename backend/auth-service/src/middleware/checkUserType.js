@@ -3,7 +3,7 @@ export const checkUserType = (allowedType) => {
     // Access the user's roles from the request, which were attached in the authenticateToken middleware
     const userType = request.user.type;
 
-    // Check if the user has any of the allowed roles
+    // Check if the user has the allowed type
     if (userType != allowedType) {
       return response.status(403).json({
         message:
