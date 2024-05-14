@@ -51,9 +51,13 @@ const loginUser = async (request, response) => {
     }
 
     // Signs JWT token
-    const token = jwt.sign({ id: userGuest }, process.env.JWT_SECRET, {
-      expiresIn: JWT_EXPIRY,
-    });
+    const token = jwt.sign(
+      { id: userGuest.id, name: userGuest.name, type: userGuest.userType },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: JWT_EXPIRY,
+      }
+    );
 
     // Response with a cookie which stores the token
     // httpOnly makes cookie inaccessible to JavaScript running in the browser.
@@ -112,7 +116,7 @@ const registerUser = async (request, response) => {
   }
 };
 
-export const GuestController = {
+export const UserGuestController = {
   createUser,
   registerUser,
   loginUser,

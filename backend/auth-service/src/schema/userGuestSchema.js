@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import { UserBase } from "./userBaseSchema.js";
+import { UserBaseGuest } from "./userBaseGuestSchema.js";
 
-const userGuestSchema = UserBase.discriminator(
+const userGuestSchema = UserBaseGuest.discriminator(
   "UserGuest",
   new mongoose.Schema({
     surname: {

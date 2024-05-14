@@ -26,5 +26,17 @@
   "faq_answer2": "Jā, tā ir!",
   "faq_answer3": "Reģistrētam lietotājam ir iespējams pārbaudīt savus vērtējumus, veikt uzdevumus, ātrāk sazināties ar skolotājiem vai kolēģiem un vieglāk piekļūt bezmaksas vai maksas kursiem nekā jebkurā citā mācību vadības sistēmā. Skolotāji var izveidot uzdevumus, novērtēt studentu darbus un sazināties ar studentiem, neizmantojot citu programmatūru.",
   "faq_answer4": "Aizpildāms.",
-  "faq_answer5": "Jā, varat. Sertifikācijai ir nepieciešams reģistrēts konts, un var tikt piemērotas maksas par pašu sertifikātu."
+  "faq_answer5": "Jā, varat. Sertifikācijai ir nepieciešams reģistrēts konts, un var tikt piemērotas maksas par pašu sertifikātu.",
+  "contact_form_title": "Sazinies ar mums!",
+  "contact_form_first_name": "Vārds",
+  "contact_form_first_name_input": "Ievadiet savu vārdu",
+  "contact_form_last_name": "Uzvārds",
+  "contact_form_last_name_input": "Ievadiet savu uzvārdu",
+  "contact_form_email": "E-pasts",
+  "contact_form_email_input": "Ievadiet savu e-pasta adresi",
+  "contact_form_phone_number": "Telefona numurs",
+  "contact_form_phone_number_input": "Ievadiet savu telefona numuru",
+  "contact_form_additional_information": "Papildus informācija",
+  "contact_form_additional_information_input": "Ievadiet jebkādu papildu informāciju",
+  "contact_form_button": "Nosūtīt"
 }
