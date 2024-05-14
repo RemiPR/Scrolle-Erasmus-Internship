@@ -63,7 +63,7 @@
           </div>
           <!-- Arrow positioned at the bottom -->
           <div
-            class="absolute bottom-20 flex justify-center items-center cursor-pointer animate-bounce hover-effect"
+            class="absolute bottom-5 flex justify-center items-center cursor-pointer animate-bounce hover-effect"
             style="width: 80px; height: 80px"
             @click="scrollToSection"
           >
@@ -104,12 +104,14 @@
             :circleBorderColor="'border-pink-400'"
             :index="2"
           />
+          <Accordion :title="$t('faq_title')" />
+          <ContactForm />
         </div>
       </main>
     </div>
+    <Footer />
   </div>
 </template>
-
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { useLocalePath } from "#imports";
@@ -119,8 +121,11 @@ import FlexibleTreeSection from "~/components/index/FlexibleTreeSection.vue";
 import FreeCourses from "@/public/FreeCourses.jpg";
 import Communication from "@/public/Communication.jpg";
 import Grades from "@/public/Grades.jpg";
+import Accordion from "~/components/index/Accordion.vue";
 import { useCtaStore } from "~/stores/ctaStore";
 import { nextTick } from "vue";
+import Footer from "~/components/index/Footer.vue";
+import ContactForm from "~/components/index/ContactForm.vue";
 
 definePageMeta({
   layout: "nav",
@@ -167,8 +172,10 @@ const onCtaSubmit = handleSubmit((values) => {
   ctaEmail.value = values.email;
   storeEmail();
 });
+definePageMeta({
+  navigation: "index",
+});
 </script>
-
 <style scoped>
 @keyframes bounce {
   0%,

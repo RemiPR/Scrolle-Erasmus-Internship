@@ -37,7 +37,7 @@
                 :class="{
                   'bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700':
                     currentForm === 'org',
-                  'bg-white text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-300':
+                  'bg-white text-gray-700 dark:text-white dark:bg-gray-600 font-bold hover:bg-gray-100 dark:hover:bg-gray-500':
                     currentForm !== 'org',
                 }"
                 class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500 select-none"
@@ -49,7 +49,7 @@
                 :class="{
                   'bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700':
                     currentForm === 'guest',
-                  'bg-white text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-300':
+                  'bg-white text-gray-700 dark:text-white dark:bg-gray-600 font-bold hover:bg-gray-100 dark:hover:bg-gray-500':
                     currentForm !== 'guest',
                 }"
                 class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500 select-none"

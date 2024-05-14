@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@formkit/auto-animate/nuxt",
   ],
+  pages: true,
   app: {
     pageTransition: { name: "page", mode: "out-in" },
   },
