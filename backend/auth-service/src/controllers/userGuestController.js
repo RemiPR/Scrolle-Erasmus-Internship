@@ -1,4 +1,5 @@
 import { UserGuest } from "../schema/userGuestSchema.js";
+import { validationUtils } from "../utils/validationUtils.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
@@ -90,13 +91,21 @@ const registerUser = async (request, response) => {
       });
     }
 
+    // Check if email is valid
+    if (!(await validationUtils.isValidEmail(email))) {
+      return response.status(400).json({ message: "Email is not valid" });
+    }
+
     // Validation if email already exists
     const existingUser = await UserGuest.findOne({ email: email }).exec();
     if (existingUser) {
       return response.status(409).send({ message: "Email already exists" });
     }
 
-    // TODO: add password validation https://www.reddit.com/r/dataisbeautiful/comments/1cb48y6/oc_i_updated_our_password_table_for_2024_with/#lightbox
+    // check if password is strong
+    if (!(await validationUtils.isStrongPassword(password))) {
+      return response.status(400).json({ message: "Password is too weak" });
+    }
 
     // Creates newGuestUser object
     const newGuestUser = new UserGuest({
