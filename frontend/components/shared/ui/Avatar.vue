@@ -4,8 +4,7 @@
     @mouseenter="showMenu = true"
     @mouseleave="showMenu = false"
   >
-    <div class="flex items-center cursor-pointer border border-red-500">
-      <!-- Existing avatar icon setup -->
+    <div class="flex items-center cursor-pointer">
       <Icon name="clarity:avatar-solid" class="h-8 w-8 mr-2" />
       <Icon
         name="ph:caret-down-bold"
@@ -22,7 +21,6 @@
           class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
         >
           <TextColorModeToggle />
-          <!-- Use the renamed TextColorModeToggle component -->
         </li>
         <!-- Other dropdown menu items -->
         <li
@@ -42,7 +40,7 @@
 
 <script setup>
 import { ref } from "vue";
-import TextColorModeToggle from "@/components/global/TextColorModeToggle.vue"; // Ensure the correct import path
+import TextColorModeToggle from "@/components/global/TextColorModeToggle.vue";
 
 const showMenu = ref(false);
 </script>
