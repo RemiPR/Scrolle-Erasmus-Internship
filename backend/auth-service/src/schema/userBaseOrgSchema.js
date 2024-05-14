@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
-// base user schema, to be inherited by other user schemas.
-const userBaseSchema = new mongoose.Schema(
+// This schema contains base schema for organisation, adds roles
+const userBaseOrgSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -20,20 +20,32 @@ const userBaseSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    roles: {
+      type: [String],
+      required: false,
+      default: null,
+    },
   },
-  { discriminatorKey: "userType", collection: "users", timestamps: true }
+  {
+    discriminatorKey: "userType",
+    collection: "organisationUsers",
+    timestamps: true,
+  }
 );
 
 // Function to check if password is valid for log in
-userBaseSchema.methods.isValidPassword = async function (password) {
+userBaseOrgSchema.methods.isValidPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
 // Hashes password before saving it
-userBaseSchema.pre("save", async function (next) {
+userBaseOrgSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 12);
   next();
 });
 
-export const UserBase = mongoose.model("UserBase", userBaseSchema);
+export const UserBaseOrganisation = mongoose.model(
+  "UserBaseOrganisation",
+  userBaseOrgSchema
+);

@@ -112,7 +112,7 @@ const registerUser = async (request, response) => {
   }
 };
 
-export const GuestController = {
+export const UserGuestController = {
   createUser,
   registerUser,
   loginUser,
