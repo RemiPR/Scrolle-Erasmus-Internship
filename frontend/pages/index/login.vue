@@ -85,7 +85,7 @@
               <!-- Sign In Button -->
               <button
                 type="submit"
-                class="w-full font-semibold text-white px-4 py-2 rounded bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 select-none"
+                class="w-full font-semibold text-white px-4 py-2 rounded bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
               >
                 Sign in
               </button>

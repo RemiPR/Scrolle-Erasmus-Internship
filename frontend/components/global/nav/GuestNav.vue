@@ -86,21 +86,7 @@
           }"
           class="dark:text-black"
         />
-        <NuxtLink
-          :to="localePath('/login')"
-          :class="{
-            'text-white hover:underline': true,
-            'dark:text-black': hasScrolled,
-            'dark:text-white': !hasScrolled, // Adjust login link text color based on scroll
-          }"
-          >{{ $t("nav_login_btn") }}</NuxtLink
-        >
-        <ColorModeToggle
-          :class="{
-            'bg-transparent': !hasScrolled,
-            'bg-gray-800 dark:bg-white': hasScrolled,
-          }"
-        />
+        <Avatar />
       </nav>
     </header>
     <!-- Page content -->
@@ -112,9 +98,11 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import LangSwitcher from "~/components/index/LangSwitcher.vue";
 import { useLocalePath } from "#imports";
+import Avatar from "@/components/shared/ui/Avatar.vue";
 
 const localePath = useLocalePath();
 const hasScrolled = ref(false);
+const isHydrated = ref(false);
 
 // Function to handle scroll events
 const handleScroll = () => {
@@ -126,10 +114,13 @@ const handleScroll = () => {
 };
 
 onMounted(() => {
+  isHydrated.value = true;
+
   window.addEventListener("scroll", handleScroll);
 });
 
 onUnmounted(() => {
+  isHydrated.value = false;
   window.removeEventListener("scroll", handleScroll);
 });
 </script>

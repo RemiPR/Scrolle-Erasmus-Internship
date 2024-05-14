@@ -22,5 +22,22 @@
         </button>
       </div>
     </div>
+    <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2">
+      <ArrowIcon @click="scrollToSection" />
+    </div>
   </div>
 </template>
+
+<script setup>
+import ArrowIcon from "~/components/shared/ui/ArrowIcon.vue";
+
+const firstSection = ref(null);
+
+// Arrow function to scroll to the first section
+const scrollToSection = async () => {
+  await nextTick();
+  if (firstSection.value) {
+    firstSection.value.scrollIntoView({ behavior: "smooth" });
+  }
+};
+</script>
