@@ -1,49 +1,32 @@
 <template>
   <div class="relative min-h-screen">
-    <!-- Background Video -->
-    <video
-      autoplay
-      loop
-      muted
-      playsinline
-      ref="videoRef"
-      class="absolute top-0 left-0 w-full h-full object-cover"
-    >
-      <source src="@/public/test.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-
-    <!-- Overlay Content -->
-    <div
-      class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center"
-    >
-      <div class="ml-10 max-w-md">
-        <h1 class="text-white text-4xl font-bold mb-2">Welcome to Scroll</h1>
-        <p class="text-white text-lg mb-4">
-          We offer a wide variety of free online courses for everyone
-        </p>
-        <button
-          class="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition duration-300"
-        >
-          Check free courses
-        </button>
-        <!-- Video Controls -->
-        <button
-          @click="toggleVideo"
-          class="mt-4 bg-gray-800 text-white p-2 rounded hover:bg-gray-700"
-        >
-          {{ videoPlaying ? "Pause" : "Play" }}
-        </button>
-      </div>
-    </div>
+    <BackgroundVideoComponent ref="backgroundVideo" videoSource="/test.mp4" />
+    <OverlayContentComponent />
+    <VideoControlsComponent
+      :videoRef="videoRef"
+      :videoPlaying="videoPlaying"
+      @toggleVideo="toggleVideo"
+    />
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import BackgroundVideoComponent from "@/components/shared/video/BackgroundVideo.vue";
+import OverlayContentComponent from "@/components/shared/video/VideoOverlay.vue";
+import VideoControlsComponent from "@/components/shared/video/VideoControls.vue";
+
+definePageMeta({
+  navigation: "guest",
+});
+
+const backgroundVideo = ref(null);
+const videoPlaying = ref(true);
 
 const videoRef = ref(null);
-const videoPlaying = ref(true);
+const setVideoRef = () => {
+  videoRef.value = backgroundVideo.value?.$refs.videoRef;
+};
 
 const toggleVideo = () => {
   if (videoPlaying.value) {
@@ -53,9 +36,12 @@ const toggleVideo = () => {
   }
   videoPlaying.value = !videoPlaying.value;
 };
-definePageMeta({
-  navigation: "guest",
+
+onMounted(() => {
+  setVideoRef();
 });
 </script>
 
-<style></style>
+<style scoped>
+/* Page-specific styles */
+</style>

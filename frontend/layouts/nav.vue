@@ -16,7 +16,6 @@ const route = useRoute();
 // Define the navigation component based on the route metadata
 const navigationComponent = computed(() => {
   const navType = route.meta.navigation || "index";
-  console.log("Navigation Type:", navType);
 
   switch (navType) {
     case "guest":
