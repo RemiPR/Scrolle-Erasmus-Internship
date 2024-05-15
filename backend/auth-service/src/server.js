@@ -17,8 +17,13 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT_AUTH;
+const corsOptions = {
+  origin: process.env.FRONTEND_DOMAIN, // Adjust this to match your frontend host
+  credentials: true, // This is critical for cookies to be sent and received
+  optionsSuccessStatus: 200, // For legacy browser support
+};
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(json());
 app.use(cookieParser());
 
