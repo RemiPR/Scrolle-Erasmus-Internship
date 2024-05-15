@@ -1,5 +1,6 @@
 import { UserGuest } from "../schema/userGuestSchema.js";
 import { validationUtils } from "../utils/validationUtils.js";
+import { authUtils } from "../utils/authUtils.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
@@ -99,7 +100,7 @@ const registerUser = async (request, response) => {
     // Validation if email already exists
     const existingUser = await UserGuest.findOne({ email: email }).exec();
     if (existingUser) {
-      return response.status(409).send({ message: "Email already exists" });
+      return response.status(409).json({ message: "Email already exists" });
     }
 
     // check if password is strong
@@ -119,7 +120,13 @@ const registerUser = async (request, response) => {
     // Hashing done in the userGuestSchema.js
     const user = await UserGuest.create(newGuestUser);
 
-    return response.status(201).send(user);
+    authUtils.loginGuestUserOnRegister(
+      user.id,
+      user.email,
+      user.name,
+      user.userType,
+      response
+    );
   } catch (error) {
     response.status(500).json({ message: error.message });
   }
