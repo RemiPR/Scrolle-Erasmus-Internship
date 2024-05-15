@@ -1,122 +1,69 @@
 <!-- components/RegisterForm.vue -->
 <template>
-  <div>
-    <Form
-      @submit="onSubmit"
-      :initial-values="formInitialValues"
-      :validation-schema="validationSchema"
-      validate-on-input
-      v-slot="{ validateField }"
-    >
+  <div class="max-w-md mx-auto mt-8">
+    <form @submit.prevent="onSubmit">
       <!-- First Name input -->
       <div class="mb-4">
         <label for="firstName" class="font-semibold">First Name</label>
-        <Field
-          id="firstName"
-          name="firstName"
-          type="text"
-          v-slot="{ field, meta }"
-        >
-          <input
-            v-bind="field"
-            @input="validateField('firstName')"
-            class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
-            :class="{
-              'border-red-500 dark:border-red-500':
-                meta.touched && meta.invalid,
-            }"
-          />
-        </Field>
-        <ErrorMessage name="firstName" v-slot="{ message }">
-          <div
-            class="flex items-center text-red-500 dark:text-gray-50 dark:font-semibold mt-1"
-          >
-            <Icon
-              name="material-symbols:error"
-              class="h-5 w-5 mr-2 dark:text-red-500"
-            />
-            <span>{{ message }}</span>
-          </div>
-        </ErrorMessage>
+        <input
+          v-model="firstName"
+          v-bind="firstNameAttrs"
+          class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
+          :class="{
+            'border-red-500 dark:border-red-500': errors.firstName,
+            autofilled: isAutofilled,
+          }"
+        />
+        <span class="text-red-500">{{ errors.firstName }}</span>
       </div>
 
       <!-- Last Name input -->
       <div class="mb-4">
         <label for="lastName" class="font-semibold">Last Name</label>
-        <Field
-          id="lastName"
-          name="lastName"
-          type="text"
-          v-slot="{ field, meta }"
-        >
-          <input
-            v-bind="field"
-            @input="validateField('lastName')"
-            class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
-            :class="{
-              'border-red-500 dark:border-red-500':
-                meta.touched && meta.invalid,
-            }"
-          />
-        </Field>
-        <ErrorMessage name="lastName" v-slot="{ message }">
-          <div
-            class="flex items-center text-red-500 dark:text-gray-50 dark:font-semibold mt-1"
-          >
-            <Icon
-              name="material-symbols:error"
-              class="h-5 w-5 mr-2 dark:text-red-500"
-            />
-            <span>{{ message }}</span>
-          </div>
-        </ErrorMessage>
+        <input
+          v-model="lastName"
+          v-bind="lastNameAttrs"
+          class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
+          :class="{
+            'border-red-500 dark:border-red-500': errors.lastName,
+            autofilled: isAutofilled,
+          }"
+        />
+        <span class="text-red-500">{{ errors["lastName"] }}</span>
       </div>
 
       <!-- Email input field -->
       <div class="mb-4">
         <label for="email" class="font-semibold">Email address</label>
-        <Field id="email" name="email" type="email" v-slot="{ field, meta }">
-          <input
-            v-bind="field"
-            @input="validateField('email')"
-            class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
-            :class="{
-              'border-red-500 dark:border-red-500':
-                meta.touched && meta.invalid,
-            }"
-          />
-        </Field>
-        <ErrorMessage name="email" v-slot="{ message }">
-          <div
-            class="flex items-center text-red-500 dark:text-gray-50 dark:font-semibold mt-1"
-          >
-            <Icon
-              name="material-symbols:error"
-              class="h-5 w-5 mr-2 dark:text-red-500"
-            />
-            <span>{{ message }}</span>
-          </div>
-        </ErrorMessage>
+        <input
+          v-model="email"
+          v-bind="emailAttrs"
+          type="email"
+          class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out bg-green- dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
+          :class="{
+            'border-red-500 dark:border-red-500': errors.email,
+            autofilled: isAutofilled,
+          }"
+        />
+        <span class="text-red-500">{{ errors["email"] }}</span>
       </div>
 
       <!-- Password input field -->
-      <div class="mb-4 relative flex flex-col">
+      <div class="mb-4 relative">
         <label for="password" class="font-semibold">Password</label>
         <div class="relative">
-          <Field name="password" v-slot="{ field, meta }">
-            <input
-              v-bind="field"
-              @input="validateField('password')"
-              :type="showPassword ? 'text' : 'password'"
-              class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
-              :class="{
-                'border-red-500 dark:border-red-500':
-                  meta.touched && meta.invalid,
-              }"
-            />
-          </Field>
+          <input
+            v-model="password"
+            v-bind="passwordAttrs"
+            :type="showPassword ? 'text' : 'password'"
+            class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white pr-10"
+            :class="{
+              'border-red-500 dark:border-red-500': errors.password,
+              autofilled: isAutofilled,
+            }"
+          />
           <span
-            class="absolute inset-y-0 right-0 pr-3 flex items-center justify-center cursor-pointer"
+            class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
             @click="toggleShowPassword"
           >
             <span class="material-icons select-none dark:font-semibold">{{
@@ -124,39 +71,27 @@
             }}</span>
           </span>
         </div>
-        <ErrorMessage name="password" v-slot="{ message }">
-          <div
-            class="flex items-center text-red-500 dark:text-gray-50 dark:font-semibold mt-1"
-          >
-            <Icon
-              name="material-symbols:error"
-              class="h-5 w-5 mr-2 dark:text-red-500"
-            />
-            <span>{{ message }}</span>
-          </div>
-        </ErrorMessage>
+        <span class="text-red-500">{{ errors["password"] }}</span>
       </div>
 
       <!-- Confirm Password input field -->
-      <div class="mb-6 relative flex flex-col">
+      <div class="mb-6 relative">
         <label for="confirmPassword" class="font-semibold"
           >Confirm Password</label
         >
         <div class="relative">
-          <Field name="confirmPassword" v-slot="{ field, meta }">
-            <input
-              v-bind="field"
-              @input="validateField('confirmPassword')"
-              :type="showConfirmPassword ? 'text' : 'password'"
-              class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
-              :class="{
-                'border-red-500 dark:border-red-500':
-                  meta.touched && meta.invalid,
-              }"
-            />
-          </Field>
+          <input
+            v-model="confirmPassword"
+            v-bind="confirmPasswordAttrs"
+            :type="showConfirmPassword ? 'text' : 'password'"
+            class="block w-full px-4 py-2 border rounded mt-2 hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white pr-10"
+            :class="{
+              'border-red-500 dark:border-red-500': errors.confirmPassword,
+              autofilled: isAutofilled,
+            }"
+          />
           <span
-            class="absolute inset-y-0 right-0 pr-3 flex items-center justify-center cursor-pointer"
+            class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
             @click="toggleShowConfirmPassword"
           >
             <span class="material-icons select-none dark:font-semibold">{{
@@ -164,17 +99,7 @@
             }}</span>
           </span>
         </div>
-        <ErrorMessage name="confirmPassword" v-slot="{ message }">
-          <div
-            class="flex items-center text-red-500 dark:text-gray-50 dark:font-semibold mt-1"
-          >
-            <Icon
-              name="material-symbols:error"
-              class="h-5 w-5 mr-2 dark:text-red-500"
-            />
-            <span>{{ message }}</span>
-          </div>
-        </ErrorMessage>
+        <span class="text-red-500">{{ errors["confirmPassword"] }}</span>
       </div>
 
       <!-- Register button -->
@@ -184,7 +109,8 @@
       >
         Register
       </button>
-    </Form>
+    </form>
+
     <!-- Social Media Options -->
     <div class="flex items-center my-6">
       <hr class="text-black flex-grow" />
@@ -217,22 +143,53 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { useForm, Field, ErrorMessage, Form } from "vee-validate";
-import { object, string } from "yup";
-import { useCtaStore } from "@/stores/ctaStore";
+import { useForm } from "vee-validate";
+import * as yup from "yup";
 
-const ctaStore = useCtaStore();
+// Define the schema using yup, similar to the small example
+const schema = yup.object({
+  firstName: yup
+    .string()
+    .required("First name is required")
+    .min(2, "First name must be at least 2 characters"),
+  lastName: yup
+    .string()
+    .required("Last name is required")
+    .min(2, "Last name must be at least 2 characters"),
+  email: yup
+    .string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters")
+    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .matches(/[0-9]/, "Password must contain at least one number")
+    .matches(
+      /[!@#$%^&*(),.?":{}|<>]/,
+      "Password must contain at least one special character"
+    ),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password")], "Passwords must match")
+    .required("Confirm your password"),
+});
+
+const { defineField, errors, handleSubmit } = useForm({
+  validationSchema: schema,
+});
+// Initialize fields with useField, similar to the small form example
+
+const [firstName, firstNameAttrs] = defineField("firstName");
+const [lastName, lastNameAttrs] = defineField("lastName");
+const [email, emailAttrs] = defineField("email");
+const [password, passwordAttrs] = defineField("password");
+const [confirmPassword, confirmPasswordAttrs] = defineField("confirmPassword");
+
+const isAutofilled = ref(false);
 const showPassword = ref(false);
 const showConfirmPassword = ref(false);
-
-const formInitialValues = computed(() => ({
-  firstName: "",
-  lastName: "",
-  email: ctaStore.email || "",
-  password: "",
-  confirmPassword: "",
-}));
 
 const toggleShowPassword = () => {
   showPassword.value = !showPassword.value;
@@ -242,55 +199,30 @@ const toggleShowConfirmPassword = () => {
   showConfirmPassword.value = !showConfirmPassword.value;
 };
 
-// Form validation schema
-const validationSchema = object({
-  firstName: string()
-    .required("Please enter your first name")
-    .min(2, "First name must be at least 2 characters"),
-  lastName: string()
-    .required("Please enter your last name")
-    .min(2, "Last name must be at least 2 characters"),
-  email: string()
-    .required("Please enter your email address")
-    .email("Please enter a valid email address"),
-  password: string()
-    .required("Please enter your password")
-    .min(8, "Password must be at least 8 characters")
-    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-    .matches(/[0-9]/, "Password must contain at least one number")
-    .matches(
-      /[!@#$%^&*(),.?":{}|<>]/,
-      "Password must contain at least one special character"
-    ),
-  confirmPassword: string()
-    .required("Please confirm your password")
-    .oneOf([ref("password").value], "Passwords must match"),
-});
-
-const { handleSubmit, validateField, resetForm } = useForm({
-  validationSchema,
-  initialValues: formInitialValues.value,
-});
-
-watch(
-  () => ctaStore.email,
-  (newEmail) => {
-    console.log(`Email changed to: ${newEmail}`);
-    resetForm({
-      values: {
-        firstName: "",
-        lastName: "",
-        email: newEmail,
-        password: "",
-        confirmPassword: "",
-      },
-    });
-  }
-);
-
 const onSubmit = handleSubmit((values) => {
   console.log(JSON.stringify(values, null, 2));
-  // Clear CTA email from store once registration is complete
-  ctaStore.clearEmail();
+  // Add your form submission logic here
 });
+onMounted(() => {
+  const inputFields = document.querySelectorAll("input");
+  inputFields.forEach((input) => {
+    input.addEventListener("animationstart", handleAutofill);
+  });
+});
+const handleAutofill = (event) => {
+  if (event.animationName === "onAutoFillStart") {
+    isAutofilled.value = true;
+  } else if (event.animationName === "onAutoFillCancel") {
+    isAutofilled.value = false;
+  }
+};
 </script>
+
+<style scoped>
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px rgb(134 239 172) inset !important; /* Change the background color here */
+}
+</style>

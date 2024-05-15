@@ -8,16 +8,20 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "@nuxtjs/i18n",
     "@formkit/auto-animate/nuxt",
+    "@vee-validate/nuxt",
   ],
   pages: true,
   app: {
     pageTransition: { name: "page", mode: "out-in" },
   },
-  css: ["@/assets/css/transitions.css"],
+  css: ["@/assets/css/transitions.css", "@/assets/css/main.css"],
   colorMode: {
-    preference: "system", // default value of $colorMode.preference
+    preference: "light", // default value of $colorMode.preference
     fallback: "light", // fallback value if no system preference is detected
     classSuffix: "", // Use empty string for Tailwind compatibility
+  },
+  veeValidate: {
+    autoImports: true,
   },
   plugins: [{ src: "~/plugins/pinia.js", mode: "client" }],
   i18n: {

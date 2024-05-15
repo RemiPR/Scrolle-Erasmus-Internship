@@ -58,11 +58,11 @@ function toggleColorMode() {
 /* Separate styles for the sun and moon outlines */
 input[type="checkbox"] + div > span {
   position: absolute;
-  inset: 0.125rem; /* inset-y and inset-x combined */
-  width: 1.75rem; /* Make sure this matches your actual icon size */
+  inset: 0.125rem;
+  width: 1.75rem;
   height: 1.75rem;
   border-radius: 9999px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,7 +70,7 @@ input[type="checkbox"] + div > span {
 
 /* Transform effect for the checked state */
 input[type="checkbox"]:checked + div > span {
-  transform: translateX(2rem); /* Adjust for increased size */
+  transform: translateX(1.75rem);
 }
 
 /* Outline styles for sun and moon icons */
@@ -80,5 +80,9 @@ input[type="checkbox"]:has(~ div > span > .sun-icon) + div > span {
 
 input[type="checkbox"]:has(~ div > span > .moon-icon) + div > span {
   background-color: black;
+}
+.sun-icon,
+.moon-icon {
+  transition: opacity 0.3s ease;
 }
 </style>

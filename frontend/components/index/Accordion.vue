@@ -7,20 +7,26 @@
     </div>
     <ul class="accordion">
       <li
-        class="accordion-item"
+        class="accordion-item mb-3 border border-black dark:border-white rounded overflow-hidden"
         v-for="(item, index) in faqItems"
         :key="index"
         v-auto-animate
-        :style="{ marginBottom: '10px', backgroundColor: '#4A5568' }"
       >
         <div
-          class="question font-semibold text-lg"
+          class="question text-gray-700 dark:text-white font-semibold text-lg py-4 px-6 flex justify-between items-center cursor-pointer relative"
           @click="toggleQuestion(index)"
         >
-          {{ $t(item.question) }}
+          <span class="text flex-grow text-left">{{ $t(item.question) }}</span>
+          <span
+            class="icon text-xl transition-transform ease-in-out absolute right-6 top-1/2 transform -translate-y-1/2"
+            :class="{
+              'text-purple-m': $root.darkMode,
+              expanded: current === index,
+            }"
+          ></span>
         </div>
         <p
-          class="answer text-left"
+          class="answer text-left px-6 pt-4 pb-6 text-gray-700 dark:text-white"
           v-if="current === index"
           v-html="$t(item.answer)"
         />
@@ -60,27 +66,38 @@ ul {
 
 li {
   display: block;
-  background-color: var(--ui-light);
-  border-radius: 0.5em;
-  overflow: hidden;
 }
 
 .question {
   padding: 1em;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-size: 1.25em; /* Adjust font size here */
+  font-size: 1.25em;
 }
-.question::before {
-  content: "+";
+
+.question .text {
+  text-align: left;
+}
+
+.question .icon {
   font-size: 1.5em;
-  margin-right: 0.5em;
-  color: var(--primary);
+  transition: transform 0.3s ease;
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  transform: translateY(-50%);
 }
-[data-dark-mode="true"] .question::before {
+
+.icon::before {
+  content: "+";
+}
+
+.icon.expanded::before {
+  content: "-";
+}
+
+[data-dark-mode="true"] .icon::before {
   color: var(--purple-m);
 }
+
 .answer {
   margin: 0 1rem;
   padding: 0 0 1rem 0;

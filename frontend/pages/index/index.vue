@@ -62,18 +62,7 @@
             </div>
           </div>
           <!-- Arrow positioned at the bottom -->
-          <div
-            class="absolute bottom-5 flex justify-center items-center cursor-pointer animate-bounce hover-effect"
-            style="width: 80px; height: 80px"
-            @click="scrollToSection"
-          >
-            <Icon
-              name="heroicons-outline:arrow-down"
-              class="h-20 w-14 text-gray-700 dark:text-white transition-all duration-300 ease-in-out hover:text-blue-500 dark:hover:text-blue-400"
-              style="filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2))"
-              alt="Down arrow"
-            />
-          </div>
+          <ArrowIcon @click="scrollToSection" />
         </div>
         <!-- Cards -->
         <div ref="firstSection" class="scroll-mt-28">
@@ -122,6 +111,7 @@ import FreeCourses from "@/public/FreeCourses.jpg";
 import Communication from "@/public/Communication.jpg";
 import Grades from "@/public/Grades.jpg";
 import Accordion from "~/components/index/Accordion.vue";
+import ArrowIcon from "~/components/shared/ui/ArrowIcon.vue";
 import { useCtaStore } from "~/stores/ctaStore";
 import { nextTick } from "vue";
 import Footer from "~/components/index/Footer.vue";
@@ -140,6 +130,7 @@ const loginLink = computed(() => {
 
 const firstSection = ref(null);
 
+// Arrow function to scroll to the first section
 const scrollToSection = async () => {
   await nextTick();
   if (firstSection.value) {
@@ -176,6 +167,7 @@ definePageMeta({
   navigation: "index",
 });
 </script>
+
 <style scoped>
 @keyframes bounce {
   0%,
