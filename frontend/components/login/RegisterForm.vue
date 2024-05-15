@@ -145,9 +145,16 @@
 <script setup>
 import { useForm } from "vee-validate";
 import * as yup from "yup";
+import { useLocalePath } from "#imports";
+import { navigateTo } from "#app";
+
+const localePath = useLocalePath();
+const config = useRuntimeConfig();
 
 // Define the schema using yup, similar to the small example
+
 const schema = yup.object({
+  
   firstName: yup
     .string()
     .required("First name is required")
@@ -199,9 +206,27 @@ const toggleShowConfirmPassword = () => {
   showConfirmPassword.value = !showConfirmPassword.value;
 };
 
-const onSubmit = handleSubmit((values) => {
-  console.log(JSON.stringify(values, null, 2));
-  // Add your form submission logic here
+const onSubmit = handleSubmit(async (values) => {
+  //console.log(JSON.stringify(values, null, 2));
+  try {
+    const response = await $fetch(`${config.public.authBaseUrl}/api/auth/guest/registerUser`, {
+      method: 'POST',
+      body: {
+        name: values.firstName,
+        surname: values.lastName,
+        email: values.email,
+        password: values.password
+      },
+      credentials: 'include'
+    });
+    navigateTo(localePath('/guest'));
+  } catch (error) {
+    if(error.data && error.status == 409) {
+      console.log('Registration failed:', error.data.message);
+    } else {
+      console.error(error);
+    }
+  }
 });
 onMounted(() => {
   const inputFields = document.querySelectorAll("input");

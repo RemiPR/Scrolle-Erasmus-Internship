@@ -1,13 +1,11 @@
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import axios from "axios";
+import { authUtils } from "../utils/authUtils.js";
 import { OAuth2Client } from "google-auth-library";
 import { UserGuest } from "../schema/userGuestSchema.js";
 
 dotenv.config();
 
-const JWT_EXPIRY = process.env.JWT_EXPIRY;
-const COOKIE_AGE = process.env.COOKIE_AGE;
 const FRONTEND_DOMAIN = process.env.FRONTEND_DOMAIN;
 
 const client = new OAuth2Client(
@@ -69,7 +67,13 @@ const authenticateGoogle = async (request, response) => {
           response.status(500).send({ message: error.message });
         });
       }
-      loginUser(userGuest.id, userGuest.email, userGuest.name, response);
+      authUtils.oauthLoginGuestUser(
+        userGuest.id,
+        userGuest.email,
+        userGuest.name,
+        userGuest.userType,
+        response
+      );
     } else {
       // if user doesn't exist at all, new account is created
       const newGuestUser = new UserGuest({
@@ -83,7 +87,13 @@ const authenticateGoogle = async (request, response) => {
       const user = await UserGuest.create(newGuestUser).catch((error) => {
         response.status(500).send({ message: error.message });
       });
-      loginUser(user.id, user.email, user.name, response);
+      authUtils.oauthLoginGuestUser(
+        user.id,
+        user.email,
+        user.name,
+        user.userType,
+        response
+      );
     }
   } catch (error) {
     console.error("Google OAuth error:", error);
@@ -130,7 +140,13 @@ const authenticateFacebook = async (request, response) => {
           response.status(500).send({ message: error.message });
         });
       }
-      loginUser(userGuest.id, userGuest.email, userGuest.name, response);
+      authUtils.oauthLoginGuestUser(
+        userGuest.id,
+        userGuest.email,
+        userGuest.name,
+        userGuest.userType,
+        response
+      );
     } else {
       // if user doesn't exist at all, new account is created
       const newGuestUser = new UserGuest({
@@ -144,7 +160,13 @@ const authenticateFacebook = async (request, response) => {
       const user = await UserGuest.create(newGuestUser).catch((error) => {
         response.status(500).send({ message: error.message });
       });
-      loginUser(user.id, userFacebookProfile.email, userName, response);
+      authUtils.oauthLoginGuestUser(
+        user.id,
+        userFacebookProfile.email,
+        userName,
+        user.userType,
+        response
+      );
     }
   } catch (error) {
     response
@@ -155,28 +177,6 @@ const authenticateFacebook = async (request, response) => {
 };
 
 // ADDITIONAL FUNCTIONS -----------------------------------------------
-
-const loginUser = async function (userId, email, name, response) {
-  console.log("Logged in with payload:");
-  console.log(userId, email, name);
-
-  // Generate a JWT with the user information
-  const token = jwt.sign(
-    { userId, email, name },
-    process.env.JWT_SECRET, // JWT secret key
-    { expiresIn: JWT_EXPIRY } // Token expiration
-  );
-
-  return response
-    .status(200)
-    .cookie("authToken", token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "Lax",
-      maxAge: COOKIE_AGE,
-    })
-    .redirect(`${FRONTEND_DOMAIN}/guest`);
-};
 
 async function getAccessToken(code) {
   try {
