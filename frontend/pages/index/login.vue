@@ -68,27 +68,6 @@
               :initialEmail="prefilledEmail"
               @submit="handleLogin"
             >
-              <!-- Remember Me and Forgot Password -->
-              <div class="flex justify-between mb-6">
-                <label class="flex items-center">
-                  <input type="checkbox" class="mr-2 rounded-lg border-2" />
-                  <span class="select-none">Remember me</span>
-                </label>
-                <a
-                  href="#"
-                  class="text-blue-600 hover:font-semibold hover:underline dark:font-medium dark:text-blue-400 dark:hover:text-blue-500"
-                  @click.prevent="setCurrentForm('forgot')"
-                >
-                  Forgot password?
-                </a>
-              </div>
-              <!-- Sign In Button -->
-              <button
-                type="submit"
-                class="w-full font-semibold text-white px-4 py-2 rounded bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
-              >
-                Sign in
-              </button>
               <!-- Guest-Specific Section -->
               <template v-if="currentForm === 'guest'">
                 <button
@@ -145,6 +124,7 @@
             <RegisterForm
               v-else-if="currentForm === 'register'"
               :initialEmail="prefilledEmail"
+              :prefilledEmail="ctaStore.email"
             />
             <ForgotPasswordForm v-else @login="setCurrentForm('org')" />
           </div>
@@ -173,6 +153,7 @@ const ctaStore = useCtaStore();
 const route = useRoute();
 
 const prefilledEmail = ref(ctaStore.email || route.query.email || "");
+
 const currentForm = ref(route.query.register === "true" ? "register" : "guest");
 
 const titleText = computed(() => formTitles[currentForm.value]);
@@ -180,7 +161,7 @@ const titleText = computed(() => formTitles[currentForm.value]);
 function setCurrentForm(form) {
   currentForm.value = form;
 }
-
+// Login funkcija
 function handleLogin(values) {
   console.log("Login Attempt for", currentForm.value, values);
 }
