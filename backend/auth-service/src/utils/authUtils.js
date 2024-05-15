@@ -12,10 +12,12 @@ const oauthLoginGuestUser = async function (
   email,
   name,
   userType,
+  locale,
   response
 ) {
   console.log("Logged in with payload:");
   console.log(userId, email, name, userType);
+  const localePath = locale;
 
   // Generate a JWT with the user information
   const token = jwt.sign(
@@ -32,7 +34,7 @@ const oauthLoginGuestUser = async function (
       sameSite: "Lax",
       maxAge: COOKIE_AGE,
     })
-    .redirect(`${FRONTEND_DOMAIN}/guest`);
+    .redirect(`${FRONTEND_DOMAIN}/${localePath}/guest`);
 };
 
 const loginGuestUserOnRegister = async function (

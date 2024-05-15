@@ -67,11 +67,13 @@ const authenticateGoogle = async (request, response) => {
           response.status(500).send({ message: error.message });
         });
       }
+      //console.log(request.cookies.i18n_redirected);
       authUtils.oauthLoginGuestUser(
         userGuest.id,
         userGuest.email,
         userGuest.name,
         userGuest.userType,
+        request.cookies.i18n_redirected,
         response
       );
     } else {
@@ -92,6 +94,7 @@ const authenticateGoogle = async (request, response) => {
         user.email,
         user.name,
         user.userType,
+        request.cookies.i18n_redirected,
         response
       );
     }
@@ -145,6 +148,7 @@ const authenticateFacebook = async (request, response) => {
         userGuest.email,
         userGuest.name,
         userGuest.userType,
+        request.cookies.i18n_redirected,
         response
       );
     } else {
@@ -165,6 +169,7 @@ const authenticateFacebook = async (request, response) => {
         userFacebookProfile.email,
         userName,
         user.userType,
+        request.cookies.i18n_redirected,
         response
       );
     }

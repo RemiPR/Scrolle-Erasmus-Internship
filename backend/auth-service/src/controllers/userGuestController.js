@@ -49,7 +49,7 @@ const loginUser = async (request, response) => {
     // Checks if credentials are valid
     const userGuest = await UserGuest.findOne({ email });
     if (!userGuest || !(await userGuest.isValidPassword(password))) {
-      return response.status(401).send("Invalid Credentials");
+      return response.status(401).json("Invalid Credentials");
     }
 
     // Signs JWT token
