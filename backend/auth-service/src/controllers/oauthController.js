@@ -67,7 +67,7 @@ const authenticateGoogle = async (request, response) => {
           response.status(500).send({ message: error.message });
         });
       }
-      authUtils.loginGuestUser(
+      authUtils.oauthLoginGuestUser(
         userGuest.id,
         userGuest.email,
         userGuest.name,
@@ -87,7 +87,7 @@ const authenticateGoogle = async (request, response) => {
       const user = await UserGuest.create(newGuestUser).catch((error) => {
         response.status(500).send({ message: error.message });
       });
-      authUtils.loginGuestUser(
+      authUtils.oauthLoginGuestUser(
         user.id,
         user.email,
         user.name,
@@ -140,7 +140,7 @@ const authenticateFacebook = async (request, response) => {
           response.status(500).send({ message: error.message });
         });
       }
-      authUtils.loginGuestUser(
+      authUtils.oauthLoginGuestUser(
         userGuest.id,
         userGuest.email,
         userGuest.name,
@@ -160,7 +160,7 @@ const authenticateFacebook = async (request, response) => {
       const user = await UserGuest.create(newGuestUser).catch((error) => {
         response.status(500).send({ message: error.message });
       });
-      authUtils.loginGuestUser(
+      authUtils.oauthLoginGuestUser(
         user.id,
         userFacebookProfile.email,
         userName,
