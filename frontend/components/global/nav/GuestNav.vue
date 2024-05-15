@@ -95,32 +95,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
 import LangSwitcher from "~/components/index/LangSwitcher.vue";
 import { useLocalePath } from "#imports";
 import Avatar from "@/components/shared/ui/Avatar.vue";
+import { useScrollPosition } from "@/composables/useScrollPosition";
 
 const localePath = useLocalePath();
-const hasScrolled = ref(false);
-const isHydrated = ref(false);
 
-// Function to handle scroll events
-const handleScroll = () => {
-  if (window.scrollY > 0) {
-    hasScrolled.value = true;
-  } else {
-    hasScrolled.value = false;
-  }
-};
-
-onMounted(() => {
-  isHydrated.value = true;
-
-  window.addEventListener("scroll", handleScroll);
-});
-
-onUnmounted(() => {
-  isHydrated.value = false;
-  window.removeEventListener("scroll", handleScroll);
-});
+const { hasScrolled } = useScrollPosition();
 </script>

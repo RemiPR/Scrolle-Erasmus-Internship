@@ -3,10 +3,14 @@
     class="absolute bottom-5 flex justify-center items-center cursor-pointer animate-bounce hover-effect"
     style="width: 80px; height: 80px"
     @click="$emit('click')"
+    :class="{
+      'text-white': useScroll && !hasScrolled,
+      'text-gray-700 dark:text-white': !useScroll || (useScroll && hasScrolled),
+    }"
   >
     <Icon
       name="heroicons-outline:arrow-down"
-      class="h-20 w-14 text-gray-700 dark:text-white transition-all duration-300 ease-in-out hover:text-blue-500 dark:hover:text-blue-400"
+      class="h-20 w-14 transition-all duration-300 ease-in-out hover:text-blue-500 dark:hover:text-blue-400"
       style="filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2))"
       alt="Down arrow"
     />
@@ -14,7 +18,19 @@
 </template>
 
 <script setup>
+import { useScrollPosition } from "@/composables/useScrollPosition";
+import { useTheme } from "@/composables/useTheme"; // Import the useTheme composable
+
+const props = defineProps({
+  useScroll: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 const emit = defineEmits(["click"]);
+const { hasScrolled } = useScrollPosition();
+const { isDark } = useTheme(); // Destructure the isDark value from the useTheme composable
 </script>
 
 <style scoped>
