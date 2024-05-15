@@ -86,14 +86,14 @@ const authenticateGoogle = async (request, response) => {
           google: userGoogleId,
         },
       });
-      const user = await UserGuest.create(newGuestUser).catch((error) => {
+      const userGuest = await UserGuest.create(newGuestUser).catch((error) => {
         response.status(500).send({ message: error.message });
       });
       authUtils.oauthLoginGuestUser(
-        user.id,
-        user.email,
-        user.name,
-        user.userType,
+        userGuest.id,
+        userGuest.email,
+        userGuest.name,
+        userGuest.userType,
         request.cookies.i18n_redirected,
         response
       );
@@ -122,14 +122,14 @@ const authenticateFacebook = async (request, response) => {
   try {
     const { code } = request.query;
     const accessToken = await getAccessToken(code);
-    const userFacebookProfile = await getUserProfile(accessToken);
+    const userGuestFacebookProfile = await getUserProfile(accessToken);
 
     let fullnameSplit = userFacebookProfile.name.split(" ");
-    const userName = fullnameSplit[0];
-    const userSurname = fullnameSplit[1];
+    const userGuestName = fullnameSplit[0];
+    const userGuestSurname = fullnameSplit[1];
 
     const userGuest = await UserGuest.findOne({
-      email: userFacebookProfile.email,
+      email: userGuestFacebookProfile.email,
     });
     if (userGuest) {
       // user with email exists, checks if user already has facebookId
@@ -154,21 +154,21 @@ const authenticateFacebook = async (request, response) => {
     } else {
       // if user doesn't exist at all, new account is created
       const newGuestUser = new UserGuest({
-        name: userName,
-        surname: userSurname,
-        email: userFacebookProfile.email,
+        name: userGuestName,
+        surname: userGuestSurname,
+        email: userGuestFacebookProfile.email,
         socialIds: {
-          facebook: userFacebookProfile.id,
+          facebook: userGuestFacebookProfile.id,
         },
       });
-      const user = await UserGuest.create(newGuestUser).catch((error) => {
+      const userGuest = await UserGuest.create(newGuestUser).catch((error) => {
         response.status(500).send({ message: error.message });
       });
       authUtils.oauthLoginGuestUser(
-        user.id,
-        userFacebookProfile.email,
-        userName,
-        user.userType,
+        userGuest.id,
+        userGuestFacebookProfile.email,
+        userGuestName,
+        userGuest.userType,
         request.cookies.i18n_redirected,
         response
       );
