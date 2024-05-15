@@ -9,6 +9,13 @@ dotenv.config();
 const JWT_EXPIRY = process.env.JWT_EXPIRY;
 const COOKIE_AGE = process.env.COOKIE_AGE;
 
+const validateSession = async (request, response) => {
+  try {
+  } catch (error) {
+    response.status(500).send(error);
+  }
+};
+
 const createUser = async (request, response) => {
   try {
     if (!request.body.name || !request.body.email) {
@@ -49,7 +56,7 @@ const loginUser = async (request, response) => {
     // Checks if credentials are valid
     const userGuest = await UserGuest.findOne({ email });
     if (!userGuest || !(await userGuest.isValidPassword(password))) {
-      return response.status(401).json("Invalid Credentials");
+      return response.status(401).json({ message: "Invalid Credentials" });
     }
 
     // Signs JWT token

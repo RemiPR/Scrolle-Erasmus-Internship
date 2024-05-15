@@ -141,6 +141,10 @@ import SharedLoginForm from "@/components/login/SharedLoginForm.vue";
 import RegisterForm from "@/components/login/RegisterForm.vue";
 import ForgotPasswordForm from "@/components/login/ForgotPasswordForm.vue";
 import { useCtaStore } from "@/stores/ctaStore";
+import { useLocalePath } from "#imports";
+
+const localePath = useLocalePath();
+const config = useRuntimeConfig();
 
 const formTitles = {
   org: "Organisation Login",
@@ -162,8 +166,28 @@ function setCurrentForm(form) {
   currentForm.value = form;
 }
 // Login funkcija
-function handleLogin(values) {
+async function handleLogin(values) {
   console.log("Login Attempt for", currentForm.value, values);
+  try {
+    const response = await $fetch(
+      `${config.public.authBaseUrl}/api/auth/guest/loginUser`,
+      {
+        method: "POST",
+        body: {
+          email: values.email,
+          password: values.password,
+        },
+        credentials: "include",
+      }
+    );
+    navigateTo(localePath("/guest"));
+  } catch (error) {
+    if (error.data && error.status == 401) {
+      console.log("Login failed:", error.data.message);
+    } else {
+      console.error(error);
+    }
+  }
 }
 
 function loginWithGoogle() {
