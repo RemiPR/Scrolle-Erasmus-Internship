@@ -1,5 +1,15 @@
 import jwt from "jsonwebtoken";
 
+const checkData = async (request, response) => {
+  try {
+    const data = request.body;
+    console.log(data);
+    response.status(200).send(data);
+  } catch (error) {
+    response.status(500).send({ message: error });
+  }
+};
+
 const checkCookies = async (request, response) => {
   try {
     //console.log(request.cookies);
@@ -38,4 +48,5 @@ export const DebugController = {
   checkAuth,
   adminOnly,
   checkJwtPayload,
+  checkData,
 };

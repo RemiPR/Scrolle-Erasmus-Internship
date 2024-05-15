@@ -145,6 +145,7 @@
 <script setup>
 import { useForm } from "vee-validate";
 import * as yup from "yup";
+const config = useRuntimeConfig();
 
 // Define the schema using yup, similar to the small example
 const schema = yup.object({
@@ -199,9 +200,22 @@ const toggleShowConfirmPassword = () => {
   showConfirmPassword.value = !showConfirmPassword.value;
 };
 
-const onSubmit = handleSubmit((values) => {
+const onSubmit = handleSubmit(async (values) => {
   console.log(JSON.stringify(values, null, 2));
-  // Add your form submission logic here
+  try {
+    const response = await $fetch(`${config.public.authBaseUrl}/api/debug/checkData`, {
+      method: 'POST',
+      body: {
+        name: values.firstName,
+        surname: values.lastName,
+        email: values.email,
+        password: values.password
+      }
+    });
+    console.log('Registration successful:', response);
+  } catch (error) {
+    console.error('Registration failed:', error);
+  }
 });
 onMounted(() => {
   const inputFields = document.querySelectorAll("input");
