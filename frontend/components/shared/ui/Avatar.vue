@@ -45,12 +45,13 @@
         </li>
       </ul>
       <div class="border-b border-gray-200 dark:border-gray-700"></div>
-      <div
+      <NuxtLink
+      @click="handleLogout"
         class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer text-red-500 dark:text-red-400 flex items-center"
       >
         <Icon name="ic:outline-logout" class="h-5 w-5 mr-2" />
         Sign out
-      </div>
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -59,6 +60,10 @@
 import { ref } from "vue";
 import TextColorModeToggle from "@/components/global/TextColorModeToggle.vue";
 import { useScrollPosition } from "@/composables/useScrollPosition";
+import { useLocalePath } from "#imports";
+
+const localePath = useLocalePath();
+const config = useRuntimeConfig();
 
 const showMenu = ref(false);
 let menuTimeout = null;
@@ -67,6 +72,21 @@ const { hasScrolled } = useScrollPosition();
 const handleMouseOver = () => {
   clearMenuTimeout();
   showMenu.value = true;
+};
+
+const handleLogout = async () => {
+  try {
+    await $fetch(
+      `${config.public.authBaseUrl}/api/auth/guest/logoutUser`,
+      {
+        method: "POST",
+        credentials: "include",
+      }
+    );
+    navigateTo(localePath("/"));
+  } catch (error) {
+      console.error(error);
+  }
 };
 
 const handleMouseOut = () => {
