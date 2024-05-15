@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div
-      v-for="i in 8"
+      v-for="i in 2"
       :key="i"
       class="tile"
       @mouseover="handleMouseOver"
