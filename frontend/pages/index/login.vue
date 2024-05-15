@@ -191,11 +191,10 @@ async function handleLogin(values) {
 }
 
 function loginWithGoogle() {
-  console.log("Google Login Triggered");
-  window.location.href = "http://localhost/auth/google";
+  window.location.href = `${config.public.authBaseUrl}/api/oauth/google`;
 }
 function loginWithFacebook() {
-  console.log("Facebook Login Triggered");
+  window.location.href = `${config.public.authBaseUrl}/api/oauth/facebook`;
 }
 </script>
 
