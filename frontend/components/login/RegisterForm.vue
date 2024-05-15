@@ -151,10 +151,15 @@ import { navigateTo } from "#app";
 const localePath = useLocalePath();
 const config = useRuntimeConfig();
 
+const props = defineProps({
+  prefilledEmail: {
+    type: String,
+    default: "",
+  },
+});
 // Define the schema using yup, similar to the small example
 
 const schema = yup.object({
-  
   firstName: yup
     .string()
     .required("First name is required")
@@ -191,6 +196,7 @@ const { defineField, errors, handleSubmit } = useForm({
 const [firstName, firstNameAttrs] = defineField("firstName");
 const [lastName, lastNameAttrs] = defineField("lastName");
 const [email, emailAttrs] = defineField("email");
+email.value = props.prefilledEmail;
 const [password, passwordAttrs] = defineField("password");
 const [confirmPassword, confirmPasswordAttrs] = defineField("confirmPassword");
 
@@ -209,20 +215,23 @@ const toggleShowConfirmPassword = () => {
 const onSubmit = handleSubmit(async (values) => {
   //console.log(JSON.stringify(values, null, 2));
   try {
-    const response = await $fetch(`${config.public.authBaseUrl}/api/auth/guest/registerUser`, {
-      method: 'POST',
-      body: {
-        name: values.firstName,
-        surname: values.lastName,
-        email: values.email,
-        password: values.password
-      },
-      credentials: 'include'
-    });
-    navigateTo(localePath('/guest'));
+    const response = await $fetch(
+      `${config.public.authBaseUrl}/api/auth/guest/registerUser`,
+      {
+        method: "POST",
+        body: {
+          name: values.firstName,
+          surname: values.lastName,
+          email: values.email,
+          password: values.password,
+        },
+        credentials: "include",
+      }
+    );
+    navigateTo(localePath("/guest"));
   } catch (error) {
-    if(error.data && error.status == 409) {
-      console.log('Registration failed:', error.data.message);
+    if (error.data && error.status == 409) {
+      console.log("Registration failed:", error.data.message);
     } else {
       console.error(error);
     }
@@ -241,6 +250,8 @@ const handleAutofill = (event) => {
     isAutofilled.value = false;
   }
 };
+// In SharedLoginForm and RegisterForm component scripts
+console.log("Received Email Prop:", props.prefilledEmail);
 </script>
 
 <style scoped>
