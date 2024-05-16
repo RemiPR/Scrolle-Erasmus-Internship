@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mb-4">
+    <div class="mb-12">
       <span class="font-bold">{{ title }}</span>
       <input
         type="text"

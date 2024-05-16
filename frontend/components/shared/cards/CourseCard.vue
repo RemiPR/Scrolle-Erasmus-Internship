@@ -1,121 +1,84 @@
 <template>
-  <div class="row">
+  <div class="flex flex-wrap gap-5">
     <div
       v-for="i in 2"
       :key="i"
-      class="tile"
-      @mouseover="handleMouseOver"
+      class="bg-white rounded overflow-hidden relative w-72 transition-transform duration-300 origin-top-center"
+      :class="{
+        'border border-gray-300': hoveredTileIndex === i,
+        'scale-105': hoveredTileIndex === i,
+      }"
+      @mouseover="handleMouseOver(i)"
       @mouseout="handleMouseOut"
-      ref="tile"
     >
-      <div class="overlay">
-        <svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="far"
-          data-icon="play-circle"
-          class="svg-inline--fa fa-play-circle fa-w-16"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
+      <div class="relative">
+        <img
+          class="w-full h-auto"
+          src="/Grades.jpg"
+          alt="Sunset in the mountains"
+        />
+        <div
+          class="absolute inset-0 flex justify-center items-center opacity-0 transition-opacity duration-300"
+          :class="{ 'opacity-100': hoveredTileIndex === i }"
         >
-          <path
-            fill="currentColor"
-            d="M371.7 238l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200-89.5 200-200 200S56 366.5 56 256z"
-          ></path>
-        </svg>
+          <Icon name="bi:play-circle" class="text-white text-4xl" />
+        </div>
+      </div>
+      <!-- Title -->
+      <div class="bg-blue-500 text-white text-lg text-center py-2">
+        Aesthetic Cosmetology
+      </div>
+      <!-- Hidden content -->
+      <div
+        class="opacity-0 transition-opacity duration-500 overflow-hidden"
+        :class="{ 'opacity-100': hoveredTileIndex === i }"
+      >
+        <div class="px-4 py-2 text-sm text-gray-700 mt-4">
+          <div class="flex flex-col gap-5">
+            <div class="flex items-center">
+              <Icon
+                name="fluent-mdl2:health-solid"
+                class="text-black text-2xl"
+              />
+              <p class="ml-2">Health & Medicine</p>
+            </div>
+            <div class="flex items-center">
+              <Icon name="carbon:user-avatar" class="text-black text-2xl" />
+              <p class="ml-2">Jose Portilla</p>
+            </div>
+            <div class="flex items-center">
+              <Icon name="carbon:calendar" class="text-black text-2xl" />
+              <p class="ml-2"><span class="font-bold">10</span> Weeks long</p>
+            </div>
+            <div
+              class="flex flex-col sm:flex-row justify-between items-center my-2"
+            >
+              <button class="text-white bg-blue-600 px-4 py-2 mr-2 sm:mr-0">
+                Read more
+              </button>
+              <div class="w-full sm:w-auto sm:ml-4 text-right">
+                <p>Start date:</p>
+                <p class="font-bold">2024/07/01</p>
+                <p class="font-bold">18:00 - 19:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 
-const tilesRef = ref([]);
+const hoveredTileIndex = ref(null);
 
-onMounted(() => {
-  tilesRef.value = Array.from(document.querySelectorAll(".tile"));
-});
-
-const handleMouseOver = (event) => {
-  const index = tilesRef.value.indexOf(event.currentTarget);
-  tilesRef.value.forEach((tile, i) => {
-    const pastTarget = i < index;
-    const futureTarget = i > index;
-    tile.classList.toggle("shiftLeft", pastTarget);
-    tile.classList.toggle("shiftRight", futureTarget);
-    if (pastTarget || futureTarget) {
-      tile.classList.add("darker");
-    }
-  });
+const handleMouseOver = (index) => {
+  hoveredTileIndex.value = index;
 };
 
 const handleMouseOut = () => {
-  tilesRef.value.forEach((tile) => {
-    tile.classList.remove("shiftLeft", "shiftRight", "darker");
-  });
+  hoveredTileIndex.value = null;
 };
 </script>
-
-<style scoped>
-body {
-  background-color: black;
-}
-
-.row {
-  display: flex;
-  margin: 200px 40px;
-}
-
-.tile {
-  margin: 5px;
-  min-width: 200px;
-  height: 130px;
-  background-color: #9d0208;
-  color: white;
-  font-size: 20px;
-  transition: transform 500ms, opacity 500ms;
-  transform-origin: 50% 50%;
-  position: relative;
-}
-
-.overlay {
-  background-color: #9d0208;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 500ms;
-  position: absolute;
-  top: 0;
-  color: white;
-}
-
-svg {
-  width: 25%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.tile:hover {
-  transform: scale(1.5);
-}
-
-.tile:hover .overlay {
-  opacity: 1;
-}
-
-.shiftLeft {
-  transform: translate3d(-50px, 0, 0);
-}
-
-.shiftRight {
-  transform: translate3d(50px, 0, 0);
-}
-
-.darker {
-  opacity: 0.5;
-}
-</style>

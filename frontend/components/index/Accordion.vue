@@ -7,7 +7,7 @@
     </div>
     <ul class="accordion">
       <li
-        class="accordion-item mb-3 border border-black dark:border-white rounded overflow-hidden"
+        class="accordion-item mb-3 border border-black dark:border-white rounded overflow-hidden bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-500"
         v-for="(item, index) in faqItems"
         :key="index"
         v-auto-animate

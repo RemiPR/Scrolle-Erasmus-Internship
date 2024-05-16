@@ -1,6 +1,7 @@
-<!-- colormodetoggler.vue -->
 <template>
-  <label class="flex items-center space-x-2 cursor-pointer select-none">
+  <label
+    class="flex items-center space-x-2 cursor-pointer select-none rounded-full"
+  >
     <input
       type="checkbox"
       value=""
@@ -9,7 +10,7 @@
       :checked="isHydrated && colorMode === 'light'"
     />
     <div
-      class="relative w-16 h-8 peer-focus:outline-none rounded-full peer dark:bg-gray-500 peer-checked:bg-gray-400"
+      class="relative w-16 h-8 peer-focus:outline-none rounded-full peer dark:bg-gray-500 peer-checked:bg-gray-400 border border-transparent hover:border-blue-400"
     >
       <span
         class="absolute inset-y-0 inset-x-0 flex items-center justify-center w-7 h-7 rounded-full bg-white shadow-md transition-all transform peer-checked:translate-x-full rtl:peer-checked:-translate-x-full"

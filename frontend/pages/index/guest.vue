@@ -9,9 +9,9 @@
         @toggleVideo="toggleVideo"
       />
     </div>
-    <!-- <div class="container mx-auto p-4">
+    <div class="container mx-auto p-4">
       <CoursesSection title="My Courses" :courses="myCourses" />
-    </div> -->
+    </div>
   </div>
 </template>
 
