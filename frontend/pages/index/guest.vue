@@ -9,7 +9,7 @@
         @toggleVideo="toggleVideo"
       />
     </div>
-    <div class="container mx-auto p-4">
+    <div class="container mx-auto p-4 h-screen">
       <CoursesSection title="My Courses" :courses="myCourses" />
     </div>
   </div>
