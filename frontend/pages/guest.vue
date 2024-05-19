@@ -18,6 +18,7 @@
     </div>
     <CourseModal
       v-if="showModal"
+      :isVisible="showModal"
       :course="selectedCourse"
       @close="closeModal"
     />

@@ -1,5 +1,6 @@
 <template>
   <video
+    autoplay
     loop
     muted
     playsinline
