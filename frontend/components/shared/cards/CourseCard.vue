@@ -67,9 +67,13 @@
           <div
             class="flex flex-col sm:flex-row justify-between items-center my-2"
           >
-            <button class="text-white bg-blue-600 px-4 py-2 mr-2 sm:mr-0">
+            <button
+              class="text-white bg-blue-600 px-4 py-2 mr-2 sm:mr-0"
+              @click="openModal"
+            >
               Read more
             </button>
+
             <div class="w-full sm:w-auto sm:ml-4 text-right">
               <p>Start date:</p>
               <p class="font-bold">{{ course.startDate }}</p>
@@ -96,6 +100,9 @@ const hoveredTileIndex = ref(null);
 const videoPlayingIndex = ref(null);
 const videoRef = ref(null);
 const videoPlayingTimeout = ref(null);
+const showModal = ref(false);
+
+const emit = defineEmits(["openModal"]);
 
 const handleMouseEnter = (id) => {
   hoveredTileIndex.value = id;
@@ -116,6 +123,14 @@ const handleMouseLeave = () => {
   if (videoRef.value) {
     videoRef.value.pause();
   }
+};
+
+const openModal = () => {
+  emit("openModal", props.course);
+};
+
+const closeModal = () => {
+  isModalOpen.value = false;
 };
 </script>
 

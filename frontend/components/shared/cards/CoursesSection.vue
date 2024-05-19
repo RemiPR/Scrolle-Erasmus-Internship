@@ -1,3 +1,4 @@
+<!-- CoursesSection.vue -->
 <template>
   <div>
     <div class="mb-12">
@@ -9,7 +10,12 @@
       />
     </div>
     <div class="flex gap-4 mb-8">
-      <CourseCard v-for="course in courses" :key="course.id" :course="course" />
+      <CourseCard
+        v-for="course in courses"
+        :key="course.id"
+        :course="course"
+        @openModal="handleOpenModal(course)"
+      />
     </div>
   </div>
 </template>
@@ -17,6 +23,18 @@
 <script setup>
 import CourseCard from "@/components/shared/cards/CourseCard.vue";
 
+const props = defineProps({
+  courses: {
+    type: Array,
+    required: true,
+  },
+});
+
+const emit = defineEmits(["openModal"]);
+
+const handleOpenModal = (course) => {
+  emit("openModal", course);
+};
 const courses = [
   {
     id: 1,

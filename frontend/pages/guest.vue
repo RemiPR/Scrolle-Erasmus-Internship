@@ -10,8 +10,17 @@
       />
     </div>
     <div class="container mx-auto p-4 h-screen">
-      <CoursesSection title="My Courses" :courses="myCourses" />
+      <CoursesSection
+        title="My Courses"
+        :courses="myCourses"
+        @openModal="openModal"
+      />
     </div>
+    <CourseModal
+      v-if="showModal"
+      :course="selectedCourse"
+      @close="closeModal"
+    />
   </div>
 </template>
 
@@ -21,6 +30,7 @@ import BackgroundVideoComponent from "@/components/shared/video/BackgroundVideo.
 import OverlayContentComponent from "@/components/shared/video/VideoOverlay.vue";
 import VideoControlsComponent from "@/components/shared/video/VideoControls.vue";
 import CoursesSection from "@/components/shared/cards/CoursesSection.vue";
+import CourseModal from "@/components/shared/cards/CourseModal.vue";
 
 definePageMeta({
   navigation: "guest",
@@ -28,12 +38,10 @@ definePageMeta({
 
 const backgroundVideo = ref(null);
 const videoPlaying = ref(true);
-
 const videoRef = ref(null);
 const setVideoRef = () => {
   videoRef.value = backgroundVideo.value?.$refs.videoRef;
 };
-
 const toggleVideo = () => {
   if (videoPlaying.value) {
     videoRef.value.pause();
@@ -42,7 +50,6 @@ const toggleVideo = () => {
   }
   videoPlaying.value = !videoPlaying.value;
 };
-
 onMounted(() => {
   setVideoRef();
 });
@@ -52,12 +59,23 @@ const myCourses = [
   { id: 2, name: "Course 2", progress: 50 },
   // Add more courses as needed
 ];
-
 const freeCourses = [
   { id: 3, name: "Free Course 1", progress: 0 },
   { id: 4, name: "Free Course 2", progress: 75 },
   // Add more courses as needed
 ];
+
+const showModal = ref(false);
+const selectedCourse = ref(null);
+
+const openModal = (course) => {
+  selectedCourse.value = course;
+  showModal.value = true;
+};
+
+const closeModal = () => {
+  showModal.value = false;
+};
 </script>
 
 <style scoped>
