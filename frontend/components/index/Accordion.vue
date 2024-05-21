@@ -7,14 +7,15 @@
     </div>
     <ul class="accordion">
       <li
-        class="accordion-item mb-3 border border-black dark:border-white rounded overflow-hidden bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-500"
+        class="accordion-item mb-3 border-2 border-black dark:border-white rounded overflow-hidden bg-gray-700 hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-800"
         v-for="(item, index) in faqItems"
         :key="index"
         v-auto-animate
       >
         <div
-          class="question text-gray-700 dark:text-white font-semibold text-lg py-4 px-6 flex justify-between items-center cursor-pointer relative"
+          class="question text-white dark:text-white font-semibold text-lg py-4 px-6 flex justify-between items-center cursor-pointer relative"
           @click="toggleQuestion(index)"
+          :style="{ userSelect: 'none' }"
         >
           <span class="text flex-grow text-left">{{ $t(item.question) }}</span>
           <span
@@ -26,9 +27,10 @@
           ></span>
         </div>
         <p
-          class="answer text-left px-6 pt-4 pb-6 text-gray-700 dark:text-white"
+          class="answer text-left px-6 pt-4 pb-6 text-white dark:text-white"
           v-if="current === index"
           v-html="$t(item.answer)"
+          :style="{ userSelect: 'none' }"
         />
       </li>
     </ul>
@@ -88,10 +90,12 @@ li {
 
 .icon::before {
   content: "+";
+  font-size: x-large;
 }
 
 .icon.expanded::before {
   content: "-";
+  font-size: larger;
 }
 
 [data-dark-mode="true"] .icon::before {
