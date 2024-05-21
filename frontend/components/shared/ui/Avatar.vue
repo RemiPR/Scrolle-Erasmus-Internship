@@ -18,7 +18,7 @@
     </div>
     <div
       v-if="showMenu"
-      class="absolute right-0 mt-2 w-52 bg-white dark:bg-gray-700 rounded-lg shadow-lg z-50 dark:text-white"
+      class="absolute right-0 mt-2 w-52 bg-white dark:bg-gray-700 rounded-lg shadow-lg z-50 dark:text-white select-none"
       @mouseover="clearMenuTimeout"
       @mouseout="handleMouseOut"
     >
@@ -46,7 +46,7 @@
       </ul>
       <div class="border-b border-gray-200 dark:border-gray-700"></div>
       <NuxtLink
-      @click="handleLogout"
+        @click="handleLogout"
         class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer text-red-500 dark:text-red-400 flex items-center"
       >
         <Icon name="ic:outline-logout" class="h-5 w-5 mr-2" />
@@ -57,9 +57,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import TextColorModeToggle from "@/components/global/TextColorModeToggle.vue";
-import { useScrollPosition } from "@/composables/useScrollPosition";
 import { useLocalePath } from "#imports";
 import { useAuthStore } from "@/stores/authStore";
 

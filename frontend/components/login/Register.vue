@@ -249,8 +249,6 @@ const handleAutofill = (event) => {
     isAutofilled.value = false;
   }
 };
-// In SharedLoginForm and RegisterForm component scripts
-console.log("Received Email Prop:", props.prefilledEmail);
 </script>
 
 <style scoped>

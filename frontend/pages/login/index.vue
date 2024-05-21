@@ -62,7 +62,7 @@
         <!-- Forms Section -->
         <Transition name="fade" mode="out-in">
           <div :key="currentForm">
-            <SharedLoginForm
+            <LoginShared
               v-if="['org', 'guest'].includes(currentForm)"
               :key="currentForm"
               :initialEmail="prefilledEmail"
@@ -120,13 +120,13 @@
                   </button>
                 </div>
               </template>
-            </SharedLoginForm>
-            <RegisterForm
+            </LoginShared>
+            <LoginRegister
               v-else-if="currentForm === 'register'"
               :initialEmail="prefilledEmail"
               :prefilledEmail="ctaStore.email"
             />
-            <ForgotPasswordForm v-else @login="setCurrentForm('org')" />
+            <LoginForgotPassword v-else @login="setCurrentForm('org')" />
           </div>
         </Transition>
       </div>
@@ -135,11 +135,6 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { useRoute } from "vue-router";
-import SharedLoginForm from "@/components/login/SharedLoginForm.vue";
-import RegisterForm from "@/components/login/RegisterForm.vue";
-import ForgotPasswordForm from "@/components/login/ForgotPasswordForm.vue";
 import { useCtaStore } from "@/stores/ctaStore";
 import { useAuthStore } from "@/stores/authStore";
 import {useLocalePath} from "#imports"

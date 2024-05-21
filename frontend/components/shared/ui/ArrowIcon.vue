@@ -18,7 +18,6 @@
 </template>
 
 <script setup>
-import { useScrollPosition } from "@/composables/useScrollPosition";
 import { useTheme } from "@/composables/useTheme"; // Import the useTheme composable
 
 const props = defineProps({

@@ -62,60 +62,51 @@
             </div>
           </div>
           <!-- Arrow positioned at the bottom -->
-          <ArrowIcon @click="scrollToSection" />
+          <SharedUiArrowIcon @click="scrollToSection" />
         </div>
         <!-- Cards -->
         <div ref="firstSection" class="scroll-mt-28">
-          <FlexibleTreeSection
+          <IndexFlexibleTreeSection
             :title="$t('tree_section_one_title')"
             :content="$t('tree_section_one_content')"
-            :imageSrc="FreeCourses"
+            :imageSrc="'/FreeCourses.jpg'"
             :circleColorClass="'bg-blue-600'"
             :circleBorderColor="'border-blue-500'"
             :textOnLeft="false"
             :index="0"
           />
-          <FlexibleTreeSection
+          <IndexFlexibleTreeSection
             :title="$t('tree_section_two_title')"
             :content="$t('tree_section_two_content')"
-            :imageSrc="Communication"
+            :imageSrc="'/Communication.jpg'"
             :circleColorClass="'bg-orange-600'"
             :circleBorderColor="'border-orange-500'"
             textOnLeft
             horizontalLineRight
             :index="1"
           />
-          <FlexibleTreeSection
+          <IndexFlexibleTreeSection
             :title="$t('tree_section_three_title')"
             :content="$t('tree_section_three_content')"
-            :imageSrc="Grades"
+            :imageSrc="'/Grades.jpg'"
             :circleColorClass="'bg-pink-500'"
             :circleBorderColor="'border-pink-400'"
             :index="2"
           />
-          <Accordion :title="$t('faq_title')" />
-          <ContactForm />
+          <IndexAccordion :title="$t('faq_title')" />
+          <IndexContactForm />
         </div>
       </main>
     </div>
-    <Footer />
+    <IndexFooter />
   </div>
 </template>
+
 <script setup>
-import { ref, computed, onMounted } from "vue";
 import { useLocalePath } from "#imports";
 import { useForm, Field, ErrorMessage, Form } from "vee-validate";
 import { object, string } from "yup";
-import FlexibleTreeSection from "~/components/index/FlexibleTreeSection.vue";
-import FreeCourses from "@/public/FreeCourses.jpg";
-import Communication from "@/public/Communication.jpg";
-import Grades from "@/public/Grades.jpg";
-import Accordion from "~/components/index/Accordion.vue";
-import ArrowIcon from "~/components/shared/ui/ArrowIcon.vue";
 import { useCtaStore } from "~/stores/ctaStore";
-import { nextTick } from "vue";
-import Footer from "~/components/index/Footer.vue";
-import ContactForm from "~/components/index/ContactForm.vue";
 
 definePageMeta({
   layout: "nav",

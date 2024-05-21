@@ -4,8 +4,8 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   runtimeConfig: {
     public: {
-      authBaseUrl: process.env.AUTH_BASE_URL, 
-    }
+      authBaseUrl: process.env.AUTH_BASE_URL,
+    },
   },
   modules: [
     "@nuxtjs/tailwindcss",
