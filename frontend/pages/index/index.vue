@@ -103,11 +103,14 @@
 </template>
 
 <script setup>
-import { useLocalePath } from "#imports";
 import { useForm, Field, ErrorMessage, Form } from "vee-validate";
 import { object, string } from "yup";
+import { useI18n } from "vue-i18n";
 import { useCtaStore } from "~/stores/ctaStore";
+import { ref, nextTick, computed } from "vue";
+import { useLocalePath } from "#imports";
 
+const { t } = useI18n();
 const ctaStore = useCtaStore();
 const localePath = useLocalePath();
 const loginLink = computed(() => {
@@ -119,7 +122,7 @@ const firstSection = ref(null);
 
 definePageMeta({
   navigation: "index",
-  middleware: "logged-in"
+  middleware: "logged-in",
 });
 
 // Arrow function to scroll to the first section
@@ -134,10 +137,11 @@ const scrollToSection = async () => {
 const ctaFormInitialValues = {
   email: "",
 };
+
 const ctaValidationSchema = object({
   email: string()
-    .required("Please enter your email address")
-    .email("Please enter a valid email address"),
+    .required(() => t("cta_validation_schema.email.required"))
+    .email(() => t("cta_validation_schema.email.email")),
 });
 
 const { handleSubmit, validateField } = useForm({
