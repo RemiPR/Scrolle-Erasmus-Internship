@@ -52,7 +52,7 @@
         <div class="flex flex-col gap-5 mt-2">
           <div class="flex items-center">
             <Icon name="fluent-mdl2:health-solid" class="text-black text-2xl" />
-            <p class="ml-2">{{ course.category }}</p>
+            <p class="ml-2">{{ course.subject }}</p>
           </div>
           <div class="flex items-center">
             <Icon name="carbon:user-avatar" class="text-black text-2xl" />
@@ -67,12 +67,7 @@
           <div
             class="flex flex-col sm:flex-row justify-between items-center my-2"
           >
-            <button
-              class="text-white bg-blue-600 px-4 py-2 mr-2 sm:mr-0"
-              @click="openModal"
-            >
-              Read more
-            </button>
+            <button @click="$emit('openModal', course)">Read more</button>
 
             <div class="w-full sm:w-auto sm:ml-4 text-right">
               <p>Start date:</p>
@@ -123,14 +118,6 @@ const handleMouseLeave = () => {
   if (videoRef.value) {
     videoRef.value.pause();
   }
-};
-
-const openModal = () => {
-  emit("openModal", props.course);
-};
-
-const closeModal = () => {
-  isModalOpen.value = false;
 };
 </script>
 

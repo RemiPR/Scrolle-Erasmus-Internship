@@ -13,16 +13,65 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted, watch } from "vue";
 
 const props = defineProps({
   videoSource: {
     type: String,
     required: true,
   },
+  videoPlaying: {
+    type: Boolean,
+    required: true,
+  },
 });
 
+const emit = defineEmits(["update:videoPlaying"]);
+
 const videoRef = ref(null);
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (videoRef.value) {
+          if (entry.isIntersecting) {
+            if (props.videoPlaying) {
+              videoRef.value.play();
+            }
+          } else {
+            videoRef.value.pause();
+            emit("update:videoPlaying", false);
+          }
+        }
+      });
+    },
+    { threshold: 0.5 } // Adjust this value as needed
+  );
+
+  if (videoRef.value) {
+    observer.observe(videoRef.value);
+  }
+
+  onUnmounted(() => {
+    if (videoRef.value) {
+      observer.unobserve(videoRef.value);
+    }
+  });
+});
+
+watch(
+  () => props.videoPlaying,
+  (newVal) => {
+    if (videoRef.value) {
+      if (newVal) {
+        videoRef.value.play();
+      } else {
+        videoRef.value.pause();
+      }
+    }
+  }
+);
 
 defineExpose({ videoRef });
 </script>

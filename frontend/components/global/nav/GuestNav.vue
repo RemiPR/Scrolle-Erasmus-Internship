@@ -3,9 +3,10 @@
     <!-- Header (Nav Menu) -->
     <header
       :class="{
-        'bg-transparent': !hasScrolled,
-        'bg-gray-800 dark:bg-white shadow': hasScrolled,
-        'dark:text-white ': !hasScrolled,
+        'bg-transparent': !props.enableScrollStyling || !hasScrolled,
+        'bg-gray-800 dark:bg-white shadow':
+          props.enableScrollStyling && hasScrolled,
+        'dark:text-white': !props.enableScrollStyling || !hasScrolled,
       }"
       class="flex justify-between font-semibold items-center p-4 fixed top-0 w-full z-50 transition-colors duration-300"
       style="position: fixed; top: 0; z-index: 50"
@@ -28,7 +29,7 @@
               'dark:text-gray-800': hasScrolled,
               'dark:text-white': !hasScrolled,
             }"
-            >Scroll</span
+            >Scrolle</span
           >
         </NuxtLink>
         <NuxtLink
@@ -50,7 +51,7 @@
           >{{ $t("nav_my_courses_btn") }}</NuxtLink
         >
         <NuxtLink
-          :to="localePath('/')"
+          :to="localePath('/guest/admission')"
           :class="{
             'text-white hover:underline': true,
             'dark:text-gray-800': hasScrolled,
@@ -58,6 +59,7 @@
           }"
           >{{ $t("nav_admission_btn") }}</NuxtLink
         >
+
         <NuxtLink
           :to="localePath('/')"
           :class="{
@@ -96,11 +98,17 @@
 
 <script setup>
 import LangSwitcher from "~/components/index/LangSwitcher.vue";
-import { useLocalePath } from "#imports";
+import { useLocalePath, navigateTo } from "#imports";
 import Avatar from "@/components/shared/ui/Avatar.vue";
 import { useScrollPosition } from "@/composables/useScrollPosition";
 
-const localePath = useLocalePath();
+const props = defineProps({
+  enableScrollStyling: {
+    type: Boolean,
+    default: true,
+  },
+});
 
+const localePath = useLocalePath();
 const { hasScrolled } = useScrollPosition();
 </script>

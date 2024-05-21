@@ -2,7 +2,7 @@
 <template>
   <div>
     <div class="mb-12">
-      <span class="font-bold">My Courses</span>
+      <span class="font-bold">{{ courses.title }}</span>
       <input
         type="text"
         class="ml-2 border border-gray-300 rounded-md px-2 py-1"
@@ -14,7 +14,7 @@
         v-for="course in courses"
         :key="course.id"
         :course="course"
-        @openModal="handleOpenModal(course)"
+        @openModal="handleOpenModal($event)"
       />
     </div>
   </div>
@@ -35,24 +35,35 @@ const emit = defineEmits(["openModal"]);
 const handleOpenModal = (course) => {
   emit("openModal", course);
 };
+
 const courses = [
   {
     id: 1,
     title: "Advanced Aesthetic Cosmetology",
     imageUrl: "/Grades.jpg",
     videoUrl: "/test.mp4",
-    category: "Health & Beauty",
+    subject: "Health & Beauty",
     instructor: "Dr. Jane Doe",
+    price: "Free",
+    Certification: "Available for £99",
     duration: 10,
+    selfLearningMaterial: "Available",
     startDate: "2024-07-01",
     startTime: "18:00 - 19:00",
+    endDate: "2024-08-01",
+    endTime: "18:00 - 19:00",
+    difficulty: "For beginners",
+    timeCommitment: "3-5 hours per week",
+    lecturesDuration: "1-2 hours per lecture",
+    description:
+      "lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum",
   },
   {
     id: 2,
     title: "Introductory Neurology",
     imageUrl: "/Communication.jpg",
     videoUrl: "/test.mp4",
-    category: "Medical Science",
+    subject: "Medical Science",
     instructor: "Prof. John Smith",
     duration: 8,
     startDate: "2024-08-15",
@@ -63,7 +74,7 @@ const courses = [
     title: "Masterclass in Watercolor Painting",
     imageUrl: "/FreeCourses.jpg",
     videoUrl: "/test.mp4",
-    category: "Art & Design",
+    subject: "Art & Design",
     instructor: "Emily Carter",
     duration: 6,
     startDate: "2024-09-10",
@@ -74,7 +85,7 @@ const courses = [
     title: "Understanding the Basics of Cryptography",
     imageUrl: "/Grades.jpg",
     videoUrl: "/test.mp4",
-    category: "Computer Science",
+    subject: "Computer Science",
     instructor: "Dr. Alan Turing",
     duration: 12,
     startDate: "2024-10-05",
@@ -85,7 +96,7 @@ const courses = [
     title: "Professional Development in Human Resources",
     imageUrl: "/Grades.jpg",
     videoUrl: "/test.mp4",
-    category: "Business Management",
+    subject: "Business Management",
     instructor: "Sarah Johnson",
     duration: 4,
     startDate: "2024-11-01",

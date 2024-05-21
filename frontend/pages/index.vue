@@ -101,8 +101,8 @@
     <Footer />
   </div>
 </template>
+
 <script setup>
-import { ref, computed, onMounted } from "vue";
 import { useLocalePath } from "#imports";
 import { useForm, Field, ErrorMessage, Form } from "vee-validate";
 import { object, string } from "yup";

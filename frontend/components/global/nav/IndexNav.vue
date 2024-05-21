@@ -14,7 +14,7 @@
             alt="Graduation hat icon"
           />
           <span class="text-3xl font-semibold text-white dark:text-black"
-            >Scroll</span
+            >Scrolle</span
           >
         </NuxtLink>
         <!-- Navigation Links -->
