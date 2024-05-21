@@ -108,10 +108,6 @@ import { useForm, Field, ErrorMessage, Form } from "vee-validate";
 import { object, string } from "yup";
 import { useCtaStore } from "~/stores/ctaStore";
 
-definePageMeta({
-  layout: "nav",
-});
-
 const ctaStore = useCtaStore();
 const localePath = useLocalePath();
 const loginLink = computed(() => {
@@ -120,6 +116,11 @@ const loginLink = computed(() => {
 });
 
 const firstSection = ref(null);
+
+definePageMeta({
+  navigation: "index",
+  middleware: "logged-in"
+});
 
 // Arrow function to scroll to the first section
 const scrollToSection = async () => {
@@ -153,9 +154,6 @@ const storeEmail = () => {
 const onCtaSubmit = handleSubmit((values) => {
   ctaEmail.value = values.email;
   storeEmail();
-});
-definePageMeta({
-  navigation: "index",
 });
 </script>
 

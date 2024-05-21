@@ -150,6 +150,10 @@ const formTitles = {
   forgot: "Forgot Password",
 };
 
+definePageMeta({
+  middleware: "logged-in"
+});
+
 const ctaStore = useCtaStore();
 const route = useRoute();
 
