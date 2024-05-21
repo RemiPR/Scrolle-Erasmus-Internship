@@ -1,12 +1,11 @@
 <template>
-  <div class="">
+  <div>
     <div class="px-4 bg-white dark:bg-gray-800">
       <main class="text-center text-black dark:text-white w-3/4 mx-auto pb-32">
         <!-- Hero section -->
         <div
           class="h-screen flex flex-col justify-center items-center relative"
         >
-          <!-- Added 'relative' here -->
           <div class="mb-24">
             <h1 class="text-5xl mb-8 font-bold text-gray-700 dark:text-white">
               {{ $t("page_title") }}
@@ -119,7 +118,7 @@ const firstSection = ref(null);
 
 definePageMeta({
   navigation: "index",
-  middleware: "logged-in"
+  middleware: "logged-in",
 });
 
 // Arrow function to scroll to the first section

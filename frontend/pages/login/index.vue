@@ -137,9 +137,9 @@
 <script setup>
 import { useCtaStore } from "@/stores/ctaStore";
 import { useAuthStore } from "@/stores/authStore";
-import {useLocalePath} from "#imports"
+import { useLocalePath } from "#imports";
 
-const {loginGuest} = useAuthStore();
+const { loginGuest } = useAuthStore();
 const config = useRuntimeConfig();
 const localePath = useLocalePath();
 
@@ -151,7 +151,7 @@ const formTitles = {
 };
 
 definePageMeta({
-  middleware: "logged-in"
+  middleware: "logged-in",
 });
 
 const ctaStore = useCtaStore();
@@ -169,7 +169,12 @@ function setCurrentForm(form) {
 // Login funkcija
 async function handleLogin(values) {
   console.log("Login Attempt for", currentForm.value, values);
-  await loginGuest(values.email, values.password, localePath("/guest"), config.public.authBaseUrl);
+  await loginGuest(
+    values.email,
+    values.password,
+    localePath("/guest"),
+    config.public.authBaseUrl
+  );
 }
 
 function loginWithGoogle() {
