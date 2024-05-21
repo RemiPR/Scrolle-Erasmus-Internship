@@ -6,7 +6,11 @@ export default defineNuxtRouteMiddleware((to, from) => {
   const authStore = useAuthStore();
 
   //console.log("Guest middleware is ran, value is:", authStore.user.type);
-  if (authStore.user.type != "UserGuest") {
-    return navigateTo(localePath("/login"));
+  try {
+    if (authStore.user.type != "UserGuest") {
+      return navigateTo(localePath("/login"));
+    }
+  } catch (error) {
+    return navigateTo(localePath("/"));
   }
 });
