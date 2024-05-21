@@ -10,7 +10,7 @@
       />
     </div>
     <div class="flex gap-4 mb-8">
-      <CourseCard
+      <SharedCardsCourse
         v-for="course in courses"
         :key="course.id"
         :course="course"
@@ -21,8 +21,6 @@
 </template>
 
 <script setup>
-import CourseCard from "@/components/shared/cards/CourseCard.vue";
-
 const props = defineProps({
   courses: {
     type: Array,

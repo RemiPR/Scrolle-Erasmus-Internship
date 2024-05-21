@@ -8,7 +8,7 @@
       class="bg-white rounded-lg shadow-lg overflow-y-auto relative z-10 lg:w-8/12"
     >
       <!-- Video/Image Background Container -->
-      <VideoPlayer
+      <SharedCardsVideoPlayer
         :imageUrl="course.imageUrl"
         :videoUrl="course.videoUrl"
         :title="course.title"
@@ -138,9 +138,6 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
-import VideoPlayer from "@/components/shared/cards/CardVideoPlayer.vue";
-
 const props = defineProps({
   course: {
     type: Object,

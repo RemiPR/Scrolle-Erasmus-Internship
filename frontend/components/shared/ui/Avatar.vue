@@ -57,9 +57,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import TextColorModeToggle from "@/components/global/TextColorModeToggle.vue";
-import { useScrollPosition } from "@/composables/useScrollPosition";
 import { useLocalePath } from "#imports";
 
 const localePath = useLocalePath();

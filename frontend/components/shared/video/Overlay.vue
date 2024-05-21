@@ -23,14 +23,12 @@
       </div>
     </div>
     <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2">
-      <ArrowIcon use-scroll @click="scrollToSection" />
+      <SharedUiArrowIcon use-scroll @click="scrollToSection" />
     </div>
   </div>
 </template>
 
 <script setup>
-import ArrowIcon from "~/components/shared/ui/ArrowIcon.vue";
-import { useScrollPosition } from "@/composables/useScrollPosition";
 const firstSection = ref(null);
 
 // Arrow function to scroll to the first section

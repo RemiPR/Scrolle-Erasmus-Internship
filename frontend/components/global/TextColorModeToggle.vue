@@ -9,7 +9,6 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
 import { useThemeStore } from "@/stores/themeStore";
 
 const themeStore = useThemeStore();

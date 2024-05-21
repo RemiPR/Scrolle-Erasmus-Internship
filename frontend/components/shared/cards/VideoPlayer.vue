@@ -22,8 +22,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch } from "vue";
-
 const props = defineProps({
   imageUrl: {
     type: String,

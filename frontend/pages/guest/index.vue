@@ -1,27 +1,27 @@
 <template>
   <div>
     <div class="relative min-h-screen">
-      <BackgroundVideo
+      <SharedVideoBackground
         ref="backgroundVideo"
         :videoSource="videoSource"
         :videoPlaying="videoPlaying"
         @update:videoPlaying="updateVideoPlaying"
       />
-      <OverlayContent />
-      <VideoControls
+      <SharedVideoOverlay />
+      <SharedVideoControls
         :videoRef="videoRef"
         :videoPlaying="videoPlaying"
         @toggleVideo="toggleVideo"
       />
     </div>
     <div class="container mx-auto p-4 h-screen">
-      <CoursesSection
+      <SharedCardsSection
         title="My Courses"
         :courses="myCourses"
         @openModal="openModal"
       />
     </div>
-    <CourseModal
+    <SharedCardsModal
       class="overflow-y-auto"
       v-if="showModal"
       :isVisible="showModal"
@@ -32,13 +32,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import BackgroundVideo from "@/components/shared/video/BackgroundVideo.vue";
-import OverlayContent from "@/components/shared/video/VideoOverlay.vue";
-import VideoControls from "@/components/shared/video/VideoControls.vue";
-import CoursesSection from "@/components/shared/cards/CoursesSection.vue";
-import CourseModal from "@/components/shared/cards/CourseModal.vue";
-
 definePageMeta({
   layout: "nav",
   navigation: "guest",
