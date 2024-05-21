@@ -1,9 +1,6 @@
 <template>
   <div @click="toggleThemeAndUpdate" class="flex items-center cursor-pointer">
-    <Icon
-      :name="isDark ? 'ph:moon' : 'ph:sun-fill'"
-      class="h-5 w-5 mr-2 text-gray-400"
-    />
+    <Icon :name="isDark ? 'ph:moon' : 'ph:sun-fill'" class="h-5 w-5 mr-2" />
     <span :key="themeKey">Appearance: {{ isDark ? "Dark" : "Light" }}</span>
   </div>
 </template>

@@ -35,7 +35,7 @@
 definePageMeta({
   layout: "nav",
   navigation: "guest",
-  enableScrollStyling: false,
+  enableScrollStyling: true,
 });
 
 const backgroundVideo = ref(null);

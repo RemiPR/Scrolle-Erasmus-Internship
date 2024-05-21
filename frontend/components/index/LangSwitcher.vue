@@ -3,7 +3,7 @@
     <select
       id="language"
       v-model="language"
-      class="appearance-none bg-gray-800 dark:bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:border-blue-500"
+      class="appearance-none bg-gray-800 dark:bg-white border-2 border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:border-blue-500"
     >
       <option
         v-for="item in locales"
