@@ -26,7 +26,7 @@
       </nav>
       <!-- Right nav: Language toggler, Login button, Light/Dark theme toggler -->
       <nav class="flex items-center gap-4">
-        <LangSwitcher class="text-white dark:text-black hover:underline" />
+        <IndexLangSwitcher class="text-white dark:text-black hover:underline" />
         <NuxtLink
           :to="localePath('/login')"
           class="text-white dark:text-black hover:underline"
@@ -41,7 +41,6 @@
 </template>
 
 <script setup>
-import LangSwitcher from "~/components/index/LangSwitcher.vue";
 import { useLocalePath } from "#imports";
 
 const localePath = useLocalePath();

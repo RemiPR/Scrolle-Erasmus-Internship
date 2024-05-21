@@ -1,7 +1,5 @@
-import { computed } from "vue";
-import { useRoute } from "vue-router";
-import GuestNav from "@/components/global/nav/GuestNav.vue";
-import IndexNav from "@/components/global/nav/IndexNav.vue";
+import Guest from "@/components/global/nav/Guest.vue";
+import Index from "@/components/global/nav/Index.vue";
 
 export const useNavigation = () => {
   const route = useRoute();
@@ -10,10 +8,10 @@ export const useNavigation = () => {
     const navType = route.meta.navigation || "index";
     switch (navType) {
       case "guest":
-        return GuestNav;
+        return Guest;
       case "index":
       default:
-        return IndexNav;
+        return Index;
     }
   });
 

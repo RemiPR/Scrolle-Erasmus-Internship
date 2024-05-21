@@ -1,5 +1,4 @@
 // useScrollPosition.js
-import { ref, onMounted, onUnmounted } from "vue";
 
 export const useScrollPosition = () => {
   const hasScrolled = ref(false);
