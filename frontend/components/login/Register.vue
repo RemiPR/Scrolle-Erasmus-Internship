@@ -110,7 +110,6 @@
         Register
       </button>
     </form>
-
     <!-- Social Media Options -->
     <div class="flex items-center my-6">
       <hr class="text-black flex-grow" />

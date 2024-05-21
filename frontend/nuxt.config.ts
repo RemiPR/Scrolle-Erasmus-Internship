@@ -14,6 +14,8 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@formkit/auto-animate/nuxt",
     "@vee-validate/nuxt",
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
   ],
   pages: true,
   app: {
@@ -28,7 +30,6 @@ export default defineNuxtConfig({
   veeValidate: {
     autoImports: true,
   },
-  plugins: [{ src: "~/plugins/pinia.js", mode: "client" }],
   i18n: {
     lazy: true,
     langDir: "locales",

@@ -136,10 +136,12 @@
 
 <script setup>
 import { useCtaStore } from "@/stores/ctaStore";
-import { useLocalePath } from "#imports";
+import { useAuthStore } from "@/stores/authStore";
+import {useLocalePath} from "#imports"
 
-const localePath = useLocalePath();
+const {loginGuest} = useAuthStore();
 const config = useRuntimeConfig();
+const localePath = useLocalePath();
 
 const formTitles = {
   org: "Organisation Login",
@@ -147,6 +149,10 @@ const formTitles = {
   register: "Register a new account",
   forgot: "Forgot Password",
 };
+
+definePageMeta({
+  middleware: "logged-in"
+});
 
 const ctaStore = useCtaStore();
 const route = useRoute();
@@ -163,26 +169,7 @@ function setCurrentForm(form) {
 // Login funkcija
 async function handleLogin(values) {
   console.log("Login Attempt for", currentForm.value, values);
-  try {
-    const response = await $fetch(
-      `${config.public.authBaseUrl}/api/auth/guest/loginUser`,
-      {
-        method: "POST",
-        body: {
-          email: values.email,
-          password: values.password,
-        },
-        credentials: "include",
-      }
-    );
-    navigateTo(localePath("/guest"));
-  } catch (error) {
-    if (error.data && error.status == 401) {
-      console.log("Login failed:", error.data.message);
-    } else {
-      console.error(error);
-    }
-  }
+  await loginGuest(values.email, values.password, localePath("/guest"), config.public.authBaseUrl);
 }
 
 function loginWithGoogle() {

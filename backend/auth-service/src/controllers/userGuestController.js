@@ -82,7 +82,13 @@ const loginUser = async (request, response) => {
         sameSite: "Lax",
         maxAge: COOKIE_AGE,
       })
-      .send("Logged in");
+      .json({
+        user: {
+          id: userGuest.id,
+          name: userGuest.name,
+          type: userGuest.userType,
+        },
+      });
   } catch (error) {
     return response.status(500).send({ message: error.message });
   }

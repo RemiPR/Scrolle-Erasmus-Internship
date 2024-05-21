@@ -56,6 +56,9 @@
 <script setup>
 import TextColorModeToggle from "@/components/global/TextColorModeToggle.vue";
 import { useLocalePath } from "#imports";
+import { useAuthStore } from "@/stores/authStore";
+
+const {logoutGuest} = useAuthStore();
 
 const props = defineProps({
   avatarClasses: {
@@ -76,15 +79,7 @@ const handleMouseOver = () => {
 };
 
 const handleLogout = async () => {
-  try {
-    await $fetch(`${config.public.authBaseUrl}/api/auth/guest/logoutUser`, {
-      method: "POST",
-      credentials: "include",
-    });
-    navigateTo(localePath("/"));
-  } catch (error) {
-    console.error(error);
-  }
+  await logoutGuest(localePath("/"), config.public.authBaseUrl);
 };
 
 const handleMouseOut = () => {
