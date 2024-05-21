@@ -36,6 +36,7 @@ definePageMeta({
   layout: "nav",
   navigation: "guest",
   enableScrollStyling: false,
+  middleware: ['auth', 'guest'],
 });
 
 const backgroundVideo = ref(null);
