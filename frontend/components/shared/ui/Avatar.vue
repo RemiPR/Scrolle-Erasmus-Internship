@@ -61,6 +61,9 @@ import { ref } from "vue";
 import TextColorModeToggle from "@/components/global/TextColorModeToggle.vue";
 import { useScrollPosition } from "@/composables/useScrollPosition";
 import { useLocalePath } from "#imports";
+import { useAuthStore } from "@/stores/authStore";
+
+const {logoutGuest} = useAuthStore();
 
 const localePath = useLocalePath();
 const config = useRuntimeConfig();
@@ -75,18 +78,7 @@ const handleMouseOver = () => {
 };
 
 const handleLogout = async () => {
-  try {
-    await $fetch(
-      `${config.public.authBaseUrl}/api/auth/guest/logoutUser`,
-      {
-        method: "POST",
-        credentials: "include",
-      }
-    );
-    navigateTo(localePath("/"));
-  } catch (error) {
-      console.error(error);
-  }
+  await logoutGuest(localePath("/"), config.public.authBaseUrl);
 };
 
 const handleMouseOut = () => {

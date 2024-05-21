@@ -24,6 +24,7 @@ import CoursesSection from "@/components/shared/cards/CoursesSection.vue";
 
 definePageMeta({
   navigation: "guest",
+  middleware: ['auth', 'guest'],
 });
 
 const backgroundVideo = ref(null);
