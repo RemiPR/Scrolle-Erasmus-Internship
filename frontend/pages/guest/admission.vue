@@ -1,7 +1,7 @@
 <template>
-  <div class="px-4 bg-white dark:bg-gray-800 mt-20">
-    <main class="text-center text-black dark:text-white w-3/5 mx-auto pb-32">
-      <h2 class="text-4xl font-bold mb-14 mt-32">Admission</h2>
+  <div class="px-4 bg-white dark:bg-gray-800 pt-40">
+    <main class="text-center text-black dark:text-white w-4/6 mx-auto pb-32">
+      <h2 class="text-4xl font-bold mb-14">Admission</h2>
       <Tab :tabs="admissionTabs" />
     </main>
   </div>
@@ -11,8 +11,8 @@
 import Tab from "@/components/shared/tabs/Tab.vue";
 import EntranceRequirements from "@/components/guest/admission/EntranceRequirements.vue";
 import Permits from "@/components/guest/admission/visas/Permits.vue";
-import Fees from "@/components/guest/admission/Fees.vue";
-import Application from "@/components/guest/admission/Application.vue";
+import Fees from "@/components/guest/admission/fees/Fees.vue";
+import Application from "@/components/guest/admission/Application/Application.vue";
 
 definePageMeta({
   layout: "nav",

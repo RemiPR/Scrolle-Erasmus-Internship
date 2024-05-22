@@ -45,7 +45,7 @@
         <IndexLangSwitcher
           class="text-white dark:text-gray-800 font-semibold"
         />
-        <SharedUiAvatar />
+        <SharedUserProfileAvatar />
       </nav>
     </header>
     <!-- Page content -->

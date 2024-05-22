@@ -1,23 +1,12 @@
 <template>
   <div class="relative">
-    <div
-      class="flex items-center cursor-pointer p-2"
-      @mouseover="handleMouseOver"
-      @mouseout="handleMouseOut"
-      :class="avatarClasses"
-    >
-      <Icon name="clarity:avatar-solid" class="h-8 w-8" />
-      <Icon
-        name="ph:caret-down-bold"
-        class="ml-2 transition-transform"
-        :class="{ 'rotate-180': showMenu }"
-      />
+    <div class="flex items-center cursor-pointer p-2" @click="toggleMenu">
+      <img :src="'/Grades.jpg'" alt="Avatar" class="h-12 w-12 rounded-full" />
     </div>
     <div
       v-if="showMenu"
       class="absolute right-0 mt-2 w-52 bg-white dark:bg-gray-700 rounded-lg shadow-lg z-50 text-gray-800 dark:text-white select-none"
-      @mouseover="clearMenuTimeout"
-      @mouseout="handleMouseOut"
+      @click.stop
     >
       <ul>
         <li
@@ -28,8 +17,10 @@
         <li
           class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center"
         >
-          <Icon name="ic:outline-settings" class="h-5 w-5 mr-2" />
-          Account Settings
+          <NuxtLink :to="localePath('/guest/profile')">
+            <Icon name="ic:outline-settings" class="h-5 w-5 mr-2" />Account
+            Settings
+          </NuxtLink>
         </li>
         <li
           class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center"
@@ -58,7 +49,7 @@ import TextColorModeToggle from "@/components/global/TextColorModeToggle.vue";
 import { useLocalePath } from "#imports";
 import { useAuthStore } from "@/stores/authStore";
 
-const {logoutGuest} = useAuthStore();
+const { logoutGuest } = useAuthStore();
 
 const props = defineProps({
   avatarClasses: {
@@ -71,24 +62,30 @@ const localePath = useLocalePath();
 const config = useRuntimeConfig();
 
 const showMenu = ref(false);
-let menuTimeout = null;
 
-const handleMouseOver = () => {
-  clearMenuTimeout();
-  showMenu.value = true;
+const toggleMenu = () => {
+  showMenu.value = !showMenu.value;
 };
 
 const handleLogout = async () => {
   await logoutGuest(localePath("/"), config.public.authBaseUrl);
 };
 
-const handleMouseOut = () => {
-  menuTimeout = setTimeout(() => {
+const handleClickOutside = (event) => {
+  if (!event.target.closest(".relative")) {
     showMenu.value = false;
-  }, 500);
+  }
 };
 
-const clearMenuTimeout = () => {
-  clearTimeout(menuTimeout);
-};
+onMounted(() => {
+  document.addEventListener("click", handleClickOutside);
+});
+
+onUnmounted(() => {
+  document.removeEventListener("click", handleClickOutside);
+});
 </script>
+
+<style scoped>
+/* Add any additional styles here */
+</style>
