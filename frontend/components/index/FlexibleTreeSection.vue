@@ -5,7 +5,7 @@
     <!-- Text content, conditionally placed before or after the vertical line -->
     <div
       :class="[
-        'border-l-8 border-t border-t-gray-200',
+        'border-l-8 border-t border-t-gray-200 dark:border-t-0',
         'bg-white',
         'dark:bg-gray-700',
         'shadow-lg',
