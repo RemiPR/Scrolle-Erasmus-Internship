@@ -2,7 +2,9 @@
   <form @submit.prevent="onSubmit" class="space-y-6">
     <!-- Email input field -->
     <div class="mb-4">
-      <label for="email" class="font-semibold">Email address</label>
+      <label for="email" class="font-semibold">{{
+        $t("shared_login_email_adress")
+      }}</label>
       <Field id="email" name="email" type="email" v-slot="{ field, meta }">
         <input
           v-bind="field"
@@ -28,7 +30,9 @@
 
     <!-- Password input field -->
     <div class="mb-4 relative flex flex-col">
-      <label for="password" class="font-semibold">Password</label>
+      <label for="password" class="font-semibold">{{
+        $t("shared_login_password")
+      }}</label>
       <div class="relative">
         <Field name="password" v-slot="{ field, meta }">
           <input
@@ -46,7 +50,11 @@
           @click="toggleShowPassword"
         >
           <span class="material-icons select-none dark:font-semibold">
-            {{ showPassword ? "hide" : "show" }}
+            {{
+              showPassword
+                ? $t("shared_login_show_password.hide")
+                : $t("shared_login_show_password.show")
+            }}
           </span>
         </span>
       </div>
@@ -67,21 +75,21 @@
     <div class="flex justify-between mb-6">
       <label class="flex items-center">
         <input type="checkbox" class="mr-2 rounded-lg border-2" />
-        <span class="select-none">Remember me</span>
+        <span class="select-none">{{ $t("shared_login_remember_me") }}</span>
       </label>
       <a
         href="#"
         class="text-blue-600 hover:font-semibold hover:underline dark:font-medium dark:text-blue-400 dark:hover:text-blue-500"
         @click.prevent="setCurrentForm('forgot')"
       >
-        Forgot password?
+        {{ $t("shared_login_forgot_password") }}
       </a>
     </div>
     <button
       type="submit"
       class="w-full font-semibold text-white px-4 py-2 rounded bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
     >
-      Sign in
+      {{ $t("shared_login_sign_in_button") }}
     </button>
     <slot />
   </form>
@@ -97,12 +105,18 @@ const toggleShowPassword = () => {
   showPassword.value = !showPassword.value;
 };
 
-const validationSchema = object({
-  email: string()
-    .required("Please enter your email address")
-    .email("Please enter a valid email address"),
-  password: string().required("Please enter your password"),
-});
+const validationSchema = useValidationSchema();
+
+function useValidationSchema() {
+  const { t } = useI18n();
+
+  return object({
+    email: string()
+      .required(() => t("validation_schema.email.required"))
+      .email(() => t("validation_schema.email.email")),
+    password: string().required(() => t("validation_schema.password.required")),
+  });
+}
 
 const props = defineProps({
   onSubmit: {

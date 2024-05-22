@@ -36,5 +36,80 @@
   "contact_form_phone_number_input": "Введите ваш номер телефона",
   "contact_form_additional_information": "Дополнительная информация",
   "contact_form_additional_information_input": "Введите любую дополнительную информацию",
-  "contact_form_button": "Отправить"
+  "contact_form_button": "Отправить",
+  "shared_login_title": {
+    "org": "Вход для организаций",
+    "guest": "Вход для гостей",
+    "register": "Зарегистрировать новый аккаунт",
+    "forgot": "Забыли пароль"
+  },
+  "login_index_toggle_button_organisation": "Организация",
+  "login_index_toggle_button_guest": "Гость",
+  "shared_login_email_adress": "Адрес электронной почты",
+  "shared_login_password": "Пароль",
+  "shared_login_show_password": {
+    "show": "Показать",
+    "hide": "Скрыть"
+  },
+  "shared_login_remember_me": "Запомнить меня",
+  "shared_login_forgot_password": "Забыли пароль?",
+  "shared_login_sign_in_button": "Войти",
+  "login_index_dont_have_account_yet": "Еще нет аккаунта?",
+  "login_index_dont_have_account_yet_sign_up": "Зарегистрироваться",
+  "login_index_or_continue_with": "Или продолжить с",
+  "validation_schema": {
+    "email": {
+      "required": "Пожалуйста, введите ваш адрес электронной почты",
+      "email": "Пожалуйста, введите корректный адрес электронной почты"
+    },
+    "password": {
+      "required": "Пожалуйста, введите ваш пароль"
+    }
+  },
+  "cta_validation_schema": {
+    "email": {
+      "required": "Пожалуйста, введите ваш адрес электронной почты",
+      "email": "Пожалуйста, введите корректный адрес электронной почты"
+    }
+  },
+  "register_first_name": "Имя",
+  "register_last_name": "Фамилия",
+  "register_email_adress": "Электронная почта",
+  "register_password": "Пароль",
+  "register_confirm_password": "Подтвердите пароль",
+  "register_button": "Зарегистрироваться",
+  "register_or_continue_with": "Или продолжить с",
+  "register_show_password": {
+    "show": "Показать",
+    "hide": "Скрыть"
+  },
+  "register_show_confirm_password": {
+    "show": "Показать",
+    "hide": "Скрыть"
+  },
+  "register_validation": {
+    "firstName": {
+      "required": "Имя обязательно",
+      "min": "Имя должно быть не менее 2 символов"
+    },
+    "lastName": {
+      "required": "Фамилия обязательна",
+      "min": "Фамилия должна быть не менее 2 символов"
+    },
+    "email": {
+      "required": "Электронная почта обязательна",
+      "invalid": "Неверный адрес электронной почты"
+    },
+    "password": {
+      "required": "Пароль обязателен",
+      "min": "Пароль должен быть не менее 8 символов",
+      "uppercase": "Пароль должен содержать хотя бы одну заглавную букву",
+      "number": "Пароль должен содержать хотя бы одну цифру",
+      "special": "Пароль должен содержать хотя бы один специальный символ"
+    },
+    "confirmPassword": {
+      "required": "Подтвердите пароль",
+      "match": "Пароли должны совпадать"
+    }
+  }
 }

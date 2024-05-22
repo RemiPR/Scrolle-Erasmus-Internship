@@ -36,5 +36,80 @@
   "contact_form_phone_number_input": "Enter your phone number",
   "contact_form_additional_information": "Additional Information",
   "contact_form_additional_information_input": "Enter any additional information",
-  "contact_form_button": "Submit"
+  "contact_form_button": "Submit",
+  "shared_login_title": {
+    "org": "Organisation Login",
+    "guest": "Guest Login",
+    "register": "Register a new account",
+    "forgot": "Forgot Password"
+  },
+  "login_index_toggle_button_organisation": "Organisation",
+  "login_index_toggle_button_guest": "Guest",
+  "shared_login_email_adress": "Email adress",
+  "shared_login_password": "Password",
+  "shared_login_show_password": {
+    "show": "Show",
+    "hide": "Hide"
+  },
+  "shared_login_remember_me": "Remember me",
+  "shared_login_forgot_password": "Forgot password?",
+  "shared_login_sign_in_button": "Sign in",
+  "login_index_dont_have_account_yet": "Don't have an account yet?",
+  "login_index_dont_have_account_yet_sign_up": "Sign up",
+  "login_index_or_continue_with": "Or continue with",
+  "validation_schema": {
+    "email": {
+      "required": "Please enter your email address",
+      "email": "Please enter a valid email address"
+    },
+    "password": {
+      "required": "Please enter your password"
+    }
+  },
+  "cta_validation_schema": {
+    "email": {
+      "required": "Please enter your email address",
+      "email": "Please enter a valid email address"
+    }
+  },
+  "register_first_name": "First Name",
+  "register_last_name": "Last Name",
+  "register_email_adress": "Email adress",
+  "register_password": "Password",
+  "register_confirm_password": "Confirm password",
+  "register_button": "Register",
+  "register_or_continue_with": "Or continue with",
+  "register_show_password": {
+    "show": "Show",
+    "hide": "Hide"
+  },
+  "register_show_confirm_password": {
+    "show": "Show",
+    "hide": "Hide"
+  },
+  "register_validation": {
+    "firstName": {
+      "required": "First name is required",
+      "min": "First name must be at least 2 characters"
+    },
+    "lastName": {
+      "required": "Last name is required",
+      "min": "Last name must be at least 2 characters"
+    },
+    "email": {
+      "required": "Email is required",
+      "invalid": "Invalid email address"
+    },
+    "password": {
+      "required": "Password is required",
+      "min": "Password must be at least 8 characters",
+      "uppercase": "Password must contain at least one uppercase letter",
+      "number": "Password must contain at least one number",
+      "special": "Password must contain at least one special character"
+    },
+    "confirmPassword": {
+      "required": "Confirm your password",
+      "match": "Passwords must match"
+    }
+  }
 }
