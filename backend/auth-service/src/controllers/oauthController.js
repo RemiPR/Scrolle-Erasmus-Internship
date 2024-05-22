@@ -124,7 +124,7 @@ const authenticateFacebook = async (request, response) => {
     const accessToken = await getAccessToken(code);
     const userGuestFacebookProfile = await getUserProfile(accessToken);
 
-    let fullnameSplit = userFacebookProfile.name.split(" ");
+    let fullnameSplit = userGuestFacebookProfile.name.split(" ");
     const userGuestName = fullnameSplit[0];
     const userGuestSurname = fullnameSplit[1];
 
@@ -133,11 +133,11 @@ const authenticateFacebook = async (request, response) => {
     });
     if (userGuest) {
       // user with email exists, checks if user already has facebookId
-      if (userGuest.socialIds.facebook != userFacebookProfile.id) {
+      if (userGuest.socialIds.facebook != userGuestFacebookProfile.id) {
         // if user doesn't have facebookId, he gets updated with one before logging in
         await UserGuest.findByIdAndUpdate(
           userGuest.id,
-          { $set: { "socialIds.facebook": userFacebookProfile.id } },
+          { $set: { "socialIds.facebook": userGuestFacebookProfile.id } },
           { runValidators: true }
         ).catch((error) => {
           response.status(500).send({ message: error.message });
@@ -174,10 +174,7 @@ const authenticateFacebook = async (request, response) => {
       );
     }
   } catch (error) {
-    response
-      .status(500)
-      .send("Authentication failed")
-      .redirect(`${FRONTEND_DOMAIN}`);
+    response.status(500).send(error.message).redirect(`${FRONTEND_DOMAIN}`);
   }
 };
 
