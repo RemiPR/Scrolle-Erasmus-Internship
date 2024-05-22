@@ -1,81 +1,98 @@
 <template>
-  <div class="flex items-center justify-center relative gap-x-20">
+  <div
+    class="flex flex-col md:flex-row items-center justify-center relative gap-x-4 lg:gap-y-32 md:gap-x-20"
+  >
     <!-- Text content, conditionally placed before or after the vertical line -->
     <div
       :class="[
-        'border-l-8',
-        'flex-1',
-        'p-4',
+        'border-l-8 border-t border-t-gray-200',
         'bg-white',
         'dark:bg-gray-700',
         'shadow-lg',
         'rounded-lg',
         'overflow-hidden',
         `${circleBorderColor}`,
-        props.textOnLeft ? 'order-1' : 'order-3',
-        'max-w-[470px]',
+        props.textOnLeft ? 'md:order-1' : 'md:order-3',
+        'w-[650px]',
+        'h-[300px]',
+        'max-2xl:w-[450px]',
+        'max-2xl:h-[225px]',
+        'max-xl:w-[350px]',
+        'max-xl:h-[150px]',
+        'max-lg:w-[250px]',
+        'max-lg:h-[150px]',
+        'max-[900px]:order-1',
+        'max-[900px]:my-12',
+        'max-[900px]:w-[350px]',
+        'max-[900px]:h-[150px]',
+        'max-[900px]:flex',
+        'max-[900px]:items-center',
+        'max-[900px]:justify-center',
+        'max-[900px]:mx-auto',
       ]"
     >
-      <!-- Index circle moved up to be in the same row as the title -->
-      <div class="flex items-center space-x-8 max-w-[500px] min-h-[128px]">
-        <div
-          :class="`flex items-center justify-center min-w-[65px] h-[65px] rounded-full text-white font-bold text-3xl ${circleColorClass}`"
-        >
-          {{ formattedIndex }}
-        </div>
-        <div class="flex flex-col">
-          <h2
-            class="text-3xl font-bold text-gray-700 dark:text-white text-left mb-3"
+      <!-- Content here -->
+
+      <div
+        class="flex items-center justify-center space-x-4 md:space-x-8 h-full"
+      >
+        <!-- Move the indexed circle div to be in the same row as the title -->
+        <div class="flex flex-col h-full items-center justify-center w-full">
+          <div class="flex items-center justify-center mb-8 max-xl:mb-3">
+            <div
+              :class="`flex items-center justify-center min-w-[65px] h-[65px] ml-2 rounded-full text-white font-bold text-3xl max-2xl:text-2xl max-xl:text-lg max-lg:text-sm max-[900px]:text-lg max-2xl:min-w-[55px] max-2xl:h-[55px] max-xl:min-w-[35px] max-xl:h-[35px] max-lg:min-w-[20px] max-lg:h-[20px] max-[900px]:min-w-[35px] max-[900px]:h-[35px] ${circleColorClass}`"
+            >
+              {{ formattedIndex }}
+            </div>
+            <h2
+              class="text-4xl font-bold text-gray-800 dark:text-white text-center ml-4 max-2xl:text-2xl max-xl:text-lg max-lg:text-base max-[900px]:text-2xl"
+            >
+              {{ props.title }}
+            </h2>
+          </div>
+          <p
+            class="text-2xl text-gray-700 dark:text-white font-medium max-2xl:text-lg max-xl:text-base max-lg:text-sm text-center max-w-[75%]"
           >
-            {{ props.title }}
-          </h2>
-          <p class="text-gray-600 text-left text-xl dark:text-white">
             {{ props.content }}
           </p>
         </div>
       </div>
     </div>
-
-    <!-- Vertical dashed line with circle and horizontal lines to text -->
-    <div class="relative flex flex-col items-center mx-4 order-2">
-      <div
-        v-for="i in 4"
-        :key="'upper' + i"
-        class="w-0.5 h-6 bg-gray-400 mb-2"
-      ></div>
-      <div
-        class="circle-with-line w-6 h-6 rounded-full mb-2 relative bg-white"
-        :class="[
-          `border-2 ${circleBorderColor}`,
-          props.textOnLeft ? 'line-left' : '',
-        ]"
-      ></div>
-      <div
-        v-for="i in 4"
-        :key="'lower' + i"
-        class="w-0.5 h-6 bg-gray-400 mb-2"
-      ></div>
+    <div class="flex justify-center items-center md:order-2">
+      <IndexVLines
+        :textOnLeft="props.textOnLeft"
+        :circleBorderColor="circleBorderColor"
+        :numLines="4"
+        :showCircleWithLine="true"
+        class="max-h-[300px] max-2xl:max-h-[225px] max-xl:max-h-[150px] max-[900px]:hidden"
+      />
     </div>
 
     <!-- Image section, conditionally placed before or after the vertical line -->
     <div
       :class="[
-        { 'order-3': props.textOnLeft, 'order-1': !props.textOnLeft },
-        'flex-1 max-w-custom',
+        { 'md:order-3': props.textOnLeft, 'md:order-1': !props.textOnLeft },
+        'w-[650px]',
+        'h-[300px]',
+        'max-2xl:w-[450px]',
+        'max-2xl:h-[225px]',
+        'max-xl:w-[350px]',
+        'max-xl:h-[150px]',
+        'max-lg:w-[250px]',
+        'max-lg:h-[150px]',
+        'max-[900px]:hidden',
       ]"
     >
       <img
         :src="props.imageSrc"
         alt="Description Image"
-        class="w-[470px] h-[160px] object-cover"
+        class="w-full h-full object-cover"
       />
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from "vue";
-
 // Define props
 const props = defineProps({
   title: String,
@@ -95,24 +112,3 @@ const formattedIndex = computed(() => {
   return "00";
 });
 </script>
-
-<style scoped>
-.flex-1.max-w-custom {
-  max-width: 470px; /* Match text card width */
-}
-.circle-with-line::after {
-  content: "";
-  position: absolute;
-  top: 50%; /* Center it vertically to the circle */
-  left: 100%; /* Start from the right edge of the circle */
-  width: 100px; /* Length of the horizontal line */
-  height: 0.5px; /* Thickness of the line to match vertical lines */
-  background-color: #a0aec0; /* Tailwind gray-400 color */
-  transform: translateY(-50%); /* Ensures it remains centered */
-}
-
-.circle-with-line.line-left::after {
-  left: auto; /* Remove the left positioning */
-  right: 100%; /* Start from the left edge of the circle */
-}
-</style>

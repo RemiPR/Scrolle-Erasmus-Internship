@@ -64,7 +64,7 @@
           <SharedUiArrowIcon @click="scrollToSection" />
         </div>
         <!-- Cards -->
-        <div ref="firstSection" class="scroll-mt-28">
+        <div ref="firstSection" class="scroll-mt-28 mt-24">
           <IndexFlexibleTreeSection
             :title="$t('tree_section_one_title')"
             :content="$t('tree_section_one_content')"
@@ -73,6 +73,11 @@
             :circleBorderColor="'border-blue-500'"
             :textOnLeft="false"
             :index="0"
+          />
+          <IndexVLines
+            :showCircleWithLines="false"
+            :numLines="2"
+            class="max-3xl:max-h-[300px] max-2xl:max-h-[225px] max-xl:max-h-[50px] max-[900px]:hidden"
           />
           <IndexFlexibleTreeSection
             :title="$t('tree_section_two_title')"
@@ -83,6 +88,11 @@
             textOnLeft
             horizontalLineRight
             :index="1"
+          />
+          <IndexVLines
+            :showCircleWithLines="false"
+            :numLines="2"
+            class="max-h-[300px] max-2xl:max-h-[225px] max-xl:max-h-[50px] max-[900px]:hidden"
           />
           <IndexFlexibleTreeSection
             :title="$t('tree_section_three_title')"
