@@ -61,7 +61,7 @@
             </div>
           </div>
           <!-- Arrow positioned at the bottom -->
-          <SharedUiArrowIcon @click="scrollToSection" />
+          <SharedIconArrow @click="scrollToSection" />
         </div>
         <!-- Cards -->
         <div ref="firstSection" class="scroll-mt-28 mt-24">
