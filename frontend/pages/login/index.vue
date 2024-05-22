@@ -42,7 +42,7 @@
                 }"
                 class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500 select-none"
               >
-                Organisation
+                {{ $t("login_index_toggle_button_organisation") }}
               </button>
               <button
                 @click="setCurrentForm('guest')"
@@ -54,7 +54,7 @@
                 }"
                 class="font-semibold px-4 py-2 w-full focus:outline-none transition-colors duration-500 select-none"
               >
-                Guest
+                {{ $t("login_index_toggle_button_guest") }}
               </button>
             </div>
           </div>
@@ -75,16 +75,18 @@
                   @click.prevent="setCurrentForm('register')"
                   type="button"
                 >
-                  Don't have an account yet?
+                  {{ $t("login_index_dont_have_account_yet") }}
                   <span
                     class="font-medium text-blue-500 group-hover:underline group-hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500"
-                    >Sign up</span
+                    >{{ $t("login_index_dont_have_account_yet_sign_up") }}</span
                   >
                 </button>
                 <!-- Social Media Options, available in guest form and registration form-->
                 <div class="flex items-center my-6">
                   <hr class="text-black flex-grow" />
-                  <p class="mx-4 font-semibold">Or continue with</p>
+                  <p class="mx-4 font-semibold">
+                    {{ $t("login_index_or_continue_with") }}
+                  </p>
                   <hr class="text-black flex-grow" />
                 </div>
                 <div class="mt-1 flex justify-between">
@@ -137,21 +139,18 @@
 <script setup>
 import { useCtaStore } from "@/stores/ctaStore";
 import { useAuthStore } from "@/stores/authStore";
-import {useLocalePath} from "#imports"
+import { useLocalePath } from "#imports";
+import { useI18n } from "vue-i18n";
+import { ref, computed } from "vue";
+import { useRoute } from "vue-router";
 
-const {loginGuest} = useAuthStore();
+const { t } = useI18n();
+const { loginGuest } = useAuthStore();
 const config = useRuntimeConfig();
 const localePath = useLocalePath();
 
-const formTitles = {
-  org: "Organisation Login",
-  guest: "Guest Login",
-  register: "Register a new account",
-  forgot: "Forgot Password",
-};
-
 definePageMeta({
-  middleware: "logged-in"
+  middleware: "logged-in",
 });
 
 const ctaStore = useCtaStore();
@@ -161,7 +160,7 @@ const prefilledEmail = ref(ctaStore.email || route.query.email || "");
 
 const currentForm = ref(route.query.register === "true" ? "register" : "guest");
 
-const titleText = computed(() => formTitles[currentForm.value]);
+const titleText = computed(() => t(`shared_login_title.${currentForm.value}`));
 
 function setCurrentForm(form) {
   currentForm.value = form;

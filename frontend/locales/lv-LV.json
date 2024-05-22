@@ -36,5 +36,80 @@
   "contact_form_phone_number_input": "Ievadiet savu telefona numuru",
   "contact_form_additional_information": "Papildus informācija",
   "contact_form_additional_information_input": "Ievadiet jebkādu papildu informāciju",
-  "contact_form_button": "Nosūtīt"
+  "contact_form_button": "Nosūtīt",
+  "shared_login_title": {
+    "org": "Organizācijas pieteikšanās",
+    "guest": "Viesu pieteikšanās",
+    "register": "Reģistrēt jaunu kontu",
+    "forgot": "Aizmirsāt paroli"
+  },
+  "login_index_toggle_button_organisation": "Organizācija",
+  "login_index_toggle_button_guest": "Viesis",
+  "shared_login_email_adress": "E-pasta adrese",
+  "shared_login_password": "Parole",
+  "shared_login_show_password": {
+    "show": "Parādīt",
+    "hide": "Slēpt"
+  },
+  "shared_login_remember_me": "Atcerēties mani",
+  "shared_login_forgot_password": "Aizmirsi paroli?",
+  "shared_login_sign_in_button": "Ielogoties",
+  "login_index_dont_have_account_yet": "Vēl nav konta?",
+  "login_index_dont_have_account_yet_sign_up": "Reģistrēties",
+  "login_index_or_continue_with": "Vai turpināt ar",
+  "validation_schema": {
+    "email": {
+      "required": "Lūdzu, ievadiet savu e-pasta adresi",
+      "email": "Lūdzu, ievadiet derīgu e-pasta adresi"
+    },
+    "password": {
+      "required": "Lūdzu, ievadiet savu paroli"
+    }
+  },
+  "cta_validation_schema": {
+    "email": {
+      "required": "Lūdzu, ievadiet savu e-pasta adresi",
+      "email": "Lūdzu, ievadiet derīgu e-pasta adresi"
+    }
+  },
+  "register_first_name": "Vārds",
+  "register_last_name": "Uzvārds",
+  "register_email_adress": "E-pasta adrese",
+  "register_password": "Parole",
+  "register_confirm_password": "Apstipriniet paroli",
+  "register_button": "Reģistrēties",
+  "register_or_continue_with": "Vai turpiniet ar",
+  "register_show_password": {
+    "show": "Parādīt",
+    "hide": "Paslēpt"
+  },
+  "register_show_confirm_password": {
+    "show": "Parādīt",
+    "hide": "Paslēpt"
+  },
+  "register_validation": {
+    "firstName": {
+      "required": "Vārds ir obligāts",
+      "min": "Vārdam jābūt vismaz 2 rakstzīmēm"
+    },
+    "lastName": {
+      "required": "Uzvārds ir obligāts",
+      "min": "Uzvārdam jābūt vismaz 2 rakstzīmēm"
+    },
+    "email": {
+      "required": "E-pasts ir obligāts",
+      "invalid": "Nederīga e-pasta adrese"
+    },
+    "password": {
+      "required": "Parole ir obligāta",
+      "min": "Parolei jābūt vismaz 8 rakstzīmēm",
+      "uppercase": "Parolei jāsatur vismaz viens lielais burts",
+      "number": "Parolei jāsatur vismaz viens cipars",
+      "special": "Parolei jāsatur vismaz viens speciāls simbols"
+    },
+    "confirmPassword": {
+      "required": "Apstipriniet paroli",
+      "match": "Parolēm jāsakrīt"
+    }
+  }
 }
