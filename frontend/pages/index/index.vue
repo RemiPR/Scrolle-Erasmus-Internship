@@ -102,7 +102,7 @@
             :circleBorderColor="'border-pink-400'"
             :index="2"
           />
-          <IndexAccordion :title="$t('faq_title')" />
+          <SharedUiFaq :title="$t('faq_title')" />
           <IndexContactForm />
         </div>
       </main>
