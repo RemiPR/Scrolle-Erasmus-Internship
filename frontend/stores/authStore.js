@@ -21,28 +21,32 @@ export const useAuthStore = defineStore("auth", {
     },
     async loginGuest(email, password, redirectPath, authBaseUrl) {
       try {
-        const response = await $fetch(
-          `${authBaseUrl}/api/auth/guest/loginUser`,
-          {
-            method: "POST",
-            body: {
-              email: email,
-              password: password,
-            },
-            credentials: "include",
-          }
-        );
-        console.log(response);
-        this.setUser(response.user);
-        console.log("SetUser is done running");
+        // http request to login
+        await $fetch(`${authBaseUrl}/api/auth/guest/loginUser`, {
+          method: "POST",
+          body: {
+            email: email,
+            password: password,
+          },
+          credentials: "include",
+        });
+
+        // retrieves cookie with user info, this one doesnt have JWT token.
+        const userCookie = useCookie("auth").value;
+        // might need to put this into a function later, could be reused
+        if (userCookie) {
+          const parsedUser = JSON.parse(
+            userCookie.startsWith("j:") ? userCookie.slice(2) : userCookie
+          );
+          this.setUser(parsedUser); // sets isAuthenticated to true and stores user info in the same "auth" cookie
+        }
         navigateTo(redirectPath);
       } catch (error) {
         if (error.data && error.status == 401) {
-          console.log("Login failed:", error.data.message);
           this.clearUser();
         } else {
-          this.clearUser();
           console.error(error);
+          this.clearUser();
         }
       }
     },

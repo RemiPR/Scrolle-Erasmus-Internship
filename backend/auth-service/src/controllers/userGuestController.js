@@ -74,21 +74,26 @@ const loginUser = async (request, response) => {
     // sameSite Lax balanced safety vulnerable to phishing but maintains session,
     // sameSite Strict very safe  have to reauthenticate while accessing web from other sources
     // maxAge how long the cookie lasts, 3600000 = 1 hour
-    return response
+
+    // "auth" cookie readable by javascript code so that frontend could read its values
+    response.cookie(
+      "auth",
+      {
+        id: userGuest.id,
+        name: userGuest.name,
+        type: userGuest.userType,
+      },
+      { httpOnly: false, maxAge: COOKIE_AGE }
+    );
+    response
       .status(200)
       .cookie("authToken", token, {
         httpOnly: true,
-        secure: true,
+        secure: false,
         sameSite: "Lax",
         maxAge: COOKIE_AGE,
       })
-      .json({
-        user: {
-          id: userGuest.id,
-          name: userGuest.name,
-          type: userGuest.userType,
-        },
-      });
+      .json({ message: "Login success" });
   } catch (error) {
     return response.status(500).send({ message: error.message });
   }
