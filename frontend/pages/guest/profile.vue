@@ -24,6 +24,12 @@
 </template>
 
 <script setup>
+definePageMeta({
+  layout: "nav",
+  navigation: "guest",
+  enableScrollStyling: false,
+  // middleware: ["auth", "guest"],
+});
 const user = ref({
   name: "Remi",
   username: "RemiPR",
