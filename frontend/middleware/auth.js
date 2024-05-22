@@ -10,6 +10,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
       return navigateTo(localePath("/login"));
     }
   } catch (error) {
-    console.log(errpr);
+    console.log(error);
   }
 });
