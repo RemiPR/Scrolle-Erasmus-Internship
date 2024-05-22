@@ -26,7 +26,17 @@ const oauthLoginGuestUser = async function (
     { expiresIn: JWT_EXPIRY } // Token expiration
   );
 
-  return response
+  response.cookie(
+    "auth",
+    {
+      id: userId,
+      name: name,
+      type: userType,
+    },
+    { httpOnly: false, maxAge: COOKIE_AGE }
+  );
+
+  response
     .status(200)
     .cookie("authToken", token, {
       httpOnly: true,
@@ -34,7 +44,7 @@ const oauthLoginGuestUser = async function (
       sameSite: "Lax",
       maxAge: COOKIE_AGE,
     })
-    .redirect(`${FRONTEND_DOMAIN}/${localePath}/guest`);
+    .redirect(`${FRONTEND_DOMAIN}/${localePath}/guest/oauthLogin`);
 };
 
 const loginGuestUserOnRegister = async function (
