@@ -11,7 +11,7 @@ export const useAuthStore = defineStore("auth", {
     isLoggedIn: (state) => state.isAuthenticated,
   },
   actions: {
-    setUser(user) {
+    async setUser(user) {
       this.user = user;
       this.isAuthenticated = !!user;
     },
@@ -19,6 +19,23 @@ export const useAuthStore = defineStore("auth", {
       this.user = null;
       this.isAuthenticated = false;
     },
+
+    async loginGoogle(redirectPath, authBaseUrl) {
+      try {
+        await $fetch(`${authBaseUrl}/api/oauth/google`, {
+          method: "POST",
+          credentials: "include",
+        });
+      } catch (error) {
+        if (error.data && error.status == 401) {
+          this.clearUser();
+        } else {
+          console.error(error);
+          this.clearUser();
+        }
+      }
+    },
+
     async loginGuest(email, password, redirectPath, authBaseUrl) {
       try {
         // http request to login
