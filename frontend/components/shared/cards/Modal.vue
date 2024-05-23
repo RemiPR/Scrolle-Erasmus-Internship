@@ -6,9 +6,10 @@
     tabindex="0"
     ref="modalRef"
   >
-    <div class="fixed inset-0 bg-black opacity-50"></div>
+    <div class="fixed inset-0 bg-black opacity-50" @click="closeModal"></div>
     <div
       class="bg-white rounded-xl shadow-lg relative z-10 lg:w-6/12 max-h-screen overflow-y-auto"
+      @click.stop
     >
       <!-- Scrollable Content -->
       <div class="flex flex-col">

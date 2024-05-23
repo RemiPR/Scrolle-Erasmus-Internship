@@ -67,6 +67,7 @@ onMounted(() => {
 const videoSource = "/test.mp4"; // Define the video source
 const showModal = ref(false);
 const selectedCourse = ref({});
+const modal = ref(null);
 
 const courses = [
   {
