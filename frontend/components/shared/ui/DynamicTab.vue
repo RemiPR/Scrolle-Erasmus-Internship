@@ -9,14 +9,14 @@
         :class="[
           'px-4 py-4 font-semibold text-xl select-none',
           activeTab === tab.name
-            ? 'bg-gray-700 text-white hover:bg-gray-800'
-            : 'bg-gray-200 hover:bg-gray-300',
+            ? 'bg-gray-700 dark:bg-gray-200 dark:text-black  text-white hover:bg-gray-800'
+            : 'bg-gray-200 dark:bg-gray-700 dark:text-white text-black hover:bg-gray-300',
         ]"
       >
         {{ tab.label }}
       </button>
     </div>
-    <component :is="activeComponent" class="p-4"></component>
+    <component :is="activeComponent.component" v-bind="activeComponent.props"  class="p-4"></component>
   </div>
 </template>
 
@@ -31,7 +31,13 @@ const props = defineProps({
 
 const activeTab = ref(props.tabs[0].name);
 
+// Gets component and props from an active tab
 const activeComponent = computed(() => {
-  return props.tabs.find((tab) => tab.name === activeTab.value).component;
+  const tab = props.tabs.find((tab) => tab.name === activeTab.value);
+  return {
+    component: tab.component,
+    props: tab.props
+  }
 });
+
 </script>

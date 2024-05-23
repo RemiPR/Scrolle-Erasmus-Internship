@@ -106,7 +106,7 @@
             :circleBorderColor="'border-pink-400'"
             :index="2"
           />
-          <SharedUiFaq :title="$t('faq_title')" />
+          <SharedUiFaq class="mt-48" :title="$t('faq_title')" :faqItems="faq" />
           <IndexContactForm />
         </div>
       </main>
@@ -137,6 +137,14 @@ definePageMeta({
   navigation: "index",
   middleware: "logged-in",
 });
+
+const faq = [
+  { question: "faq_index_question1", answer: "faq_index_answer1" },
+  { question: "faq_index_question2", answer: "faq_index_answer2" },
+  { question: "faq_index_question3", answer: "faq_index_answer3" },
+  { question: "faq_index_question4", answer: "faq_index_answer4" },
+  { question: "faq_index_question5", answer: "faq_index_answer5" },
+];
 
 // Arrow function to scroll to the first section
 const scrollToSection = async () => {

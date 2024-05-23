@@ -2,13 +2,13 @@
   <div class="px-4 bg-white dark:bg-gray-800 pt-40">
     <main class="text-center text-black dark:text-white w-4/6 mx-auto pb-32">
       <h2 class="text-4xl font-bold mb-14">Admission</h2>
-      <Tab :tabs="admissionTabs" />
+      <DynamicTab :tabs="admissionTabs" />
     </main>
   </div>
 </template>
 
 <script setup>
-import Tab from "@/components/shared/tabs/Tab.vue";
+import DynamicTab from "@/components/shared/ui/DynamicTab.vue";
 import EntranceRequirements from "@/components/guest/admission/EntranceRequirements.vue";
 import Permits from "@/components/guest/admission/visas/Permits.vue";
 import Fees from "@/components/guest/admission/fees/Fees.vue";

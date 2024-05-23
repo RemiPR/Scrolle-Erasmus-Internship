@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-48">
+  <div>
     <div>
       <p class="text-4xl mb-10 font-bold text-gray-700 dark:text-white">
         {{ title }}
@@ -40,21 +40,19 @@
 <script setup>
 const props = defineProps({
   title: String,
-});
-
-const faqItems = ref([
-  { question: "faq_question1", answer: "faq_answer1" },
-  { question: "faq_question2", answer: "faq_answer2" },
-  { question: "faq_question3", answer: "faq_answer3" },
-  { question: "faq_question4", answer: "faq_answer4" },
-  { question: "faq_question5", answer: "faq_answer5" },
-]);
-
+  faqItems: {
+    type: Array,
+    required: true,
+    default: () => [],
+  },
+},
+);
 const current = ref(null);
 
 const toggleQuestion = (index) => {
   current.value = current.value === index ? null : index;
 };
+
 </script>
 
 <style>
