@@ -67,7 +67,6 @@ const config = useRuntimeConfig();
 
 const showMenu = ref(false);
 function closeAvatarMenu(target) {
-  console.log("clicked");
   if (!target.closest('.avatar')) {
     showMenu.value = false;
   }
