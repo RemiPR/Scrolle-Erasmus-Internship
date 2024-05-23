@@ -16,7 +16,7 @@
         {{ tab.label }}
       </button>
     </div>
-    <component :is="activeComponent" class="p-4"></component>
+    <component :is="activeComponent.component" v-bind="activeComponent.props"  class="p-4"></component>
   </div>
 </template>
 
@@ -31,7 +31,13 @@ const props = defineProps({
 
 const activeTab = ref(props.tabs[0].name);
 
+// Gets component and props from an active tab
 const activeComponent = computed(() => {
-  return props.tabs.find((tab) => tab.name === activeTab.value).component;
+  const tab = props.tabs.find((tab) => tab.name === activeTab.value);
+  return {
+    component: tab.component,
+    props: tab.props
+  }
 });
+
 </script>
