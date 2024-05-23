@@ -65,23 +65,7 @@ onMounted(() => {
 });
 
 const videoSource = "/test.mp4"; // Define the video source
-const myCourses = [
-  {
-    id: 1,
-    title: "Course 1",
-    imageUrl: "/path/to/image1.jpg",
-    videoUrl: "/test.mp4",
-    // ... other course properties
-  },
-  {
-    id: 2,
-    title: "Course 2",
-    imageUrl: "/path/to/image2.jpg",
-    videoUrl: "/path/to/video2.mp4",
-    // ... other course properties
-  },
-  // ... other courses
-];
+const myCourses = [];
 
 const showModal = ref(false);
 const selectedCourse = ref({
