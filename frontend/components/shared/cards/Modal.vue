@@ -13,7 +13,7 @@
       <!-- Scrollable Content -->
       <div class="flex flex-col">
         <!-- Video/Image Background Container -->
-        <div class="w-full h-80">
+        <div class="w-full h-96">
           <SharedCardsVideoPlayer
             :videoUrl="course.videoUrl"
             :title="course.title"
@@ -49,7 +49,7 @@
                   />
                   <p class="text-gray-600 ml-3">Certification</p>
                 </div>
-                <p class="font-semibold">€{{ course.certification }}</p>
+                <p class="font-semibold">{{ course.certification }}</p>
               </div>
               <div class="flex justify-between mb-4">
                 <div class="flex items-center">
@@ -200,8 +200,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed } from "vue";
-
 const props = defineProps({
   course: {
     type: Object,
@@ -221,14 +219,12 @@ const closeModal = () => {
   emit("close");
 };
 
-// Function to format the biography and description with line breaks
 const formatText = (text) => {
   return text
     ? text.replace(/\n\n/g, "<br/><br/>").replace(/\n/g, "<br/>")
     : "";
 };
 
-// Computed properties for formatted biography and description
 const formattedBiography = computed(() =>
   formatText(props.course.lecturerBiography)
 );
@@ -236,7 +232,6 @@ const formattedDescription = computed(() =>
   formatText(props.course.description)
 );
 
-// Watch for visibility changes and set focus
 watch(
   () => props.isVisible,
   (newVal) => {
@@ -256,3 +251,7 @@ onMounted(() => {
   }
 });
 </script>
+
+<style scoped>
+/* Modal-specific styles */
+</style>
