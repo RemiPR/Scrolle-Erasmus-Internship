@@ -9,8 +9,8 @@
         :class="[
           'px-4 py-4 font-semibold text-xl select-none',
           activeTab === tab.name
-            ? 'bg-gray-700 text-white hover:bg-gray-800'
-            : 'bg-gray-200 hover:bg-gray-300',
+            ? 'bg-gray-700 dark:bg-gray-200 dark:text-black  text-white hover:bg-gray-800'
+            : 'bg-gray-200 dark:bg-gray-700 dark:text-white text-black hover:bg-gray-300',
         ]"
       >
         {{ tab.label }}
