@@ -106,7 +106,7 @@
             :circleBorderColor="'border-pink-400'"
             :index="2"
           />
-          <SharedUiFaq :title="$t('faq_title')" />
+          <SharedUiFaq class="mt-48" :title="$t('faq_title')" />
           <IndexContactForm />
         </div>
       </main>

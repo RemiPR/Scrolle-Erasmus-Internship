@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-48">
+  <div>
     <div>
       <p class="text-4xl mb-10 font-bold text-gray-700 dark:text-white">
         {{ title }}
