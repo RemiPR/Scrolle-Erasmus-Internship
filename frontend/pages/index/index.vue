@@ -4,15 +4,19 @@
       <main class="text-center text-black dark:text-white w-3/4 mx-auto pb-32">
         <!-- Hero section -->
         <div
-          class="h-screen flex flex-col justify-center items-center relative"
+          class="min-h-screen flex flex-col justify-center items-center relative max-w-3xl 2xl:max-w-5xl mx-auto"
         >
           <div class="mb-24">
-            <h1 class="text-5xl mb-8 font-bold text-gray-700 dark:text-white">
+            <h1
+              class="text-3xl md:text-5xl mb-8 font-bold text-gray-700 dark:text-white"
+            >
               {{ $t("page_title") }}
             </h1>
-            <p class="text-3xl mb-12">{{ $t("page_subtitle") }}</p>
+            <p class="text-xl md:text-3xl mb-12">{{ $t("page_subtitle") }}</p>
             <div>
-              <p class="text-2xl mb-4">{{ $t("before_input_msg") }}</p>
+              <p class="text-lg md:text-2xl mb-4">
+                {{ $t("before_input_msg") }}
+              </p>
               <!-- Input with CTA button -->
               <Form
                 @submit="onCtaSubmit"
@@ -22,14 +26,14 @@
                 v-slot="{ validateField }"
               >
                 <div class="flex flex-col items-center mb-10 relative">
-                  <div class="flex items-center">
+                  <div class="flex flex-col sm:flex-row items-center">
                     <Field name="email" type="email" v-slot="{ field, meta }">
                       <input
                         v-bind="field"
                         v-model="ctaEmail"
                         @input="validateField('email')"
                         :placeholder="$t('email_field_placeholder')"
-                        class="border-2 p-2 rounded-l-lg w-96 h-14 text-black dark:text-white hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
+                        class="border-2 p-2 rounded-lg sm:rounded-l-lg sm:rounded-r-none w-full sm:w-96 h-12 sm:h-14 text-black dark:text-white hover:border-blue-500 focus:border-blue-500 focus:outline-none transition duration-150 ease-in-out dark:bg-gray-600 dark:border-gray-500 dark:hover:border-gray-400 dark:focus:border-white"
                         :class="{
                           'border-red-500 dark:border-red-500':
                             meta.touched && meta.invalid,
@@ -39,7 +43,7 @@
                     <NuxtLink
                       :to="loginLink"
                       @click.native="storeEmail"
-                      class="text-white font-bold w-40 h-14 rounded-r-md flex items-center justify-center bg-gray-700 hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700 select-none"
+                      class="text-white font-bold w-full sm:w-40 h-12 sm:h-14 mt-4 sm:mt-0 sm:ml-2 rounded-lg sm:rounded-r-lg sm:rounded-l-none flex items-center justify-center bg-gray-700 hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700 select-none"
                     >
                       {{ $t("email_input_btn") }}
                     </NuxtLink>
