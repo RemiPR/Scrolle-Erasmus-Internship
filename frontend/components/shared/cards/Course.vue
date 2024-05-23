@@ -35,7 +35,7 @@
     </div>
     <!-- Title with Tooltip -->
     <div
-      class="bg-blue-500 text-white text-lg text-center py-2 overflow-hidden whitespace-nowrap text-ellipsis"
+      class="bg-blue-500 text-white text-lg text-center py-2 px-5 overflow-hidden whitespace-nowrap text-ellipsis"
       style="max-height: 40px"
       :title="course.title"
     >
@@ -68,7 +68,12 @@
           <div
             class="flex flex-col sm:flex-row justify-between items-center my-2"
           >
-            <button @click.stop="openModal">Read more</button>
+            <button
+              @click.stop="openModal"
+              class="px-4 py-2 bg-blue-500 rounded-xl font-bold text-white"
+            >
+              Read more
+            </button>
 
             <div class="w-full sm:w-auto sm:ml-4 text-right">
               <p>Start date:</p>
