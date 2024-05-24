@@ -9,13 +9,6 @@ dotenv.config();
 const JWT_EXPIRY = process.env.JWT_EXPIRY;
 const COOKIE_AGE = process.env.COOKIE_AGE;
 
-const validateSession = async (request, response) => {
-  try {
-  } catch (error) {
-    response.status(500).send(error);
-  }
-};
-
 const createUser = async (request, response) => {
   try {
     if (!request.body.name || !request.body.email) {
@@ -59,41 +52,7 @@ const loginUser = async (request, response) => {
       return response.status(401).json({ message: "Invalid Credentials" });
     }
 
-    // Signs JWT token
-    const token = jwt.sign(
-      { id: userGuest.id, name: userGuest.name, type: userGuest.userType },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: JWT_EXPIRY,
-      }
-    );
-
-    // Response with a cookie which stores the token
-    // httpOnly makes cookie inaccessible to JavaScript running in the browser.
-    // set secure to true when using HTTPS
-    // sameSite Lax balanced safety vulnerable to phishing but maintains session,
-    // sameSite Strict very safe  have to reauthenticate while accessing web from other sources
-    // maxAge how long the cookie lasts, 3600000 = 1 hour
-
-    // "auth" cookie readable by javascript code so that frontend could read its values
-    response.cookie(
-      "auth",
-      {
-        id: userGuest.id,
-        name: userGuest.name,
-        type: userGuest.userType,
-      },
-      { httpOnly: false, maxAge: COOKIE_AGE }
-    );
-    response
-      .status(200)
-      .cookie("authToken", token, {
-        httpOnly: true,
-        secure: false,
-        sameSite: "Lax",
-        maxAge: COOKIE_AGE,
-      })
-      .json({ message: "Login success" });
+    authUtils.loginGuestUser(userGuest, response);
   } catch (error) {
     return response.status(500).send({ message: error.message });
   }
@@ -138,14 +97,51 @@ const registerUser = async (request, response) => {
     // Hashing done in the userGuestSchema.js
     const user = await UserGuest.create(newGuestUser);
 
-    authUtils.loginGuestUserOnRegister(
-      user.id,
-      user.email,
-      user.name,
-      user.userType,
-      response
-    );
+    authUtils.loginGuestUser(user, response);
   } catch (error) {
+    response.status(500).json({ message: error.message });
+  }
+};
+
+// Mainly used when user wants to participate in a free course he has to fill these in
+const addPersonalInfo = async (request, response) => {
+  try {
+    const { name, surname, country, phoneNumber, birth } = request.body;
+    if (
+      !request.user.id ||
+      !name ||
+      !surname ||
+      !country ||
+      !phoneNumber ||
+      !birth
+    ) {
+      return response.status(400).send({
+        message: "Missing info",
+      });
+    }
+
+    const debugUser = await UserGuest.findByIdAndUpdate(
+      request.user.id,
+      {
+        $set: {
+          name: name,
+          surname: surname,
+          "personalInfo.isFilled": true,
+          "personalInfo.birth": birth,
+          "personalInfo.country": country,
+          "personalInfo.phoneNumber": phoneNumber,
+        },
+      },
+      { runValidators: true }
+    ).catch((error) => {
+      response.status(500).send({ message: error.message });
+    });
+
+    return response
+      .status(201)
+      .send({ message: "User updated with personal info" });
+  } catch (error) {
+    console.error(error);
     response.status(500).json({ message: error.message });
   }
 };
@@ -155,4 +151,5 @@ export const UserGuestController = {
   registerUser,
   loginUser,
   logoutUser,
+  addPersonalInfo,
 };

@@ -18,6 +18,12 @@ const userGuestSchema = UserBaseGuest.discriminator(
       facebook: { type: String, default: null },
       google: { type: String, default: null },
     },
+    personalInfo: {
+      isFilled: { type: Boolean, default: false },
+      birth: { type: Date, default: null },
+      country: { type: String, default: null },
+      phoneNumber: { type: String, default: null },
+    },
   })
 );
 

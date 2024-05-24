@@ -69,10 +69,7 @@ const authenticateGoogle = async (request, response) => {
       }
       //console.log(request.cookies.i18n_redirected);
       authUtils.oauthLoginGuestUser(
-        userGuest.id,
-        userGuest.email,
-        userGuest.name,
-        userGuest.userType,
+        userGuest,
         request.cookies.i18n_redirected,
         response
       );
@@ -90,10 +87,7 @@ const authenticateGoogle = async (request, response) => {
         response.status(500).send({ message: error.message });
       });
       authUtils.oauthLoginGuestUser(
-        userGuest.id,
-        userGuest.email,
-        userGuest.name,
-        userGuest.userType,
+        userGuest,
         request.cookies.i18n_redirected,
         response
       );
@@ -144,10 +138,7 @@ const authenticateFacebook = async (request, response) => {
         });
       }
       authUtils.oauthLoginGuestUser(
-        userGuest.id,
-        userGuest.email,
-        userGuest.name,
-        userGuest.userType,
+        userGuest,
         request.cookies.i18n_redirected,
         response
       );
@@ -165,10 +156,7 @@ const authenticateFacebook = async (request, response) => {
         response.status(500).send({ message: error.message });
       });
       authUtils.oauthLoginGuestUser(
-        userGuest.id,
-        userGuestFacebookProfile.email,
-        userGuestName,
-        userGuest.userType,
+        userGuest,
         request.cookies.i18n_redirected,
         response
       );
