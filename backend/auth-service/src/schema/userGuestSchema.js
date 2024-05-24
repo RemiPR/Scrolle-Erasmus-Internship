@@ -23,6 +23,8 @@ const userGuestSchema = UserBaseGuest.discriminator(
       birth: { type: Date, default: null },
       country: { type: String, default: null },
       phoneNumber: { type: String, default: null },
+      education: { type: String, default: null },
+      reason: { type: String, default: null },
     },
   })
 );

@@ -106,21 +106,24 @@ const registerUser = async (request, response) => {
 // Mainly used when user wants to participate in a free course he has to fill these in
 const addPersonalInfo = async (request, response) => {
   try {
-    const { name, surname, country, phoneNumber, birth } = request.body;
+    const { name, surname, country, phoneNumber, birth, education, reason } =
+      request.body;
     if (
       !request.user.id ||
       !name ||
       !surname ||
       !country ||
       !phoneNumber ||
-      !birth
+      !birth ||
+      !education ||
+      !reason
     ) {
       return response.status(400).send({
         message: "Missing info",
       });
     }
 
-    const debugUser = await UserGuest.findByIdAndUpdate(
+    await UserGuest.findByIdAndUpdate(
       request.user.id,
       {
         $set: {
@@ -130,6 +133,8 @@ const addPersonalInfo = async (request, response) => {
           "personalInfo.birth": birth,
           "personalInfo.country": country,
           "personalInfo.phoneNumber": phoneNumber,
+          "personalInfo.education": education,
+          "personalInfo.reason": reason,
         },
       },
       { runValidators: true }
