@@ -10,6 +10,14 @@
 import DynamicTab from "@/components/shared/ui/DynamicTab.vue";
 import SharedUiFaq from "@/components/shared/ui/faq.vue";
 
+
+definePageMeta({
+  layout: "nav",
+  navigation: "guest",
+  enableScrollStyling: false,
+  // middleware: ['auth', 'guest'],
+});
+
 // content for faq free courses tab
 const faqFreeCourses = [
     {question: "faq_guest_freecourse_question1", answer: "faq_guest_freecourse_answer1"},
