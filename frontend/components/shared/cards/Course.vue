@@ -7,6 +7,7 @@
     }"
     @mouseenter="handleMouseEnter(course.id)"
     @mouseleave="handleMouseLeave"
+    @click="openModal"
   >
     <!-- Video/Image Background Container -->
     <div class="relative w-full h-48 overflow-hidden">
@@ -34,7 +35,7 @@
     </div>
     <!-- Title with Tooltip -->
     <div
-      class="bg-blue-500 text-white text-lg text-center py-2 overflow-hidden whitespace-nowrap text-ellipsis"
+      class="bg-blue-500 text-white text-lg text-center py-2 px-5 overflow-hidden whitespace-nowrap text-ellipsis"
       style="max-height: 40px"
       :title="course.title"
     >
@@ -56,7 +57,7 @@
           </div>
           <div class="flex items-center">
             <Icon name="carbon:user-avatar" class="text-black text-2xl" />
-            <p class="ml-2">{{ course.instructor }}</p>
+            <p class="ml-2">{{ course.lecturer }}</p>
           </div>
           <div class="flex items-center">
             <Icon name="carbon:calendar" class="text-black text-2xl" />
@@ -67,7 +68,12 @@
           <div
             class="flex flex-col sm:flex-row justify-between items-center my-2"
           >
-            <button @click="$emit('openModal', course)">Read more</button>
+            <button
+              @click.stop="openModal"
+              class="px-4 py-2 bg-blue-500 rounded-xl font-bold text-white"
+            >
+              Read more
+            </button>
 
             <div class="w-full sm:w-auto sm:ml-4 text-right">
               <p>Start date:</p>
@@ -93,7 +99,6 @@ const hoveredTileIndex = ref(null);
 const videoPlayingIndex = ref(null);
 const videoRef = ref(null);
 const videoPlayingTimeout = ref(null);
-const showModal = ref(false);
 
 const emit = defineEmits(["openModal"]);
 
@@ -116,6 +121,10 @@ const handleMouseLeave = () => {
   if (videoRef.value) {
     videoRef.value.pause();
   }
+};
+
+const openModal = () => {
+  emit("openModal", props.course);
 };
 </script>
 

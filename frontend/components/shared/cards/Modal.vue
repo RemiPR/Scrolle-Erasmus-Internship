@@ -1,19 +1,20 @@
 <template>
   <div
     v-if="isVisible"
-    class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto mt-8"
+    class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto pt-20 my-6 outline-none"
     @keydown.esc="closeModal"
     tabindex="0"
     ref="modalRef"
   >
-    <div class="fixed inset-0 bg-black opacity-50"></div>
+    <div class="fixed inset-0 bg-black opacity-50" @click="closeModal"></div>
     <div
       class="bg-white rounded-xl shadow-lg relative z-10 lg:w-6/12 max-h-screen overflow-y-auto"
+      @click.stop
     >
       <!-- Scrollable Content -->
       <div class="flex flex-col">
         <!-- Video/Image Background Container -->
-        <div class="w-full h-80">
+        <div class="w-full h-96">
           <SharedCardsVideoPlayer
             :videoUrl="course.videoUrl"
             :title="course.title"
@@ -49,7 +50,7 @@
                   />
                   <p class="text-gray-600 ml-3">Certification</p>
                 </div>
-                <p class="font-semibold">€{{ course.certification }}</p>
+                <p class="font-semibold">{{ course.certification }}</p>
               </div>
               <div class="flex justify-between mb-4">
                 <div class="flex items-center">
@@ -141,7 +142,7 @@
             class="border-t-2 border-gray-200 flex justify-between items-center gap-x-12 mt-6"
           >
             <!-- LEFT column -->
-            <div class="flex items-center justify-between w-1/2 text-lg">
+            <div class="flex items-center justify-between w-1/2 text-lg mt-3">
               <div class="flex items-center">
                 <Icon name="mdi:account-tie" class="text-gray-800 font-bold" />
                 <p class="text-gray-600 ml-2">Lecturer</p>
@@ -151,7 +152,7 @@
               </div>
             </div>
             <!-- RIGHT column -->
-            <div class="flex items-center justify-between w-1/2 text-lg">
+            <div class="flex items-center justify-between w-1/2 text-lg mt-3">
               <div class="flex items-center">
                 <p class="text-gray-600 font-semibold mr-4">
                   {{ course.lecturerTitle }}
@@ -169,19 +170,20 @@
           </div>
           <!-- Biography -->
           <div class="mt-6" v-if="formattedBiography">
-            <p class="text-gray-800 mb-2 text-xl">Biography</p>
+            <div class="border-b-2 border-gray-200 mb-4">
+              <p class="text-gray-800 mb-2 text-2xl">Biography</p>
+            </div>
             <div class="tracking-wider" v-html="formattedBiography"></div>
           </div>
           <!-- Course Description -->
-          <div
-            class="mt-6 border-t-2 border-gray-200 pt-6"
-            v-if="formattedDescription"
-          >
-            <p class="text-gray-800 mb-2 text-xl">Course description</p>
+          <div class="mt-6 pt-6" v-if="formattedDescription">
+            <div class="border-b-2 border-gray-200 mb-4">
+              <p class="text-gray-800 mb-2 text-2xl">Course description</p>
+            </div>
             <div class="tracking-wider" v-html="formattedDescription"></div>
             <div class="flex justify-center mt-6">
               <button
-                class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600"
+                class="text-white font-bold w-full sm:w-40 h-12 sm:h-14 mt-4 sm:mt-0 sm:ml-2 rounded-lg bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 select-none"
               >
                 Enrol Now
               </button>
@@ -200,8 +202,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed } from "vue";
-
 const props = defineProps({
   course: {
     type: Object,
@@ -221,14 +221,12 @@ const closeModal = () => {
   emit("close");
 };
 
-// Function to format the biography and description with line breaks
 const formatText = (text) => {
   return text
     ? text.replace(/\n\n/g, "<br/><br/>").replace(/\n/g, "<br/>")
     : "";
 };
 
-// Computed properties for formatted biography and description
 const formattedBiography = computed(() =>
   formatText(props.course.lecturerBiography)
 );
@@ -236,7 +234,6 @@ const formattedDescription = computed(() =>
   formatText(props.course.description)
 );
 
-// Watch for visibility changes and set focus
 watch(
   () => props.isVisible,
   (newVal) => {
@@ -256,3 +253,7 @@ onMounted(() => {
   }
 });
 </script>
+
+<style scoped>
+/* Modal-specific styles */
+</style>

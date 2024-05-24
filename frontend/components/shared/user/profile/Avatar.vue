@@ -1,16 +1,21 @@
 <template>
-  <div class="relative" >
-    <div class="flex items-center cursor-pointer p-2 avatar" @click="toggleMenu">
-      <img :src="'/Grades.jpg'" alt="Avatar" class="h-12 w-12 rounded-full" />
+  <div class="relative">
+    <div
+      class="flex items-center cursor-pointer p-2 avatar"
+      @click="toggleMenu"
+    >
+      <img
+        :src="'/lecturer_avatar.png'"
+        alt="Avatar"
+        class="h-12 w-12 rounded-full"
+      />
     </div>
     <div
       v-if="showMenu"
       v-on-click-outside="(event) => closeAvatarMenu(event.target)"
       class="absolute right-0 mt-2 w-52 bg-white dark:bg-gray-700 rounded-lg shadow-lg z-50 text-gray-800 dark:text-white select-none"
     >
-    <div>
-      
-    </div>
+      <div></div>
       <ul>
         <li
           class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center"
@@ -51,7 +56,7 @@
 import TextColorModeToggle from "@/components/global/TextColorModeToggle.vue";
 import { useLocalePath } from "#imports";
 import { useAuthStore } from "@/stores/authStore";
-import { vOnClickOutside } from '@vueuse/components';
+import { vOnClickOutside } from "@vueuse/components";
 
 const { logoutGuest } = useAuthStore();
 
@@ -67,13 +72,13 @@ const config = useRuntimeConfig();
 
 const showMenu = ref(false);
 function closeAvatarMenu(target) {
-  if (!target.closest('.avatar')) {
+  if (!target.closest(".avatar")) {
     showMenu.value = false;
   }
 }
 
 const toggleMenu = () => {
- // console.log("Executed");
+  // console.log("Executed");
   showMenu.value = !showMenu.value;
 };
 

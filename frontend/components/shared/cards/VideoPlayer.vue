@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full h-full rounded-xl">
+  <div class="relative w-full h-full rounded-full">
     <img
       v-if="imageUrl"
       class="w-full h-full object-cover"
