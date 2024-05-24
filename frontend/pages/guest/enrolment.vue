@@ -1,6 +1,6 @@
 <template>
   <div class="px-4 bg-white dark:bg-gray-800 pt-40">
-    <main class="text-center text-black dark:text-white w-5/6 mx-auto pb-16">
+    <main class="text-center text-black dark:text-white w-7/12 mx-auto pb-16">
       <h2 class="text-4xl font-bold mb-16">Free course enrolment form</h2>
       <div
         class="text-left text-2xl font-semibold text-gray-800 dark:text-white"
@@ -132,6 +132,7 @@
 
 <script setup>
 import * as yup from "yup";
+import {useLocalePath} from #imports
 
 definePageMeta({
   layout: "nav",
@@ -149,6 +150,8 @@ const form = ref({
   education: "",
   reason: "",
 });
+const localePath = useLocalePath();
+const userStore = useAuthStore();
 
 const errors = ref({});
 const countries = ref([
@@ -415,6 +418,7 @@ const schema = yup.object({
 });
 
 const onSubmit = async () => {
+  console.log("Submit attempt");
   try {
     await schema.validate(form.value, { abortEarly: false });
     errors.value = {};
@@ -423,8 +427,10 @@ const onSubmit = async () => {
       ...form.value,
       completedEnrollment: true,
     });
-    router.push("/courses"); // Redirect to the courses page after enrollment
+      console.log("Pushing to guest after submit");
+    navigateTo(localePath("/guest")); // Redirect to the courses page after enrollment
   } catch (err) {
+        console.log("Error Pushing to guest after submit");
     errors.value = {};
     if (err.inner) {
       err.inner.forEach((error) => {
