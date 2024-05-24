@@ -10,7 +10,7 @@ export const useAuthStore = defineStore("auth", {
   getters: {
     getUser: (state) => state.user,
     isLoggedIn: (state) => state.isAuthenticated,
-    hasCompletedEnrollment: (state) => !!state.user?.completedEnrollment,
+    isConfirmed: (state) => !!state.user?.isConfirmed,
     getEnrolledCourses: (state) => state.enrolledCourses,
   },
   actions: {
@@ -22,6 +22,26 @@ export const useAuthStore = defineStore("auth", {
       this.user = null;
       this.isAuthenticated = false;
       this.enrolledCourses = [];
+    },
+    async addPersonalInfo(form, authBaseUrl) {
+      try {
+        await $fetch(`${authBaseUrl}/api/auth/guest/addPersonalInfo`, {
+          method: "POST",
+          body: {
+            name: form.value.firstName,
+            surname: form.value.lastName,
+            country: form.value.country,
+            phoneNumber: form.value.phone,
+            birth: form.value.dob,
+            education: form.value.education,
+            reason: form.value.reason,
+          },
+          credentials: "include",
+        });
+        this.user.isConfirmed = true;
+      } catch (error) {
+        console.error(error);
+      }
     },
     async loginGuest(email, password, redirectPath, authBaseUrl) {
       try {
