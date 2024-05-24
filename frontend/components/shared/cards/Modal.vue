@@ -260,13 +260,14 @@ onMounted(() => {
 });
 const enrollNow = () => {
   if (!userStore.isAuthenticated) {
+    closeModal();
     navigateTo(localePath("/login")); // redirect to login page
-  } else if (!userStore.hasCompletedEnrollment) {
+  } else if (!userStore.isConfirmed) {
+    closeModal();
     navigateTo(localePath("/guest/enrolment")); // redirect to login page
   } else {
     userStore.enrollCourse(props.course.id);
-    alert("Enrolled successfully!");
-    close();
+    closeModal();
   }
 };
 </script>
