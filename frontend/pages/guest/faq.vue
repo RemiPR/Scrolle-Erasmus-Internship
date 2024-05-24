@@ -13,11 +13,19 @@ import SharedUiFaq from "@/components/shared/ui/faq.vue";
 // content for faq free courses tab
 const faqFreeCourses = [
     {question: "faq_guest_freecourse_question1", answer: "faq_guest_freecourse_answer1"},
+    {question: "faq_guest_freecourse_question2", answer: "faq_guest_freecourse_answer2"},
+    {question: "faq_guest_freecourse_question3", answer: "faq_guest_freecourse_answer3"},
+    {question: "faq_guest_freecourse_question4", answer: "faq_guest_freecourse_answer4"},
+    {question: "faq_guest_freecourse_question5", answer: "faq_guest_freecourse_answer5"},
 ]
 
 // content for admission faq tab
 const faqAdmission = [
     {question: "faq_guest_admission_question1", answer: "faq_guest_admission_answer1"},
+    {question: "faq_guest_admission_question2", answer: "faq_guest_admission_answer2"},
+    {question: "faq_guest_admission_question3", answer: "faq_guest_admission_answer3"},
+    {question: "faq_guest_admission_question4", answer: "faq_guest_admission_answer4"},
+    {question: "faq_guest_admission_question5", answer: "faq_guest_admission_answer5"},
 ]
 
 // Array of objects that contain content and name for each tab
