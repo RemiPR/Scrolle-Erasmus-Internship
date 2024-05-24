@@ -4,7 +4,7 @@
     <h2 class="text-4xl font-bold mt-10 mb-16">
       Useful information before you go
     </h2>
-    <SharedTabsTab :tabs="visaTabs" />
+    <SharedUiDynamicTab :tabs="visaTabs" />
   </div>
 </template>
 
