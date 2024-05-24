@@ -183,6 +183,7 @@
             <div class="tracking-wider" v-html="formattedDescription"></div>
             <div class="flex justify-center mt-6">
               <button
+                @click="enrollNow"
                 class="text-white font-bold w-full sm:w-40 h-12 sm:h-14 mt-4 sm:mt-0 sm:ml-2 rounded-lg bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 select-none"
               >
                 Enrol Now
@@ -202,6 +203,8 @@
 </template>
 
 <script setup>
+import { useLocalePath } from "#imports";
+
 const props = defineProps({
   course: {
     type: Object,
@@ -212,6 +215,9 @@ const props = defineProps({
     default: false,
   },
 });
+
+const localePath = useLocalePath();
+const userStore = useAuthStore();
 
 const modalRef = ref(null);
 
@@ -252,6 +258,17 @@ onMounted(() => {
     modalRef.value.focus();
   }
 });
+const enrollNow = () => {
+  if (!userStore.isAuthenticated) {
+    navigateTo(localePath("/login")); // redirect to login page
+  } else if (!userStore.hasCompletedEnrollment) {
+    navigateTo(localePath("/guest/enrolment")); // redirect to login page
+  } else {
+    userStore.enrollCourse(props.course.id);
+    alert("Enrolled successfully!");
+    close();
+  }
+};
 </script>
 
 <style scoped>

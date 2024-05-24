@@ -4,11 +4,14 @@ export const useAuthStore = defineStore("auth", {
   state: () => ({
     user: null,
     isAuthenticated: false,
+    enrolledCourses: [],
   }),
   persist: true,
   getters: {
     getUser: (state) => state.user,
     isLoggedIn: (state) => state.isAuthenticated,
+    hasCompletedEnrollment: (state) => !!state.user?.completedEnrollment,
+    getEnrolledCourses: (state) => state.enrolledCourses,
   },
   actions: {
     async setUser(user) {
@@ -18,6 +21,7 @@ export const useAuthStore = defineStore("auth", {
     clearUser() {
       this.user = null;
       this.isAuthenticated = false;
+      this.enrolledCourses = [];
     },
     async loginGuest(email, password, redirectPath, authBaseUrl) {
       try {
@@ -25,24 +29,23 @@ export const useAuthStore = defineStore("auth", {
         await $fetch(`${authBaseUrl}/api/auth/guest/loginUser`, {
           method: "POST",
           body: {
-            email: email,
-            password: password,
+            email,
+            password,
           },
           credentials: "include",
         });
 
-        // retrieves cookie with user info, this one doesnt have JWT token.
+        // retrieves cookie with user info, this one doesn't have JWT token.
         const userCookie = useCookie("auth").value;
-        // might need to put this into a function later, could be reused
         if (userCookie) {
           const parsedUser = JSON.parse(
             userCookie.startsWith("j:") ? userCookie.slice(2) : userCookie
           );
-          this.setUser(parsedUser); // sets isAuthenticated to true and stores user info in the same "auth" cookie
+          this.setUser(parsedUser);
         }
         navigateTo(redirectPath);
       } catch (error) {
-        if (error.data && error.status == 401) {
+        if (error.data && error.status === 401) {
           this.clearUser();
         } else {
           console.error(error);
@@ -59,6 +62,11 @@ export const useAuthStore = defineStore("auth", {
         navigateTo(redirectPath);
       } catch (error) {
         throw error;
+      }
+    },
+    enrollCourse(courseId) {
+      if (!this.enrolledCourses.includes(courseId)) {
+        this.enrolledCourses.push(courseId);
       }
     },
   },

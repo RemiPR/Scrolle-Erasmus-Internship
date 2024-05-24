@@ -1,6 +1,6 @@
 <template>
   <div class="px-4 bg-white dark:bg-gray-800 pt-40">
-    <main class="text-center text-black dark:text-white w-4/6 mx-auto pb-16">
+    <main class="text-center text-black dark:text-white w-5/6 mx-auto pb-16">
       <h2 class="text-4xl font-bold mb-16">Free course enrolment form</h2>
       <div
         class="text-left text-2xl font-semibold text-gray-800 dark:text-white"
@@ -418,7 +418,12 @@ const onSubmit = async () => {
   try {
     await schema.validate(form.value, { abortEarly: false });
     errors.value = {};
-    // Handle form submission
+    userStore.setUser({
+      ...userStore.getUser,
+      ...form.value,
+      completedEnrollment: true,
+    });
+    router.push("/courses"); // Redirect to the courses page after enrollment
   } catch (err) {
     errors.value = {};
     if (err.inner) {
