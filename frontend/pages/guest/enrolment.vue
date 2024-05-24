@@ -1,8 +1,10 @@
 <template>
   <div class="px-4 bg-white dark:bg-gray-800 pt-40">
-    <main class="text-center text-black dark:text-white w-4/6 mx-auto pb-32">
+    <main class="text-center text-black dark:text-white w-4/6 mx-auto pb-16">
       <h2 class="text-4xl font-bold mb-16">Free course enrolment form</h2>
-      <div class="text-left text-2xl font-semibold text-gray-800">
+      <div
+        class="text-left text-2xl font-semibold text-gray-800 dark:text-white"
+      >
         <p class="text-left">
           To enrol into a free online course you selected, you must first
           complete this form.
@@ -115,16 +117,28 @@
           type="submit"
           class="w-1/6 font-semibold text-white px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 select-none"
         >
-          Submit
+          Save my information
         </button>
+        <p
+          class="text-xl text-gray-700 font-semibold italic mt-12 dark:text-white"
+        >
+          After you complete a course, you will be able to get a certification
+          for £99
+        </p>
       </form>
     </main>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
 import * as yup from "yup";
+
+definePageMeta({
+  layout: "nav",
+  navigation: "guest",
+  enableScrollStyling: false,
+  // middleware: ["auth", "guest"],
+});
 
 const form = ref({
   firstName: "",
