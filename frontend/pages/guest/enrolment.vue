@@ -132,7 +132,9 @@
 
 <script setup>
 import * as yup from "yup";
-import {useLocalePath} from #imports
+import {useLocalePath} from "#imports"
+
+const config = useRuntimeConfig();
 
 definePageMeta({
   layout: "nav",
@@ -422,12 +424,8 @@ const onSubmit = async () => {
   try {
     await schema.validate(form.value, { abortEarly: false });
     errors.value = {};
-    userStore.setUser({
-      ...userStore.getUser,
-      ...form.value,
-      completedEnrollment: true,
-    });
-      console.log("Pushing to guest after submit");
+    await userStore.addPersonalInfo(form, config.public.authBaseUrl);
+    console.log("Pushing to guest after submit");
     navigateTo(localePath("/guest")); // Redirect to the courses page after enrollment
   } catch (err) {
         console.log("Error Pushing to guest after submit");
