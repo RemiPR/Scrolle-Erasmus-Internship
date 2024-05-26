@@ -1,6 +1,7 @@
 <template>
   <div class="relative w-full h-full rounded-full">
-    <img
+    <NuxtImg
+      loading="lazy"
       v-if="imageUrl"
       class="w-full h-full object-cover"
       :src="imageUrl"

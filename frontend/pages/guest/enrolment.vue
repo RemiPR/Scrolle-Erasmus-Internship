@@ -132,7 +132,7 @@
 
 <script setup>
 import * as yup from "yup";
-import {useLocalePath} from "#imports"
+import { useLocalePath } from "#imports";
 
 const config = useRuntimeConfig();
 
@@ -428,7 +428,7 @@ const onSubmit = async () => {
     console.log("Pushing to guest after submit");
     navigateTo(localePath("/guest")); // Redirect to the courses page after enrollment
   } catch (err) {
-        console.log("Error Pushing to guest after submit");
+    console.log("Error Pushing to guest after submit");
     errors.value = {};
     if (err.inner) {
       err.inner.forEach((error) => {

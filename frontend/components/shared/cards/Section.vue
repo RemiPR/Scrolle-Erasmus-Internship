@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <div class="mb-12">
-      <span class="font-bold">{{ title }}</span>
+  <div class="">
+    <div class="my-12 flex items-center justify-between">
+      <span class="text-gray-700 text-3xl font-bold">{{ title }}</span>
       <input
         type="text"
-        class="ml-2 border border-gray-300 rounded-md px-2 py-1"
+        class="ml-2 border-2 border-gray-300 rounded-md px-4 py-1"
         placeholder="Search..."
       />
     </div>

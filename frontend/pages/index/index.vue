@@ -101,7 +101,7 @@
           <IndexFlexibleTreeSection
             :title="$t('tree_section_three_title')"
             :content="$t('tree_section_three_content')"
-            :imageSrc="'/Grades.jpg'"
+            :imageSrc="'/grades.jpg'"
             :circleColorClass="'bg-pink-500'"
             :circleBorderColor="'border-pink-400'"
             :index="2"

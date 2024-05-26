@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
-  devtools: { enabled: false },
+  devtools: { enabled: true },
   runtimeConfig: {
     public: {
       authBaseUrl: process.env.AUTH_BASE_URL,
@@ -14,12 +14,16 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@formkit/auto-animate/nuxt",
     "@vee-validate/nuxt",
-    '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt',
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
+    "@nuxt/image",
   ],
   pages: true,
   app: {
     pageTransition: { name: "page", mode: "out-in" },
+    head: {
+      title: "Scrolle - Interactive Learning Platform",
+    },
   },
   css: ["@/assets/css/transitions.css", "@/assets/css/main.css"],
   colorMode: {
@@ -39,19 +43,19 @@ export default defineNuxtConfig({
         code: "en-US",
         name: "English",
         iso: "en-US",
-        files: ['shared/en.json', 'faq/en.json'],
+        files: ["shared/en.json", "faq/en.json"],
       },
       {
         code: "lv-LV",
         name: "Latviski",
         iso: "lv-LV",
-        files: ['shared/lv.json', 'faq/lv.json'],
+        files: ["shared/lv.json", "faq/lv.json"],
       },
       {
         code: "ru-RU",
         name: "Русский",
         iso: "ru-RU",
-        files: ['shared/ru.json', 'faq/ru.json'],
+        files: ["shared/ru.json", "faq/ru.json"],
       },
     ],
     defaultLocale: "en-US",

@@ -83,7 +83,9 @@
         'max-[900px]:hidden',
       ]"
     >
-      <img
+      <NuxtImg
+        loading="lazy"
+        placeholder
         :src="props.imageSrc"
         alt="Description Image"
         class="w-full h-full object-cover"

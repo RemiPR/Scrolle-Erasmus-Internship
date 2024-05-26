@@ -1,7 +1,12 @@
 <template>
   <div class="flex items-center">
     <div class="relative mr-4">
-      <img :src="avatarUrl" alt="Avatar" class="h-16 w-16 rounded-full" />
+      <NuxtImg
+        loading="lazy"
+        :src="avatarUrl"
+        alt="Avatar"
+        class="h-16 w-16 rounded-full"
+      />
       <!-- Edit button overlay -->
       <button
         @click="triggerFileInput"

@@ -4,7 +4,7 @@
       class="flex items-center cursor-pointer p-2 avatar"
       @click="toggleMenu"
     >
-      <img
+      <NuxtImg
         :src="'/lecturer_avatar.png'"
         alt="Avatar"
         class="h-12 w-12 rounded-full"

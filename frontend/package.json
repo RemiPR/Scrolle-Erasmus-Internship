@@ -24,10 +24,12 @@
     "@vee-validate/yup": "^4.12.8",
     "material-icons": "^1.13.12",
     "nuxt": "^3.11.2",
+    "sharp": "^0.33.4",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@nuxt/image": "^1.7.0",
     "@nuxtjs/color-mode": "^3.4.1",
     "autoprefixer": "^10.4.19",
     "nuxt-icon": "^0.6.10",

@@ -11,7 +11,9 @@
   >
     <!-- Video/Image Background Container -->
     <div class="relative w-full h-48 overflow-hidden">
-      <img
+      <NuxtImg
+        preload
+        :placeholder="course.imageUrlLowRes"
         class="w-full h-full object-cover"
         :src="course.imageUrl"
         :alt="course.title"

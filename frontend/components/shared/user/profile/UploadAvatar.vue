@@ -1,6 +1,11 @@
 <template>
   <div class="avatar-upload">
-    <img :src="avatarUrl" alt="User Avatar" class="avatar rounded-full" />
+    <NuxtImg
+      loading="lazy"
+      :src="avatarUrl"
+      alt="User Avatar"
+      class="avatar rounded-full"
+    />
     <button @click="triggerFileInput" class="edit-button">Edit</button>
     <input type="file" ref="fileInput" @change="handleFileChange" hidden />
   </div>

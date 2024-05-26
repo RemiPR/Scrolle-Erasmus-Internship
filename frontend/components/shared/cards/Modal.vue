@@ -159,7 +159,7 @@
                 </p>
               </div>
               <div>
-                <img
+                <NuxtImg
                   v-if="course.lecturerImg"
                   class="w-16 h-16 rounded-full"
                   :src="course.lecturerImg"
