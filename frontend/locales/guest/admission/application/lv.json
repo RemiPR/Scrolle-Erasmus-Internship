@@ -1,0 +1,124 @@
+{
+  "application_first_paragraph": {
+    "first_text_line_span": "Pārbaudiet, vai jūs atbilstat prasībām.",
+    "first_text_line_paragraph": "Ja vēl neesat to izdarījis, vispirms pārbaudiet uzņemšanas prasības.",
+    "second_text_line_first_span": "Izvēlieties savu uzņemšanu.",
+    "second_text_line_first_paragraph": "Šajā universitātē ir 2 uzņemšanas:",
+    "second_text_line_second_span": "Pavasaris",
+    "second_text_line_second_paragraph": "un",
+    "second_text_line_third_span": "Rudens",
+    "third_text_line_paragraph": "Pavasara uzņemšana parasti sākas novembrī un ilgst līdz decembrim, studijas sākas februārī.",
+    "fourth_text_line_paragraph": "Rudens uzņemšana parasti sākas martā un ilgst līdz jūlijam vai augustam, studijas sākas septembrī.",
+    "fifth_text_line_span": "Ņemiet vērā, ka uzņemšanas termiņi var tikt noteikti agrāk atkarībā no jūsu pilsonības.",
+    "sixth_text_line_span": "Jautājiet, ja jums ir jautājumi.",
+    "sixth_text_line_paragraph": "Sazinieties ar izvēlētās universitātes starptautisko biroju vai Study in Latvia, ja jums ir papildu jautājumi."
+  },
+  "application_first_subtitle": "Pirms uzsākt tiešsaistes pieteikuma procedūru, lūdzu, sagatavojiet šādus dokumentus:",
+  "application_list": {
+    "first_application_list_element": "Vidējās izglītības sertifikāta kopija ar transkriptu oriģinālvalodā un oficiālu tulkojumu angļu vai krievu valodā;",
+    "second_application_list_element": "Bakalaura grāda sertifikāta kopija ar transkriptu oriģinālvalodā un oficiālu tulkojumu angļu vai krievu valodā (ja piesakāties maģistra studijām);",
+    "third_application_list_element": "Maģistra grāda sertifikāta kopija ar transkriptu oriģinālvalodā un oficiālu tulkojumu angļu vai krievu valodā (ja piesakāties doktorantūras studijām);",
+    "fourth_application_list_element": "Doktorantūras darba priekšlikums (aptuveni 10 lappuses; ja piesakāties doktorantūras studijām);",
+    "fifth_application_list_element": "Angļu valodas sertifikāts - ja jums ir šāds sertifikāts (lūdzu, skatiet zemāk pieņemamos);",
+    "sixth_application_list_element": "Curriculum Vitae;",
+    "seventh_application_list_element": "Pases kopija;",
+    "eighth_application_list_element": "Viena fotogrāfija;"
+  },
+  "application_admission_form_subtitle": "Tiešsaistes uzņemšanas veidlapa",
+  "application_step_one_subtitle": "1. solis: Studiju izvēle",
+
+  "application_form_step_one": {
+    "question_latvian_or_foreign": "Vai jūs esat latvietis vai ārzemnieks?",
+    "option_latvian": "Latvietis",
+    "option_foreign": "Ārzemnieks",
+    "question_intake": "Izvēlieties savu uzsākšanas laiku:",
+    "option_september": "2024/2025 Septembris",
+    "option_february": "2024/2025 Februāris"
+  },
+
+  "application_form_study_programme_selection": {
+    "study_programme_subtitle": "Izvēlieties vienu studiju programmu:",
+    "programme_option_college": "Koleģa",
+    "programme_college_option_computer_systems": "Datoru sistēmas",
+    "programme_option_bachelors": "Profesionālie bakalauri",
+    "programme_bachelors_option_business_logistics": "Biznesa loģistikas vadība",
+    "programme_bachelors_option_computer_systems": "Datoru sistēmas",
+    "programme_bachelors_option_international_communication_management": "Starptautiskā komunikācijas vadība",
+    "programme_bachelors_option_tourism": "Tūrisma un viesmīlības vadība",
+    "programme_bachelors_option_business_administration": "Biznesa administrācija",
+    "programme_option_doctoral": "Doktorantūra",
+    "programme_doctoral_option_communication": "Komunikācijas vadība",
+    "programme_doctoral_option_law": "Tiesību zinātne",
+    "programme_doctoral_option_business_administration": "Biznesa administrācija",
+    "programme_doctoral_option_management_science": "Pārvaldības zinātne",
+    "programme_option_masters": "Maģistratūra",
+    "programme_masters_option_business_psychology": "Biznesa psiholoģija un cilvēkresursu vadība uzņēmējdarbībā",
+    "programme_masters_option_communication_management": "Stratēģiskās komunikācijas vadība",
+    "programme_masters_option_tourism": "Tūrisma stratēģiskā vadība",
+    "programme_masters_option_business_administration": "Biznesa administrācija",
+    "question_type_of_study": "Studiju veids:",
+    "option_on_campus": "Kampusā",
+    "option_distance_learning": "Tālākizglītība"
+  },
+
+  "application_form_step_two": {
+    "step_two_subtitle": "2. solis: Vidējā izglītība",
+    "country": "Valsts",
+    "name": "Nosaukums",
+    "certificate_number": "Sertifikāta numurs",
+    "date_of_issue": "Izdošanas datums",
+    "certificate": "Augšupielādēt sertifikātu",
+    "transcript_of_records": "Augšupielādēt izglītības dokumentu kopiju"
+  },
+  "application_form_step_three_part_one": {
+    "step_three_part_one_subtitle": "3. solis: Personas dati, 1. daļa",
+    "first_name": "Vārds",
+    "middle_name": "Otrajā reizē",
+    "surname": "Uzvārds",
+    "passport_number": "Pase numurs",
+    "date_of_issue": "Izdošanas datums",
+    "passport_photo": "Augšupielādēt pasu foto",
+    "place_of_issue": "Izdēstes vieta",
+    "date_of_expiry": "Derīguma termiņš",
+    "email": "E-pasts",
+    "photo": "Augšupielādēt foto",
+    "personal_code": "Personas kods/ID kods",
+    "date_of_birth": "Dzimšanas datums",
+    "citizenship": "Pilsonība",
+    "question": "Izvēlieties savu dzimumu",
+    "option_male": "Vīrietis",
+    "option_female": "Sieviete",
+    "option_other": "Cits"
+  },
+  "application_form_step_three_part_two": {
+    "step_three_part_two_subtitle": "3. solis: Personas dati, 2. daļa",
+    "street_house_apartament_number": "Iela, mājas/dzīvokļa numurs",
+    "postal_code": "Pasta indekss",
+    "city": "Pilsēta",
+    "mobile_phone": "Mobilais telefons",
+    "native_language": "Dzimtā valoda",
+    "employer": "Darba devējs",
+    "position": "Amats",
+    "question_accomodation": "Vai jums ir vajadzīgs dzīvoklis Jauniešu viesnīcā (4-vietīgas istabas)?",
+    "option_yes": "Jā",
+    "option_no": "Nē",
+    "language_certificates": "Augšupielādēt valodas sertifikātus",
+    "cv": "Augšupielādēt savu CV"
+  },
+  "application_form_step_four": {
+    "step_four_subtitle": "4. solis: Neatliekamais kontakts",
+    "full_name": "Pilns vārds",
+    "part_four_street_house_apartment_number": "Iela, mājas/dzīvokļa numurs",
+    "part_four_postal_code": "Pasta indekss",
+    "part_four_country": "Valsts",
+    "part_four_city": "Pilsēta",
+    "part_four_phone_number": "Tālruņa numurs",
+    "part_four_email": "E-pasts",
+    "relationship": "Attiecības"
+  },
+  "application_form_final_step": {
+    "final_step_subtitle": "Pēdējais solis!",
+    "final_step_input_subtitle": "Kā jūs uzzinājāt par mums?"
+  },
+  "register_button": "Reģistrēties"
+}

@@ -1,0 +1,125 @@
+{
+  "application_first_paragraph": {
+    "first_text_line_span": "Check if you qualify.",
+    "first_text_line_paragraph": "If you haven't done so, check the entrance requirements first.",
+    "second_text_line_first_span": "Choose your intake.",
+    "second_text_line_first_paragraph": "This university has 2 intakes:",
+    "second_text_line_second_span": "Spring",
+    "second_text_line_second_paragraph": "and",
+    "second_text_line_third_span": "Autumn",
+    "third_text_line_paragraph": "Spring intake usually starts in November and runs until December with studies starting in February.",
+    "fourth_text_line_paragraph": "Autumn intake usually starts in March and is open until July or August with studies starting in September.",
+    "fifth_text_line_span": "Be aware that intake deadlines may be set earlier depending on your citizenship.",
+    "sixth_text_line_span": "Ask if you have questions.",
+    "sixth_text_line_paragraph": "Contact international office of the chosen university or Study in Latvia if you have additional questions."
+  },
+  "application_first_subtitle": "Before starting the online application procedure, please, prepare the following documents:",
+
+  "application_list": {
+    "first_application_list_element": "A copy of the secondary education certificate(s)* with a transcript in the original language and an official translation to English or Russian;",
+    "second_application_list_element": "A copy of the Bachelor’s degree certificate* with a transcript in the original language and an official translation to English or Russian (if applying for Master’s studies);",
+    "third_application_list_element": "A copy of the Master’s degree certificate* with a transcript in the original language and an official translation to English or Russian (if applying for Doctoral studies);",
+    "fourth_application_list_element": "PhD work proposal (approx. 10 pages; if applying for Doctoral studies);",
+    "fifth_application_list_element": "English language certificate** - if you have such certificate (please see below on the Accepted ones);",
+    "sixth_application_list_element": "Curriculum Vitae;",
+    "seventh_application_list_element": "A copy of the passport;",
+    "eighth_application_list_element": "One photo;"
+  },
+  "application_admission_form_subtitle": "Online Admission Form",
+  "application_step_one_subtitle": "Step 1: Study selection",
+
+  "application_form_step_one": {
+    "question_latvian_or_foreign": "Are you Latvian or foreign?",
+    "option_latvian": "Latvian",
+    "option_foreign": "Foreign",
+    "question_intake": "Select your intake:",
+    "option_september": "2024/2025 September",
+    "option_february": "2024/2025 February"
+  },
+
+  "application_form_study_programme_selection": {
+    "study_programme_subtitle": "Select one study programme:",
+    "programme_option_college": "College",
+    "programme_college_option_computer_systems": "Computer Systems",
+    "programme_option_bachelors": "Professional Bachelors",
+    "programme_bachelors_option_business_logistics": "Business Logistics Management",
+    "programme_bachelors_option_computer_systems": "Computer Systems",
+    "programme_bachelors_option_international_communication_management": "International Communication Management",
+    "programme_bachelors_option_tourism": "Tourism and Hospitality Management",
+    "programme_bachelors_option_business_administration": "Business Administration",
+    "programme_option_doctoral": "Doctoral",
+    "programme_doctoral_option_communication": "Communication Management",
+    "programme_doctoral_option_law": "Law Science",
+    "programme_doctoral_option_business_administration": "Business Administration",
+    "programme_doctoral_option_management_science": "Management Science",
+    "programme_option_masters": "Masters",
+    "programme_masters_option_business_psychology": "Business Psychology and Human Resource Management in Entrepreneurship",
+    "programme_masters_option_communication_management": "Strategic Communication Management",
+    "programme_masters_option_tourism": "Tourism Strategic Management",
+    "programme_masters_option_business_administration": "Business Administration",
+    "question_type_of_study": "Type of study:",
+    "option_on_campus": "On Campus",
+    "option_distance_learning": "Distance learning"
+  },
+
+  "application_form_step_two": {
+    "step_two_subtitle": "Step 2: Secondary Education",
+    "country": "Country",
+    "name": "Name of graduated educational establishment",
+    "certificate_number": "Certificate No.",
+    "date_of_issue": "Date of issue",
+    "certificate": "Upload Certificate",
+    "transcript_of_records": "Upload Transcript of Records"
+  },
+  "application_form_step_three_part_one": {
+    "step_three_part_one_subtitle": "Step 3: Personal Data part 1",
+    "first_name": "First Name",
+    "middle_name": "Middle Name",
+    "surname": "Surname",
+    "passport_number": "Passport number",
+    "date_of_issue": "Date of issue",
+    "passport_photo": "Upload passport photo",
+    "place_of_issue": "Place of issue",
+    "date_of_expiry": "Date of expiry",
+    "email": "Email adress",
+    "photo": "Upload photo",
+    "personal_code": "Personal code/ID code",
+    "date_of_birth": "Date of birth",
+    "citizenship": "Citizenship",
+    "question": "Select your gender",
+    "option_male": "Male",
+    "option_female": "Female",
+    "option_other": "Other"
+  },
+  "application_form_step_three_part_two": {
+    "step_three_part_two_subtitle": "Step 3: Personal Data part 2",
+    "street_house_apartament_number": "Street, House/apartment no",
+    "postal_code": "Postal code",
+    "city": "City",
+    "mobile_phone": "Mobile phone",
+    "native_language": "Native language",
+    "employer": "Employer",
+    "position": "Position",
+    "question_accomodation": "Do you need accommodation at Youth Hostel (4-seated rooms only)?",
+    "option_yes": "Yes",
+    "option_no": "No",
+    "language_certificates": "Upload your language certificates",
+    "cv": "Upload your CV"
+  },
+  "application_form_step_four": {
+    "step_four_subtitle": "Step 4: Emergency contact",
+    "full_name": "Full name",
+    "part_four_street_house_apartment_number": "Street, House/apartment No",
+    "part_four_postal_code": "Postal code",
+    "part_four_country": "Country",
+    "part_four_city": "City",
+    "part_four_phone_number": "Phone number",
+    "part_four_email": "E-mail",
+    "relationship": "Relationship"
+  },
+  "application_form_final_step": {
+    "final_step_subtitle": "Final Step!",
+    "final_step_input_subtitle": "How did you hear about us?"
+  },
+  "register_button": "Register"
+}

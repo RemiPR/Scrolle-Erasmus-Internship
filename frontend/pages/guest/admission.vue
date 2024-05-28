@@ -12,7 +12,7 @@ import DynamicTab from "@/components/shared/ui/DynamicTab.vue";
 import EntranceRequirements from "@/components/guest/admission/EntranceRequirements.vue";
 import Permits from "@/components/guest/admission/visas/Permits.vue";
 import Fees from "@/components/guest/admission/fees/Fees.vue";
-import Application from "@/components/guest/admission/Application/Application.vue";
+import Application from "@/components/guest/admission/application/Application.vue";
 
 definePageMeta({
   layout: "nav",

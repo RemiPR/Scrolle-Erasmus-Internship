@@ -4,7 +4,9 @@
     <form @submit.prevent="onSubmit">
       <!-- Nationality selection -->
       <div class="mb-4 flex items-center">
-        <label class="font-semibold mr-4">Are you Latvian or foreign?</label>
+        <label class="font-semibold mr-4">{{
+          $t("application_form_step_one.question_latvian_or_foreign")
+        }}</label>
         <div class="flex space-x-4">
           <label class="flex items-center">
             <input
@@ -13,7 +15,7 @@
               v-model="nationality"
               class="mr-2"
             />
-            Latvian
+            {{ $t("application_form_step_one.option_latvian") }}
           </label>
           <label class="flex items-center">
             <input
@@ -22,22 +24,24 @@
               v-model="nationality"
               class="mr-2"
             />
-            Foreign
+            {{ $t("application_form_step_one.option_foreign") }}
           </label>
         </div>
       </div>
 
       <!-- Intake selection -->
       <div class="mb-8 flex items-center">
-        <label class="font-semibold mr-4">Select your intake:</label>
+        <label class="font-semibold mr-4">
+          {{ $t("application_form_step_one.question_intake") }}</label
+        >
         <div class="flex space-x-4">
           <label class="flex items-center">
             <input type="radio" value="spring" v-model="intake" class="mr-2" />
-            2024/2025 September
+            {{ $t("application_form_step_one.option_september") }}
           </label>
           <label class="flex items-center">
             <input type="radio" value="autumn" v-model="intake" class="mr-2" />
-            2024/2025 February
+            {{ $t("application_form_step_one.option_february") }}
           </label>
         </div>
       </div>
@@ -45,7 +49,11 @@
       <!-- Study Programmes -->
       <div class="mb-6">
         <h3 class="text-2xl font-semibold text-gray-700 my-12">
-          Select one study programme:
+          {{
+            $t(
+              "application_form_study_programme_selection.study_programme_subtitle"
+            )
+          }}
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 select-none">
           <div>
@@ -56,7 +64,11 @@
                 v-model="selectedProgrammes"
                 value="college"
               />
-              College
+              {{
+                $t(
+                  "application_form_study_programme_selection.programme_option_college"
+                )
+              }}
             </label>
             <ul v-if="selectedProgrammes.includes('college')" class="ml-6 mt-2">
               <li>
@@ -67,7 +79,13 @@
                     value="college-Computer Systems"
                     class="mr-2"
                   />
-                  <span class="truncate">Computer Systems</span>
+                  <span class="truncate">
+                    {{
+                      $t(
+                        "application_form_study_programme_selection.programme_college_option_computer_systems"
+                      )
+                    }}</span
+                  >
                 </label>
               </li>
             </ul>
@@ -80,7 +98,11 @@
                 v-model="selectedProgrammes"
                 value="professional_bachelors"
               />
-              Professional Bachelors
+              {{
+                $t(
+                  "application_form_study_programme_selection.programme_option_bachelors"
+                )
+              }}
             </label>
             <ul
               v-if="selectedProgrammes.includes('professional_bachelors')"
@@ -94,7 +116,13 @@
                     value="professional_bachelors-Business Logistics Management"
                     class="mr-2"
                   />
-                  <span class="truncate">Business Logistics Management</span>
+                  <span class="truncate">
+                    {{
+                      $t(
+                        "application_form_study_programme_selection.programme_bachelors_option_business_logistics"
+                      )
+                    }}</span
+                  >
                 </label>
               </li>
               <li>
@@ -105,7 +133,13 @@
                     value="professional_bachelors-Computer Systems"
                     class="mr-2"
                   />
-                  <span class="truncate">Computer Systems</span>
+                  <span class="truncate">
+                    {{
+                      $t(
+                        "application_form_study_programme_selection.programme_bachelors_option_computer_systems"
+                      )
+                    }}</span
+                  >
                 </label>
               </li>
               <li>
@@ -116,8 +150,12 @@
                     value="professional_bachelors-International Communication Management"
                     class="mr-2"
                   />
-                  <span class="truncate"
-                    >International Communication Management</span
+                  <span class="truncate">
+                    {{
+                      $t(
+                        "application_form_study_programme_selection.programme_bachelors_option_international_communication_management"
+                      )
+                    }}</span
                   >
                 </label>
               </li>
@@ -129,8 +167,12 @@
                     value="professional_bachelors-Tourism and Hospitality Management"
                     class="mr-2"
                   />
-                  <span class="truncate"
-                    >Tourism and Hospitality Management</span
+                  <span class="truncate">
+                    {{
+                      $t(
+                        "application_form_study_programme_selection.programme_bachelors_option_tourism"
+                      )
+                    }}</span
                   >
                 </label>
               </li>
@@ -142,7 +184,13 @@
                     value="professional_bachelors-Business Administration"
                     class="mr-2"
                   />
-                  <span class="truncate">Business Administration</span>
+                  <span class="truncate">
+                    {{
+                      $t(
+                        "application_form_study_programme_selection.programme_bachelors_option_business_administration"
+                      )
+                    }}</span
+                  >
                 </label>
               </li>
             </ul>
@@ -155,7 +203,11 @@
                 v-model="selectedProgrammes"
                 value="masters"
               />
-              Masters
+              {{
+                $t(
+                  "application_form_study_programme_selection.programme_option_masters"
+                )
+              }}
             </label>
             <ul
               v-if="selectedProgrammes.includes('masters')"
@@ -169,9 +221,12 @@
                     value="masters-Business Psychology and Human Resource Management in Entrepreneurship"
                     class="mr-2"
                   />
-                  <span class="truncate"
-                    >Business Psychology and Human Resource Management in
-                    Entrepreneurship</span
+                  <span class="truncate">
+                    {{
+                      $t(
+                        "application_form_study_programme_selection.programme_masters_option_business_psychology"
+                      )
+                    }}</span
                   >
                 </label>
               </li>
@@ -183,8 +238,12 @@
                     value="masters-Strategic Communication Management"
                     class="mr-2"
                   />
-                  <span class="truncate"
-                    >Strategic Communication Management</span
+                  <span class="truncate">
+                    {{
+                      $t(
+                        "application_form_study_programme_selection.programme_masters_option_communication_management"
+                      )
+                    }}</span
                   >
                 </label>
               </li>
@@ -196,7 +255,13 @@
                     value="masters-Tourism Strategic Management"
                     class="mr-2"
                   />
-                  <span class="truncate">Tourism Strategic Management</span>
+                  <span class="truncate">
+                    {{
+                      $t(
+                        "application_form_study_programme_selection.programme_masters_option_tourism"
+                      )
+                    }}</span
+                  >
                 </label>
               </li>
               <li>
@@ -207,7 +272,13 @@
                     value="masters-Business Administration"
                     class="mr-2"
                   />
-                  <span class="truncate">Business Administration</span>
+                  <span class="truncate">
+                    {{
+                      $t(
+                        "application_form_study_programme_selection.programme_masters_option_business_administration"
+                      )
+                    }}</span
+                  >
                 </label>
               </li>
             </ul>
@@ -220,7 +291,11 @@
                 v-model="selectedProgrammes"
                 value="doctoral"
               />
-              Doctoral
+              {{
+                $t(
+                  "application_form_study_programme_selection.programme_option_doctoral"
+                )
+              }}
             </label>
             <ul
               v-if="selectedProgrammes.includes('doctoral')"
@@ -234,7 +309,13 @@
                     value="doctoral-Communication Management"
                     class="mr-2"
                   />
-                  <span class="truncate">Communication Management</span>
+                  <span class="truncate">
+                    {{
+                      $t(
+                        "application_form_study_programme_selection.programme_doctoral_option_communication"
+                      )
+                    }}</span
+                  >
                 </label>
               </li>
               <li>
@@ -245,7 +326,13 @@
                     value="doctoral-Law Science"
                     class="mr-2"
                   />
-                  <span class="truncate">Law Science</span>
+                  <span class="truncate">
+                    {{
+                      $t(
+                        "application_form_study_programme_selection.programme_doctoral_option_law"
+                      )
+                    }}</span
+                  >
                 </label>
               </li>
               <li>
@@ -256,7 +343,13 @@
                     value="doctoral-Business Administration"
                     class="mr-2"
                   />
-                  <span class="truncate">Business Administration</span>
+                  <span class="truncate">
+                    {{
+                      $t(
+                        "application_form_study_programme_selection.programme_doctoral_option_business_administration."
+                      )
+                    }}</span
+                  >
                 </label>
               </li>
               <li>
@@ -267,7 +360,13 @@
                     value="doctoral-Management Science, joint study programme with Daugavpils University"
                     class="mr-2"
                   />
-                  <span class="truncate">Management Science</span>
+                  <span class="truncate">
+                    {{
+                      $t(
+                        "application_form_study_programme_selection.programme_doctoral_option_management_science"
+                      )
+                    }}</span
+                  >
                 </label>
               </li>
             </ul>
@@ -276,7 +375,13 @@
       </div>
       <!-- Type of study -->
       <div class="mb-8 flex items-center">
-        <label class="font-semibold mr-4">Type of study:</label>
+        <label class="font-semibold mr-4">
+          {{
+            $t(
+              "application_form_study_programme_selection.question_type_of_study"
+            )
+          }}</label
+        >
         <div class="flex space-x-4">
           <label class="flex items-center">
             <input
@@ -285,7 +390,9 @@
               v-model="studyType"
               class="mr-2"
             />
-            On Campus
+            {{
+              $t("application_form_study_programme_selection.option_on_campus")
+            }}
           </label>
           <label class="flex items-center">
             <input
@@ -294,19 +401,25 @@
               v-model="studyType"
               class="mr-2"
             />
-            Distance learning
+            {{
+              $t(
+                "application_form_study_programme_selection.option_distance_learning"
+              )
+            }}
           </label>
         </div>
       </div>
 
       <!-- Step 2: Secondary Education -->
       <h3 class="text-2xl font-semibold text-gray-700 my-12">
-        Step 2: Secondary Education
+        {{ $t("application_form_step_two.step_two_subtitle") }}
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-x-48 mb-6">
         <!-- Conditional Country input -->
         <div>
-          <label for="country" class="font-semibold">Country</label>
+          <label for="country" class="font-semibold">
+            {{ $t("application_form_step_two.country") }}</label
+          >
           <div v-if="nationality === 'latvian'">
             <input
               v-model="country"
@@ -333,8 +446,8 @@
 
         <!-- Name of graduated educational establishment -->
         <div>
-          <label for="graduatedEstablishment" class="font-semibold"
-            >Name of graduated educational establishment</label
+          <label for="graduatedEstablishment" class="font-semibold">
+            {{ $t("application_form_step_two.name") }}</label
           >
           <input
             v-model="graduatedEstablishment"
@@ -351,8 +464,8 @@
 
         <!-- Certificate No. -->
         <div class="relative">
-          <label for="certificateNo" class="font-semibold"
-            >Certificate No.</label
+          <label for="certificateNo" class="font-semibold">
+            {{ $t("application_form_step_two.certificate_number") }}</label
           >
           <div class="relative">
             <input
@@ -370,7 +483,9 @@
 
         <!-- Date of issue -->
         <div class="relative">
-          <label for="dateOfIssue" class="font-semibold">Date of issue</label>
+          <label for="dateOfIssue" class="font-semibold">
+            {{ $t("application_form_step_two.date_of_issue") }}</label
+          >
           <div class="relative">
             <input
               v-model="dateOfIssue"
@@ -387,8 +502,8 @@
         </div>
         <!-- Certificate Upload -->
         <div>
-          <label for="certificateUpload" class="font-semibold"
-            >Upload Certificate</label
+          <label for="certificateUpload" class="font-semibold">
+            {{ $t("application_form_step_two.certificate") }}</label
           >
           <input
             type="file"
@@ -402,8 +517,8 @@
 
         <!-- Transcript Upload -->
         <div>
-          <label for="transcriptUpload" class="font-semibold"
-            >Upload Transcript of Records</label
+          <label for="transcriptUpload" class="font-semibold">
+            {{ $t("application_form_step_two.transcript_of_records") }}</label
           >
           <input
             type="file"
@@ -418,12 +533,18 @@
 
       <!-- Step 3: Personal data part 1 -->
       <h3 class="text-2xl font-semibold text-gray-700 my-12">
-        Step 3: Personal Data part 1
+        {{
+          $t(
+            "application_form_step_three_part_one.step_three_part_one_subtitle"
+          )
+        }}
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-x-48 mb-6">
         <!--  First Name input -->
         <div>
-          <label for="firstName" class="font-semibold">First Name</label>
+          <label for="firstName" class="font-semibold">
+            {{ $t("application_form_step_three_part_one.first_name") }}</label
+          >
           <input
             v-model="firstName"
             v-bind="firstNameAttrs"
@@ -438,7 +559,9 @@
 
         <!-- Middle Name input -->
         <div>
-          <label for="middleName" class="font-semibold">Middle Name</label>
+          <label for="middleName" class="font-semibold">
+            {{ $t("application_form_step_three_part_one.middle_name") }}</label
+          >
           <input
             v-model="middleName"
             v-bind="middleNameAttrs"
@@ -453,7 +576,9 @@
 
         <!--  Surname input -->
         <div>
-          <label for="surname" class="font-semibold">Surname</label>
+          <label for="surname" class="font-semibold">
+            {{ $t("application_form_step_three_part_one.surname") }}</label
+          >
           <input
             v-model="surname"
             v-bind="surnameAttrs"
@@ -468,7 +593,9 @@
 
         <!-- Email input field -->
         <div>
-          <label for="email" class="font-semibold">Email address</label>
+          <label for="email" class="font-semibold">
+            {{ $t("application_form_step_three_part_one.email") }}</label
+          >
           <input
             v-model="email"
             v-bind="emailAttrs"
@@ -484,8 +611,8 @@
 
         <!-- Personal photo Upload -->
         <div>
-          <label for="personalPhotoUpload" class="font-semibold"
-            >Upload photo</label
+          <label for="personalPhotoUpload" class="font-semibold">
+            {{ $t("application_form_step_three_part_one.photo") }}</label
           >
           <input
             type="file"
@@ -499,8 +626,10 @@
 
         <!-- Personal code/ID code input field -->
         <div>
-          <label for="personalCode" class="font-semibold"
-            >Personal code/ID code</label
+          <label for="personalCode" class="font-semibold">
+            {{
+              $t("application_form_step_three_part_one.personal_code")
+            }}</label
           >
           <input
             v-model="personalCode"
@@ -517,7 +646,11 @@
 
         <!-- Date of birth field -->
         <div>
-          <label for="dob" class="font-semibold">Date of birth</label>
+          <label for="dob" class="font-semibold">
+            {{
+              $t("application_form_step_three_part_one.date_of_birth")
+            }}</label
+          >
           <input
             v-model="dob"
             v-bind="dobAttrs"
@@ -533,7 +666,9 @@
 
         <!-- Citizenship field -->
         <div v-if="nationality === 'foreign'">
-          <label for="citizenship" class="font-semibold">Citizenship</label>
+          <label for="citizenship" class="font-semibold">
+            {{ $t("application_form_step_three_part_one.citizenship") }}</label
+          >
           <input
             v-model="citizenship"
             v-bind="citizenshipAttrs"
@@ -549,11 +684,13 @@
 
         <!-- Gender selection -->
         <div class="mb-8 flex items-center">
-          <label class="font-semibold mr-4">Select your gender</label>
+          <label class="font-semibold mr-4">
+            {{ $t("application_form_step_three_part_one.question") }}</label
+          >
           <div class="flex space-x-4">
             <label class="flex items-center">
               <input type="radio" value="male" v-model="gender" class="mr-2" />
-              Male
+              {{ $t("application_form_step_three_part_one.option_male") }}
             </label>
             <label class="flex items-center">
               <input
@@ -562,19 +699,21 @@
                 v-model="gender"
                 class="mr-2"
               />
-              Female
+              {{ $t("application_form_step_three_part_one.option_female") }}
             </label>
             <label class="flex items-center">
               <input type="radio" value="other" v-model="gender" class="mr-2" />
-              Other
+              {{ $t("application_form_step_three_part_one.option_other") }}
             </label>
           </div>
         </div>
 
         <!-- Passport number field -->
         <div v-if="nationality === 'foreign'">
-          <label for="passportNumber" class="font-semibold"
-            >Passport number</label
+          <label for="passportNumber" class="font-semibold">
+            {{
+              $t("application_form_step_three_part_one.passport_number")
+            }}</label
           >
           <input
             v-model="passportNumber"
@@ -591,8 +730,10 @@
 
         <!-- Date of issue field -->
         <div v-if="nationality === 'foreign'">
-          <label for="passportDateOfIssue" class="font-semibold"
-            >Date of issue</label
+          <label for="passportDateOfIssue" class="font-semibold">
+            {{
+              $t("application_form_step_three_part_one.date_of_issue")
+            }}</label
           >
           <input
             v-model="passportDateOfIssue"
@@ -609,8 +750,10 @@
 
         <!-- Date of expiry field -->
         <div v-if="nationality === 'foreign'">
-          <label for="passportDateOfExpiry" class="font-semibold"
-            >Date of expiry</label
+          <label for="passportDateOfExpiry" class="font-semibold">
+            {{
+              $t("application_form_step_three_part_one.date_of_expiry")
+            }}</label
           >
           <input
             v-model="passportDateOfExpiry"
@@ -627,8 +770,10 @@
 
         <!-- Place of issue field -->
         <div v-if="nationality === 'foreign'">
-          <label for="passportPlaceOfIssue" class="font-semibold"
-            >Place of issue</label
+          <label for="passportPlaceOfIssue" class="font-semibold">
+            {{
+              $t("application_form_step_three_part_one.place_of_issue")
+            }}</label
           >
           <input
             v-model="passportPlaceOfIssue"
@@ -645,8 +790,10 @@
 
         <!-- Passport photo Upload -->
         <div v-if="nationality === 'foreign'">
-          <label for="passportPhotoUpload" class="font-semibold"
-            >Upload passport photo</label
+          <label for="passportPhotoUpload" class="font-semibold">
+            {{
+              $t("application_form_step_three_part_one.passport_photo")
+            }}</label
           >
           <input
             type="file"
@@ -661,13 +808,21 @@
 
       <!-- Step 3: Personal data part 2 -->
       <h3 class="text-2xl font-semibold text-gray-700 my-12 text-center">
-        Step 3: Personal data part 2
+        {{
+          $t(
+            "application_form_step_three_part_two.step_three_part_two_subtitle"
+          )
+        }}
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-x-48 mb-6">
         <!-- Street, House/apartment no field -->
         <div>
-          <label for="address" class="font-semibold"
-            >Street, House/apartment no</label
+          <label for="address" class="font-semibold">
+            {{
+              $t(
+                "application_form_step_three_part_two.street_house_apartament_number"
+              )
+            }}</label
           >
           <input
             v-model="address"
@@ -684,7 +839,9 @@
 
         <!-- Postal code field -->
         <div>
-          <label for="postalCode" class="font-semibold">Postal code</label>
+          <label for="postalCode" class="font-semibold">
+            {{ $t("application_form_step_three_part_two.postal_code") }}</label
+          >
           <input
             v-model="postalCode"
             v-bind="postalCodeAttrs"
@@ -700,7 +857,9 @@
 
         <!-- City field -->
         <div>
-          <label for="city" class="font-semibold">City</label>
+          <label for="city" class="font-semibold">
+            {{ $t("application_form_step_three_part_two.city") }}</label
+          >
           <input
             v-model="city"
             v-bind="cityAttrs"
@@ -716,7 +875,9 @@
 
         <!-- Mobile phone number field -->
         <div>
-          <label for="mobilePhone" class="font-semibold">Mobile phone</label>
+          <label for="mobilePhone" class="font-semibold">
+            {{ $t("application_form_step_three_part_two.mobile_phone") }}</label
+          >
           <input
             v-model="mobilePhone"
             v-bind="mobilePhoneAttrs"
@@ -732,8 +893,10 @@
 
         <!-- Native language field -->
         <div>
-          <label for="nativeLanguage" class="font-semibold"
-            >Native language</label
+          <label for="nativeLanguage" class="font-semibold">
+            {{
+              $t("application_form_step_three_part_two.native_language")
+            }}</label
           >
           <input
             v-model="nativeLanguage"
@@ -750,7 +913,9 @@
 
         <!-- Employer field -->
         <div>
-          <label for="employer" class="font-semibold">Employer</label>
+          <label for="employer" class="font-semibold">
+            {{ $t("application_form_step_three_part_two.employer") }}</label
+          >
           <input
             v-model="employer"
             v-bind="employerAttrs"
@@ -766,7 +931,9 @@
 
         <!-- Position field -->
         <div>
-          <label for="position" class="font-semibold">Position</label>
+          <label for="position" class="font-semibold">
+            {{ $t("application_form_step_three_part_two.position") }}</label
+          >
           <input
             v-model="position"
             v-bind="positionAttrs"
@@ -782,9 +949,10 @@
 
         <!-- Accommodation selection -->
         <div class="mb-8 flex items-center">
-          <label class="font-semibold mr-4"
-            >Do you need accommodation at Youth Hostel (4-seated rooms
-            only)?</label
+          <label class="font-semibold mr-4">
+            {{
+              $t("application_form_step_three_part_two.question_accomodation")
+            }}</label
           >
           <div class="flex space-x-4">
             <label class="flex items-center">
@@ -794,7 +962,7 @@
                 v-model="accommodation"
                 class="mr-2"
               />
-              Yes
+              {{ $t("application_form_step_three_part_two.option_yes") }}
             </label>
             <label class="flex items-center">
               <input
@@ -803,15 +971,17 @@
                 v-model="accommodation"
                 class="mr-2"
               />
-              No
+              {{ $t("application_form_step_three_part_two.option_no") }}
             </label>
           </div>
         </div>
 
         <!-- Language certificates Upload -->
         <div>
-          <label for="languageCertificatesUpload" class="font-semibold"
-            >Upload your language certificates</label
+          <label for="languageCertificatesUpload" class="font-semibold">
+            {{
+              $t("application_form_step_three_part_two.language_certificates")
+            }}</label
           >
           <input
             type="file"
@@ -827,7 +997,9 @@
 
         <!-- CV Upload -->
         <div>
-          <label for="cvUpload" class="font-semibold">Upload your CV</label>
+          <label for="cvUpload" class="font-semibold">
+            {{ $t("application_form_step_three_part_two.cv") }}</label
+          >
           <input
             type="file"
             id="cvUpload"
@@ -841,12 +1013,14 @@
 
       <!-- Step 4: Emergency contact -->
       <h3 class="text-2xl font-semibold text-gray-700 my-12 text-center">
-        Step 4: Emergency contact
+        {{ $t("application_form_step_four.step_four_subtitle") }}
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-x-48 mb-6">
         <!-- Emergency full name field -->
         <div>
-          <label for="emergencyFullName" class="font-semibold">Full name</label>
+          <label for="emergencyFullName" class="font-semibold">
+            {{ $t("application_form_step_four.full_name") }}</label
+          >
           <input
             v-model="emergencyFullName"
             v-bind="emergencyFullNameAttrs"
@@ -862,8 +1036,12 @@
 
         <!-- Emergency Street, House/apartment no field -->
         <div>
-          <label for="emergencyAddress" class="font-semibold"
-            >Street, House/apartment No</label
+          <label for="emergencyAddress" class="font-semibold">
+            {{
+              $t(
+                "application_form_step_four.part_four_street_house_apartment_number"
+              )
+            }}</label
           >
           <input
             v-model="emergencyAddress"
@@ -880,8 +1058,8 @@
 
         <!-- Emergency Postal code field -->
         <div>
-          <label for="emergencyPostalCode" class="font-semibold"
-            >Postal code</label
+          <label for="emergencyPostalCode" class="font-semibold">
+            {{ $t("application_form_step_four.part_four_postal_code") }}</label
           >
           <input
             v-model="emergencyPostalCode"
@@ -898,7 +1076,9 @@
 
         <!-- Emergency Country field -->
         <div>
-          <label for="emergencyCountry" class="font-semibold">Country</label>
+          <label for="emergencyCountry" class="font-semibold">
+            {{ $t("application_form_step_four.part_four_country") }}</label
+          >
           <input
             v-model="emergencyCountry"
             v-bind="emergencyCountryAttrs"
@@ -914,7 +1094,9 @@
 
         <!-- Emergency City field -->
         <div>
-          <label for="emergencyCity" class="font-semibold">City</label>
+          <label for="emergencyCity" class="font-semibold">
+            {{ $t("application_form_step_four.part_four_city") }}</label
+          >
           <input
             v-model="emergencyCity"
             v-bind="emergencyCityAttrs"
@@ -930,7 +1112,9 @@
 
         <!-- Emergency Telephone number field -->
         <div>
-          <label for="emergencyPhone" class="font-semibold">Phone number</label>
+          <label for="emergencyPhone" class="font-semibold">
+            {{ $t("application_form_step_four.part_four_phone_number") }}</label
+          >
           <input
             v-model="emergencyPhone"
             v-bind="emergencyPhoneAttrs"
@@ -946,7 +1130,9 @@
 
         <!-- Emergency E-mail field -->
         <div>
-          <label for="emergencyEmail" class="font-semibold">E-mail</label>
+          <label for="emergencyEmail" class="font-semibold">
+            {{ $t("application_form_step_four.part_four_email") }}</label
+          >
           <input
             v-model="emergencyEmail"
             v-bind="emergencyEmailAttrs"
@@ -962,8 +1148,8 @@
 
         <!-- Emergency Relationship field -->
         <div>
-          <label for="emergencyRelationship" class="font-semibold"
-            >Relationship</label
+          <label for="emergencyRelationship" class="font-semibold">
+            {{ $t("application_form_step_four.relationship") }}</label
           >
           <input
             v-model="emergencyRelationship"
@@ -982,13 +1168,15 @@
 
       <!-- Final Step -->
       <h3 class="text-2xl font-semibold text-gray-700 my-12 text-center">
-        Final Step!
+        {{ $t("application_form_final_step.final_step_subtitle") }}
       </h3>
 
       <!-- How did you hear about us field -->
       <div class="mb-12 w-1/2 mx-auto">
-        <label for="referralSource" class="font-semibold"
-          >How did you hear about us?</label
+        <label for="referralSource" class="font-semibold">
+          {{
+            $t("application_form_final_step.final_step_input_subtitle")
+          }}</label
         >
         <textarea
           v-model="referralSource"
@@ -1007,7 +1195,7 @@
         type="submit"
         class="w-1/6 font-semibold text-white px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 select-none"
       >
-        Register
+        {{ $t("register_button") }}
       </button>
     </form>
   </div>
