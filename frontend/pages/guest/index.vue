@@ -7,7 +7,14 @@
         :videoPlaying="videoPlaying"
         @update:videoPlaying="updateVideoPlaying"
       />
-      <SharedVideoOverlay />
+      <SharedVideoOverlay
+        title="Welcome to Scroll"
+        description="We offer a wide variety of accredited programmes and lecturer guided free online courses with available certification for everyone"
+        freeCoursesText="Check free courses"
+        accreditedProgramsText="Check our accredited programmes"
+        checkFreeCoursesLink="/free-courses"
+        checkProgramsLink="/accredited-programmes"
+      />
       <SharedVideoControls
         :videoRef="videoRef"
         :videoPlaying="videoPlaying"
