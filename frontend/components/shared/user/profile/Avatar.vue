@@ -1,15 +1,23 @@
 <template>
   <div class="relative">
-    <div
-      class="flex items-center cursor-pointer p-2 avatar"
-      @click="toggleMenu"
-    >
-      <NuxtImg
-        :src="'/lecturer_avatar.png'"
-        alt="Avatar"
-        class="h-12 w-12 rounded-full"
-      />
+    <div class="relative group">
+      <div
+        class="flex items-center cursor-pointer p-2 avatar hover:opacity-80"
+        @click="toggleMenu"
+      >
+        <NuxtImg
+          :src="'/lecturer_avatar.png'"
+          alt="Avatar"
+          class="h-12 w-12 rounded-full"
+        />
+      </div>
+      <span
+        class="absolute left-1/2 transform -translate-x-1/2 px-3 py-1 text-sm text-white bg-gray-700 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+      >
+        Account
+      </span>
     </div>
+
     <div
       v-if="showMenu"
       v-on-click-outside="(event) => closeAvatarMenu(event.target)"
