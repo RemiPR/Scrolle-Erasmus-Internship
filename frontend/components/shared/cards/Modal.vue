@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="isVisible"
-    class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto pt-20 my-6 outline-none"
+    class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto pt-20 mt-6 outline-none"
     @keydown.esc="closeModal"
     tabindex="0"
     ref="modalRef"
@@ -176,7 +176,7 @@
             <div class="tracking-wider" v-html="formattedBiography"></div>
           </div>
           <!-- Course Description -->
-          <div class="mt-6 pt-6" v-if="formattedDescription">
+          <div class="mt-6 pt-6 mb-16" v-if="formattedDescription">
             <div class="border-b-2 border-gray-200 mb-4">
               <p class="text-gray-800 mb-2 text-2xl">Course description</p>
             </div>

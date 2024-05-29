@@ -20,6 +20,12 @@
         :courses="courses"
         @openModal="handleOpenModal"
       />
+      <SharedCardsSection
+        title="Available free Courses"
+        :courses="courses"
+        @openModal="handleOpenModal"
+        class="pb-12"
+      />
     </div>
     <SharedCardsModal
       class="overflow-y-auto"
@@ -76,6 +82,7 @@ const courses = [
     imageUrl: "/advanced_aesthetic_cosmetology.jpg",
     imageUrlLowRes: "/low_res_advanced_aesthetic_cosmetology.jpg",
     videoUrl: "/advanced_aesthetic_cosmetology.mp4",
+    language: "Latvian",
     subject: "Health & Beauty",
     price: "Free",
     certification: "99",
@@ -102,6 +109,7 @@ const courses = [
     imageUrl: "/facial_cosmetic_procedures.jpg",
     imageUrlLowRes: "/low_res_facial_cosmetic_procedures.jpg",
     videoUrl: "/facial_cosmetic_procedures.mp4",
+    language: "English",
     subject: "Health & Beauty",
     price: "Free",
     certification: "85",
@@ -128,6 +136,7 @@ const courses = [
     imageUrl: "/physiotherapy.jpg",
     imageUrlLowRes: "/low_res_physiotherapy.jpg",
     videoUrl: "/physiotherapy.mp4",
+    language: "Russian",
     subject: "Health & Wellness",
     price: "Free",
     certification: "70",
@@ -154,6 +163,7 @@ const courses = [
     imageUrl: "/communication_psychology_and_ethics.jpg",
     imageUrlLowRes: "/low_res_communication_psychology_and_ethics.jpg",
     videoUrl: "/communication_psychology_and_ethics.mp4",
+    language: "Latvian",
     subject: "Psychology",
     price: "Free",
     certification: "85",
@@ -180,6 +190,7 @@ const courses = [
     imageUrl: "/classical_body_massage_and_feet_reflexology.jpg",
     imageUrlLowRes: "/low_res_classical_body_massage_and_feet_reflexology.jpg",
     videoUrl: "/classical_body_massage_and_feet_reflexology.mp4",
+    language: "English",
     subject: "Health & Wellness",
     price: "Free",
     certification: "90",

@@ -54,6 +54,10 @@
       <div class="px-4 py-2 text-sm text-gray-700">
         <div class="flex flex-col gap-5 mt-2">
           <div class="flex items-center">
+            <Icon name="mdi:speaking" class="text-black text-2xl" />
+            <p class="ml-2">{{ course.language }}</p>
+          </div>
+          <div class="flex items-center">
             <Icon name="fluent-mdl2:health-solid" class="text-black text-2xl" />
             <p class="ml-2">{{ course.subject }}</p>
           </div>
