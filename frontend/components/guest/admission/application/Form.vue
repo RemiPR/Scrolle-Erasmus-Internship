@@ -1204,11 +1204,12 @@
 <script setup>
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-import { useLocalePath } from "#imports";
+import { useLocalePath, useI18n } from "#imports";
 import { navigateTo, useRuntimeConfig } from "#app";
 
 const localePath = useLocalePath();
 const config = useRuntimeConfig();
+const { t } = useI18n();
 
 const props = defineProps({
   prefilledEmail: {
@@ -1217,30 +1218,30 @@ const props = defineProps({
   },
 });
 
-const schema = yup.object({
+const schema = yup.object().shape({
   firstName: yup
     .string()
-    .required("First name is required")
-    .min(2, "First name must be at least 2 characters"),
+    .required(t("validations.firstNameRequired"))
+    .min(2, t("validations.firstNameMin")),
   middleName: yup.string().nullable(),
   surname: yup
     .string()
-    .required("Surname is required")
-    .min(2, "Surname must be at least 2 characters"),
+    .required(t("validations.surnameRequired"))
+    .min(2, t("validations.surnameMin")),
   email: yup
     .string()
-    .email("Invalid email address")
-    .required("Email is required"),
-  country: yup.string().required("Country is required"),
+    .email(t("validations.emailInvalid"))
+    .required(t("validations.emailRequired")),
+  country: yup.string().required(t("validations.countryRequired")),
   graduatedEstablishment: yup
     .string()
-    .required("Name of graduated educational establishment is required"),
-  certificateNo: yup.string().required("Certificate No. is required"),
-  dateOfIssue: yup.date().required("Date of issue is required"),
+    .required(t("validations.graduatedEstablishmentRequired")),
+  certificateNo: yup.string().required(t("validations.certificateNoRequired")),
+  dateOfIssue: yup.date().required(t("validations.dateOfIssueRequired")),
   certificateFile: yup
     .mixed()
-    .required("Certificate file is required")
-    .test("fileType", "Only PDF, JPG, and PNG files are allowed", (value) => {
+    .required(t("validations.certificateFileRequired"))
+    .test("fileType", t("validations.certificateFileType"), (value) => {
       return (
         value &&
         ["application/pdf", "image/jpeg", "image/png"].includes(value.type)
@@ -1248,66 +1249,82 @@ const schema = yup.object({
     }),
   transcriptFile: yup
     .mixed()
-    .required("Transcript file is required")
-    .test("fileType", "Only PDF, JPG, and PNG files are allowed", (value) => {
+    .required(t("validations.transcriptFileRequired"))
+    .test("fileType", t("validations.transcriptFileType"), (value) => {
       return (
         value &&
         ["application/pdf", "image/jpeg", "image/png"].includes(value.type)
       );
     }),
-  personalCode: yup.string().required("Personal code/ID code is required"),
-  dob: yup.date().required("Date of birth is required"),
-  citizenship: yup.string().required("Citizenship is required"),
-  passportNumber: yup.string().required("Passport number is required"),
-  passportDateOfIssue: yup.date().required("Date of issue is required"),
-  passportDateOfExpiry: yup.date().required("Date of expiry is required"),
-  passportPlaceOfIssue: yup.string().required("Place of issue is required"),
-  address: yup.string().required("Address is required"),
-  postalCode: yup.string().required("Postal code is required"),
-  city: yup.string().required("City is required"),
-  mobilePhone: yup.string().required("Mobile phone number is required"),
-  nativeLanguage: yup.string().required("Native language is required"),
+  personalCode: yup.string().required(t("validations.personalCodeRequired")),
+  dob: yup.date().required(t("validations.dobRequired")),
+  citizenship: yup.string().required(t("validations.citizenshipRequired")),
+  passportNumber: yup
+    .string()
+    .required(t("validations.passportNumberRequired")),
+  passportDateOfIssue: yup
+    .date()
+    .required(t("validations.passportDateOfIssueRequired")),
+  passportDateOfExpiry: yup
+    .date()
+    .required(t("validations.passportDateOfExpiryRequired")),
+  passportPlaceOfIssue: yup
+    .string()
+    .required(t("validations.passportPlaceOfIssueRequired")),
+  address: yup.string().required(t("validations.addressRequired")),
+  postalCode: yup.string().required(t("validations.postalCodeRequired")),
+  city: yup.string().required(t("validations.cityRequired")),
+  mobilePhone: yup.string().required(t("validations.mobilePhoneRequired")),
+  nativeLanguage: yup
+    .string()
+    .required(t("validations.nativeLanguageRequired")),
   employer: yup.string().nullable(),
   position: yup.string().nullable(),
-  accommodation: yup.string().required("Accommodation is required"),
+  accommodation: yup.string().required(t("validations.accommodationRequired")),
   languageCertificatesFile: yup
     .mixed()
-    .test("fileType", "Only PDF, JPG, and PNG files are allowed", (value) => {
-      return (
-        !value ||
-        ["application/pdf", "image/jpeg", "image/png"].includes(value.type)
-      );
-    }),
-  cvFile: yup
-    .mixed()
-    .test("fileType", "Only PDF, JPG, and PNG files are allowed", (value) => {
-      return (
-        !value ||
-        ["application/pdf", "image/jpeg", "image/png"].includes(value.type)
-      );
-    }),
+    .test(
+      "fileType",
+      t("validations.languageCertificatesFileType"),
+      (value) => {
+        return (
+          !value ||
+          ["application/pdf", "image/jpeg", "image/png"].includes(value.type)
+        );
+      }
+    ),
+  cvFile: yup.mixed().test("fileType", t("validations.cvFileType"), (value) => {
+    return (
+      !value ||
+      ["application/pdf", "image/jpeg", "image/png"].includes(value.type)
+    );
+  }),
   emergencyFullName: yup
     .string()
-    .required("Emergency contact full name is required"),
+    .required(t("validations.emergencyFullNameRequired")),
   emergencyAddress: yup
     .string()
-    .required("Emergency contact address is required"),
+    .required(t("validations.emergencyAddressRequired")),
   emergencyPostalCode: yup
     .string()
-    .required("Emergency contact postal code is required"),
+    .required(t("validations.emergencyPostalCodeRequired")),
   emergencyCountry: yup
     .string()
-    .required("Emergency contact country is required"),
-  emergencyCity: yup.string().required("Emergency contact city is required"),
+    .required(t("validations.emergencyCountryRequired")),
+  emergencyCity: yup.string().required(t("validations.emergencyCityRequired")),
   emergencyPhone: yup
     .string()
-    .required("Emergency contact phone number is required"),
+    .required(t("validations.emergencyPhoneRequired")),
   emergencyEmail: yup
     .string()
-    .email("Invalid email address")
-    .required("Emergency contact email is required"),
-  emergencyRelationship: yup.string().required("Relationship is required"),
-  referralSource: yup.string().required("Referral source is required"),
+    .email(t("validations.emailInvalid"))
+    .required(t("validations.emergencyEmailRequired")),
+  emergencyRelationship: yup
+    .string()
+    .required(t("validations.emergencyRelationshipRequired")),
+  referralSource: yup
+    .string()
+    .required(t("validations.referralSourceRequired")),
 });
 
 const { defineField, errors, handleSubmit } = useForm({
