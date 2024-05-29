@@ -7,7 +7,28 @@
         :videoPlaying="videoPlaying"
         @update:videoPlaying="updateVideoPlaying"
       />
-      <SharedVideoOverlay />
+      <SharedVideoOverlay
+        title="Welcome, Emīlija!"
+        description="You currently have no unfinished assigments."
+        freeCoursesText="Check lectures timetable"
+        accreditedProgramsText="Check my assignments"
+        checkFreeCoursesLink="/free-courses"
+        checkProgramsLink="/accredited-programmes"
+      >
+        <template #extra-text>
+          <div class="mt-8">
+            <h4 class="text-white text-xl font-semibold">
+              Your next lecture
+              <span class="italic font-bold"
+                >Advanced Aesthetic Cosmetology
+              </span>
+              is in <span class="italic font-bold">308 aud.</span> and starts at
+              <span class="italic font-bold">14:00</span>,
+              <span class="italic font-bold">2024/05/20</span>
+            </h4>
+          </div>
+        </template>
+      </SharedVideoOverlay>
       <SharedVideoControls
         :videoRef="videoRef"
         :videoPlaying="videoPlaying"
@@ -52,7 +73,7 @@ onMounted(() => {
   setVideoRef();
 });
 
-const videoSource = "/test.mp4"; // Define the video source
+const videoSource = "/student_bg_video.mp4"; // Define the video source
 </script>
 
 <style scoped></style>
