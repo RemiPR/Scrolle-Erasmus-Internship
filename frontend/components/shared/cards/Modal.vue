@@ -50,7 +50,7 @@
                   />
                   <p class="text-gray-600 ml-3">Certification</p>
                 </div>
-                <p class="font-semibold">{{ course.certification }}</p>
+                <p class="font-semibold">€{{ course.certification }}</p>
               </div>
               <div class="flex justify-between mb-4">
                 <div class="flex items-center">
@@ -78,6 +78,22 @@
                   <p class="text-gray-600 ml-3">Self-learning material</p>
                 </div>
                 <p class="font-semibold">{{ course.selfLearningMaterial }}</p>
+              </div>
+              <div class="flex justify-between mt-8 mb-4">
+                <div class="flex items-center">
+                  <Icon
+                    name="material-symbols:language"
+                    class="text-gray-800 font-bold"
+                  />
+                  <p class="text-gray-600 ml-3 italic font-medium">
+                    <span class="tet-gray-700 font-bold">Important! </span
+                    >Please note that this course will be held in
+                    <span class="text-gray-700 font-bold">{{
+                      course.language
+                    }}</span>
+                    language.
+                  </p>
+                </div>
               </div>
             </div>
             <!-- Right Column -->
