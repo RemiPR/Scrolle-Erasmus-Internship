@@ -1,0 +1,19 @@
+{
+  "visas_EU_Permit_first_paragraph": "ES, EEZ un Šveices pilsoņiem nav nepieciešams reģistrēties Pilsonības un migrācijas lietu pārvaldē (PMLP), bet viņiem ir nepieciešams tikai derīgs ceļošanas dokuments (pase vai ID karte), lai iebrauktu Latvijā, ja:",
+  "visas_EU_Permit_second_paragraph": "studenti tiek uzņemti izglītības iestādē, kas reģistrēta Latvijas Republikas Izglītības iestāžu reģistrā; un plānotais uzturēšanās periods nepārsniedz vienu gadu (skatīt: PMLP → Uzturēšanās atļaujas).",
+  "visas_EU_Permit_third_paragraph": "Ņemiet vērā, ka dažos gadījumos uzturēšanās atļauja var būt noderīga, piemēram, atverot bankas kontu. Informāciju par to, kā pieteikties studentu uzturēšanās atļaujai kā ES pilsonim, skatiet PMLP informācijā → Reģistrācijas kartes studentiem.",
+  "visas_Non_EU_Permit_first_paragraph": "Ārpus ES valstu pilsoņiem ir jāpārbauda, vai viņiem ir nepieciešama vīza, lai iebrauktu Latvijā. Vīzas derīguma termiņš ir atkarīgs no katra konkrētā gadījuma. Lūdzu, skatiet sīkāku informāciju zemāk.",
+  "visas_Non_EU_Permit_second_paragraph": "Bezvīzu valstis Noteiktu valstu ārpus ES pilsoņi var iebraukt Latvijā bez vīzas un uzturēties Latvijā līdz 90 dienām jebkurā 180 dienu periodā. Lūdzu, pārbaudiet pilnu to valstu sarakstu, kuru pilsoņiem vīza NAV nepieciešama. Bezvīzu valstu pilsoņiem, kuri ierodas Latvijā uz ilgāku laiku par 90 dienām, IR JĀPIETEIKAS uzturēšanās atļaujai.",
+  "visas_Non_EU_Permit_third_paragraph": "To bezvīzu valstu pilsoņi, kuri ir uzņemti pilna laika studijās izglītības iestādē, kas reģistrēta Latvijas Republikas Izglītības iestāžu reģistrā, ir tiesīgi pieteikties uzturēšanās atļaujai Latvijā uz studiju statusa pamata.",
+  "visas_Non_EU_Permit_fourth_paragraph": "Lai iestātos nepilna laika studijās Latvijā, bezvīzu valstu pilsonim vispirms ir jāiegūst derīga uzturēšanās atļauja Šengenas valstī.",
+  "visas_Non_EU_Permit_fifth_paragraph": "Informāciju par to, kā pieteikties studentu uzturēšanās atļaujai, skatiet PMLP tīmekļa vietnē → Uzturēšanās atļaujas. Ņemiet vērā, ka vīzas vai uzturēšanās atļaujas saņemšana var ilgt vairākas nedēļas, tāpēc pieteikšanās procedūras jāsāk pēc iespējas agrāk.",
+  "visas_visa_Permit_first_paragraph": "Valstu pilsoņiem, kuriem ir nepieciešama vīza, lai iebrauktu Latvijā, IR JĀPIETEIKAS Latvijas konsulārajās pārstāvniecībās ārvalstīs vai citu Šengenas dalībvalstu konsulātos, kuri ir kompetenti apstrādāt Šengenas vīzas pieteikumus ceļojumiem uz Latviju.",
+  "visas_visa_Permit_second_paragraph": "Lūdzu, skatiet Ārlietu ministrijas tīmekļa vietni, lai atrastu atbilstošo informāciju un Latvijas vēstniecības.",
+  "visas_visa_Permit_third_paragraph": "Lai pieteiktos vīzai un uzturēšanās atļaujai, jūs varat konsultēties augstākās izglītības iestādes uzņemšanas birojā, lai uzzinātu, kādas procedūras jāveic un kādi dokumenti jāiesniedz. Turklāt uzņemšanas birojs jums palīdzēs pieteikšanās procesā un informēs jūs par studiju pieteikšanās prasībām.",
+  "visas_visa_Permit_fourth_paragraph": "Jautājumus par pieteikšanās procesu jāadresē universitātēm. Iepriekšējas konsultācijas valstis Saskaņā ar Vīzu kodeksa 22. pantu ir noteiktas trešās valstis, kuru pilsoņi vai pilsoņu kategorijas ir pakļautas iepriekšējai konsultācijai pirms vīzas saņemšanas.",
+  "visas_visa_Permit_fifth_paragraph": "Lai iegūtu šo valstu sarakstu, lūdzu, skatiet atbilstošo Ārlietu ministrijas tīmekļa vietnes sadaļu.",
+  "visas_and_permits_title": "Noderīga informācija pirms došanās ceļā",
+  "visas_and_permits_tag_name_first": "ES, EEZ/Šveices pilsoņi",
+  "visas_and_permits_tag_name_second": "Ārpus ES valstu pilsoņi",
+  "visas_and_permits_tag_name_third": "Vīzu valstu pilsoņi"
+}
