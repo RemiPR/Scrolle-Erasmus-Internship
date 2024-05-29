@@ -23,10 +23,9 @@
       v-on-click-outside="(event) => closeAvatarMenu(event.target)"
       class="absolute right-0 mt-2 w-52 bg-white dark:bg-gray-700 rounded-lg shadow-lg z-50 text-gray-800 dark:text-white select-none"
     >
-      <div></div>
-      <ul>
+      <ul class="">
         <li
-          class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center"
+          class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center rounded-lg"
         >
           <TextColorModeToggle />
         </li>
@@ -51,7 +50,7 @@
       <div class="border-b border-gray-200 dark:border-gray-700"></div>
       <NuxtLink
         @click="handleLogout"
-        class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer text-red-500 dark:text-red-400 flex items-center"
+        class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer text-red-500 dark:text-red-400 flex items-center rounded-lg"
       >
         <Icon name="ic:outline-logout" class="h-5 w-5 mr-2" />
         Sign out
