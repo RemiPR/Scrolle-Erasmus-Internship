@@ -8,7 +8,7 @@
         placeholder="Search..."
       />
     </div>
-    <div class="flex gap-4 mb-8">
+    <div v-if="courses.length > 0" class="flex gap-4 mb-8">
       <SharedCardsCourse
         v-for="course in courses"
         :key="course.id"
@@ -16,10 +16,23 @@
         @openModal="handleOpenModal($event)"
       />
     </div>
+    <div
+      v-else
+      class="flex items-center justify-center h-48 border-dashed border-4 border-gray-300 rounded-lg w-72"
+    >
+      <button
+        @click="redirectToAvailableCourses"
+        class="text-blue-500 text-lg flex justify-center items-center w-full h-full"
+      >
+        <Icon name="mdi:plus" class="text-3xl mr-2" />
+        Enroll in a course
+      </button>
+    </div>
   </div>
 </template>
 
 <script setup>
+import { useLocalePath } from "#imports";
 const props = defineProps({
   title: {
     type: String,
@@ -31,9 +44,17 @@ const props = defineProps({
   },
 });
 
+const localePath = useLocalePath();
 const emit = defineEmits(["openModal"]);
 
 const handleOpenModal = (course) => {
   emit("openModal", course);
+};
+
+const redirectToAvailableCourses = () => {
+  const section = document.getElementById("available-free-courses");
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
 };
 </script>

@@ -17,10 +17,11 @@
     <div class="container mx-auto p-4 h-screen">
       <SharedCardsSection
         title="My Courses"
-        :courses="courses"
+        :courses="enrolledCourses"
         @openModal="handleOpenModal"
       />
       <SharedCardsSection
+        id="available-free-courses"
         title="Available free Courses"
         :courses="courses"
         @openModal="handleOpenModal"
@@ -44,6 +45,7 @@ definePageMeta({
   enableScrollStyling: true,
   // middleware: ['auth', 'guest'],
 });
+const authStore = useAuthStore();
 
 const backgroundVideo = ref(null);
 const videoPlaying = ref(true);
@@ -75,7 +77,7 @@ const showModal = ref(false);
 const selectedCourse = ref({});
 const modal = ref(null);
 
-const courses = [
+const courses = ref([
   {
     id: 1,
     title: "Advanced Aesthetic Cosmetology",
@@ -211,8 +213,12 @@ const courses = [
     description:
       "This course provides comprehensive training in classical body massage and feet reflexology. Students will learn the fundamental techniques of massage therapy, including Swedish massage, deep tissue massage, and reflexology. \n\nThe course covers the anatomy of the body and feet, the benefits of massage, and the therapeutic effects of reflexology. Practical sessions will give students hands-on experience in performing these techniques, ensuring they can apply their knowledge effectively. By the end of the course, students will be proficient in delivering relaxing and therapeutic massage treatments to promote overall well-being.",
   },
-];
-
+]);
+const enrolledCourses = computed(() => {
+  return courses.value.filter((course) =>
+    authStore.enrolledCourses.includes(course.id)
+  );
+});
 const openModal = (course) => {
   document.body.classList.add("overflow-hidden");
   selectedCourse.value = { ...course };

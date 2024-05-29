@@ -275,14 +275,16 @@ onMounted(() => {
   }
 });
 const enrollNow = () => {
-  if (!userStore.isAuthenticated) {
+  const authStore = useAuthStore();
+
+  if (!authStore.isLoggedIn) {
     closeModal();
     navigateTo(localePath("/login")); // redirect to login page
-  } else if (!userStore.isConfirmed) {
+  } else if (!authStore.isConfirmed) {
     closeModal();
-    navigateTo(localePath("/guest/enrolment")); // redirect to login page
+    navigateTo(localePath("/guest/enrolment")); // redirect to enrolment page
   } else {
-    userStore.enrollCourse(props.course.id);
+    authStore.enrollCourse(props.course.id);
     closeModal();
   }
 };
