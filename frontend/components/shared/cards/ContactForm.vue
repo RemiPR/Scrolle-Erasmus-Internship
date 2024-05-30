@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center text-left mt-40">
+  <div class="flex justify-center text-left">
     <div class="bg-white rounded-xl shadow-2xl flex w-full max-w-5xl">
       <!-- Left Container -->
       <div class="w-full md:w-1/2 p-8 bg-white">

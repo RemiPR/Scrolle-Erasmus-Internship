@@ -107,7 +107,7 @@
             :index="2"
           />
           <SharedUiFaq class="mt-48" :title="$t('faq_title')" :faqItems="faq" />
-          <IndexContactForm />
+          <SharedCardsContactForm class ="mt-40" />
         </div>
       </main>
     </div>
