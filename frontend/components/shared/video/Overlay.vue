@@ -4,12 +4,10 @@
   >
     <div class="ml-24 max-w-2xl">
       <h1 class="text-white text-6xl font-bold">{{ title }}</h1>
-      <p class="text-white text-2xl my-10 leading-8">
-        {{ description }}
-      </p>
-      <p class="text-white text-2xl my-10 leading-8">
+      <p class="text-white text-2xl my-10 leading-8">{{ description }}</p>
+      <span class="text-white text-2xl my-10 leading-8">
         <slot name="extra-text"></slot>
-      </p>
+      </span>
       <div class="flex items-center space-x-8">
         <button
           class="px-6 py-5 font-semibold bg-white text-gray-800 rounded hover:bg-gray-800 hover:text-white transition duration-300"
@@ -25,18 +23,9 @@
           {{ accreditedProgramsText }}
         </button>
       </div>
-      <slot name="extra-content"></slot>
+
       <div class="flex items-center space-x-8 mt-4">
-        <!-- <button
-          class="px-6 py-5 font-semibold bg-white text-gray-800 rounded hover:bg-gray-800 hover:text-white transition duration-300"
-        >
-          <slot name="extra-button-left"></slot>
-        </button>
-        <button
-          class="px-6 py-5 font-semibold bg-white text-gray-800 rounded hover:bg-gray-800 hover:text-white transition duration-300"
-        >
-          <slot name="extra-button-right"></slot>
-        </button> -->
+        <slot name="extra-content"></slot>
       </div>
     </div>
     <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2">
@@ -46,39 +35,19 @@
 </template>
 
 <script setup>
-import { ref, nextTick } from "vue";
+import { ref, nextTick, onMounted } from "vue";
 
-// Define props for the text content
 const props = defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  freeCoursesText: {
-    type: String,
-    required: true,
-  },
-  accreditedProgramsText: {
-    type: String,
-    required: true,
-  },
-  checkFreeCoursesLink: {
-    type: String,
-    required: true,
-  },
-  checkProgramsLink: {
-    type: String,
-    required: true,
-  },
+  title: String,
+  description: String,
+  freeCoursesText: String,
+  accreditedProgramsText: String,
+  checkFreeCoursesLink: String,
+  checkProgramsLink: String,
 });
 
 const firstSection = ref(null);
 
-// Arrow function to scroll to the first section
 const scrollToSection = async () => {
   await nextTick();
   if (firstSection.value) {
@@ -91,4 +60,8 @@ const handleButtonClick = (link) => {
     window.location.href = link;
   }
 };
+
+onMounted(() => {
+  // Client-only logic, if any
+});
 </script>

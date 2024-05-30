@@ -7,23 +7,28 @@
         :videoPlaying="videoPlaying"
         @update:videoPlaying="updateVideoPlaying"
       />
+
       <SharedVideoOverlay
         title="Welcome, Emīlija!"
-        description="You currently have no unfinished assigments."
+        description="You currently have no unfinished assignments."
         freeCoursesText="Check lectures timetable"
         accreditedProgramsText="Check my assignments"
         checkFreeCoursesLink="/free-courses"
         checkProgramsLink="/accredited-programmes"
       >
         <template #extra-text>
-          <div class="mt-8">
-            <h4 class="text-white text-xl font-semibold">
-              Your next lecture
+          <div class="space-y-4 mb-6 text-2xl text-white">
+            <h4 class="text-white font-semibold">
+              Your next lecture:
               <span class="italic font-bold"
-                >Advanced Aesthetic Cosmetology
-              </span>
-              is in <span class="italic font-bold">308 aud.</span> and starts at
-              <span class="italic font-bold">14:00</span>,
+                >Advanced Aesthetic Cosmetology</span
+              >
+            </h4>
+            <h4 class="font-semibold">
+              Location: <span class="italic font-bold">308 aud.</span>
+            </h4>
+            <h4 class="font-semibold">
+              Starts at: <span class="italic font-bold">14:00</span>,
               <span class="italic font-bold">2024/05/20</span>
             </h4>
           </div>
@@ -39,14 +44,13 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
+
 definePageMeta({
   layout: "nav",
   navigation: "student",
   enableScrollStyling: true,
-  // middleware: ['auth', 'guest'],
 });
-
-const authStore = useAuthStore();
 
 const backgroundVideo = ref(null);
 const videoPlaying = ref(true);
@@ -73,7 +77,5 @@ onMounted(() => {
   setVideoRef();
 });
 
-const videoSource = "/student_bg_video.mp4"; // Define the video source
+const videoSource = "/student_bg_video.mp4";
 </script>
-
-<style scoped></style>
