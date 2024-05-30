@@ -19,3 +19,4 @@ services:
       - "traefik.http.routers.auth-service.rule=Host(`localhost`)" 
     env_file:
       - .env
+    image: auth-service:latest

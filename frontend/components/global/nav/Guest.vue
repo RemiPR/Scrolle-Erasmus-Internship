@@ -35,7 +35,7 @@
         <NuxtLink :to="localePath('/guest/faq')" class="hover:underline">{{
           $t("nav_faq_btn")
         }}</NuxtLink>
-        <NuxtLink :to="localePath('/')" class="hover:underline">{{
+        <NuxtLink :to="localePath('/guest/contacts')" class="hover:underline">{{
           $t("nav_contacts_btn")
         }}</NuxtLink>
       </nav>
