@@ -47,6 +47,8 @@ export default defineNuxtConfig({
           "shared/en.json",
           "faq/en.json",
           "guest/admission/application/en.json",
+          "guest/admission/fees/en.json",
+          "guest/admission/visas/en.json",
         ],
       },
       {
@@ -57,6 +59,8 @@ export default defineNuxtConfig({
           "shared/lv.json",
           "faq/lv.json",
           "guest/admission/application/lv.json",
+          "guest/admission/fees/lv.json",
+          "guest/admission/visas/lv.json",
         ],
       },
       {
@@ -67,6 +71,8 @@ export default defineNuxtConfig({
           "shared/ru.json",
           "faq/ru.json",
           "guest/admission/application/ru.json",
+          "guest/admission/fees/ru.json",
+          "guest/admission/visas/ru.json",
         ],
       },
     ],
