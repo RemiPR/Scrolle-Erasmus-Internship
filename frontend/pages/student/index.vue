@@ -7,6 +7,7 @@
         :videoPlaying="videoPlaying"
         @update:videoPlaying="updateVideoPlaying"
       />
+
       <SharedVideoOverlay
         title="Welcome, Emīlija!"
         description="You currently have no unfinished assignments."
