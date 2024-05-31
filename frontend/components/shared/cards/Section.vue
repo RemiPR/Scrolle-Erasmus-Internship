@@ -8,7 +8,7 @@
         placeholder="Search..."
       />
     </div>
-    <div v-if="courses.length > 0" class="flex gap-4 mb-8">
+    <div v-if="courses.length > 0" class="flex gap-4">
       <SharedCardsCourse
         v-for="course in courses"
         :key="course.id"

@@ -1,16 +1,13 @@
 <template>
   <div
-    class="bg-white rounded overflow-hidden relative w-72 transition-transform duration-300 origin-top-center"
-    :class="{
-      'border border-gray-300': hoveredTileIndex === course.id,
-      'scale-105': hoveredTileIndex === course.id,
-    }"
-    @mouseenter="handleMouseEnter(course.id)"
-    @mouseleave="handleMouseLeave"
-    @click="openModal"
+    class="relative bg-white rounded w-72 transition-transform duration-300 origin-top-center"
   >
     <!-- Video/Image Background Container -->
-    <div class="relative w-full h-48 overflow-hidden">
+    <div class="relative w-full h-48 overflow-hidden"
+      @mouseenter="handleMouseEnter(course.id)"
+      @mouseleave="handleMouseLeave"
+      @click="openModal"
+    >
       <NuxtImg
         preload
         :placeholder="course.imageUrlLowRes"
@@ -45,11 +42,13 @@
     </div>
     <!-- Hidden Content Below the Title -->
     <div
-      class="transition-opacity duration-500 overflow-hidden"
+      class="absolute w-72 transition-opacity duration-500 overflow-hidden z-20 bg-white"
       :class="{
         'opacity-100': hoveredTileIndex === course.id,
         'opacity-0': hoveredTileIndex !== course.id,
+        'border border-gray-300': hoveredTileIndex === course.id,
       }"
+
     >
       <div class="px-4 py-2 text-sm text-gray-700">
         <div class="flex flex-col gap-5 mt-2">
