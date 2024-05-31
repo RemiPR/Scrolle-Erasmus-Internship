@@ -43,6 +43,7 @@
     </div>
     <!-- Hidden Content Below the Title -->
     <div
+      v-if="hiddenContent"
       class="absolute border border-gray-300 w-72 transition-all duration-500 overflow-hidden z-20 bg-white"
       :class="{
         'opacity-0 invisible': hoveredTileIndex !== data.id,
@@ -97,6 +98,10 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  hiddenContent: {
+    type: Boolean,
+    default: true
+  }
 });
 
 const hoveredTileIndex = ref(null);

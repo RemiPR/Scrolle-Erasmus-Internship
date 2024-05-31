@@ -14,6 +14,7 @@
         v-for="data in dataArray"
         :key="data.id"
         :data="data"
+        :hiddenContent="hiddenContent"
         @openModal="handleOpenModal($event)"
       />
     </div>
@@ -46,6 +47,10 @@ const props = defineProps({
   workloadMeter: {
     type: Boolean,
     default: false
+  },
+  hiddenContent: {
+    type: Boolean,
+    default: true
   }
 });
 
