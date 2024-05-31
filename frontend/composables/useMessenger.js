@@ -1,26 +1,32 @@
-// composables/useMessenger.js
-
 import { ref, provide, inject } from "vue";
 
 export const useMessenger = () => {
   const isMessengerOpen = ref(false);
-  const selectedUser = ref(null); // Add selected user
+  const selectedUser = ref(null);
 
   const toggleMessenger = () => {
     isMessengerOpen.value = !isMessengerOpen.value;
-    console.log("Messenger state:", isMessengerOpen.value);
+    // console.log("Messenger state:", isMessengerOpen.value);
   };
-
+  const clearUser = () => {
+    selectUser("");
+  };
   const selectUser = (user) => {
-    selectedUser.value = user;
-    isMessengerOpen.value = true; // Open messenger when a user is selected
-    console.log("Selected user:", selectedUser.value);
+    if (selectedUser.value && user.id === selectedUser.value.id) {
+      // If the same user is clicked, close the chat window
+      selectedUser.value = null;
+      clearUser();
+    } else {
+      selectedUser.value = user;
+      isMessengerOpen.value = true;
+    }
+    // console.log("Selected user:", selectedUser.value);
   };
 
   provide("isMessengerOpen", isMessengerOpen);
   provide("toggleMessenger", toggleMessenger);
-  provide("selectedUser", selectedUser); // Provide selected user
-  provide("selectUser", selectUser); // Provide select user function
+  provide("selectedUser", selectedUser);
+  provide("selectUser", selectUser);
 
   return {
     isMessengerOpen,

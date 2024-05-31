@@ -2,18 +2,20 @@
   <div class="">
     <div class="my-12 flex items-center justify-between">
       <span class="text-gray-700 text-3xl font-bold">{{ title }}</span>
-      <StudentWorkloadMeter v-if="workloadMeter" :coefficient="workloadCoefficient(courses.length, 10)"/>
+      <StudentWorkloadMeter v-if="workloadMeter" :coefficient="workloadCoefficient(dataArray.length, 10)"/>
       <input
         type="text"
         class="ml-2 border-2 border-gray-300 rounded-md px-4 py-1"
         placeholder="Search..."
       />
     </div>
-    <div v-if="courses.length > 0" class="flex gap-4">
-      <SharedCardsCourse
-        v-for="course in courses"
-        :key="course.id"
-        :course="course"
+    <div v-if="dataArray.length > 0" class="flex gap-4">
+      <SharedCard
+        v-for="data in dataArray"
+        :key="data.id"
+        :data="data"
+        :hiddenContent="hiddenContent"
+        :playVideo="playVideo"
         @openModal="handleOpenModal($event)"
       />
     </div>
@@ -39,21 +41,29 @@ const props = defineProps({
     type: String,
     default: "Courses",
   },
-  courses: {
+  dataArray: {
     type: Array,
     required: true,
   },
   workloadMeter: {
     type: Boolean,
     default: false
+  },
+  hiddenContent: {
+    type: Boolean,
+    default: true
+  },
+  playVideo: {
+    type:Boolean,
+    default: true
   }
 });
 
 const localePath = useLocalePath();
 const emit = defineEmits(["openModal"]);
 
-const handleOpenModal = (course) => {
-  emit("openModal", course);
+const handleOpenModal = (data) => {
+  emit("openModal", data);
 };
 
 const workloadCoefficient = (assignmenttAmount, maxAmount) => {

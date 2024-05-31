@@ -22,24 +22,24 @@
       />
     </div>
     <div class="container mx-auto p-4 h-screen">
-      <SharedCardsSection
+      <SharedCardSection
         title="My Courses"
-        :courses="enrolledCourses"
+        :dataArray="enrolledCourses"
         @openModal="handleOpenModal"
       />
-      <SharedCardsSection
+      <SharedCardSection
         id="available-free-courses"
         title="Available free Courses"
-        :courses="courses"
+        :dataArray="courses"
         @openModal="handleOpenModal"
         class="pb-12"
       />
     </div>
-    <SharedCardsModal
+    <SharedCardModal
       class="overflow-y-auto"
       v-if="showModal"
       :isVisible="showModal"
-      :course="selectedCourse"
+      :data="selectedCourse"
       @close="closeModal"
     />
   </div>

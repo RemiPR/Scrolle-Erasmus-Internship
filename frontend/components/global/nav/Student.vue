@@ -58,7 +58,7 @@
             />
           </button>
           <span
-            class="absolute top-14 left-1/2 transform -translate-x-1/2 px-3 py-1 text-sm text-white bg-gray-700 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+            class="absolute top-14 left-1/2 transform -translate-x-1/2 px-3 py-1 text-sm text-white pointer-events-none bg-gray-700 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
           >
             Messenger
           </span>
@@ -75,7 +75,7 @@
             />
           </button>
           <span
-            class="absolute top-14 left-1/2 transform -translate-x-1/2 px-3 py-1 text-sm text-white bg-gray-700 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+            class="absolute top-14 left-1/2 transform -translate-x-1/2 px-3 py-1 text-sm text-white pointer-events-none bg-gray-700 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
           >
             Notifications
           </span>

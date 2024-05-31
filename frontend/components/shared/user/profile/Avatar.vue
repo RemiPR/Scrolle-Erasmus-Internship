@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <div class="relative group">
+    <div class="group">
       <div
         class="flex items-center cursor-pointer p-2 avatar hover:opacity-80"
         @click="toggleMenu"
@@ -8,11 +8,11 @@
         <NuxtImg
           :src="'/lecturer_avatar.png'"
           alt="Avatar"
-          class="h-12 w-12 rounded-full"
+          class="h-12 w-12 rounded-full relative"
         />
       </div>
       <span
-        class="absolute left-1/2 transform -translate-x-1/2 px-3 py-1 text-sm text-white bg-gray-700 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+        class="absolute left-1/2 transform -translate-x-1/2 px-3 py-1 text-sm text-white bg-gray-700 rounded-md opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
       >
         Account
       </span>
@@ -23,7 +23,7 @@
       v-on-click-outside="(event) => closeAvatarMenu(event.target)"
       class="absolute right-0 mt-2 w-52 bg-white dark:bg-gray-700 rounded-lg shadow-lg z-50 text-gray-800 dark:text-white select-none"
     >
-      <ul class="">
+      <ul>
         <li
           class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center rounded-lg"
         >
@@ -85,25 +85,12 @@ function closeAvatarMenu(target) {
 }
 
 const toggleMenu = () => {
-  // console.log("Executed");
   showMenu.value = !showMenu.value;
 };
 
 const handleLogout = async () => {
   await logoutGuest(localePath("/"), config.public.authBaseUrl);
 };
-
-/*
-
-
-
-onMounted(() => {
-  document.addEventListener("click", handleClickOutside);
-});
-
-onUnmounted(() => {
-  document.removeEventListener("click", handleClickOutside);
-});*/
 </script>
 
 <style scoped>
