@@ -15,9 +15,9 @@
       <div class="flex flex-col">
         <!-- Video/Image Background Container -->
         <div class="w-full h-96">
-          <SharedCardsVideoPlayer
-            :videoUrl="course.videoUrl"
-            :title="course.title"
+          <SharedCardVideoPlayer
+            :videoUrl="data.videoUrl"
+            :title="data.title"
             :autoplay="true"
           />
         </div>
@@ -25,14 +25,14 @@
         <div
           class="bg-blue-500 text-white text-lg text-center py-2 whitespace-nowrap text-ellipsis font-semibold"
         >
-          {{ course.title }}
+          {{ data.title }}
         </div>
         <div class="p-6">
           <!-- Two Column Layout -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
             <!-- Left Column -->
             <div>
-              <div v-if="course.price" class="flex justify-between mb-4">
+              <div v-if="data.price" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:currency-usd"
@@ -40,9 +40,9 @@
                   />
                   <p class="text-gray-600 ml-3">Price</p>
                 </div>
-                <p class="font-semibold">{{ course.price }}</p>
+                <p class="font-semibold">{{ data.price }}</p>
               </div>
-              <div v-if="course.certification" class="flex justify-between mb-4">
+              <div v-if="data.certification" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:certificate"
@@ -50,9 +50,9 @@
                   />
                   <p class="text-gray-600 ml-3">Certification</p>
                 </div>
-                <p class="font-semibold">€{{ course.certification }}</p>
+                <p class="font-semibold">€{{ data.certification }}</p>
               </div>
-              <div v-if="course.subject" class="flex justify-between mb-4">
+              <div v-if="data.subject" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:book-open-variant"
@@ -60,16 +60,16 @@
                   />
                   <p class="text-gray-600 ml-3">Subject</p>
                 </div>
-                <p class="font-semibold">{{ course.subject }}</p>
+                <p class="font-semibold">{{ data.subject }}</p>
               </div>
-              <div v-if="course.duration" class="flex justify-between mb-4">
+              <div v-if="data.duration" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon name="mdi:timer-sand" class="text-gray-800 font-bold" />
                   <p class="text-gray-600 ml-3">Duration</p>
                 </div>
-                <p class="font-semibold">{{ course.duration }}</p>
+                <p class="font-semibold">{{ data.duration }}</p>
               </div>
-              <div v-if="course.selfLearningMaterial" class="flex justify-between mb-4">
+              <div v-if="data.selfLearningMaterial" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:book-outline"
@@ -77,9 +77,9 @@
                   />
                   <p class="text-gray-600 ml-3">Self-learning material</p>
                 </div>
-                <p class="font-semibold">{{ course.selfLearningMaterial }}</p>
+                <p class="font-semibold">{{ data.selfLearningMaterial }}</p>
               </div>
-              <div v-if="course.language" class="flex justify-between mt-8 mb-4">
+              <div v-if="data.language" class="flex justify-between mt-8 mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="material-symbols:language"
@@ -89,7 +89,7 @@
                     <span class="tet-gray-700 font-bold">Important! </span
                     >Please note that this course will be held in
                     <span class="text-gray-700 font-bold">{{
-                      course.language
+                      data.language
                     }}</span>
                     language.
                   </p>
@@ -98,7 +98,7 @@
             </div>
             <!-- Right Column -->
             <div>
-              <div v-if="course.startDate" class="flex justify-between mb-4">
+              <div v-if="data.startDate" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:calendar-start"
@@ -106,9 +106,9 @@
                   />
                   <p class="text-gray-600 ml-3">Start date</p>
                 </div>
-                <p class="font-semibold">{{ course.startDate }}</p>
+                <p class="font-semibold">{{ data.startDate }}</p>
               </div>
-              <div v-if="course.endDate" class="flex justify-between mb-4">
+              <div v-if="data.endDate" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:calendar-end"
@@ -116,12 +116,12 @@
                   />
                   <p class="text-gray-600 ml-3">End date</p>
                 </div>
-                <p class="font-semibold">{{ course.endDate }}</p>
+                <p class="font-semibold">{{ data.endDate }}</p>
               </div>
-              <div v-if="course.extraInformation" class="mb-4">
-                <p class="text-gray-600">{{ course.extraInformation }}</p>
+              <div v-if="data.extraInformation" class="mb-4">
+                <p class="text-gray-600">{{ data.extraInformation }}</p>
               </div>
-              <div v-if="course.difficulty" class="flex justify-between mb-4">
+              <div v-if="data.difficulty" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:signal-cellular-3"
@@ -129,9 +129,9 @@
                   />
                   <p class="text-gray-600 ml-3">Difficulty</p>
                 </div>
-                <p class="font-semibold">{{ course.difficulty }}</p>
+                <p class="font-semibold">{{ data.difficulty }}</p>
               </div>
-              <div v-if="course.timeCommitment" class="flex justify-between mb-4">
+              <div v-if="data.timeCommitment" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:clock-outline"
@@ -139,9 +139,9 @@
                   />
                   <p class="text-gray-600 ml-3">Time Commitment</p>
                 </div>
-                <p class="font-semibold">{{ course.timeCommitment }}</p>
+                <p class="font-semibold">{{ data.timeCommitment }}</p>
               </div>
-              <div v-if="course.lecturesDuration" class="flex justify-between mb-4">
+              <div v-if="data.lecturesDuration" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:timer-outline"
@@ -149,7 +149,7 @@
                   />
                   <p class="text-gray-600 ml-3">Lectures Duration</p>
                 </div>
-                <p class="font-semibold">{{ course.lecturesDuration }}</p>
+                <p class="font-semibold">{{ data.lecturesDuration }}</p>
               </div>
             </div>
           </div>
@@ -158,28 +158,28 @@
             class="border-t-2 border-gray-200 flex justify-between items-center gap-x-12 mt-6"
           >
             <!-- LEFT column -->
-            <div v-if="course.lecturer" class="flex items-center justify-between w-1/2 text-lg mt-3">
+            <div v-if="data.lecturer" class="flex items-center justify-between w-1/2 text-lg mt-3">
               <div class="flex items-center">
                 <Icon name="mdi:account-tie" class="text-gray-800 font-bold" />
                 <p class="text-gray-600 ml-2">Lecturer</p>
               </div>
               <div class="flex items-end">
-                <p class="font-semibold">{{ course.lecturer }}</p>
+                <p class="font-semibold">{{ data.lecturer }}</p>
               </div>
             </div>
             <!-- RIGHT column -->
-            <div v-if="course.lecturerTitle" class="flex items-center justify-between w-1/2 text-lg mt-3">
+            <div v-if="data.lecturerTitle" class="flex items-center justify-between w-1/2 text-lg mt-3">
               <div class="flex items-center">
                 <p class="text-gray-600 font-semibold mr-4">
-                  {{ course.lecturerTitle }}
+                  {{ data.lecturerTitle }}
                 </p>
               </div>
               <div>
                 <NuxtImg
-                  v-if="course.lecturerImg"
+                  v-if="data.lecturerImg"
                   class="w-16 h-16 rounded-full"
-                  :src="course.lecturerImg"
-                  :alt="course.lecturer"
+                  :src="data.lecturerImg"
+                  :alt="data.lecturer"
                 />
               </div>
             </div>
@@ -194,7 +194,7 @@
           <!-- Course Description -->
           <div class="mt-6 pt-6 mb-16" v-if="formattedDescription">
             <div class="border-b-2 border-gray-200 mb-4">
-              <p class="text-gray-800 mb-2 text-2xl">Course description</p>
+              <p class="text-gray-800 mb-2 text-2xl">data description</p>
             </div>
             <div class="tracking-wider" v-html="formattedDescription"></div>
             <div class="flex justify-center mt-6">
@@ -222,7 +222,7 @@
 import { useLocalePath } from "#imports";
 
 const props = defineProps({
-  course: {
+  data: {
     type: Object,
     required: true,
   },
@@ -250,10 +250,10 @@ const formatText = (text) => {
 };
 
 const formattedBiography = computed(() =>
-  formatText(props.course.lecturerBiography)
+  formatText(props.data.lecturerBiography)
 );
 const formattedDescription = computed(() =>
-  formatText(props.course.description)
+  formatText(props.data.description)
 );
 
 watch(
@@ -284,7 +284,7 @@ const enrollNow = () => {
     closeModal();
     navigateTo(localePath("/guest/enrolment")); // redirect to enrolment page
   } else {
-    authStore.enrollCourse(props.course.id);
+    authStore.enrollCourse(props.data.id);
     closeModal();
   }
 };

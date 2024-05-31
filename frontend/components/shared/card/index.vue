@@ -1,7 +1,7 @@
 <template>
   <div
     class="relative bg-white rounded w-72 transition-transform duration-300 origin-top-center"
-     @mouseenter="handleMouseEnter(course.id)"
+     @mouseenter="handleMouseEnter(data.id)"
      @mouseleave="handleMouseLeave"
   >
     <!-- Video/Image Background Container -->
@@ -10,26 +10,26 @@
     >
       <NuxtImg
         preload
-        :placeholder="course.imageUrlLowRes"
+        :placeholder="data.imageUrlLowRes"
         class="w-full h-full object-cover transition-all duration-500"
-        :src="course.imageUrl"
-        :alt="course.title"
+        :src="data.imageUrl"
+        :alt="data.title"
         :class="{
-          'opacity-0 invisible': videoPlayingIndex === course.id,
-          'opacity-100 visible': videoPlayingIndex !== course.id
+          'opacity-0 invisible': videoPlayingIndex === data.id,
+          'opacity-100 visible': videoPlayingIndex !== data.id
         }"
       />
       <transition name="slide-fade" mode="out-in">
         <video
-          v-if="videoPlayingIndex === course.id"
+          v-if="videoPlayingIndex === data.id"
           class="w-full h-full object-cover absolute top-0 left-0"
-          :autoplay="hoveredTileIndex === course.id"
+          :autoplay="hoveredTileIndex === data.id"
           muted
           loop
           ref="videoRef"
-          :key="course.videoUrl"
+          :key="data.videoUrl"
         >
-          <source :src="course.videoUrl" type="video/mp4" />
+          <source :src="data.videoUrl" type="video/mp4" />
         </video>
       </transition>
     </div>
@@ -37,36 +37,36 @@
     <div
       class="bg-blue-500 text-white text-lg text-center py-2 px-5 overflow-hidden whitespace-nowrap text-ellipsis"
       style="max-height: 40px"
-      :title="course.title"
+      :title="data.title"
     >
-      {{ course.title }}
+      {{ data.title }}
     </div>
     <!-- Hidden Content Below the Title -->
     <div
       class="absolute border border-gray-300 w-72 transition-all duration-500 overflow-hidden z-20 bg-white"
       :class="{
-        'opacity-0 invisible': hoveredTileIndex !== course.id,
-        'opacity-100 visible': hoveredTileIndex === course.id,
+        'opacity-0 invisible': hoveredTileIndex !== data.id,
+        'opacity-100 visible': hoveredTileIndex === data.id,
       }"
     >
       <div class="px-4 py-2 text-sm text-gray-700">
         <div class="flex flex-col gap-5 mt-2">
-          <div v-if="course.language" class="flex items-center">
+          <div v-if="data.language" class="flex items-center">
             <Icon name="mdi:speaking" class="text-black text-2xl" />
-            <p class="ml-2">{{ course.language }}</p>
+            <p class="ml-2">{{ data.language }}</p>
           </div>
-          <div v-if="course.subject" class="flex items-center">
+          <div v-if="data.subject" class="flex items-center">
             <Icon name="fluent-mdl2:health-solid" class="text-black text-2xl" />
-            <p class="ml-2">{{ course.subject }}</p>
+            <p class="ml-2">{{ data.subject }}</p>
           </div>
-          <div v-if="course.lecturer" class="flex items-center">
+          <div v-if="data.lecturer" class="flex items-center">
             <Icon name="carbon:user-avatar" class="text-black text-2xl" />
-            <p class="ml-2">{{ course.lecturer }}</p>
+            <p class="ml-2">{{ data.lecturer }}</p>
           </div>
-          <div v-if="course.duration" class="flex items-center">
+          <div v-if="data.duration" class="flex items-center">
             <Icon name="carbon:calendar" class="text-black text-2xl" />
             <p class="ml-2">
-              <span class="font-bold">{{ course.duration }}</span> Weeks long
+              <span class="font-bold">{{ data.duration }}</span> Weeks long
             </p>
           </div>
           <div
@@ -79,10 +79,10 @@
               Read more
             </button>
 
-            <div v-if="course.startDate" class="w-full sm:w-auto sm:ml-4 text-right">
+            <div v-if="data.startDate" class="w-full sm:w-auto sm:ml-4 text-right">
               <p>Start date:</p>
-              <p class="font-bold">{{ course.startDate }}</p>
-              <p class="font-bold">{{ course.startTime }}</p>
+              <p class="font-bold">{{ data.startDate }}</p>
+              <p class="font-bold">{{ data.startTime }}</p>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@
 
 <script setup>
 const props = defineProps({
-  course: {
+  data: {
     type: Object,
     required: true,
   },
@@ -128,7 +128,7 @@ const handleMouseLeave = () => {
 };
 
 const openModal = () => {
-  emit("openModal", props.course);
+  emit("openModal", props.data);
 };
 </script>
 

@@ -41,48 +41,48 @@
       />
     </div>
     <div class="container mx-auto p-4 h-screen relative">
-      <SharedCardsSection
+      <SharedCardSection
         id="trending"
         title="Trending"
-        :courses="courses"
+        :dataArray="courses"
         @openModal="handleOpenModal"
         class="pb-12"
       />
-      <SharedCardsSection
+      <SharedCardSection
         id="active-assignments"
         title="Active assignments"
         :workloadMeter="true"
-        :courses="courses"
+        :dataArray="courses"
         @openModal="handleOpenModal"
         class="pb-12"
       />
-      <SharedCardsSection
+      <SharedCardSection
         id="my-courses"
         title="My courses"
-        :courses="courses"
+        :dataArray="courses"
         @openModal="handleOpenModal"
         class="pb-12 z-0"
       />
-      <SharedCardsSection
+      <SharedCardSection
         id="my-grades"
         title="My grades"
-        :courses="courses"
+        :dataArray="courses"
         @openModal="handleOpenModal"
         class="pb-12"
       />
-      <SharedCardsSection
+      <SharedCardSection
         id="my-completed-courses"
         title="My completed courses"
-        :courses="courses"
+        :dataArray="courses"
         @openModal="handleOpenModal"
         class="pb-12 mb-20"
       />
     </div>
-    <SharedCardsModal
+    <SharedCardModal
       class="overflow-y-auto"
       v-if="showModal"
       :isVisible="showModal"
-      :course="selectedCourse"
+      :data="selectedData"
       @close="closeModal"
     />
   </div>
@@ -125,13 +125,12 @@ onMounted(() => {
 const videoSource = "/student_bg_video.mp4";
 
 const showModal = ref(false);
-const selectedCourse = ref({});
+const selectedData = ref({});
 const modal = ref(null);
 
-
-const openModal = (course) => {
+const openModal = (data) => {
   document.body.classList.add("overflow-hidden");
-  selectedCourse.value = { ...course };
+  selectedData.value = { ...data };
   showModal.value = true;
 };
 
@@ -140,8 +139,8 @@ const closeModal = () => {
   document.body.classList.remove("overflow-hidden");
 };
 
-const handleOpenModal = (course) => {
-  openModal(course);
+const handleOpenModal = (data) => {
+  openModal(data);
 };
 
 // Placeholder data
