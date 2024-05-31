@@ -2,6 +2,7 @@
   <div class="">
     <div class="my-12 flex items-center justify-between">
       <span class="text-gray-700 text-3xl font-bold">{{ title }}</span>
+      <StudentWorkloadMeter v-if="workloadMeter" :coefficient="workloadCoefficient(courses.length, 10)"/>
       <input
         type="text"
         class="ml-2 border-2 border-gray-300 rounded-md px-4 py-1"
@@ -42,6 +43,10 @@ const props = defineProps({
     type: Array,
     required: true,
   },
+  workloadMeter: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const localePath = useLocalePath();
@@ -49,6 +54,10 @@ const emit = defineEmits(["openModal"]);
 
 const handleOpenModal = (course) => {
   emit("openModal", course);
+};
+
+const workloadCoefficient = (assignmenttAmount, maxAmount) => {
+  return (assignmenttAmount / maxAmount);
 };
 
 const redirectToAvailableCourses = () => {
