@@ -40,7 +40,7 @@
             <div
               v-for="user in users"
               :key="user.id"
-              class="flex items-center p-2 ml-4 hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
+              class="flex items-center p-2 ml-4 hover:bg-gray-100 transition-colors duration-200 cursor-pointer select-none"
               @click="selectUser(user)"
             >
               <Icon
@@ -72,7 +72,7 @@
             </h2>
             <button
               @click="clearUser"
-              class="text-gray-500 hover:text-gray-700"
+              class="text-gray-500 hover:text-gray-700 select-none"
             >
               Close
             </button>
