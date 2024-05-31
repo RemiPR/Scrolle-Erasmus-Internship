@@ -1,21 +1,22 @@
 <template>
   <div
     class="relative bg-white rounded w-72 transition-transform duration-300 origin-top-center"
+     @mouseenter="handleMouseEnter(course.id)"
+     @mouseleave="handleMouseLeave"
   >
     <!-- Video/Image Background Container -->
     <div class="relative w-full h-48 overflow-hidden"
-      @mouseenter="handleMouseEnter(course.id)"
-      @mouseleave="handleMouseLeave"
       @click="openModal"
     >
       <NuxtImg
         preload
         :placeholder="course.imageUrlLowRes"
-        class="w-full h-full object-cover"
+        class="w-full h-full object-cover transition-all duration-500"
         :src="course.imageUrl"
         :alt="course.title"
         :class="{
-          'opacity-0': videoPlayingIndex === course.id,
+          'opacity-0 invisible': videoPlayingIndex === course.id,
+          'opacity-100 visible': videoPlayingIndex !== course.id
         }"
       />
       <transition name="slide-fade" mode="out-in">
@@ -42,13 +43,11 @@
     </div>
     <!-- Hidden Content Below the Title -->
     <div
-      class="absolute w-72 transition-opacity duration-500 overflow-hidden z-20 bg-white"
+      class="absolute border border-gray-300 w-72 transition-all duration-500 overflow-hidden z-20 bg-white"
       :class="{
-        'opacity-100': hoveredTileIndex === course.id,
-        'opacity-0': hoveredTileIndex !== course.id,
-        'border border-gray-300': hoveredTileIndex === course.id,
+        'opacity-0 invisible': hoveredTileIndex !== course.id,
+        'opacity-100 visible': hoveredTileIndex === course.id,
       }"
-
     >
       <div class="px-4 py-2 text-sm text-gray-700">
         <div class="flex flex-col gap-5 mt-2">
