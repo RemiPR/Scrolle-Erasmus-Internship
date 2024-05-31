@@ -1,3 +1,4 @@
+<!-- Your updated navigation component -->
 <template>
   <div>
     <!-- Header (Nav Menu) -->
@@ -9,7 +10,6 @@
           (props.enableScrollStyling && hasScrolled),
       }"
       class="flex justify-between font-semibold items-center p-4 fixed top-0 w-full z-50 transition-colors duration-300"
-      style="position: fixed; top: 0; z-index: 50"
     >
       <!-- Left nav: Logo + Logo Text and Home button -->
       <nav class="flex items-center space-x-12 text-xl">
@@ -24,9 +24,6 @@
         <NuxtLink :to="localePath('/student')" class="hover:underline">{{
           $t("nav_home_btn")
         }}</NuxtLink>
-        <!-- <NuxtLink :to="localePath('/')" class="hover:underline">{{
-          $t("nav_my_courses_btn")
-        }}</NuxtLink> -->
         <NuxtLink :to="localePath('/')" class="hover:underline"
           >What's trending</NuxtLink
         >
@@ -51,6 +48,7 @@
         />
         <div class="relative group">
           <button
+            @click="toggleMessenger"
             class="flex h-12 w-12 items-center justify-center rounded-full outline-none bg-gray-500 hover:bg-gray-400 text-white transition duration-300 ease-in-out"
           >
             <Icon
@@ -88,11 +86,13 @@
     </header>
     <!-- Page content -->
     <NuxtPage />
+    <SharedUserMessengerSidebar />
   </div>
 </template>
 
 <script setup>
 import { useLocalePath, navigateTo } from "#imports";
+import { useMessenger } from "@/composables/useMessenger";
 
 const props = defineProps({
   enableScrollStyling: {
@@ -103,4 +103,5 @@ const props = defineProps({
 
 const localePath = useLocalePath();
 const { hasScrolled } = useScrollPosition();
+const { toggleMessenger } = useMessenger();
 </script>
