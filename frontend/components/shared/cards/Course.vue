@@ -51,19 +51,19 @@
     >
       <div class="px-4 py-2 text-sm text-gray-700">
         <div class="flex flex-col gap-5 mt-2">
-          <div class="flex items-center">
+          <div v-if="course.language" class="flex items-center">
             <Icon name="mdi:speaking" class="text-black text-2xl" />
             <p class="ml-2">{{ course.language }}</p>
           </div>
-          <div class="flex items-center">
+          <div v-if="course.subject" class="flex items-center">
             <Icon name="fluent-mdl2:health-solid" class="text-black text-2xl" />
             <p class="ml-2">{{ course.subject }}</p>
           </div>
-          <div class="flex items-center">
+          <div v-if="course.lecturer" class="flex items-center">
             <Icon name="carbon:user-avatar" class="text-black text-2xl" />
             <p class="ml-2">{{ course.lecturer }}</p>
           </div>
-          <div class="flex items-center">
+          <div v-if="course.duration" class="flex items-center">
             <Icon name="carbon:calendar" class="text-black text-2xl" />
             <p class="ml-2">
               <span class="font-bold">{{ course.duration }}</span> Weeks long
@@ -79,7 +79,7 @@
               Read more
             </button>
 
-            <div class="w-full sm:w-auto sm:ml-4 text-right">
+            <div v-if="course.startDate" class="w-full sm:w-auto sm:ml-4 text-right">
               <p>Start date:</p>
               <p class="font-bold">{{ course.startDate }}</p>
               <p class="font-bold">{{ course.startTime }}</p>

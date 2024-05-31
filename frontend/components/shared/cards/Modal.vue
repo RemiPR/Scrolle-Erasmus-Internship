@@ -32,7 +32,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
             <!-- Left Column -->
             <div>
-              <div class="flex justify-between mb-4">
+              <div v-if="course.price" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:currency-usd"
@@ -42,7 +42,7 @@
                 </div>
                 <p class="font-semibold">{{ course.price }}</p>
               </div>
-              <div class="flex justify-between mb-4">
+              <div v-if="course.certification" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:certificate"
@@ -52,7 +52,7 @@
                 </div>
                 <p class="font-semibold">€{{ course.certification }}</p>
               </div>
-              <div class="flex justify-between mb-4">
+              <div v-if="course.subject" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:book-open-variant"
@@ -62,14 +62,14 @@
                 </div>
                 <p class="font-semibold">{{ course.subject }}</p>
               </div>
-              <div class="flex justify-between mb-4">
+              <div v-if="course.duration" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon name="mdi:timer-sand" class="text-gray-800 font-bold" />
                   <p class="text-gray-600 ml-3">Duration</p>
                 </div>
                 <p class="font-semibold">{{ course.duration }}</p>
               </div>
-              <div class="flex justify-between mb-4">
+              <div v-if="course.selfLearningMaterial" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:book-outline"
@@ -79,7 +79,7 @@
                 </div>
                 <p class="font-semibold">{{ course.selfLearningMaterial }}</p>
               </div>
-              <div class="flex justify-between mt-8 mb-4">
+              <div v-if="course.language" class="flex justify-between mt-8 mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="material-symbols:language"
@@ -98,7 +98,7 @@
             </div>
             <!-- Right Column -->
             <div>
-              <div class="flex justify-between mb-4">
+              <div v-if="course.startDate" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:calendar-start"
@@ -108,7 +108,7 @@
                 </div>
                 <p class="font-semibold">{{ course.startDate }}</p>
               </div>
-              <div class="flex justify-between mb-4">
+              <div v-if="course.endDate" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:calendar-end"
@@ -118,10 +118,10 @@
                 </div>
                 <p class="font-semibold">{{ course.endDate }}</p>
               </div>
-              <div class="mb-4">
+              <div v-if="course.extraInformation" class="mb-4">
                 <p class="text-gray-600">{{ course.extraInformation }}</p>
               </div>
-              <div class="flex justify-between mb-4">
+              <div v-if="course.difficulty" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:signal-cellular-3"
@@ -131,7 +131,7 @@
                 </div>
                 <p class="font-semibold">{{ course.difficulty }}</p>
               </div>
-              <div class="flex justify-between mb-4">
+              <div v-if="course.timeCommitment" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:clock-outline"
@@ -141,7 +141,7 @@
                 </div>
                 <p class="font-semibold">{{ course.timeCommitment }}</p>
               </div>
-              <div class="flex justify-between mb-4">
+              <div v-if="course.lecturesDuration" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon
                     name="mdi:timer-outline"
@@ -158,7 +158,7 @@
             class="border-t-2 border-gray-200 flex justify-between items-center gap-x-12 mt-6"
           >
             <!-- LEFT column -->
-            <div class="flex items-center justify-between w-1/2 text-lg mt-3">
+            <div v-if="course.lecturer" class="flex items-center justify-between w-1/2 text-lg mt-3">
               <div class="flex items-center">
                 <Icon name="mdi:account-tie" class="text-gray-800 font-bold" />
                 <p class="text-gray-600 ml-2">Lecturer</p>
@@ -168,7 +168,7 @@
               </div>
             </div>
             <!-- RIGHT column -->
-            <div class="flex items-center justify-between w-1/2 text-lg mt-3">
+            <div v-if="course.lecturerTitle" class="flex items-center justify-between w-1/2 text-lg mt-3">
               <div class="flex items-center">
                 <p class="text-gray-600 font-semibold mr-4">
                   {{ course.lecturerTitle }}
