@@ -40,6 +40,51 @@
         @toggleVideo="toggleVideo"
       />
     </div>
+    <div class="container mx-auto p-4 h-screen relative">
+      <SharedCardsSection
+        id="trending"
+        title="Trending"
+        :courses="courses"
+        @openModal="handleOpenModal"
+        class="pb-12"
+      />
+      <SharedCardsSection
+        id="active-assignments"
+        title="Active assignments"
+        :workloadMeter="true"
+        :courses="courses"
+        @openModal="handleOpenModal"
+        class="pb-12"
+      />
+      <SharedCardsSection
+        id="my-courses"
+        title="My courses"
+        :courses="courses"
+        @openModal="handleOpenModal"
+        class="pb-12 z-0"
+      />
+      <SharedCardsSection
+        id="my-grades"
+        title="My grades"
+        :courses="courses"
+        @openModal="handleOpenModal"
+        class="pb-12"
+      />
+      <SharedCardsSection
+        id="my-completed-courses"
+        title="My completed courses"
+        :courses="courses"
+        @openModal="handleOpenModal"
+        class="pb-12 mb-20"
+      />
+    </div>
+    <SharedCardsModal
+      class="overflow-y-auto"
+      v-if="showModal"
+      :isVisible="showModal"
+      :course="selectedCourse"
+      @close="closeModal"
+    />
   </div>
 </template>
 
@@ -78,4 +123,52 @@ onMounted(() => {
 });
 
 const videoSource = "/student_bg_video.mp4";
+
+const showModal = ref(false);
+const selectedCourse = ref({});
+const modal = ref(null);
+
+
+const openModal = (course) => {
+  document.body.classList.add("overflow-hidden");
+  selectedCourse.value = { ...course };
+  showModal.value = true;
+};
+
+const closeModal = () => {
+  showModal.value = false;
+  document.body.classList.remove("overflow-hidden");
+};
+
+const handleOpenModal = (course) => {
+  openModal(course);
+};
+
+// Placeholder data
+const courses = ref([
+  {
+    id: 1,
+    title: "Advanced Aesthetic Cosmetology",
+    imageUrl: "/advanced_aesthetic_cosmetology.jpg",
+    imageUrlLowRes: "/low_res_advanced_aesthetic_cosmetology.jpg",
+    videoUrl: "/advanced_aesthetic_cosmetology.mp4",
+    certification: "99",
+    duration: 10,
+    selfLearningMaterial: "Available",
+    startDate: "2024-07-01",
+    startTime: "18:00 - 19:00",
+    endDate: "2024-08-01",
+    endTime: "18:00 - 19:00",
+    difficulty: "Beginner",
+    timeCommitment: "3-5 hours per week",
+    lecturesDuration: "1-2 hours per lecture",
+    lecturer: "Dr. Laima Bērziņa",
+    lecturerTitle: "Professor of Aesthetic Cosmetology",
+    lecturerImg: "/lecturer_avatar.png",
+    lecturerBiography:
+      "Dr. Laima Bērziņa is a leading expert in Aesthetic Cosmetology with over 20 years of experience in clinical practice and research. She holds a PhD in Dermatology from the Harvard University and completed her fellowship at Harvard Medical School.\n\n Starting as a clinical dermatologist, Dr. Bērziņa quickly focused on cosmetic procedures, pioneering techniques in non-surgical facial rejuvenation and laser treatments. \n\nShe is a dedicated educator and mentor, teaching at institutions like Harvard University  and developing Aesthetic Cosmetology programs. Her research on non-invasive procedures and long-term effects of treatments is widely published, and she frequently speaks at international conferences.\n\nDr. Bērziņa promotes a collaborative learning environment, blending clinical practice with research. She also supports community health initiatives, offering free cosmetic treatments to domestic violence survivors, inspiring many with her dedication.",
+    description:
+      "Advanced aesthetic cosmetology is a specialized field focused on enhancing beauty and appearance through advanced skin care treatments and procedures. This field combines the latest scientific research with cutting-edge technology to offer innovative solutions for skin rejuvenation, anti-aging, and aesthetic enhancements. \n\nProfessionals in this field are trained to perform a variety of treatments that go beyond basic skincare, including laser therapies, chemical peels, and advanced facial treatments. In addition to traditional aesthetic practices, advanced cosmetologists are skilled in the use of sophisticated equipment and techniques such as micro-needling, radiofrequency treatments, and dermal fillers. \n\nThese procedures are designed to address deeper skin concerns, providing clients with more effective and long-lasting results. The aim is to improve skin texture, reduce wrinkles, and enhance overall facial aesthetics. Advanced aesthetic cosmetology also places a strong emphasis on personalized care. \n\nPractitioners conduct thorough consultations to understand each client's unique skin type and concerns, allowing them to tailor treatments accordingly. This individualized approach ensures that clients receive the most suitable and effective treatments for their specific needs, enhancing both their appearance and confidence.Continued education and training are crucial in this rapidly evolving field. \n\nProfessionals must stay updated with the latest advancements and trends to provide the best possible care. By combining artistry with scientific expertise, advanced aesthetic cosmetologists help clients achieve their desired look while maintaining the highest standards of safety and efficacy.",
+  },
+]);
 </script>
