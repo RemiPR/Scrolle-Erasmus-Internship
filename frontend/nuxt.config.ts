@@ -45,10 +45,12 @@ export default defineNuxtConfig({
         iso: "en-US",
         files: [
           "shared/en.json",
-          "faq/en.json",
+          "guest/faq/en.json",
           "guest/admission/application/en.json",
           "guest/admission/fees/en.json",
           "guest/admission/visas/en.json",
+          "guest/admission/entrance_requirements/en.json",
+          "guest/admission/shared/en.json",
         ],
       },
       {
@@ -57,10 +59,12 @@ export default defineNuxtConfig({
         iso: "lv-LV",
         files: [
           "shared/lv.json",
-          "faq/lv.json",
+          "guest/faq/lv.json",
           "guest/admission/application/lv.json",
           "guest/admission/fees/lv.json",
           "guest/admission/visas/lv.json",
+          "guest/admission/entrance_requirements/lv.json",
+          "guest/admission/shared/lv.json",
         ],
       },
       {
@@ -69,10 +73,12 @@ export default defineNuxtConfig({
         iso: "ru-RU",
         files: [
           "shared/ru.json",
-          "faq/ru.json",
+          "guest/faq/ru.json",
           "guest/admission/application/ru.json",
           "guest/admission/fees/ru.json",
           "guest/admission/visas/ru.json",
+          "guest/admission/entrance_requirements/ru.json",
+          "guest/admission/shared/ru.json",
         ],
       },
     ],

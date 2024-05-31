@@ -1,0 +1,49 @@
+{
+  "entrance_requirements_title": "Visi nepieciešamie dati",
+
+  "entrance_requirements_content": {
+    "title_one": "1. daļa: Apstiprināts sertifikāts vai kvalifikācija",
+    "title_two": "2. daļa: Diplomu atzīšana",
+    "title_three": "3. daļa: Pietiekama studiju valoda",
+    "title_four": "4. daļa: Īpašas prasības",
+    "part_one_text": {
+      "paragraph_one": "Lai stātos augstskolā, ir noteiktas vispārējās prasības, kas ir saistošas visām augstākās izglītības iestādēm Latvijā.",
+      "paragraph_two": "Visiem pretendentiem, kuri piesakās uz noteikta līmeņa studijām (bakalaura, maģistra vai doktora studijas), jābūt apstiprinātam sertifikātam vai kvalifikācijai, kas ļauj turpināt vēlamās studijas. Parasti tas ir vidējās izglītības diploms vai vidusskolas diploms un akadēmiskais izraksts koledžas vai bakalaura līmeņa (pamatstudiju) programmām vai augstākās izglītības diploms un akadēmiskais izraksts maģistra līmeņa (pēcdiploma) programmām vai doktora studijām.",
+      "paragraph_three": "Pretendentu vidējās izglītības sertifikātam jāatbilst Latvijas standartam - tam jābūt vismaz 12 gadiem vidējās izglītības iestādē.",
+      "paragraph_four": "Lai stātos augstskolā, ir noteiktas vispārējās prasības, kas ir saistošas visām augstākās izglītības iestādēm Latvijā.",
+      "paragraph_five": "Visiem pretendentiem, kuri piesakās uz noteikta līmeņa studijām (bakalaura, maģistra vai doktora studijas), jābūt apstiprinātam sertifikātam vai kvalifikācijai, kas ļauj turpināt vēlamās studijas. Parasti tas ir vidējās izglītības diploms vai vidusskolas diploms un akadēmiskais izraksts koledžas vai bakalaura līmeņa (pamatstudiju) programmām vai augstākās izglītības diploms un akadēmiskais izraksts maģistra līmeņa (pēcdiploma) programmām vai doktora studijām.",
+      "paragraph_six": "Pretendentu vidējās izglītības sertifikātam jāatbilst Latvijas standartam - tam jābūt vismaz 12 gadiem vidējās izglītības iestādē."
+    },
+    "part_two_text": {
+      "paragraph_one": "Studentiem jābūt informētiem, ka pirms studiju līguma parakstīšanas un uzturēšanās atļaujas vai vīzas pieteikuma iesniegšanas, izvēlētās universitātes uzņemšanas birojs nosūtīs izglītības dokumentus diploma atzīšanai.",
+      "paragraph_two": "Pamatojoties uz Eiropas diploma atzīšanas tīkla ENIC/NARIC sniegtajiem datiem, Latvijas Akadēmiskās informācijas centrs nosaka, vai sertifikātu vai diplomu vai akadēmisko grādu, kas iegūts ārvalstīs, var pielīdzināt līdzvērtīgai kvalifikācijai Latvijā. Gadījumos, kad vērtētais dokuments neatbilst Latvijā piešķirto sertifikātu vai diplomu vai akadēmisko grādu standartiem, novērtējuma ziņojumā norādīti papildu prasības, kas jāizpilda, lai panāktu nepieciešamo atbilstību.",
+      "paragraph_three": "Laiks, kas nepieciešams atzīšanas secinājumam, ir aptuveni 1 mēnesis, bet dažreiz tas var aizņemt ilgāku laiku, jo process ir atkarīgs no valsts, kurā izglītības dokumenti ir izdoti.",
+      "paragraph_four": "Pamatojoties uz novērtējuma ziņojumu, augstākās izglītības iestāde, kurā students ir pieteicies, var pieņemt lēmumu par uzņemšanu. Lai uzzinātu vairāk par ārvalstu diplomu un kvalifikāciju atzīšanu, apmeklējiet Latvijas Akadēmiskās informācijas centra mājaslapu. Vispārējā ārvalstu kvalifikāciju novērtēšanas un atzīšanas procedūra ir noteikta Izglītības likuma 11. pantā."
+    },
+    "part_three_text": {
+      "paragraph_one": "Visiem studentiem, kas piesakās studijām Latvijā, jādemonstrē pietiekama studiju valodas prasme (galvenokārt angļu valoda). Zināšanu līmenim jābūt vienādam vai augstākam par standarta B2 līmeni saskaņā ar Eiropas kopējo valodu prasmes sistēmu (CEFRL)."
+    },
+    "part_four_text": {
+      "paragraph_one": "Prasības vidējās izglītības absolventiem no ES, EEZ vai Šveices:",
+      "paragraph_two": "Pretendentiem, kuri ir ieguvuši vidējo izglītību ES, EEZ vai Šveicē un kuru izdotais diploms ietver studiju valodas prasmes novērtējumu, kas ir līdzvērtīgs B2 līmenim vai augstākam, nav jāiesniedz starptautiski atzīts valodas prasmes sertifikāts un viņi var pieteikties studijām bez papildu studiju valodas zināšanu apliecinājuma.",
+      "paragraph_three": "Ja iepriekšējais diploms neietver studiju valodas prasmes novērtējumu, kas ir līdzvērtīgs B2 līmenim vai augstākam, šo valodas novērtējumu organizēs attālināti katra Latvijas augstākās izglītības iestāde, izmantojot tiešsaistes rīkus.",
+      "paragraph_four": "Prasības vidējās izglītības absolventiem no citām valstīm:",
+      "paragraph_five": "2020./2021. akadēmiskajā gadā pretendentu no citām valstīm, izņemot ES, EEZ vai Šveici, studiju valodas prasmes līmeni var apliecināt ar starptautiski atzītu valodas prasmes sertifikātu vai novērtēt katra Latvijas augstākās izglītības iestāde.",
+      "paragraph_six": "Starptautiski atzīts valodas prasmes sertifikāts:",
+      "paragraph_seven": "Ja pretendents var iesniegt starptautiski atzītu valodas prasmes sertifikātu, kas izsniegts pēdējo piecu gadu laikā, rezultātam jābūt vienādam ar standarta B2 vai augstāk. Zināšanām parasti jāatbilst IELTS 5.5-6.5, TOEFL (PBT) 500-550 vai TOEFL (IBT) 70-90. Konkrētais rezultāts ir atkarīgs no universitātes un studiju līmeņa.",
+      "paragraph_eight": "Novērtējums no Latvijas augstākās izglītības iestādēm:",
+      "paragraph_nine": "Ja pretendents nevar iesniegt starptautiski atzītu valodas prasmes sertifikātu, kas izsniegts pēdējo piecu gadu laikā, novērtējumu sniegs katra Latvijas augstākās izglītības iestāde, izmantojot vienotu metodoloģiju, kas balstīta uz Eiropas kopējo valodu prasmes sistēmu. Novērtējums tiek organizēts attālināti, izmantojot tiešsaistes rīkus.",
+      "paragraph_ten": "Prasības iepriekš iegūtai izglītībai studiju valodā:",
+      "paragraph_eleven": "Gadījumā, ja pretendents iepriekš ir ieguvis vidējo vai augstāko izglītību angļu vai citā studiju valodā, kas ir norādīta sertifikātā vai oficiālā dokumentā, ko izdevusi augstākās izglītības iestāde, starptautiski atzīts valodas prasmes sertifikāts nav jāiesniedz. Tomēr jāņem vērā, ka dažas universitātes šajā gadījumā var noteikt papildu studiju valodas tiešsaistes eksāmenu.",
+      "paragraph_twelve": "Iestādes specifiskās prasības:",
+      "paragraph_thirteen": "Augstākās izglītības iestāde nosaka citas uzņemšanas prasības atbilstoši izvēlētajai studiju programmai. Šīs iestādes specifiskās prasības var ietvert iepriekšējo akadēmisko izrakstu novērtēšanu, eksāmenus un testus noteiktos priekšmetos, kā arī tiešsaistes intervijas.",
+      "paragraph_fourteen": "Papildu prasības par iesniedzamajiem dokumentiem nosaka katra izglītības iestāde saskaņā ar uzņemšanas noteikumiem, tādēļ pārbaudiet šos noteikumus universitāšu mājaslapās.",
+      "paragraph_fifteen": "Prasības maģistrantu studijām:",
+      "paragraph_sixteen": "Pretendentiem, kuri vēlas studēt maģistra līmenī, jābūt pabeigtām bakalaura līmeņa studijām, bet doktora līmeņa studijām jāpabeidz maģistra līmeņa studijas.",
+      "paragraph_seventeen": "Prasības apmaiņas studentiem:",
+      "paragraph_eighteen": "Studentu apmaiņa balstās uz divpusējiem līgumiem starp partnerinstitūcijām vai dažādām apmaiņas programmām, piemēram, Erasmus+, veicinot augstākās izglītības studentus studēt un apgūt prasmes ārvalstīs programmas ietvaros. Sīkāka informācija par pieteikšanās nosacījumiem un procedūrām ir pieejama attiecīgās universitātes mājaslapā."
+    }
+  },
+  "entrance_button_next": "Nākamais",
+  "entrance_button_previous": "Iepriekšējais"
+}
