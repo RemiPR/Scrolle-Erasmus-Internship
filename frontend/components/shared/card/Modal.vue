@@ -194,7 +194,7 @@
           <!-- Course Description -->
           <div class="mt-6 pt-6 mb-16" v-if="formattedDescription">
             <div class="border-b-2 border-gray-200 mb-4">
-              <p class="text-gray-800 mb-2 text-2xl">data description</p>
+              <p class="text-gray-800 mb-2 text-2xl">Course description</p>
             </div>
             <div class="tracking-wider" v-html="formattedDescription"></div>
             <div class="flex justify-center mt-6">

@@ -46,6 +46,7 @@
         title="Trending"
         :dataArray="trending"
         :hiddenContent="false"
+        :playVideo="false"
         @openModal="handleOpenModal"
         class="pb-12"
       />
