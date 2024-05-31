@@ -1,49 +1,82 @@
 <template>
-  <div
-    v-if="isMessengerOpen"
-    class="fixed top-24 right-0 h-[calc(100%-7rem)] w-96 bg-white shadow-lg z-49 flex flex-col mr-4 rounded-lg"
-  >
-    <div class="p-4 flex-shrink-0">
-      <h2 class="text-2xl text-gray-700 font-semibold mb-4">Chats</h2>
-      <!-- Search bar -->
-      <div class="relative mb-2">
-        <input
-          type="text"
-          placeholder="Search Messenger"
-          class="w-full pl-10 pr-4 py-2 rounded-full bg-gray-100 text-gray-600 focus:outline-none focus:bg-white focus:shadow-md"
-        />
-        <svg
-          class="absolute left-3 top-3 h-5 w-5 text-gray-400"
-          fill="currentColor"
-          viewBox="0 0 20 20"
+  <div class="flex rounded-lg">
+    <!-- Main Sidebar Container -->
+    <div
+      class="fixed top-24 right-0 h-[calc(100%-7rem)] bg-white shadow-lg z-40 mr-4 transition-all duration-700"
+      :class="{ 'translate-x-full': !isMessengerOpen }"
+      :style="{ width: selectedUser ? '60rem' : '22.5rem' }"
+    >
+      <div class="flex w-full">
+        <!-- User List -->
+        <div
+          class="w-96 flex-shrink-0 flex flex-col border-r border-gray-200 bg-gray-200 pb-2"
+          style="height: calc(100vh - 7rem)"
         >
-          <path
-            fill-rule="evenodd"
-            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1111.95 1.8l4.75 4.75a1 1 0 01-1.415 1.414l-4.75-4.75A6 6 0 012 8z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </div>
-    </div>
-    <!-- Messenger content -->
-    <div class="overflow-y-auto flex-grow p-2 pt-0">
-      <!-- Example messages -->
-      <div
-        v-for="n in 30"
-        :key="n"
-        class="flex items-center p-2 hover:bg-gray-100 transition-colors duration-200"
-      >
-        <img
-          src="https://via.placeholder.com/40"
-          alt="User avatar"
-          class="rounded-full w-10 h-10 mr-4"
-        />
-        <div class="flex-1">
-          <p class="text-gray-900 font-semibold">User {{ n }}</p>
-          <div class="flex items-center text-gray-500 text-sm">
-            <p class="truncate">Message content...</p>
-            <span class="mx-1">&middot;</span>
-            <p>6 d</p>
+          <div class="p-4 flex-shrink-0">
+            <h2 class="text-2xl text-gray-700 font-semibold mb-4">Chats</h2>
+            <div class="relative mb-2 w-full">
+              <input
+                type="text"
+                placeholder="Search Messenger"
+                class="w-full pl-10 py-2 rounded-full bg-gray-100 text-gray-600 focus:outline-none focus:bg-white focus:shadow-md select-none"
+              />
+              <svg
+                class="absolute left-3 top-3 h-5 w-5 text-gray-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1111.95 1.8l4.75 4.75a1 1 0 01-1.415 1.414l-4.75-4.75A6 6 0 012 8z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="flex-grow overflow-hidden hover:overflow-y-scroll">
+            <div
+              v-for="user in users"
+              :key="user.id"
+              class="flex items-center p-2 hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
+              @click="selectUser(user)"
+            >
+              <img
+                :src="user.avatar"
+                alt="User avatar"
+                class="rounded-full w-10 h-10 mr-4"
+              />
+              <div class="flex-1">
+                <p class="text-gray-900 font-semibold">{{ user.name }}</p>
+                <div class="flex items-center text-gray-500 text-sm">
+                  <p class="truncate">{{ user.lastMessage }}</p>
+                  <span class="mx-1">&middot;</span>
+                  <p>{{ user.lastMessageDate }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat window -->
+        <div
+          v-if="selectedUser"
+          class="flex-1 bg-white shadow-lg p-4 overflow-hidden hover:overflow-y-scroll"
+          style="height: calc(100vh - 7rem)"
+        >
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl text-gray-700 font-semibold">
+              {{ selectedUser.name }}
+            </h2>
+            <button
+              @click="clearUser"
+              class="text-gray-500 hover:text-gray-700"
+            >
+              Close
+            </button>
+          </div>
+          <!-- Chat content here -->
+          <div>
+            <p>{{ selectedUser.chat }}</p>
           </div>
         </div>
       </div>
@@ -53,10 +86,284 @@
 
 <script setup>
 import { useMessengerState } from "@/composables/useMessenger";
+import { ref } from "vue";
 
-const { isMessengerOpen } = useMessengerState();
+const { isMessengerOpen, selectedUser, selectUser } = useMessengerState();
+
+const users = ref([
+  {
+    id: 1,
+    name: "User 1",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+    chat: "this is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chatthis is chat",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+    chat: "N",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+    chat: "N",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+    chat: "New chat",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  {
+    id: 2,
+    name: "User 2",
+    avatar: "https://via.placeholder.com/40",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+  },
+  // Add more users as needed
+]);
+
+const clearUser = () => {
+  selectUser(null);
+};
 </script>
 
 <style scoped>
-/* Add your styles here */
+.translate-x-full {
+  transform: translateX(125%);
+}
 </style>

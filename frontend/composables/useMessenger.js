@@ -4,26 +4,39 @@ import { ref, provide, inject } from "vue";
 
 export const useMessenger = () => {
   const isMessengerOpen = ref(false);
+  const selectedUser = ref(null); // Add selected user
 
   const toggleMessenger = () => {
     isMessengerOpen.value = !isMessengerOpen.value;
     console.log("Messenger state:", isMessengerOpen.value);
   };
 
+  const selectUser = (user) => {
+    selectedUser.value = user;
+    isMessengerOpen.value = true; // Open messenger when a user is selected
+    console.log("Selected user:", selectedUser.value);
+  };
+
   provide("isMessengerOpen", isMessengerOpen);
   provide("toggleMessenger", toggleMessenger);
+  provide("selectedUser", selectedUser); // Provide selected user
+  provide("selectUser", selectUser); // Provide select user function
 
   return {
     isMessengerOpen,
     toggleMessenger,
+    selectedUser,
+    selectUser,
   };
 };
 
 export const useMessengerState = () => {
   const isMessengerOpen = inject("isMessengerOpen");
   const toggleMessenger = inject("toggleMessenger");
+  const selectedUser = inject("selectedUser");
+  const selectUser = inject("selectUser");
 
-  if (!isMessengerOpen || !toggleMessenger) {
+  if (!isMessengerOpen || !toggleMessenger || !selectedUser || !selectUser) {
     throw new Error(
       "useMessengerState must be used within a component that calls useMessenger."
     );
@@ -32,5 +45,7 @@ export const useMessengerState = () => {
   return {
     isMessengerOpen,
     toggleMessenger,
+    selectedUser,
+    selectUser,
   };
 };
