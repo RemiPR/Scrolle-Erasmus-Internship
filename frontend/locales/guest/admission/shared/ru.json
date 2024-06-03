@@ -1,0 +1,9 @@
+{
+  "admission_tabs": {
+    "entrance_requirement_label": "Требования к поступающим",
+    "visas_&_permits_label": "Визы и разрешения",
+    "fees_&_cost_label": "Сборы и стоимость",
+    "online_application_label": "Начать онлайн-заявку"
+  },
+  "main_title": "Поступление"
+}

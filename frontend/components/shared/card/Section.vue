@@ -14,6 +14,8 @@
         v-for="data in dataArray"
         :key="data.id"
         :data="data"
+        :hiddenContent="hiddenContent"
+        :playVideo="playVideo"
         @openModal="handleOpenModal($event)"
       />
     </div>
@@ -46,6 +48,14 @@ const props = defineProps({
   workloadMeter: {
     type: Boolean,
     default: false
+  },
+  hiddenContent: {
+    type: Boolean,
+    default: true
+  },
+  playVideo: {
+    type:Boolean,
+    default: true
   }
 });
 

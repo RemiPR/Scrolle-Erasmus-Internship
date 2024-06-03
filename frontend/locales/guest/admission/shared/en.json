@@ -1,0 +1,9 @@
+{
+  "admission_tabs": {
+    "entrance_requirement_label": "Entrance Requirements",
+    "visas_&_permits_label": "Visas & Permits",
+    "fees_&_cost_label": "Fees & Cost",
+    "online_application_label": "Start Online Application"
+  },
+  "main_title": "Admission"
+}

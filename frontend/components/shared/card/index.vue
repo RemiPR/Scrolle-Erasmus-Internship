@@ -1,7 +1,7 @@
 <template>
   <div
     class="relative bg-white rounded w-72 transition-transform duration-300 origin-top-center"
-     @mouseenter="handleMouseEnter(data.id)"
+     @mouseenter="handleMouseEnter(data.id, playVideo)"
      @mouseleave="handleMouseLeave"
   >
     <!-- Video/Image Background Container -->
@@ -16,7 +16,9 @@
         :alt="data.title"
         :class="{
           'opacity-0 invisible': videoPlayingIndex === data.id,
-          'opacity-100 visible': videoPlayingIndex !== data.id
+          'opacity-100 visible': videoPlayingIndex !== data.id,
+          'scale-150': hoveredTileIndex === data.id,
+          'scale-100': hoveredTileIndex !== data.id,
         }"
       />
       <transition name="slide-fade" mode="out-in">
@@ -43,6 +45,7 @@
     </div>
     <!-- Hidden Content Below the Title -->
     <div
+      v-if="hiddenContent"
       class="absolute border border-gray-300 w-72 transition-all duration-500 overflow-hidden z-20 bg-white"
       :class="{
         'opacity-0 invisible': hoveredTileIndex !== data.id,
@@ -97,6 +100,14 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  hiddenContent: {
+    type: Boolean,
+    default: true
+  },
+  playVideo: {
+    type: Boolean,
+    default: true
+  }
 });
 
 const hoveredTileIndex = ref(null);
@@ -106,15 +117,17 @@ const videoPlayingTimeout = ref(null);
 
 const emit = defineEmits(["openModal"]);
 
-const handleMouseEnter = (id) => {
+const handleMouseEnter = (id, playVideo) => {
   hoveredTileIndex.value = id;
-  videoPlayingIndex.value = id;
+  if(playVideo) {
+    videoPlayingIndex.value = id;
 
   videoPlayingTimeout.value = setTimeout(() => {
     if (videoRef.value) {
       videoRef.value.play();
     }
   }, 500);
+  }
 };
 
 const handleMouseLeave = () => {

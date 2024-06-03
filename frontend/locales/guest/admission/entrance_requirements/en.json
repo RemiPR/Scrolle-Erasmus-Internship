@@ -1,0 +1,49 @@
+{
+  "entrance_requirements_title": "All the details you might need",
+
+  "entrance_requirements_content": {
+    "title_one": "Part 1: Attested certificate or qualification",
+    "title_two": "Part 2: Recognition of Diploma",
+    "title_three": "Part 3: Sufficient study language",
+    "title_four": "Part 4: Specific requirements",
+    "part_one_text": {
+      "paragraph_one": "For an admission to a university, there are some general requirements binding on all higher education institutions in Latvia.",
+      "paragraph_two": "All applicants applying for a definite level of studies (bachelor, master or doctoral studies) must have an attested certificate or qualification allowing to pursue the desired studies. Usually it is secondary level diploma or high school diploma and academic transcript for college or Bachelor level (undergraduate) study programmes or higher education degree diploma and academic transcript for Master level (postgraduate) study programmes or Doctoral studies.",
+      "paragraph_three": "Applicant’s secondary education certificate must correspond to the Latvian standard - it should be at least 12 years at secondary level education institution.",
+      "paragraph_four": "For an admission to a university, there are some general requirements binding on all higher education institutions in Latvia.",
+      "paragraph_five": "All applicants applying for a definite level of studies (bachelor, master or doctoral studies) must have an attested certificate or qualification allowing to pursue the desired studies. Usually it is secondary level diploma or high school diploma and academic transcript for college or Bachelor level (undergraduate) study programmes or higher education degree diploma and academic transcript for Master level (postgraduate) study programmes or Doctoral studies.",
+      "paragraph_six": "Applicant’s secondary education certificate must correspond to the Latvian standard - it should be at least 12 years at secondary level education institution."
+    },
+    "part_two_text": {
+      "paragraph_one": "Students should be aware that before proceeding with signing the study agreement and applying for the residence permit or visa, the admission office of the chosen university will send education documents for recognition of diploma.",
+      "paragraph_two": "Based on the data provided by the European diploma recognition network ENIC/NARIC, the Academic Information Centre of Latvia determines whether a certificate or diploma or an academic degree awarded in a foreign country can be equated to a similar qualification in Latvia. In cases when the document being assessed does not satisfy the standards of the certificates or diplomas or academic degrees awarded in Latvia, the assessment report states what additional requirements must be met to achieve the required compliance.",
+      "paragraph_three": "The time necessary for a recognition conclusion is approximately 1 month, but sometimes it may take longer because the process depends on the country where educational documents are issued.",
+      "paragraph_four": "Based on the assessment report, the institution of higher education to which the student has applied can take a decision about enrolment. To find more about the recognition of foreign diplomas and qualifications, please visit website of Academic Information Centre of Latvia. The overall procedure of evaluation and recognition of foreign credentials is stated in the Law on Education, Article 11."
+    },
+    "part_three_text": {
+      "paragraph_one": "All students applying for studies in Latvia need to demonstrate sufficient study language proficiency (mostly English language). The level of knowledge must be equal or higher than standard B2 according to Common European Framework of Reference for Languages (CEFRL)."
+    },
+    "part_four_text": {
+      "paragraph_one": "Requirements for secondary education graduates from the EU, EEA or Switzerland:",
+      "paragraph_two": "The applicants, who have obtained secondary education in the EU, EEA or Switzerland and if the issued diploma includes the assessment of the study language proficiency, which is equivalent to B2 level or higher, are not required to provide an internationally recognized language proficiency certificate and can apply for studies without additional proof of the study language knowledge.",
+      "paragraph_three": "If the previous diploma does not include the assessment of the study language proficiency, which is equivalent to B2 level or higher, the assessment of this language will be organized remotely by each Latvian higher education institutions, using online tools.",
+      "paragraph_four": "Requirements for the secondary education graduates from other countries:",
+      "paragraph_five": "In the academic year 2020/2021, the level of the study language proficiency of the applicants from other countries except the EU, EEA or Switzerland, could either be proven by an internationally recognized language proficiency certificate or assessed by each Latvian higher education institution.",
+      "paragraph_six": "Internationally recognized language proficiency certificate:",
+      "paragraph_seven": "If the applicant can provide an internationally recognized language proficiency certificate issued in the last five years, the score should be equal or higher than standard B2.The knowledge usually should correspond IELTS 5.5-6.5, TOEFL (PBT) 500-550 or TOEFL (IBT) 70-90. The specific score depends on the university and study level.",
+      "paragraph_eight": "Assessment by Latvian higher education institutions:",
+      "paragraph_nine": "If the applicant cannot provide an internationally recognized language proficiency certificate issued in the last five years, the assessment by each Latvian higher education institutions will be provided by applying a unified methodology based on the Common European Framework of Reference for Languages. The assessment is organized remotely, using online tools.",
+      "paragraph_ten": "Requirements for graduates obtained previous education in study language:",
+      "paragraph_eleven": "In the case, when an applicant has previously acquired the secondary or higher education in English or other study language, which is mentioned in the certificate or in an official document issued by the higher education institution, no internationally recognized language proficiency certificate is required to be provided. Be aware that some universities may set additional study language online exam in this case.",
+      "paragraph_twelve": "Institution-specific requirements:",
+      "paragraph_thirteen": "Higher education institution sets other entry regulations accordingly to the chosen study programme.These institution-specific requirements can include assesment of previous marks in academic transcripts, exams and tests in specific subjects, as well as online interviews.",
+      "paragraph_fourteen": "Additional requirements on what other documents need to be submitted are determined by each individual education institution according to the entrance regulations, therefore check these regulations on the websites of universites.",
+      "paragraph_fifteen": "Requirements for graduate students:",
+      "paragraph_sixteen": "Applicants, who wish to purse master level studies, must have completed bachelor-level studies, for doctoral-level studies completed master level studies.",
+      "paragraph_seventeen": "Requirements for exchange students:",
+      "paragraph_eighteen": "Student exchange is based on bilateral agreements between partner institutions or different exchange programs, for example Erasmus+, facilitating higher education students to study and train abroad during the course of the programme. Further information on application conditions and procedures is available on the respective university's webpage."
+    }
+  },
+  "entrance_button_next": "Next",
+  "entrance_button_previous": "Previous"
+}
