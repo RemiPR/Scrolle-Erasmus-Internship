@@ -46,7 +46,7 @@
     <!-- Hidden Content Below the Title -->
     <div
       v-if="hiddenContent"
-      class="absolute border border-gray-300 w-72 transition-all duration-500 overflow-hidden z-20 bg-white"
+      class="absolute border border-gray-300 transition-all duration-500 overflow-hidden z-20 bg-white w-full"
       :class="{
         'opacity-0 invisible': hoveredTileIndex !== data.id,
         'opacity-100 visible': hoveredTileIndex === data.id,
