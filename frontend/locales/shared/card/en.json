@@ -1,0 +1,30 @@
+{
+  "modal": {
+    "price": "Price",
+    "certification": "Certification",
+    "subject": "Subject",
+    "duration": "Duration",
+    "self_learning_material": "Self-learning material",
+    "important": "Important!",
+    "warning": "Please note that this course will be held in",
+    "language": "language.",
+    "start_date": "Start date",
+    "end_date": "End date",
+    "difficulty": "Difficulty",
+    "time_commitment": "Time Commitment",
+    "lectures_duration": "Lectures Duration",
+    "lecturer": "Lecturer",
+    "biography": "Biography",
+    "course_description": "Course description",
+    "enrol": "Enrol now"
+  },
+  "section": {
+    "enrol": "Enroll in a course",
+    "input": "Search..."
+  },
+  "index": {
+    "weeks": "Weeks long",
+    "read_more": "Read more",
+    "start_date": "Start date:"
+  }
+}

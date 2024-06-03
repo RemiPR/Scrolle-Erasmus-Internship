@@ -2,11 +2,14 @@
   <div class="">
     <div class="my-12 flex items-center justify-between">
       <span class="text-gray-700 text-3xl font-bold">{{ title }}</span>
-      <StudentWorkloadMeter v-if="workloadMeter" :coefficient="workloadCoefficient(dataArray.length, 10)"/>
+      <StudentWorkloadMeter
+        v-if="workloadMeter"
+        :coefficient="workloadCoefficient(dataArray.length, 10)"
+      />
       <input
         type="text"
         class="ml-2 border-2 border-gray-300 rounded-md px-4 py-1"
-        placeholder="Search..."
+        :placeholder="$t('section.input')"
       />
     </div>
     <div v-if="dataArray.length > 0" class="flex gap-4">
@@ -28,7 +31,7 @@
         class="text-blue-500 text-lg flex justify-center items-center w-full h-full"
       >
         <Icon name="mdi:plus" class="text-3xl mr-2" />
-        Enroll in a course
+        {{ $t("section.enrol") }}
       </button>
     </div>
   </div>
@@ -47,16 +50,16 @@ const props = defineProps({
   },
   workloadMeter: {
     type: Boolean,
-    default: false
+    default: false,
   },
   hiddenContent: {
     type: Boolean,
-    default: true
+    default: true,
   },
   playVideo: {
-    type:Boolean,
-    default: true
-  }
+    type: Boolean,
+    default: true,
+  },
 });
 
 const localePath = useLocalePath();
@@ -67,7 +70,7 @@ const handleOpenModal = (data) => {
 };
 
 const workloadCoefficient = (assignmenttAmount, maxAmount) => {
-  return (assignmenttAmount / maxAmount);
+  return assignmenttAmount / maxAmount;
 };
 
 const redirectToAvailableCourses = () => {
