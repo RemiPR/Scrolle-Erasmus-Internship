@@ -1,0 +1,30 @@
+{
+  "modal": {
+    "price": "Цена",
+    "certification": "Сертификация",
+    "subject": "Предмет",
+    "duration": "Продолжительность",
+    "self_learning_material": "Самоучебный материал",
+    "important": "Важно!",
+    "warning": "Пожалуйста, обратите внимание, что этот курс будет проводиться на",
+    "language": "языке.",
+    "start_date": "Дата начала",
+    "end_date": "Дата окончания",
+    "difficulty": "Сложность",
+    "time_commitment": "Затраты времени",
+    "lectures_duration": "Продолжительность лекций",
+    "lecturer": "Лектор",
+    "biography": "Биография",
+    "course_description": "Описание курса",
+    "enrol": "Записаться сейчас"
+  },
+  "section": {
+    "enrol": "Записаться на курс",
+    "input": "Поиск..."
+  },
+  "index": {
+    "weeks": "Длительность в неделях",
+    "read_more": "Читать далее",
+    "start_date": "Дата начала:"
+  }
+}

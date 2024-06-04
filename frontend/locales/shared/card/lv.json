@@ -1,0 +1,30 @@
+{
+  "modal": {
+    "price": "Cena",
+    "certification": "Sertifikācija",
+    "subject": "Priekšmets",
+    "duration": "Ilgums",
+    "self_learning_material": "Pašmācības materiāls",
+    "important": "Svarīgi!",
+    "warning": "Lūdzu, ņemiet vērā, ka šis kurss notiks",
+    "language": "valodā.",
+    "start_date": "Sākuma datums",
+    "end_date": "Beigu datums",
+    "difficulty": "Grūtības pakāpe",
+    "time_commitment": "Laika ieguldījums",
+    "lectures_duration": "Lekciju ilgums",
+    "lecturer": "Lektors",
+    "biography": "Biogrāfija",
+    "course_description": "Kursa apraksts",
+    "enrol": "Pieteikties tagad"
+  },
+  "section": {
+    "enrol": "Pieteikties kursam",
+    "input": "Meklēt..."
+  },
+  "index": {
+    "weeks": "Nedēļu garumā",
+    "read_more": "Lasīt vairāk",
+    "start_date": "Sākuma datums:"
+  }
+}

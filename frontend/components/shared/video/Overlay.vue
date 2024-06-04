@@ -15,7 +15,9 @@
         >
           {{ freeCoursesText }}
         </button>
-        <p class="text-white text-2xl">or</p>
+        <p class="text-white text-2xl">
+          {{ $t("shared_video_overlay") }}
+        </p>
         <button
           class="px-6 py-5 font-semibold bg-white text-gray-800 rounded hover:bg-gray-800 hover:text-white transition duration-300"
           @click="handleButtonClick(checkProgramsLink)"

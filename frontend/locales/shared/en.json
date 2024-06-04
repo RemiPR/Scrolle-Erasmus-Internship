@@ -100,5 +100,6 @@
       "required": "Confirm your password",
       "match": "Passwords must match"
     }
-  }
+  },
+  "shared_video_overlay": "or"
 }

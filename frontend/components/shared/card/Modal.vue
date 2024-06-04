@@ -38,7 +38,7 @@
                     name="mdi:currency-usd"
                     class="text-gray-800 font-bold"
                   />
-                  <p class="text-gray-600 ml-3">Price</p>
+                  <p class="text-gray-600 ml-3">{{ $t("modal.price") }}</p>
                 </div>
                 <p class="font-semibold">{{ data.price }}</p>
               </div>
@@ -48,7 +48,9 @@
                     name="mdi:certificate"
                     class="text-gray-800 font-bold"
                   />
-                  <p class="text-gray-600 ml-3">Certification</p>
+                  <p class="text-gray-600 ml-3">
+                    {{ $t("modal.certification") }}
+                  </p>
                 </div>
                 <p class="font-semibold">€{{ data.certification }}</p>
               </div>
@@ -58,24 +60,29 @@
                     name="mdi:book-open-variant"
                     class="text-gray-700 font-bold"
                   />
-                  <p class="text-gray-600 ml-3">Subject</p>
+                  <p class="text-gray-600 ml-3">{{ $t("modal.subject") }}</p>
                 </div>
                 <p class="font-semibold">{{ data.subject }}</p>
               </div>
               <div v-if="data.duration" class="flex justify-between mb-4">
                 <div class="flex items-center">
                   <Icon name="mdi:timer-sand" class="text-gray-800 font-bold" />
-                  <p class="text-gray-600 ml-3">Duration</p>
+                  <p class="text-gray-600 ml-3">{{ $t("modal.duration") }}</p>
                 </div>
                 <p class="font-semibold">{{ data.duration }}</p>
               </div>
-              <div v-if="data.selfLearningMaterial" class="flex justify-between mb-4">
+              <div
+                v-if="data.selfLearningMaterial"
+                class="flex justify-between mb-4"
+              >
                 <div class="flex items-center">
                   <Icon
                     name="mdi:book-outline"
                     class="text-gray-800 font-bold"
                   />
-                  <p class="text-gray-600 ml-3">Self-learning material</p>
+                  <p class="text-gray-600 ml-3">
+                    {{ $t("modal.self_learning_material") }}
+                  </p>
                 </div>
                 <p class="font-semibold">{{ data.selfLearningMaterial }}</p>
               </div>
@@ -86,12 +93,14 @@
                     class="text-gray-800 font-bold"
                   />
                   <p class="text-gray-600 ml-3 italic font-medium">
-                    <span class="tet-gray-700 font-bold">Important! </span
-                    >Please note that this course will be held in
+                    <span class="tet-gray-700 font-bold">{{
+                      $t("modal.important")
+                    }}</span
+                    >{{ $t("modal.warning") }}
                     <span class="text-gray-700 font-bold">{{
                       data.language
                     }}</span>
-                    language.
+                    {{ $t("modal.language") }}
                   </p>
                 </div>
               </div>
@@ -104,7 +113,7 @@
                     name="mdi:calendar-start"
                     class="text-gray-800 font-bold"
                   />
-                  <p class="text-gray-600 ml-3">Start date</p>
+                  <p class="text-gray-600 ml-3">{{ $t("modal.start_date") }}</p>
                 </div>
                 <p class="font-semibold">{{ data.startDate }}</p>
               </div>
@@ -114,7 +123,7 @@
                     name="mdi:calendar-end"
                     class="text-gray-800 font-bold"
                   />
-                  <p class="text-gray-600 ml-3">End date</p>
+                  <p class="text-gray-600 ml-3">{{ $t("modal.end_date") }}</p>
                 </div>
                 <p class="font-semibold">{{ data.endDate }}</p>
               </div>
@@ -127,7 +136,7 @@
                     name="mdi:signal-cellular-3"
                     class="text-gray-800 font-bold"
                   />
-                  <p class="text-gray-600 ml-3">Difficulty</p>
+                  <p class="text-gray-600 ml-3">{{ $t("modal.difficulty") }}</p>
                 </div>
                 <p class="font-semibold">{{ data.difficulty }}</p>
               </div>
@@ -137,17 +146,24 @@
                     name="mdi:clock-outline"
                     class="text-gray-800 font-bold"
                   />
-                  <p class="text-gray-600 ml-3">Time Commitment</p>
+                  <p class="text-gray-600 ml-3">
+                    {{ $t("modal.time_commitment") }}
+                  </p>
                 </div>
                 <p class="font-semibold">{{ data.timeCommitment }}</p>
               </div>
-              <div v-if="data.lecturesDuration" class="flex justify-between mb-4">
+              <div
+                v-if="data.lecturesDuration"
+                class="flex justify-between mb-4"
+              >
                 <div class="flex items-center">
                   <Icon
                     name="mdi:timer-outline"
                     class="text-gray-800 font-bold"
                   />
-                  <p class="text-gray-600 ml-3">Lectures Duration</p>
+                  <p class="text-gray-600 ml-3">
+                    {{ $t("modal.lectures_duration") }}
+                  </p>
                 </div>
                 <p class="font-semibold">{{ data.lecturesDuration }}</p>
               </div>
@@ -158,17 +174,23 @@
             class="border-t-2 border-gray-200 flex justify-between items-center gap-x-12 mt-6"
           >
             <!-- LEFT column -->
-            <div v-if="data.lecturer" class="flex items-center justify-between w-1/2 text-lg mt-3">
+            <div
+              v-if="data.lecturer"
+              class="flex items-center justify-between w-1/2 text-lg mt-3"
+            >
               <div class="flex items-center">
                 <Icon name="mdi:account-tie" class="text-gray-800 font-bold" />
-                <p class="text-gray-600 ml-2">Lecturer</p>
+                <p class="text-gray-600 ml-2">{{ $t("modal.lecturer") }}</p>
               </div>
               <div class="flex items-end">
                 <p class="font-semibold">{{ data.lecturer }}</p>
               </div>
             </div>
             <!-- RIGHT column -->
-            <div v-if="data.lecturerTitle" class="flex items-center justify-between w-1/2 text-lg mt-3">
+            <div
+              v-if="data.lecturerTitle"
+              class="flex items-center justify-between w-1/2 text-lg mt-3"
+            >
               <div class="flex items-center">
                 <p class="text-gray-600 font-semibold mr-4">
                   {{ data.lecturerTitle }}
@@ -187,14 +209,18 @@
           <!-- Biography -->
           <div class="mt-6" v-if="formattedBiography">
             <div class="border-b-2 border-gray-200 mb-4">
-              <p class="text-gray-800 mb-2 text-2xl">Biography</p>
+              <p class="text-gray-800 mb-2 text-2xl">
+                {{ $t("modal.biography") }}
+              </p>
             </div>
             <div class="tracking-wider" v-html="formattedBiography"></div>
           </div>
           <!-- Course Description -->
           <div class="mt-6 pt-6 mb-16" v-if="formattedDescription">
             <div class="border-b-2 border-gray-200 mb-4">
-              <p class="text-gray-800 mb-2 text-2xl">Course description</p>
+              <p class="text-gray-800 mb-2 text-2xl">
+                {{ $t("modal.course_description") }}
+              </p>
             </div>
             <div class="tracking-wider" v-html="formattedDescription"></div>
             <div class="flex justify-center mt-6">
@@ -202,7 +228,7 @@
                 @click="enrollNow"
                 class="text-white font-bold w-full sm:w-40 h-12 sm:h-14 mt-4 sm:mt-0 sm:ml-2 rounded-lg bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 select-none"
               >
-                Enrol Now
+                {{ $t("modal.enrol") }}
               </button>
             </div>
           </div>
@@ -252,9 +278,7 @@ const formatText = (text) => {
 const formattedBiography = computed(() =>
   formatText(props.data.lecturerBiography)
 );
-const formattedDescription = computed(() =>
-  formatText(props.data.description)
-);
+const formattedDescription = computed(() => formatText(props.data.description));
 
 watch(
   () => props.isVisible,
