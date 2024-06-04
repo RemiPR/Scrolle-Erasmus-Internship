@@ -1,0 +1,81 @@
+{
+  "shared_video_overlay": {
+    "title": "Laipni lūdzam Scroll",
+    "description": "Mēs piedāvājam plašu akreditētu programmu un pasniedzēju vadītu bezmaksas tiešsaistes kursu klāstu ar sertifikācijas iespējām visiem",
+    "free_courses_text": "Apskatīt bezmaksas kursus",
+    "accredited_programs_text": "Apskatīt mūsu akreditētās programmas"
+  },
+  "shared_card_section_first": {
+    "title": "Mani kursi"
+  },
+  "shared_card_section_second": {
+    "title": "Pieejamie bezmaksas kursi"
+  },
+  "courses": {
+    "aesthetic_cosmetology": {
+      "title": "Uzlabota estētiskā kosmetoloģija",
+      "language": "Latviešu",
+      "subject": "Veselība un skaistums",
+      "price": "Bezmaksas",
+      "self_learning_material": "Pieejams",
+      "difficulty": "Iesācējs",
+      "time_commitment": "3-5 stundas nedēļā",
+      "lectures_duration": "1-2 stundas lekcijā",
+      "lecturer_title": "Estētiskās kosmetoloģijas profesors",
+      "biography": "Dr. Laima Bērziņa ir vadošā speciāliste estētiskajā kosmetoloģijā ar vairāk nekā 20 gadu pieredzi klīniskajā praksē un pētniecībā. Viņa ir ieguvusi doktora grādu dermatoloģijā Hārvardas Universitātē un pabeigusi savu pēcdoktorantūras stipendiju Hārvardas Medicīnas skolā. \n\n Sākot kā klīniskā dermatoloģe, Dr. Bērziņa ātri pievērsās kosmētiskām procedūrām, ieviešot jaunas metodes neķirurģiskai sejas atjaunošanai un lāzerterapijām. \n\nViņa ir aizrautīga izglītotāja un mentore, mācot tādās iestādēs kā Hārvardas Universitāte un izstrādājot estētiskās kosmetoloģijas programmas. Viņas pētījumi par neinvazīvām procedūrām un ilgtermiņa ārstēšanas efektiem ir plaši publicēti, un viņa bieži uzstājas starptautiskās konferencēs. \n\nDr. Bērziņa veicina sadarbības mācību vidi, apvienojot klīnisko praksi ar pētniecību. Viņa arī atbalsta sabiedrības veselības iniciatīvas, piedāvājot bezmaksas kosmētiskās procedūras vardarbības ģimenē upuriem, iedvesmojot daudzus ar savu veltījumu.",
+      "description": "Uzlabota estētiskā kosmetoloģija ir specializēta joma, kas koncentrējas uz skaistuma un izskata uzlabošanu ar uzlabotu ādas kopšanas procedūru palīdzību. Šī joma apvieno jaunākos zinātniskos pētījumus ar modernākajām tehnoloģijām, lai piedāvātu inovatīvus risinājumus ādas atjaunošanai, novecošanās pazīmju mazināšanai un estētiskiem uzlabojumiem. \n\nSpeciālisti šajā jomā ir apmācīti veikt dažādas procedūras, kas pārsniedz pamata ādas kopšanu, ieskaitot lāzerterapijas, ķīmiskos pīlingus un uzlabotas sejas procedūras. Papildus tradicionālajām estētiskajām praksēm, uzlaboti kosmetologi ir prasmīgi izmantot sarežģītu aprīkojumu un tehnoloģijas, piemēram, mikronīdlingu, radiofrekvences terapijas un dermālās pildvielas. \n\nŠīs procedūras ir paredzētas, lai risinātu dziļākas ādas problēmas, nodrošinot klientiem efektīvākus un ilgstošākus rezultātus. Mērķis ir uzlabot ādas tekstūru, samazināt grumbas un uzlabot sejas estētiku kopumā. Uzlabota estētiskā kosmetoloģija arī lielu uzsvaru liek uz personalizētu aprūpi. \n\nPraktiķi veic rūpīgas konsultācijas, lai saprastu katra klienta unikālo ādas tipu un problēmas, ļaujot viņiem pielāgot procedūras atbilstoši. Šī individuālā pieeja nodrošina, ka klienti saņem vispiemērotākās un efektīvākās procedūras, uzlabojot gan viņu izskatu, gan pašapziņu. Nepārtraukta izglītība un apmācība ir būtiska šajā ātri mainīgajā jomā. \n\nSpeciālistiem ir jābūt informētiem par jaunākajiem sasniegumiem un tendencēm, lai nodrošinātu vislabāko iespējamo aprūpi. Apvienojot mākslinieciskumu ar zinātnisku ekspertīzi, uzlaboti estētiskās kosmetologi palīdz klientiem sasniegt vēlamo izskatu, saglabājot visaugstākos drošības un efektivitātes standartus."
+    },
+    "facial_cosmetic_procedures": {
+      "title": "Sejas kosmētiskās procedūras",
+      "language": "Angļu",
+      "subject": "Veselība un skaistums",
+      "price": "Bezmaksas",
+      "self_learning_material": "Pieejams",
+      "difficulty": "Vidējs",
+      "time_commitment": "2-4 stundas nedēļā",
+      "lectures_duration": "1-2 stundas lekcijā",
+      "lecturer_title": "Sejas kosmētisko procedūru eksperts",
+      "biography": "Dr. Džeina Doa ir pazīstama sejas kosmētisko procedūru speciāliste ar vairāk nekā 15 gadu pieredzi. Viņa ir ieguvusi doktora grādu dermatoloģijā Stenfordas Universitātē un ir bijusi priekšplānā, izstrādājot inovatīvas sejas estētikas tehnoloģijas. \n\nDr. Doa ir ļoti cienīta par savu ieguldījumu neinvazīvajās kosmētiskajās procedūrās un par savu atdevi pacientu izglītošanai. Viņa bieži lekcijas starptautiskās konferencēs un ir publicējusi daudzus rakstus par sejas atjaunošanas tehnoloģijām.",
+      "description": "Sejas kosmētiskās procedūras ir visaptverošs kurss, kas izpēta jaunākās sejas estētikas tehnoloģijas un prakses. Šis kurss aptver plašu tēmu loku, ieskaitot sejas anatomiju, pacientu novērtēšanu un dažādu kosmētisko procedūru veidus. \n\nStudenti uzzinās par neķirurģiskām procedūrām, piemēram, Botox, pildvielām un ķīmiskajiem pīlingiem, kā arī par minimāli invazīvām procedūrām, piemēram, lāzerterapiju un mikronīdlingu. Kurss uzsver personalizētu ārstēšanas plānu un pacientu drošības nozīmību. \n\nPraktiskās sesijas un gadījumu izpēte nodrošina praktisku pieredzi, ļaujot studentiem attīstīt savas prasmes un pašapziņu sejas kosmētisko procedūru veikšanā. Kursa beigās studenti būs apguvuši zināšanas un tehnoloģijas, lai efektīvi uzlabotu sejas skaistumu un risinātu biežākās estētiskās problēmas."
+    },
+    "introduction_to_physiotherapy": {
+      "title": "Ievads fizioterapijā",
+      "language": "Krievu",
+      "subject": "Veselība un labklājība",
+      "price": "Bezmaksas",
+      "self_learning_material": "Pieejams",
+      "difficulty": "Iesācējs",
+      "time_commitment": "2-3 stundas nedēļā",
+      "lectures_duration": "1-1.5 stundas lekcijā",
+      "lecturer_title": "Vecākais fizioterapeits",
+      "biography": "Dr. Alekss Tompsons ir ļoti pieredzējis fizioterapeits ar vairāk nekā 12 gadu praksi fiziskajā rehabilitācijā. Viņš ir ieguvis doktora grādu fizioterapijā Sidnejas Universitātē un specializējas muskuļu un skeleta un sporta traumu ārstēšanā. \n\nDr. Tompsons ir strādājis ar dažādiem pacientiem, sākot no profesionāliem sportistiem līdz pēcoperācijas pacientiem, palīdzot viņiem atgūt kustības un spēku. Viņš ir aizrautīgs izglītotājs, mācot vairākās universitātēs un vadot seminārus par uzlabotām fizioterapijas tehnoloģijām.",
+      "description": "Šis kurss sniedz ievadu fizioterapijas principos un praksē. Studenti apgūs anatomiju un fizioloģiju, kas ir saistīta ar fizikālo terapiju, biežākās fizioterapeitu ārstējamās slimības un dažādas terapeitiskās tehnoloģijas, kas tiek izmantotas rehabilitācijā. \n\nTēmas ietver manuālo terapiju, vingrojumu izrakstīšanu un pacientu novērtēšanu. Kurss uzsver pierādījumos balstītu praksi un praktiskās prasmes, sagatavojot studentus reālas pasaules klīniskajiem iestatījumiem. Kursa beigās studenti būs apguvuši stabilus pamatus fizioterapijā, kas ļaus viņiem efektīvi palīdzēt pacientu atveseļošanā un labklājībā."
+    },
+    "communication_psychology_and_ethics": {
+      "title": "Komunikācijas psiholoģija un ētika",
+      "language": "Latviešu",
+      "subject": "Psiholoģija",
+      "price": "Bezmaksas",
+      "self_learning_material": "Pieejams",
+      "difficulty": "Uzlabots",
+      "time_commitment": "4-5 stundas nedēļā",
+      "lectures_duration": "1-2 stundas lekcijā",
+      "lecturer_title": "Psiholoģijas profesors",
+      "biography": "Dr. Emīlija Brauna ir izcila psiholoģijas profesore, kas specializējas komunikācijā un ētikā. Viņa ir ieguvusi doktora grādu Oksfordas Universitātē un ir veikusi plašus pētījumus par starppersonu komunikāciju un ētisku uzvedību profesionālos iestatījumos. \n\nDr. Brauna ir publicējusi daudzus rakstus un grāmatas par šīm tēmām un ir pieprasīta runātāja starptautiskās psiholoģijas konferencēs. Viņa ir pazīstama ar savu dinamisko mācīšanas stilu un spēju pārvērst sarežģītas psiholoģiskas teorijas praktiskās pielietošanās metodēs.",
+      "description": "Šis kurss pēta psiholoģiskos principus, kas ir saistīti ar efektīvu komunikāciju un ētiskajiem apsvērumiem, kas profesionāļiem jāievēro. Studenti izpētīs verbālās un neverbālās komunikācijas teorijas, komunikācijas šķēršļus un stratēģijas, kā uzlabot starppersonu mijiedarbību. \n\nKurss arī aptver ētiskās dilemmas, kas var rasties dažādos profesionālos kontekstos, un sniedz ietvarus ētisku lēmumu pieņemšanai. Izmantojot gadījumu izpēti un interaktīvas diskusijas, studenti attīstīs prasmes ētiskajā domāšanā un efektīvā komunikācijā, kas ir būtiskas gan personīgajā, gan profesionālajā izaugsmē."
+    },
+    "body_massage_and_feet_reflexology": {
+      "title": "Klasiskā ķermeņa masāža un pēdu refleksoloģija",
+      "language": "Angļu",
+      "subject": "Veselība un labklājība",
+      "price": "Bezmaksas",
+      "self_learning_material": "Pieejams",
+      "difficulty": "Vidējs",
+      "time_commitment": "2-3 stundas nedēļā",
+      "lectures_duration": "1-1.5 stundas lekcijā",
+      "lecturer_title": "Vecākais masāžas terapeits",
+      "biography": "Sāra Džonsone ir masāžas terapijas eksperte ar vairāk nekā 20 gadu pieredzi. Viņa ir sertificēta gan klasiskajā masāžā, gan refleksoloģijā no Amerikas Masāžas Terapijas Asociācijas. \n\nSāra ir strādājusi dažādās vietās, tostarp spa, labsajūtas centros un medicīnas iestādēs, sniedzot terapeitiskās masāžas procedūras. Viņa ir aizrautīga par holistisko veselību un ir apmācījusi daudzus topošos terapeitus masāžas un refleksoloģijas mākslā un zinātnē.",
+      "description": "Šis kurss sniedz visaptverošu apmācību klasiskajā ķermeņa masāžā un pēdu refleksoloģijā. Studenti apgūs masāžas terapijas pamattehnoloģijas, ieskaitot zviedru masāžu, dziļo audu masāžu un refleksoloģiju. \n\nKurss aptver ķermeņa un pēdu anatomiju, masāžas priekšrocības un refleksoloģijas terapeitisko efektu. Praktiskās sesijas nodrošinās studentiem praktisku pieredzi šo tehnoloģiju veikšanā, nodrošinot, ka viņi var efektīvi pielietot savas zināšanas. Kursa beigās studenti būs apguvuši prasmes, lai sniegtu relaksējošas un terapeitiskas masāžas procedūras, veicinot vispārējo labsajūtu."
+    }
+  }
+}

@@ -97,15 +97,40 @@ const messengerContainer = ref(null);
 const users = ref([
   {
     id: 1,
-    name: "User 1",
+    name: "Mudassir Arafat",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
-    chat: "this is chat",
+    chat: "You're now chatting with Mudassir Arafat",
   },
   {
     id: 2,
-    name: "User 2",
+    name: "Dainius Juška",
+    avatar: "carbon:user-avatar",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+    chat: "You're now chatting with Dainius Juška",
+  },
+  {
+    id: 3,
+    name: "Deividas Litvinenko",
+    avatar: "carbon:user-avatar",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+    chat: "You're now chatting with Deividas Litvinenko",
+  },
+  {
+    id: 4,
+    name: "Remigijus Prialgauskis",
+    avatar: "carbon:user-avatar",
+    lastMessage: "Message content...",
+    lastMessageDate: "6 d",
+    chat: "You're now chatting with Remigijus Prialgauskis",
+  },
+
+  {
+    id: 2,
+    name: "User 5",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -113,7 +138,7 @@ const users = ref([
   },
   {
     id: 3,
-    name: "User 2",
+    name: "User 6",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -121,7 +146,7 @@ const users = ref([
   },
   {
     id: 1,
-    name: "User 1",
+    name: "User 7",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -129,7 +154,7 @@ const users = ref([
   },
   {
     id: 2,
-    name: "User 2",
+    name: "User 8",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -137,7 +162,7 @@ const users = ref([
   },
   {
     id: 3,
-    name: "User 2",
+    name: "User 9",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -145,7 +170,7 @@ const users = ref([
   },
   {
     id: 1,
-    name: "User 1",
+    name: "User 10",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -153,7 +178,7 @@ const users = ref([
   },
   {
     id: 2,
-    name: "User 2",
+    name: "User 11",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -161,7 +186,7 @@ const users = ref([
   },
   {
     id: 3,
-    name: "User 2",
+    name: "User 12",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -169,7 +194,7 @@ const users = ref([
   },
   {
     id: 1,
-    name: "User 1",
+    name: "User 13",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -177,7 +202,7 @@ const users = ref([
   },
   {
     id: 2,
-    name: "User 2",
+    name: "User 14",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -185,7 +210,7 @@ const users = ref([
   },
   {
     id: 3,
-    name: "User 2",
+    name: "User 15",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -193,7 +218,7 @@ const users = ref([
   },
   {
     id: 1,
-    name: "User 1",
+    name: "User 16",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -201,7 +226,7 @@ const users = ref([
   },
   {
     id: 2,
-    name: "User 2",
+    name: "User 17",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -209,7 +234,7 @@ const users = ref([
   },
   {
     id: 3,
-    name: "User 2",
+    name: "User 18",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -217,7 +242,7 @@ const users = ref([
   },
   {
     id: 1,
-    name: "User 1",
+    name: "User 19",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -225,7 +250,7 @@ const users = ref([
   },
   {
     id: 2,
-    name: "User 2",
+    name: "User 20",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",
@@ -233,31 +258,7 @@ const users = ref([
   },
   {
     id: 3,
-    name: "User 2",
-    avatar: "carbon:user-avatar",
-    lastMessage: "Message content...",
-    lastMessageDate: "6 d",
-    chat: "N",
-  },
-  {
-    id: 1,
-    name: "User 1",
-    avatar: "carbon:user-avatar",
-    lastMessage: "Message content...",
-    lastMessageDate: "6 d",
-    chat: "this is chat",
-  },
-  {
-    id: 2,
-    name: "User 2",
-    avatar: "carbon:user-avatar",
-    lastMessage: "Message content...",
-    lastMessageDate: "6 d",
-    chat: "N",
-  },
-  {
-    id: 3,
-    name: "User 2",
+    name: "User 21",
     avatar: "carbon:user-avatar",
     lastMessage: "Message content...",
     lastMessageDate: "6 d",

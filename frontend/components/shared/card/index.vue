@@ -1,13 +1,11 @@
 <template>
   <div
     class="relative bg-white rounded w-72 transition-transform duration-300 origin-top-center"
-     @mouseenter="handleMouseEnter(data.id, playVideo)"
-     @mouseleave="handleMouseLeave"
+    @mouseenter="handleMouseEnter(data.id, playVideo)"
+    @mouseleave="handleMouseLeave"
   >
     <!-- Video/Image Background Container -->
-    <div class="relative w-full h-48 overflow-hidden"
-      @click="openModal"
-    >
+    <div class="relative w-full h-48 overflow-hidden" @click="openModal">
       <NuxtImg
         preload
         :placeholder="data.imageUrlLowRes"
@@ -69,7 +67,8 @@
           <div v-if="data.duration" class="flex items-center">
             <Icon name="carbon:calendar" class="text-black text-2xl" />
             <p class="ml-2">
-              <span class="font-bold">{{ data.duration }}</span> Weeks long
+              <span class="font-bold">{{ data.duration }}</span>
+              {{ $t("index.weeks") }}
             </p>
           </div>
           <div
@@ -79,11 +78,14 @@
               @click.stop="openModal"
               class="px-4 py-2 bg-blue-500 rounded-xl font-bold text-white"
             >
-              Read more
+              {{ $t("index.read_more") }}
             </button>
 
-            <div v-if="data.startDate" class="w-full sm:w-auto sm:ml-4 text-right">
-              <p>Start date:</p>
+            <div
+              v-if="data.startDate"
+              class="w-full sm:w-auto sm:ml-4 text-right"
+            >
+              <p>{{ $t("index.start_date") }}</p>
               <p class="font-bold">{{ data.startDate }}</p>
               <p class="font-bold">{{ data.startTime }}</p>
             </div>
@@ -102,12 +104,12 @@ const props = defineProps({
   },
   hiddenContent: {
     type: Boolean,
-    default: true
+    default: true,
   },
   playVideo: {
     type: Boolean,
-    default: true
-  }
+    default: true,
+  },
 });
 
 const hoveredTileIndex = ref(null);
@@ -119,14 +121,14 @@ const emit = defineEmits(["openModal"]);
 
 const handleMouseEnter = (id, playVideo) => {
   hoveredTileIndex.value = id;
-  if(playVideo) {
+  if (playVideo) {
     videoPlayingIndex.value = id;
 
-  videoPlayingTimeout.value = setTimeout(() => {
-    if (videoRef.value) {
-      videoRef.value.play();
-    }
-  }, 500);
+    videoPlayingTimeout.value = setTimeout(() => {
+      if (videoRef.value) {
+        videoRef.value.play();
+      }
+    }, 500);
   }
 };
 

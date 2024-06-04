@@ -100,5 +100,6 @@
       "required": "Apstipriniet paroli",
       "match": "Parolēm jāsakrīt"
     }
-  }
+  },
+  "shared_video_overlay": "vai"
 }
