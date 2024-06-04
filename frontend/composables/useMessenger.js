@@ -6,33 +6,37 @@ export const useMessenger = () => {
 
   const toggleMessenger = () => {
     isMessengerOpen.value = !isMessengerOpen.value;
-    // console.log("Messenger state:", isMessengerOpen.value);
+    if (!isMessengerOpen.value) {
+      selectedUser.value = null;
+    }
   };
-  const clearUser = () => {
-    selectUser("");
-  };
+
   const selectUser = (user) => {
     if (selectedUser.value && user.id === selectedUser.value.id) {
       // If the same user is clicked, close the chat window
       selectedUser.value = null;
-      clearUser();
     } else {
       selectedUser.value = user;
       isMessengerOpen.value = true;
     }
-    // console.log("Selected user:", selectedUser.value);
+  };
+
+  const closeChat = () => {
+    selectedUser.value = null;
   };
 
   provide("isMessengerOpen", isMessengerOpen);
   provide("toggleMessenger", toggleMessenger);
   provide("selectedUser", selectedUser);
   provide("selectUser", selectUser);
+  provide("closeChat", closeChat);
 
   return {
     isMessengerOpen,
     toggleMessenger,
     selectedUser,
     selectUser,
+    closeChat,
   };
 };
 
@@ -41,17 +45,13 @@ export const useMessengerState = () => {
   const toggleMessenger = inject("toggleMessenger");
   const selectedUser = inject("selectedUser");
   const selectUser = inject("selectUser");
-
-  if (!isMessengerOpen || !toggleMessenger || !selectedUser || !selectUser) {
-    throw new Error(
-      "useMessengerState must be used within a component that calls useMessenger."
-    );
-  }
+  const closeChat = inject("closeChat");
 
   return {
     isMessengerOpen,
     toggleMessenger,
     selectedUser,
     selectUser,
+    closeChat,
   };
 };

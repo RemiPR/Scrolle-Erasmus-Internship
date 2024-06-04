@@ -5,9 +5,9 @@
       ref="messengerContainer"
       class="fixed top-24 right-0 h-[calc(100%-7rem)] bg-white shadow-lg z-40 mr-4 transition-all duration-700 rounded-lg"
       :class="{
-        'translate-x-full': !isMessengerOpen,
+        'translate-x-full': !messengerStore.isMessengerOpen,
       }"
-      :style="{ width: selectedUser ? '60rem' : '22.5rem' }"
+      :style="{ width: messengerStore.selectedUser ? '60rem' : '22.5rem' }"
     >
       <div class="flex w-full">
         <!-- User List -->
@@ -41,7 +41,7 @@
               v-for="user in users"
               :key="user.id"
               class="flex items-center p-2 ml-4 hover:bg-gray-100 transition-colors duration-200 cursor-pointer select-none"
-              @click="selectUser(user)"
+              @click="messengerStore.selectUser(user)"
             >
               <Icon
                 :name="user.avatar"
@@ -62,16 +62,16 @@
 
         <!-- Chat window -->
         <div
-          v-if="selectedUser"
+          v-if="messengerStore.selectedUser"
           class="flex-1 bg-white shadow-lg p-4 overflow-hidden hover:overflow-y-scroll"
           style="height: calc(100vh - 7rem)"
         >
           <div class="flex justify-between items-center mb-4">
             <h2 class="text-2xl text-gray-700 font-semibold">
-              {{ selectedUser.name }}
+              {{ messengerStore.selectedUser.name }}
             </h2>
             <button
-              @click="clearUser"
+              @click="messengerStore.closeChat"
               class="text-gray-500 hover:text-gray-700 select-none"
             >
               Close
@@ -79,7 +79,7 @@
           </div>
           <!-- Chat content here -->
           <div>
-            <p>{{ selectedUser.chat }}</p>
+            <p>{{ messengerStore.selectedUser.chat }}</p>
           </div>
         </div>
       </div>
@@ -89,10 +89,11 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
-import { useMessengerState } from "@/composables/useMessenger";
+import { useMessengerStore } from "@/stores/messenger";
 
-const { isMessengerOpen, selectedUser, selectUser, toggleMessenger } =
-  useMessengerState();
+const messengerStore = useMessengerStore();
+const { isMessengerOpen, selectedUser, selectUser, closeChat } = messengerStore;
+
 const messengerContainer = ref(null);
 const users = ref([
   {
@@ -266,13 +267,14 @@ const users = ref([
   },
   // Add more users as needed
 ]);
+
 const handleClickOutside = (event) => {
   if (
     messengerContainer.value &&
-    !messengerContainer.value.contains(event.target)
+    !messengerContainer.value.contains(event.target) &&
+    !event.target.classList.contains("messenger-icon")
   ) {
-    isMessengerOpen.value = false;
-    selectedUser.value = null;
+    messengerStore.closeMessenger();
   }
 };
 
@@ -283,9 +285,14 @@ onMounted(() => {
 onUnmounted(() => {
   document.removeEventListener("mousedown", handleClickOutside);
 });
-const clearUser = () => {
-  selectUser("");
-};
+watch(
+  () => messengerStore.isMessengerOpen,
+  (isOpen) => {
+    if (!isOpen) {
+      messengerStore.selectedUser = null;
+    }
+  }
+);
 </script>
 
 <style scoped>

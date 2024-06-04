@@ -1,4 +1,3 @@
-<!-- Your updated navigation component -->
 <template>
   <div>
     <!-- Header (Nav Menu) -->
@@ -48,8 +47,8 @@
         />
         <div class="relative group">
           <button
-            @click="toggleMessenger"
-            class="flex h-12 w-12 items-center justify-center rounded-full outline-none bg-gray-500 hover:bg-gray-400 text-white transition duration-300 ease-in-out"
+            @click="messengerStore.toggleMessenger"
+            class="flex h-12 w-12 items-center justify-center rounded-full outline-none bg-gray-500 hover:bg-gray-400 text-white transition duration-300 ease-in-out messenger-icon"
           >
             <Icon
               name="mingcute:messenger-fill"
@@ -91,8 +90,8 @@
 </template>
 
 <script setup>
-import { useLocalePath, navigateTo } from "#imports";
-import { useMessenger } from "@/composables/useMessenger";
+import { useLocalePath } from "#imports";
+import { useMessengerStore } from "@/stores/messenger";
 
 const props = defineProps({
   enableScrollStyling: {
@@ -103,5 +102,6 @@ const props = defineProps({
 
 const localePath = useLocalePath();
 const { hasScrolled } = useScrollPosition();
-const { toggleMessenger } = useMessenger();
+const messengerStore = useMessengerStore();
+const { toggleMessenger } = messengerStore;
 </script>
