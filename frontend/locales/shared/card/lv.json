@@ -25,6 +25,8 @@
   "index": {
     "weeks": "Nedēļu garumā",
     "read_more": "Lasīt vairāk",
-    "start_date": "Sākuma datums:"
+    "start_date": "Sākuma datums:",
+    "assign_deadline": "Uzdevuma termiņš:",
+    "next_lecture": "Nākamā lekcija:"
   }
 }
