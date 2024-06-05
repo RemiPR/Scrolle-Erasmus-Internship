@@ -20,6 +20,7 @@
   },
   "section": {
     "enrol": "Pieteikties kursam",
+    "empty": "Tukšs",
     "input": "Meklēt..."
   },
   "index": {
