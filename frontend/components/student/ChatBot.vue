@@ -23,12 +23,9 @@ import Fuse from "fuse.js";
 // Predefined questions and answers provided by teachers
 const qaPairs = [
   {
-    question: "What is the capital of France?",
-    answer: "The capital of France is Paris.",
-  },
-  {
-    question: "What is 2 + 2?",
-    answer: "2 + 2 equals 6, just kidding, it's 4.",
+    question: "Who are the programmers working on Scrolle project?",
+    answer:
+      "Mudassir Arafat, Dainius Juška, Deividas Litvinenko and Remigijus Prialgauskis.",
   },
   // Add more questions and answers here
 ];
@@ -78,7 +75,7 @@ const sendMessage = async () => {
         },
         {
           headers: {
-            Authorization: `Bearer YOUR_API_KEY`,
+            Authorization: `Bearer sk-proj-fKfwZbgirC8nEnjotCKCT3BlbkFJFrFb7aeGAsmuhQJvRx07`,
             "Content-Type": "application/json",
           },
         }
