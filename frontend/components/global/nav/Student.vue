@@ -10,7 +10,7 @@
       }"
       class="flex justify-between font-semibold items-center p-4 fixed top-0 w-full z-50 transition-colors duration-300"
     >
-      <!-- Left nav: Logo + Logo Text and Home button -->
+      <!-- Left nav -->
       <nav class="flex items-center space-x-12 text-xl">
         <NuxtLink to="#" class="flex items-center">
           <Icon
@@ -47,6 +47,7 @@
         />
         <div class="relative group">
           <button
+            ref="messengerIcon"
             @click="messengerStore.toggleMessenger"
             class="flex h-12 w-12 items-center justify-center rounded-full outline-none bg-gray-500 hover:bg-gray-400 text-white transition duration-300 ease-in-out messenger-icon"
           >
@@ -62,7 +63,6 @@
             Messenger
           </span>
         </div>
-
         <div class="relative group">
           <button
             class="flex h-12 w-12 items-center justify-center rounded-full outline-none bg-gray-500 hover:bg-gray-400 text-white transition duration-300 ease-in-out"
@@ -79,19 +79,27 @@
             Notifications
           </span>
         </div>
-
         <SharedUserProfileAvatar />
       </nav>
     </header>
     <!-- Page content -->
     <NuxtPage />
-    <SharedUserMessengerSidebar />
+    <SharedUserMessengerSidebar
+      :is-open="messengerStore.isMessengerOpen"
+      :selected-user="messengerStore.selectedUser"
+      :messenger-icon="messengerIcon"
+      @close="messengerStore.closeMessenger"
+      @select-user="messengerStore.selectUser"
+      @close-chat="messengerStore.closeChat"
+    />
   </div>
 </template>
 
 <script setup>
 import { useLocalePath } from "#imports";
 import { useMessengerStore } from "@/stores/messenger";
+const messengerIcon = ref(null);
+provide("messengerIcon", messengerIcon);
 
 const props = defineProps({
   enableScrollStyling: {
@@ -103,5 +111,4 @@ const props = defineProps({
 const localePath = useLocalePath();
 const { hasScrolled } = useScrollPosition();
 const messengerStore = useMessengerStore();
-const { toggleMessenger } = messengerStore;
 </script>

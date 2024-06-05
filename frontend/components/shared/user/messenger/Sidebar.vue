@@ -2,7 +2,7 @@
   <div class="flex">
     <!-- Main Sidebar Container -->
     <div
-      ref="messengerContainer"
+      ref="sidebar"
       class="fixed top-24 right-0 h-[calc(100%-7rem)] bg-white shadow-lg z-40 mr-4 transition-all duration-700 rounded-lg"
       :class="{
         'translate-x-full': !messengerStore.isMessengerOpen,
@@ -37,6 +37,27 @@
             </div>
           </div>
           <div class="flex-grow overflow-hidden hover:overflow-y-scroll">
+            <!-- ChatBot user -->
+            <div
+              class="flex items-center p-2 ml-4 hover:bg-gray-100 transition-colors duration-200 cursor-pointer select-none"
+              @click="selectChatbotUser"
+            >
+              <Icon
+                :name="chatbotUser.avatar"
+                alt="Chatbot avatar"
+                class="rounded-full w-10 h-10 mr-4"
+              />
+              <div class="flex-1">
+                <p class="text-gray-900 font-semibold">
+                  {{ chatbotUser.name }}
+                </p>
+                <div class="flex items-center text-gray-500 text-sm">
+                  <p class="truncate">{{ chatbotUser.lastMessage }}</p>
+                </div>
+              </div>
+            </div>
+            <!-- Other users -->
+
             <div
               v-for="user in users"
               :key="user.id"
@@ -72,14 +93,18 @@
             </h2>
             <button
               @click="messengerStore.closeChat"
-              class="text-gray-500 hover:text-gray-700 select-none"
+              class="text-gray-500 hover:text-gray-700 select-none close-chat-button"
             >
               Close
             </button>
           </div>
           <!-- Chat content here -->
           <div>
-            <p>{{ messengerStore.selectedUser.chat }}</p>
+            <StudentChatBot
+              :is="messengerStore.selectedUser.component"
+              v-if="messengerStore.selectedUser.id === 'chatbot'"
+            ></StudentChatBot>
+            <p v-else>{{ messengerStore.selectedUser.chat }}</p>
           </div>
         </div>
       </div>
@@ -88,13 +113,22 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
 import { useMessengerStore } from "@/stores/messenger";
+import clickOutside, { removeClickOutside } from "@/composables/clickOutside";
+const sidebar = ref(null);
+const messengerIcon = inject("messengerIcon");
 
 const messengerStore = useMessengerStore();
 const { isMessengerOpen, selectedUser, selectUser, closeChat } = messengerStore;
 
-const messengerContainer = ref(null);
+const chatbotUser = ref({
+  id: "chatbot",
+  name: "Scrolle Assistant",
+  avatar: "hugeicons:chat-bot",
+  lastMessage: "Ask me anything...",
+  lastMessageDate: "",
+});
+
 const users = ref([
   {
     id: 1,
@@ -267,32 +301,25 @@ const users = ref([
   },
   // Add more users as needed
 ]);
-
-const handleClickOutside = (event) => {
-  if (
-    messengerContainer.value &&
-    !messengerContainer.value.contains(event.target) &&
-    !event.target.classList.contains("messenger-icon")
-  ) {
-    messengerStore.closeMessenger();
-  }
+const selectChatbotUser = () => {
+  messengerStore.selectUser(chatbotUser.value);
 };
-
 onMounted(() => {
-  document.addEventListener("mousedown", handleClickOutside);
+  clickOutside(
+    sidebar.value,
+    (event) => {
+      // Check if the clicked element is not the "Close" button
+      if (!event.target.closest(".close-chat-button")) {
+        messengerStore.closeMessenger();
+      }
+    },
+    messengerIcon.value
+  );
 });
 
 onUnmounted(() => {
-  document.removeEventListener("mousedown", handleClickOutside);
+  removeClickOutside(sidebar.value);
 });
-watch(
-  () => messengerStore.isMessengerOpen,
-  (isOpen) => {
-    if (!isOpen) {
-      messengerStore.selectedUser = null;
-    }
-  }
-);
 </script>
 
 <style scoped>
