@@ -28,6 +28,8 @@
     "read_more": "Read more",
     "start_date": "Start date:",
     "assign_deadline": "Assignment deadline:",
-    "next_lecture": "Next lecture:"
+    "next_lecture": "Next lecture:",
+    "assignments": "Current assignments:",
+    "deadline": "Deadline:"
   }
 }

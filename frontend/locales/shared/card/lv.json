@@ -28,6 +28,8 @@
     "read_more": "Lasīt vairāk",
     "start_date": "Sākuma datums:",
     "assign_deadline": "Uzdevuma termiņš:",
-    "next_lecture": "Nākamā lekcija:"
+    "next_lecture": "Nākamā lekcija:",
+    "assignments": "Pašreizējie uzdevumi:",
+    "deadline": "Nodošanas laiks:"
   }
 }
