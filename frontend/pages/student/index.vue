@@ -145,6 +145,7 @@ const handleOpenModal = (data) => {
 };
 
 // Functions
+
 const assignDescription = (assignments) => {
   if(assignments.length > 0) {
     return assignments.length;
@@ -152,7 +153,6 @@ const assignDescription = (assignments) => {
     return 0;
   }
 }
-
 // References required attributes from courses object for assignments section
 const assignments = computed(() => {
   let allAssignments = [];
