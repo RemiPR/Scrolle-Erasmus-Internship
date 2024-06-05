@@ -10,7 +10,7 @@
 
       <SharedVideoOverlay
         title="Welcome, Emīlija!"
-        description="You currently have no unfinished assignments."
+        :description="`You currently have ${assignDescription(assignments)} unfinished assignments.`"
         freeCoursesText="Check lectures timetable"
         accreditedProgramsText="Check my assignments"
         checkFreeCoursesLink="/free-courses"
@@ -144,36 +144,35 @@ const handleOpenModal = (data) => {
   openModal(data);
 };
 
-// Placeholder data
+// Functions
 
-const trending = ref([
-  {
-    id: 1,
-    title: "Top 10 cosmetology hacks",
-    imageUrl: "/advanced_aesthetic_cosmetology.jpg",
-    imageUrlLowRes: "/low_res_advanced_aesthetic_cosmetology.jpg",
-   },
-]);
-
+const assignDescription = (assignments) => {
+  if(assignments.length > 0) {
+    return assignments.length;
+  } else {
+    return 0;
+  }
+}
 // References required attributes from courses object for assignments section
 const assignments = computed(() => {
   let allAssignments = [];
-  
   courses.value.forEach(course => {
-    course.assignments.forEach(assignment => {
-      allAssignments.push({
-        courseId: course.id,
-        title: assignment.title,
-        imageUrl: course.imageUrl,
-        videoUrl: course.videoUrl,
-        lecturer: course.lecturer,
-        assignmentTitle: assignment.title,
-        assignDeadlineDate: assignment.assignDeadlineDate,
-        assignDeadlineTime: assignment.assignDeadlineTime,
-        nextLectureDate: course.nextLectureDate,
-        nextLectureTime: course.nextLectureTime,
+    if(course.assignments) {
+      course.assignments.forEach(assignment => {
+        allAssignments.push({
+          courseId: course.id,
+          title: assignment.title,
+          imageUrl: course.imageUrl,
+          videoUrl: course.videoUrl,
+          lecturer: course.lecturer,
+          assignmentTitle: assignment.title,
+          assignDeadlineDate: assignment.assignDeadlineDate,
+          assignDeadlineTime: assignment.assignDeadlineTime,
+          nextLectureDate: course.nextLectureDate,
+          nextLectureTime: course.nextLectureTime,
+        });
       });
-    });
+    };
   });
 
   return allAssignments;
@@ -199,6 +198,16 @@ const assignments = ref([
   },
 ]);*/
 
+// Placeholder data
+
+const trending = ref([
+  {
+    id: 1,
+    title: "Top 10 cosmetology hacks",
+    imageUrl: "/trending_dummy.jpg",
+    imageUrlLowRes: "/low_res_trending_dummy.jpg",
+   },
+]);
 
 const courses = ref([
   {
@@ -212,12 +221,12 @@ const courses = ref([
     nextLectureTime:"15:00",
     assignments: [
       {
-        title: "Practice cosmetology",
+        title: "Advanced chemical peel practice",
         assignDeadlineDate: "2024/06/25",
         assignDeadlineTime: "00:00"
       },
       {
-        title: "Research best techniques",
+        title: "Microdermabrasion theory task",
         assignDeadlineDate: "2024/06/27",
         assignDeadlineTime: "15:00"
       }
