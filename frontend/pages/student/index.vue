@@ -52,7 +52,6 @@
       <SharedCardSection
         id="active-assignments"
         title="Active assignments"
-        :workloadMeter="true"
         :dataArray="assignments"
         @openModal="handleOpenModal"
         class="pb-12"
