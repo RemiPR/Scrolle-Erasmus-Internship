@@ -19,14 +19,21 @@ export const useMessengerStore = defineStore("messenger", {
       } else {
         this.selectedUser = user;
         this.isMessengerOpen = true;
+
+        if (user.id === "chatbot") {
+          // Load ChatBot component for the ChatBot user
+          this.selectedUser.component = "ChatBot";
+        }
       }
     },
     closeChat() {
       this.selectedUser = null;
     },
     closeMessenger() {
-      this.isMessengerOpen = false;
-      this.selectedUser = null;
+      if (this.isMessengerOpen) {
+        this.isMessengerOpen = false;
+        this.selectedUser = null;
+      }
     },
   },
 });

@@ -20,6 +20,7 @@
   },
   "section": {
     "enrol": "Enroll in a course",
+    "empty": "Empty",
     "input": "Search..."
   },
   "index": {
