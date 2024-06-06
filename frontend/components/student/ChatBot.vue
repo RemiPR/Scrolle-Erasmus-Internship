@@ -89,24 +89,9 @@
                   >
                     😲
                   </button>
-                  <button
-                    class="text-xl focus:outline-none mx-1"
-                    @click="openEmojiPicker(message)"
-                  >
-                    😀
-                  </button>
+                  <button class="text-xl focus:outline-none mx-1">😀</button>
                 </div>
               </transition>
-              <div
-                v-if="message.showEmojiPicker"
-                v-click-outside="() => closeEmojiPicker(message)"
-              >
-                <EmojiPicker
-                  class="absolute transform -translate-y-full -mt-10"
-                  :class="message.sender === 'user' ? 'right-0' : 'left-0'"
-                  @select="(emoji) => selectEmoji(message, emoji)"
-                />
-              </div>
             </div>
           </div>
         </div>
@@ -120,8 +105,6 @@
 import { ref } from "vue";
 import axios from "axios";
 import Fuse from "fuse.js";
-import EmojiPicker from "vue3-emoji-picker";
-import "vue3-emoji-picker/css";
 import clickOutside from "@/composables/clickOutside";
 
 const inputField = ref(null);
@@ -142,7 +125,6 @@ const messages = ref([
     text: "Hello! How can I assist you today?",
     sender: "Scrolle Assistant",
     showActions: false,
-    showEmojiPicker: false,
     selectedEmoji: null,
     avatar: "/lecturer_avatar.png",
     timestamp: new Date(),
@@ -176,7 +158,6 @@ const sendMessage = async () => {
     text: userInput,
     sender: "user",
     showActions: false,
-    showEmojiPicker: false,
     selectedEmoji: null,
     timestamp: new Date(),
   });
@@ -188,7 +169,6 @@ const sendMessage = async () => {
       text: answer,
       sender: "Scrolle Assistant",
       showActions: false,
-      showEmojiPicker: false,
       selectedEmoji: null,
       avatar: "/lecturer_avatar.png",
       timestamp: new Date(),
@@ -219,7 +199,6 @@ const sendMessage = async () => {
         text: answer,
         sender: "Scrolle Assistant",
         showActions: false,
-        showEmojiPicker: false,
         selectedEmoji: null,
         avatar: "/lecturer_avatar.png",
         timestamp: new Date(),
@@ -232,7 +211,6 @@ const sendMessage = async () => {
           text: "Rate limit hit, please wait a moment and try again.",
           sender: "Scrolle Assistant",
           showActions: false,
-          showEmojiPicker: false,
           selectedEmoji: null,
           avatar: "/lecturer_avatar.png",
           timestamp: new Date(),
@@ -244,7 +222,6 @@ const sendMessage = async () => {
           text: "There was an error processing your request. Please try again later.",
           sender: "Scrolle Assistant",
           showActions: false,
-          showEmojiPicker: false,
           selectedEmoji: null,
           avatar: "/lecturer_avatar.png",
           timestamp: new Date(),
@@ -264,7 +241,6 @@ const clearMessages = () => {
       text: "Hello! How can I assist you today?",
       sender: "Scrolle Assistant",
       showActions: false,
-      showEmojiPicker: false,
       selectedEmoji: null,
       avatar: "/lecturer_avatar.png",
       timestamp: new Date(),
@@ -298,19 +274,6 @@ const formatTimestamp = (timestamp) => {
 const reactToMessage = (message, reaction) => {
   // Handle message reaction logic here
   console.log(`Reacted to message ${message.id} with ${reaction}`);
-};
-
-const openEmojiPicker = (message) => {
-  message.showEmojiPicker = !message.showEmojiPicker;
-};
-
-const selectEmoji = (message, emoji) => {
-  message.selectedEmoji = emoji;
-  message.showEmojiPicker = false;
-};
-
-const closeEmojiPicker = (message) => {
-  message.showEmojiPicker = false;
 };
 </script>
 
