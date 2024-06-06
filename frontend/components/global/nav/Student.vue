@@ -36,7 +36,7 @@
           >My grades</NuxtLink
         >
         <NuxtLink :to="localePath('/')" class="hover:underline"
-          >Contacts</NuxtLink
+          >Help & Support</NuxtLink
         >
       </nav>
 
