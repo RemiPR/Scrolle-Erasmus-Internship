@@ -1,6 +1,7 @@
 import Guest from "@/components/global/nav/Guest.vue";
 import Index from "@/components/global/nav/Index.vue";
 import Student from "@/components/global/nav/Student.vue";
+import Teacher from "@/components/global/nav/Teacher.vue";
 
 export const useNavigation = () => {
   const route = useRoute();
@@ -12,6 +13,8 @@ export const useNavigation = () => {
         return Guest;
       case "student":
         return Student;
+      case "teacher":
+        return Teacher;
       case "index":
       default:
         return Index;

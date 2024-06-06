@@ -51,16 +51,19 @@
       }"
     >
       <div class="px-4 py-2 text-sm text-gray-700">
-         <!-- Div with two child div collumns -->
+        <!-- Div with two child div collumns -->
         <div class="mt-2 flex flex-row">
           <!-- Collumn left -->
-          <div  class="flex flex-col gap-5">
+          <div class="flex flex-col gap-5">
             <div v-if="data.language" class="flex items-center">
               <Icon name="mdi:speaking" class="text-black text-2xl" />
               <p class="ml-2">{{ data.language }}</p>
             </div>
             <div v-if="data.subject" class="flex items-center">
-              <Icon name="fluent-mdl2:health-solid" class="text-black text-2xl" />
+              <Icon
+                name="fluent-mdl2:health-solid"
+                class="text-black text-2xl"
+              />
               <p class="ml-2">{{ data.subject }}</p>
             </div>
             <div v-if="data.lecturer" class="flex items-center">
@@ -77,36 +80,39 @@
             <div v-if="data.assignments" class="flex items-center">
               <Icon name="carbon:calendar" class="text-black text-2xl" />
               <p class="ml-2">
-                 {{ $t("index.assignments") }}
+                {{ $t("index.assignments") }}
                 <span class="font-bold">{{ data.assignments.length }}</span>
               </p>
             </div>
           </div>
           <!-- Collumn right -->
-          <div  class="flex flex-col w-2/4 text-right items-end gap-5">
+          <div class="flex flex-col w-2/4 text-right items-end gap-5">
             <div v-if="data.ects" class="items-end flex flex-col">
-              <p>{{data.ects}} ECTS</p>
+              <p>{{ data.ects }} ECTS</p>
             </div>
             <div v-if="data.assignDeadlineDate" class="items-end flex flex-col">
               <span>{{ $t("index.assign_deadline") }}</span>
-              <span class="font-bold">{{data.assignDeadlineDate}}</span>
-              <span class="font-bold">{{data.assignDeadlineTime}}</span>
+              <span class="font-bold">{{ data.assignDeadlineDate }}</span>
+              <span class="font-bold">{{ data.assignDeadlineTime }}</span>
             </div>
             <div class="flex-grow"></div>
             <div v-if="data.assignments" class="items-end flex flex-col">
-              <p>{{$t("index.deadline")}}</p>
+              <p>{{ $t("index.deadline") }}</p>
             </div>
           </div>
         </div>
         <!-- Div with middle content -->
-        <div
-          v-if="data.assignments"
-          class="flex flex-col items-center my-2"
-        >
-          <div v-for="(assignment, index) in data.assignments" :key="index" class="flex flex-row border-t-2 border-gray-200"> 
-            <p class="font-bold mx-2">{{index + 1}}</p>
-            <p>{{assignment.title}}</p>
-            <p class="font-bold text-right w-fit">{{assignment.assignDeadlineDate}}</p>
+        <div v-if="data.assignments" class="flex flex-col items-center my-2">
+          <div
+            v-for="(assignment, index) in data.assignments"
+            :key="index"
+            class="flex flex-row border-t-2 border-gray-200"
+          >
+            <p class="font-bold mx-2">{{ index + 1 }}</p>
+            <p>{{ assignment.title }}</p>
+            <p class="font-bold text-right w-fit">
+              {{ assignment.assignDeadlineDate }}
+            </p>
           </div>
         </div>
         <!-- Div with row child divs -->
@@ -127,11 +133,11 @@
             <p class="font-bold">{{ data.startDate }}</p>
             <p class="font-bold">{{ data.startTime }}</p>
           </div>
-           <div v-if="data.nextLectureDate" class="items-end flex flex-col">
-              <span>{{ $t("index.next_lecture") }}</span>
-              <span class="font-bold">{{data.nextLectureDate}}</span>
-              <span class="font-bold">{{data.nextLectureTime}}</span>
-            </div>
+          <div v-if="data.nextLectureDate" class="items-end flex flex-col">
+            <span>{{ $t("index.next_lecture") }}</span>
+            <span class="font-bold">{{ data.nextLectureDate }}</span>
+            <span class="font-bold">{{ data.nextLectureTime }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -163,7 +169,7 @@ const emit = defineEmits(["openModal"]);
 
 const debugData = (data) => {
   console.log(data);
-}
+};
 
 const handleMouseEnter = (id, playVideo) => {
   hoveredTileIndex.value = id;
