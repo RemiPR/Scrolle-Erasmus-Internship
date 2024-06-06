@@ -74,11 +74,20 @@
                 {{ $t("index.weeks") }}
               </p>
             </div>
-            <div v-if="data.assignments" class="flex items-center">
+            <!-- Active assignments count-->
+            <div v-if="data.assignments && !assignmentGrades" class="flex items-center">
               <Icon name="carbon:calendar" class="text-black text-2xl" />
               <p class="ml-2">
                  {{ $t("index.assignments") }}
-                <span class="font-bold">{{ data.assignments.length }}</span>
+                <span class="font-bold">{{ assignmentsNotGraded.length }}</span>
+              </p>
+            </div>
+             <!-- Finished assignments count-->
+            <div v-if="data.assignments && assignmentGrades" class="flex items-center">
+              <Icon name="carbon:checkbox-checked" class="text-black text-3xl" />
+              <p class="ml-2">
+                 {{$t("index.finishAssignments")}}
+                <span class="font-bold">{{ assignmentsGraded.length }}</span>
               </p>
             </div>
           </div>
@@ -93,20 +102,58 @@
               <span class="font-bold">{{data.assignDeadlineTime}}</span>
             </div>
             <div class="flex-grow"></div>
-            <div v-if="data.assignments" class="items-end flex flex-col">
+            <div v-if="assignmentList" class="items-end flex flex-col">
               <p>{{$t("index.deadline")}}</p>
+            </div>
+            <div v-if="!assignmentList && assignmentGrades" class="items-end flex flex-col">
+              <p>{{$t("index.grade")}}</p>
             </div>
           </div>
         </div>
         <!-- Div with middle content -->
-        <div
-          v-if="data.assignments"
-          class="flex flex-col items-center my-2"
-        >
-          <div v-for="(assignment, index) in data.assignments" :key="index" class="flex flex-row border-t-2 border-gray-200"> 
-            <p class="font-bold mx-2">{{index + 1}}</p>
-            <p>{{assignment.title}}</p>
-            <p class="font-bold text-right w-fit">{{assignment.assignDeadlineDate}}</p>
+        <div>
+          <!-- Active assignment list -->
+          <div
+            v-if="assignmentList && data.assignments"
+            class="flex flex-col my-2"
+          >
+            <div 
+            v-for="(assignment, index) in assignmentsNotGraded" 
+            :key="index" 
+            class="flex flex-row border-t-2 border-gray-200"
+            > 
+              <p class="font-bold mx-2">{{index + 1}}</p>
+              <p>{{assignment.title}}</p>
+              <p class="font-bold text-right w-fit">{{assignment.assignDeadlineDate}} {{assignment.assignDeadlineTime}}</p>
+            </div>
+          </div>
+          <!-- Grades -->
+          <div
+            v-if="assignmentGrades && data.assignments"
+            class="flex flex-col my-2"
+          >
+            <div v-if="assignmentList" class="items-end flex flex-col">
+              <p>{{$t("index.grade")}}</p>
+            </div>
+            <div 
+            v-for="(assignment, index) in assignmentsGraded"
+            :key="index"
+            class="flex flex-row border-t-2 border-gray-200"
+            > 
+              <p class="font-bold mx-2">{{index + 1}}</p>
+              <p>{{assignment.title}}</p>
+              <p class="flex-grow text-right font-bold">{{assignment.grade}}</p>
+            </div>
+          </div>
+          <!-- Final grade -->
+          <div
+            v-if="data.assignments"
+            class="flex flex-col mb-2 mt-6"
+          >
+            <div class="flex flex-row border-t-2 border-gray-200"> 
+              <p>{{$t("index.finalGrade")}}</p>
+              <p class="flex-grow text-right font-bold">{{data.finalGrade}}</p>
+            </div>
           </div>
         </div>
         <!-- Div with row child divs -->
@@ -127,7 +174,7 @@
             <p class="font-bold">{{ data.startDate }}</p>
             <p class="font-bold">{{ data.startTime }}</p>
           </div>
-           <div v-if="data.nextLectureDate" class="items-end flex flex-col">
+           <div v-if="data.nextLectureDate && !data.completed" class="items-end flex flex-col">
               <span>{{ $t("index.next_lecture") }}</span>
               <span class="font-bold">{{data.nextLectureDate}}</span>
               <span class="font-bold">{{data.nextLectureTime}}</span>
@@ -139,6 +186,8 @@
 </template>
 
 <script setup>
+import { computed, onMounted } from "vue";
+
 const props = defineProps({
   data: {
     type: Object,
@@ -152,6 +201,14 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  assignmentGrades: {
+    type: Boolean,
+    default: false
+  },
+  assignmentList: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const hoveredTileIndex = ref(null);
@@ -160,6 +217,9 @@ const videoRef = ref(null);
 const videoPlayingTimeout = ref(null);
 
 const emit = defineEmits(["openModal"]);
+
+// The warning that these are not used is false positive
+const {assignmentsGraded, assignmentsNotGraded} = useAssignmentsFilter(computed(() => props.data.assignments));
 
 const debugData = (data) => {
   console.log(data);
