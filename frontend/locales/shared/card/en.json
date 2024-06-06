@@ -30,6 +30,9 @@
     "assign_deadline": "Assignment deadline:",
     "next_lecture": "Next lecture:",
     "assignments": "Current assignments:",
-    "deadline": "Deadline:"
+    "deadline": "Deadline:",
+    "finishAssignments": "Finished assignments:",
+    "grade":"Grade:",
+    "finalGrade":"Final grade:"
   }
 }
