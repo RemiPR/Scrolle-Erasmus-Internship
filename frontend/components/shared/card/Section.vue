@@ -14,6 +14,8 @@
         :key="data.id"
         :data="data"
         :hiddenContent="hiddenContent"
+        :assignmentGrades="assignmentGrades"
+        :assignmentList="assignmentList"
         :playVideo="playVideo"
         @openModal="handleOpenModal($event)"
       />
@@ -59,6 +61,14 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  assignmentGrades: {
+    type: Boolean,
+    default: false,
+  },
+  assignmentList: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const route = useRoute();
