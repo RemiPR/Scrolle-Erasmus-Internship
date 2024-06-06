@@ -10,7 +10,7 @@
 
       <SharedVideoOverlay
         title="Welcome, Emīlija!"
-        :description="`You currently have ${assignDescription(assignments)} unfinished assignments.`"
+        :description="`You currently have ${assignmentCount(assignments)} unfinished assignments.`"
         freeCoursesText="Check lectures timetable"
         accreditedProgramsText="Check my assignments"
         checkFreeCoursesLink="/free-courses"
@@ -52,7 +52,6 @@
       <SharedCardSection
         id="active-assignments"
         title="Active assignments"
-        :workloadMeter="true"
         :dataArray="assignments"
         @openModal="handleOpenModal"
         class="pb-12"
@@ -146,7 +145,7 @@ const handleOpenModal = (data) => {
 
 // Functions
 
-const assignDescription = (assignments) => {
+const assignmentCount = (assignments) => {
   if(assignments.length > 0) {
     return assignments.length;
   } else {
@@ -221,11 +220,13 @@ const courses = ref([
     nextLectureTime:"15:00",
     assignments: [
       {
+        id: "1",
         title: "Advanced chemical peel practice",
         assignDeadlineDate: "2024/06/25",
         assignDeadlineTime: "00:00"
       },
       {
+        id:"2",
         title: "Microdermabrasion theory task",
         assignDeadlineDate: "2024/06/27",
         assignDeadlineTime: "15:00"

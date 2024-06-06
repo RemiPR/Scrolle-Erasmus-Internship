@@ -2,10 +2,6 @@
   <div class="">
     <div class="my-12 flex items-center justify-between">
       <span class="text-gray-700 text-3xl font-bold">{{ title }}</span>
-      <StudentWorkloadMeter
-        v-if="workloadMeter"
-        :coefficient="workloadCoefficient(dataArray.length, 10)"
-      />
       <input
         type="text"
         class="ml-2 border-2 border-gray-300 rounded-md px-4 py-1"
@@ -54,10 +50,6 @@ const props = defineProps({
   dataArray: {
     type: Array,
     required: true,
-  },
-  workloadMeter: {
-    type: Boolean,
-    default: false,
   },
   hiddenContent: {
     type: Boolean,
