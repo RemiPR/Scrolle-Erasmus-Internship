@@ -14,6 +14,6 @@ export const authenticateToken = (request, response, next) => {
     next(); // Proceed to the next middleware or route handler
   } catch (error) {
     console.error("JWT verification error:", error);
-    return response.status(403).json({ message: "Forbidden: Invalid token" });
+    return response.status(401).json({ message: "Unauthorized" });
   }
 };
