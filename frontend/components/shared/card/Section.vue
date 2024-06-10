@@ -24,14 +24,16 @@
       v-else
       class="flex items-center justify-center h-48 border-dashed border-4 border-gray-300 rounded-lg w-72"
     >
-      <button v-if="currentPage == '/guest' "
+      <button
+        v-if="currentPage == '/guest'"
         @click="redirectToAvailableCourses"
         class="text-blue-500 text-lg flex justify-center items-center w-full h-full"
       >
         <Icon name="mdi:plus" class="text-3xl mr-2" />
         {{ $t("section.enrol") }}
       </button>
-      <span v-else
+      <span
+        v-else
         class="text-blue-500 text-lg flex justify-center items-center w-full h-full"
       >
         {{ $t("section.empty") }}
@@ -42,7 +44,7 @@
 
 <script setup>
 import { useLocalePath } from "#imports";
-import { useRoute } from 'vue-router';
+import { useRoute } from "vue-router";
 
 const props = defineProps({
   title: {
@@ -86,7 +88,7 @@ const workloadCoefficient = (assignmenttAmount, maxAmount) => {
 const currentPage = computed(() => {
   const result = route.path.substring(6);
   return result;
-  });
+});
 
 const redirectToAvailableCourses = () => {
   const section = document.getElementById("available-free-courses");
