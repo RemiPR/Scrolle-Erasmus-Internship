@@ -9,6 +9,7 @@ router.post("/createUser", UserGuestController.createUser);
 router.post("/registerUser", UserGuestController.registerUser);
 router.post("/loginUser", UserGuestController.loginUser);
 router.post("/logoutUser", authenticateToken, UserGuestController.logoutUser);
+router.post("/refresh", UserGuestController.refreshToken);
 router.post(
   "/addPersonalInfo",
   authenticateToken,

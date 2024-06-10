@@ -33,6 +33,42 @@ const createUser = async (request, response) => {
   }
 };
 
+const refreshToken = async (request, response) => {
+  try {
+    const authRefresh = request.cookies.authRefresh;
+    if (!authRefresh)
+      return response.status(401).send({ message: "Unauthorized" });
+
+    const decoded = jwt.verify(authRefresh, process.env.JWT_REFRESH_SECRET);
+
+    const userGuest = await UserGuest.findById(decoded.id);
+
+    const id = userGuest.id;
+    const email = userGuest.email;
+    const name = userGuest.name;
+    const type = userGuest.userType;
+    const isConfirmed = userGuest.personalInfo.isFilled;
+
+    const newAccessToken = jwt.sign(
+      { id, email, name, type, isConfirmed },
+      process.env.JWT_ACCESS_SECRET,
+      { expiresIn: "1m" }
+    );
+
+    response
+      .status(200)
+      .cookie("authToken", newAccessToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "Lax",
+        maxAge: 1 * 60 * 1000,
+      })
+      .send({ message: "Success" });
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+  }
+};
+
 const logoutUser = async (request, response) => {
   try {
     response.clearCookie("authToken"); // if using HttpOnly cookies to store JWT
@@ -157,4 +193,5 @@ export const UserGuestController = {
   loginUser,
   logoutUser,
   addPersonalInfo,
+  refreshToken,
 };

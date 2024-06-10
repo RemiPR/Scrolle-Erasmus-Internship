@@ -6,10 +6,10 @@ import { checkUserType } from "../middleware/checkUserType.js";
 
 const router = express.Router();
 
-router.get("/checkCookies", authenticateToken, DebugController.checkCookies);
-router.post("/checkData", authenticateToken, DebugController.checkData);
-router.get("/checkPayload", authenticateToken, DebugController.checkJwtPayload);
-router.get("/checkAuth", authenticateToken, DebugController.checkAuth);
+router.get("/checkCookies", DebugController.checkCookies);
+router.post("/checkData", DebugController.checkData);
+router.get("/checkPayload", DebugController.checkJwtPayload);
+router.get("/checkAuth", DebugController.checkAuth);
 router.get(
   "/userManagement",
   authenticateToken,

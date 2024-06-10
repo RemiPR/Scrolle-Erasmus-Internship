@@ -3,8 +3,14 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const JWT_EXPIRY = process.env.JWT_EXPIRY;
-const COOKIE_AGE = process.env.COOKIE_AGE;
+const JWT_ACCESS_EXPIRY = process.env.JWT_ACCESS_EXPIRY;
+const JWT_REFRESH_EXPIRY = process.env.JWT_REFRESH_EXPIRY;
+const JWT_ACCESS_SECRET = process.env.JWT_ACCESS_SECRET;
+const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET;
+
+const COOKIE_AGE_ACCESS = process.env.COOKIE_AGE_ACCESS;
+const COOKIE_AGE_REFRESH = process.env.COOKIE_AGE_REFRESH;
+
 const FRONTEND_DOMAIN = process.env.FRONTEND_DOMAIN;
 
 const oauthLoginGuestUser = async function (userGuest, locale, response) {
@@ -26,10 +32,18 @@ const oauthLoginGuestUser = async function (userGuest, locale, response) {
   // maxAge how long the cookie lasts, 3600000 = 1 hour
 
   // "auth" cookie readable by javascript code so that frontend could read its values
-  const token = jwt.sign(
+  const accessToken = jwt.sign(
     { id, email, name, type, isConfirmed },
-    process.env.JWT_SECRET, // JWT secret key
-    { expiresIn: JWT_EXPIRY } // Token expiration
+    JWT_ACCESS_SECRET, // JWT secret key
+    { expiresIn: JWT_ACCESS_EXPIRY } // Token expiration
+  );
+
+  const refreshToken = jwt.sign(
+    {
+      id,
+    },
+    JWT_REFRESH_SECRET,
+    { expiresIn: JWT_REFRESH_EXPIRY }
   );
 
   response.cookie(
@@ -40,16 +54,21 @@ const oauthLoginGuestUser = async function (userGuest, locale, response) {
       type: type,
       isConfirmed: isConfirmed,
     },
-    { httpOnly: false, maxAge: COOKIE_AGE }
+    { httpOnly: false, maxAge: COOKIE_AGE_ACCESS }
   );
+
+  response.cookie("authRefresh", refreshToken, {
+    httpOnly: true,
+    maxAge: COOKIE_AGE_REFRESH,
+  });
 
   response
     .status(200)
-    .cookie("authToken", token, {
+    .cookie("authToken", accessToken, {
       httpOnly: true,
       secure: true,
       sameSite: "Lax",
-      maxAge: COOKIE_AGE,
+      maxAge: COOKIE_AGE_ACCESS,
     })
     .redirect(`${FRONTEND_DOMAIN}/${localePath}/guest/oauthLogin`);
 };
@@ -64,11 +83,19 @@ const loginGuestUser = async function (userGuest, response) {
   console.log("Logged in with payload:");
   console.log(id, email, name, type, isConfirmed);
 
-  // Generate a JWT with the user information
-  const token = jwt.sign(
+  // Generate a JWT access with the user information
+  const accessToken = jwt.sign(
     { id, email, name, type, isConfirmed },
-    process.env.JWT_SECRET, // JWT secret key
-    { expiresIn: JWT_EXPIRY } // Token expiration
+    JWT_ACCESS_SECRET, // JWT secret key
+    { expiresIn: JWT_ACCESS_EXPIRY } // Token expiration
+  );
+
+  const refreshToken = jwt.sign(
+    {
+      id,
+    },
+    JWT_REFRESH_SECRET,
+    { expiresIn: JWT_REFRESH_EXPIRY }
   );
 
   response.cookie(
@@ -79,16 +106,21 @@ const loginGuestUser = async function (userGuest, response) {
       type: type,
       isConfirmed: isConfirmed,
     },
-    { httpOnly: false, maxAge: COOKIE_AGE }
+    { httpOnly: false, maxAge: COOKIE_AGE_ACCESS }
   );
+
+  response.cookie("authRefresh", refreshToken, {
+    httpOnly: true,
+    maxAge: COOKIE_AGE_REFRESH,
+  });
 
   return response
     .status(200)
-    .cookie("authToken", token, {
+    .cookie("authToken", accessToken, {
       httpOnly: true,
       secure: true,
       sameSite: "Lax",
-      maxAge: COOKIE_AGE,
+      maxAge: COOKIE_AGE_ACCESS,
     })
     .send({ message: "Success" });
 };
