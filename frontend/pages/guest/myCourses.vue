@@ -2,17 +2,17 @@
   <div class="px-4 bg-white dark:bg-gray-800 pt-40">
     <main class="text-center text-black dark:text-white w-4/6 mx-auto pb-32">
       <h2 class="text-4xl font-bold mb-14">My courses</h2>
-      <DynamicTab :tabs="admissionTabs" />
+      <DynamicTab :tabs="myCoursesTabs" />
     </main>
   </div>
 </template>
 
 <script setup>
 import DynamicTab from "@/components/shared/ui/DynamicTab.vue";
-import EntranceRequirements from "@/components/guest/myCourses/CourseInfo.vue";
-import Permits from "@/components/guest/myCourses/CurrentAssignments.vue";
-import Fees from "@/components/guest/myCourses/Grades.vue";
-import Application from "@/components/guest/myCourses/LecturerContacts.vue";
+import CourseInfo from "@/components/guest/myCourses/CourseInfo.vue";
+import CurrentAssignments from "@/components/guest/myCourses/CurrentAssignments.vue";
+import Grades from "@/components/guest/myCourses/grades/Grades.vue";
+import LecturerContacts from "@/components/guest/myCourses/LecturerContacts.vue";
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
@@ -24,26 +24,26 @@ definePageMeta({
   // middleware: ["auth", "guest"],
 });
 
-const admissionTabs = [
+const myCoursesTabs = [
   {
-    name: "entrance",
+    name: "course info",
     label: "Course info",
-    component: EntranceRequirements,
+    component: CourseInfo,
   },
   {
-    name: "visas",
+    name: "current assignments",
     label: "Current assignments",
-    component: Permits,
+    component: CurrentAssignments,
   },
   {
-    name: "fees",
+    name: "grades",
     label: "Grades",
-    component: Fees,
+    component: Grades,
   },
   {
-    name: "application",
+    name: "lecturer contacts",
     label: "Lecturer contacts",
-    component: Application,
+    component: LecturerContacts,
   },
 ];
 </script>
