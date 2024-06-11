@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { UserGuest } from "../schema/userGuestSchema.js";
 
 dotenv.config();
 
@@ -73,6 +74,32 @@ const oauthLoginGuestUser = async function (userGuest, locale, response) {
     .redirect(`${FRONTEND_DOMAIN}/${localePath}/guest/oauthLogin`);
 };
 
+const refreshAccessToken = async function (refreshToken) {
+  try {
+    const decoded = jwt.verify(refreshToken, JWT_REFRESH_SECRET);
+    const userGuest = await UserGuest.findById(decoded.id);
+
+    if (!userGuest) {
+      response.status(401).send({ message: "Unauthorized" });
+    }
+
+    const id = userGuest.id;
+    const email = userGuest.email;
+    const name = userGuest.name;
+    const type = userGuest.userType;
+    const isConfirmed = userGuest.personalInfo.isFilled;
+
+    const newAccessToken = jwt.sign(
+      { id, email, name, type, isConfirmed },
+      JWT_ACCESS_SECRET,
+      { expiresIn: JWT_ACCESS_EXPIRY }
+    );
+    return newAccessToken;
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+  }
+};
+
 const loginGuestUser = async function (userGuest, response) {
   const id = userGuest.id;
   const email = userGuest.email;
@@ -125,4 +152,8 @@ const loginGuestUser = async function (userGuest, response) {
     .send({ message: "Success" });
 };
 
-export const authUtils = { oauthLoginGuestUser, loginGuestUser };
+export const authUtils = {
+  oauthLoginGuestUser,
+  loginGuestUser,
+  refreshAccessToken,
+};
