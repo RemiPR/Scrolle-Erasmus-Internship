@@ -84,6 +84,18 @@ export const useAuthStore = defineStore("auth", {
         throw error;
       }
     },
+    async refreshToken(authBaseUrl) {
+      const { toLogin } = useRedirectPath();
+      try {
+        await $fetch(`${authBaseUrl}/api/auth/guest/refresh`, {
+          method: "POST",
+          credentials: "include",
+        });
+      } catch (error) {
+        this.clearUser();
+        navigateTo(toLogin);
+      }
+    },
     enrollCourse(courseId) {
       if (!this.enrolledCourses.includes(courseId)) {
         this.enrolledCourses.push(courseId);
