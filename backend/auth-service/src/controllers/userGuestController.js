@@ -6,9 +6,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const JWT_EXPIRY = process.env.JWT_EXPIRY;
-const COOKIE_AGE = process.env.COOKIE_AGE;
-
 const createUser = async (request, response) => {
   try {
     if (!request.body.name || !request.body.email) {
@@ -35,25 +32,11 @@ const createUser = async (request, response) => {
 
 const refreshToken = async (request, response) => {
   try {
-    const authRefresh = request.cookies.authRefresh;
-    if (!authRefresh)
+    const refreshToken = request.cookies.authRefresh;
+    if (!refreshToken)
       return response.status(401).send({ message: "Unauthorized" });
 
-    const decoded = jwt.verify(authRefresh, process.env.JWT_REFRESH_SECRET);
-
-    const userGuest = await UserGuest.findById(decoded.id);
-
-    const id = userGuest.id;
-    const email = userGuest.email;
-    const name = userGuest.name;
-    const type = userGuest.userType;
-    const isConfirmed = userGuest.personalInfo.isFilled;
-
-    const newAccessToken = jwt.sign(
-      { id, email, name, type, isConfirmed },
-      process.env.JWT_ACCESS_SECRET,
-      { expiresIn: "1m" }
-    );
+    const newAccessToken = await authUtils.refreshAccessToken(refreshToken);
 
     response
       .status(200)
@@ -61,7 +44,7 @@ const refreshToken = async (request, response) => {
         httpOnly: true,
         secure: true,
         sameSite: "Lax",
-        maxAge: 1 * 60 * 1000,
+        maxAge: process.env.COOKIE_AGE_ACCESS,
       })
       .send({ message: "Success" });
   } catch (error) {
