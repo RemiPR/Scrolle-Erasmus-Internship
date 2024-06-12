@@ -45,14 +45,12 @@ const props = defineProps({
     required: true,
     default: () => [],
   },
-},
-);
+});
 const current = ref(null);
 
 const toggleQuestion = (index) => {
   current.value = current.value === index ? null : index;
 };
-
 </script>
 
 <style>
