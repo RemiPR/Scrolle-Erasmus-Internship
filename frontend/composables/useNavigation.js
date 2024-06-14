@@ -1,9 +1,10 @@
+// useNavigation
 import Guest from "@/components/global/nav/Guest.vue";
 import Index from "@/components/global/nav/Index.vue";
 import Student from "@/components/global/nav/Student.vue";
 import Teacher from "@/components/global/nav/Teacher.vue";
 
-export const useNavigation = () => {
+export const useNavigation = (sidebarLinks) => {
   const route = useRoute();
 
   const navigationComponent = computed(() => {
@@ -26,5 +27,6 @@ export const useNavigation = () => {
   return {
     navigationComponent,
     enableScrollStyling,
+    sidebarLinks,
   };
 };

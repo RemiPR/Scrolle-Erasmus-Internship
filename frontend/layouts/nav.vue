@@ -1,3 +1,4 @@
+<!-- layouts/nav.vue -->
 <template>
   <div>
     <component
@@ -8,5 +9,7 @@
 </template>
 
 <script setup>
+import { useNavigation } from "@/composables/useNavigation";
+
 const { navigationComponent, enableScrollStyling } = useNavigation();
 </script>
