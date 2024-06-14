@@ -29,6 +29,42 @@ const sidebarLinks = ref([
     component: markRaw(CoursesComponent),
     icon: "mdi:book-open-variant",
   },
+  {
+    label: "Groups",
+    component: markRaw(CoursesComponent),
+    icon: "mdi:book-open-variant",
+  },
+  {
+    label: "Assignments",
+    component: markRaw(CoursesComponent),
+    icon: "mdi:book-open-variant",
+  },
+  {
+    label: "Tests",
+    component: markRaw(CoursesComponent),
+    icon: "mdi:book-open-variant",
+  },
+  {
+    label: "Student grading",
+    component: markRaw(CoursesComponent),
+    icon: "mdi:book-open-variant",
+  },
+
+  {
+    label: "My digital library",
+    component: markRaw(CoursesComponent),
+    icon: "mdi:book-open-variant",
+  },
+  {
+    label: "My Erasmus",
+    component: markRaw(CoursesComponent),
+    icon: "mdi:book-open-variant",
+  },
+  {
+    label: "Calendar",
+    component: markRaw(CoursesComponent),
+    icon: "mdi:book-open-variant",
+  },
   // Add more sidebar links as needed
 ]);
 

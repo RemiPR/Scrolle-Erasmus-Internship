@@ -3,7 +3,7 @@
   <div class="flex">
     <!-- Sidebar -->
     <Sidebar
-      class="w-64"
+      class="w-72"
       :links="sidebarLinks"
       @link-clicked="setActiveComponent"
     />
@@ -11,7 +11,7 @@
     <div class="flex-1">
       <!-- Header (Nav Menu) -->
       <header
-        class="flex justify-end font-semibold items-center p-4 fixed top-0 right-0 z-50 bg-white"
+        class="flex justify-end font-semibold items-center m-6 fixed top-0 right-0 z-50 bg-white"
       >
         <nav class="flex items-center gap-4">
           <IndexLangSwitcher class="text-gray-800 font-semibold" />
@@ -53,7 +53,7 @@
       </header>
 
       <!-- Page content -->
-      <main class="">
+      <main>
         <component :is="activeComponent"></component>
       </main>
 

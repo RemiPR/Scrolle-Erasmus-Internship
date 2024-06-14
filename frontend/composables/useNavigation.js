@@ -27,6 +27,5 @@ export const useNavigation = (sidebarLinks) => {
   return {
     navigationComponent,
     enableScrollStyling,
-    sidebarLinks,
   };
 };
