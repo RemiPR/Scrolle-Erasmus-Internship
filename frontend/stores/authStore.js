@@ -62,6 +62,8 @@ export const useAuthStore = defineStore("auth", {
             userCookie.startsWith("j:") ? userCookie.slice(2) : userCookie
           );
           this.setUser(parsedUser);
+        } else {
+          console.error("No cookies received");
         }
         navigateTo(redirectPath);
       } catch (error) {

@@ -9,7 +9,7 @@ const router = express.Router();
 router.get("/checkCookies", DebugController.checkCookies);
 router.post("/checkData", DebugController.checkData);
 router.get("/checkPayload", DebugController.checkJwtPayload);
-router.get("/checkAuth", DebugController.checkAuth);
+router.get("/checkAuth", authenticateToken, DebugController.checkAuth);
 router.get(
   "/userManagement",
   authenticateToken,

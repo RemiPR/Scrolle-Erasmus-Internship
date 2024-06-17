@@ -55,11 +55,12 @@ const oauthLoginGuestUser = async function (userGuest, locale, response) {
       type: type,
       isConfirmed: isConfirmed,
     },
-    { httpOnly: false, maxAge: COOKIE_AGE_ACCESS }
+    { httpOnly: false, secure: true, maxAge: COOKIE_AGE_ACCESS }
   );
 
   response.cookie("authRefresh", refreshToken, {
     httpOnly: true,
+    secure: true,
     maxAge: COOKIE_AGE_REFRESH,
   });
 
@@ -133,11 +134,12 @@ const loginGuestUser = async function (userGuest, response) {
       type: type,
       isConfirmed: isConfirmed,
     },
-    { httpOnly: false, maxAge: COOKIE_AGE_ACCESS }
+    { httpOnly: false, secure: true, maxAge: COOKIE_AGE_ACCESS }
   );
 
   response.cookie("authRefresh", refreshToken, {
     httpOnly: true,
+    secure: true,
     maxAge: COOKIE_AGE_REFRESH,
   });
 

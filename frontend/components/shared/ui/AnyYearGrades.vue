@@ -58,13 +58,12 @@
                 <td class="p-2">{{ detail.grade }}</td>
               </tr>
             </tbody>
-
-            <div class="flex justify-between items-center mt-4">
-              <span class="text-lg font-bold">Final grade</span>
-              <span class="text-lg font-bold">{{ item.finalGrade }}</span>
-            </div>
-            <hr class="border-t border-gray-900" />
           </table>
+          <div class="flex justify-between items-center mt-4">
+            <span class="text-lg font-bold">Final grade</span>
+            <span class="text-lg font-bold">{{ item.finalGrade }}</span>
+          </div>
+          <hr class="border-t border-gray-900" />
         </div>
       </li>
     </ul>
@@ -83,12 +82,13 @@ const props = defineProps({
   },
 });
 
-const current = ref(0); // Set the first item expanded by default
+const current = ref(null); // No item expanded by default
 
 const toggleQuestion = (index) => {
   current.value = current.value === index ? null : index;
 };
 </script>
+
 <style scoped>
 .truncate-text {
   max-width: 150px; /* Adjust as needed */

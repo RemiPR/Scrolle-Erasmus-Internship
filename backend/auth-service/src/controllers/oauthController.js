@@ -53,6 +53,9 @@ const authenticateGoogle = async (request, response) => {
     const userName = payload["given_name"];
     const userSurname = payload["family_name"];
 
+    // use this later request.cookies.i18n_redirected
+    const locale = "en-US";
+
     // check if such user with such email already exists
     const userGuest = await UserGuest.findOne({ email: userEmail });
     if (userGuest) {
@@ -68,11 +71,7 @@ const authenticateGoogle = async (request, response) => {
         });
       }
       //console.log(request.cookies.i18n_redirected);
-      authUtils.oauthLoginGuestUser(
-        userGuest,
-        request.cookies.i18n_redirected,
-        response
-      );
+      authUtils.oauthLoginGuestUser(userGuest, locale, response);
     } else {
       // if user doesn't exist at all, new account is created
       const newGuestUser = new UserGuest({
@@ -86,11 +85,7 @@ const authenticateGoogle = async (request, response) => {
       const userGuest = await UserGuest.create(newGuestUser).catch((error) => {
         response.status(500).send({ message: error.message });
       });
-      authUtils.oauthLoginGuestUser(
-        userGuest,
-        request.cookies.i18n_redirected,
-        response
-      );
+      authUtils.oauthLoginGuestUser(userGuest, locale, response);
     }
   } catch (error) {
     console.error("Google OAuth error:", error);
@@ -122,6 +117,9 @@ const authenticateFacebook = async (request, response) => {
     const userGuestName = fullnameSplit[0];
     const userGuestSurname = fullnameSplit[1];
 
+    // use this later request.cookies.i18n_redirected
+    const locale = "en-US";
+
     const userGuest = await UserGuest.findOne({
       email: userGuestFacebookProfile.email,
     });
@@ -137,11 +135,7 @@ const authenticateFacebook = async (request, response) => {
           response.status(500).send({ message: error.message });
         });
       }
-      authUtils.oauthLoginGuestUser(
-        userGuest,
-        request.cookies.i18n_redirected,
-        response
-      );
+      authUtils.oauthLoginGuestUser(userGuest, locale, response);
     } else {
       // if user doesn't exist at all, new account is created
       const newGuestUser = new UserGuest({
@@ -155,11 +149,7 @@ const authenticateFacebook = async (request, response) => {
       const userGuest = await UserGuest.create(newGuestUser).catch((error) => {
         response.status(500).send({ message: error.message });
       });
-      authUtils.oauthLoginGuestUser(
-        userGuest,
-        request.cookies.i18n_redirected,
-        response
-      );
+      authUtils.oauthLoginGuestUser(userGuest, locale, response);
     }
   } catch (error) {
     response.status(500).send(error.message).redirect(`${FRONTEND_DOMAIN}`);

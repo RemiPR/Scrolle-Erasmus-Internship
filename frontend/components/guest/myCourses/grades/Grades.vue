@@ -12,6 +12,9 @@
 <script setup>
 import DynamicTab from "@/components/shared/ui/DynamicTab.vue";
 import FirstYear from "@/components/guest/myCourses/grades/FirstYear.vue";
+import SecondYear from "@/components/guest/myCourses/grades/SecondYear.vue";
+import ThirdYear from "@/components/guest/myCourses/grades/ThirdYear.vue";
+import FourthYear from "@/components/guest/myCourses/grades/FourthYear.vue";
 const newTabs = [
   {
     name: "course info",
@@ -21,14 +24,17 @@ const newTabs = [
   {
     name: "current assignments",
     label: "Second year",
+    component: SecondYear,
   },
   {
     name: "grades",
     label: "Third year",
+    component: ThirdYear,
   },
   {
     name: "lecturer contacts",
     label: "Fourth year",
+    component: FourthYear,
   },
 ];
 </script>
