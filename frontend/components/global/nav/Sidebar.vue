@@ -117,10 +117,10 @@
         <div
           class="py-3 mb-3 3xl:py-4 3xl:mb-4 flex items-center justify-between bg-gray-800 border-t border-t-gray-600"
         >
-          <div class="flex items-center space-x-2">
+          <div class="flex items-center space-x-4">
             <SharedUserProfileAvatar
-              width-class="w-12 3xl:w-14"
-              height-class="h-12 3xl:h-14"
+              width-class="w-8 3xl:w-10"
+              height-class="h-8 3xl:h-10"
               img-width-class="w-full"
               img-height-class="h-full"
               :clickable="false"

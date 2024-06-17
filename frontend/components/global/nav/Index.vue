@@ -7,13 +7,17 @@
     >
       <!-- Left nav: Logo + Logo Text and Home button -->
       <nav class="flex items-center space-x-12 text-xl">
-        <NuxtLink to="#" class="flex items-center">
+        <NuxtLink
+          to="#"
+          class="group flex items-center justify-center space-x-2 px-2 py-2"
+        >
           <Icon
             name="fluent:hat-graduation-24-regular"
-            class="mr-2 h-10 w-10 text-white dark:text-black"
+            class="h-8 w-8 3xl:h-10 3xl:w-10 group-hover:-rotate-[25deg] transition-all duration-500 group-hover:text-blue-400 text-white dark:text-black"
             alt="Graduation hat icon"
           />
-          <span class="text-3xl font-semibold text-white dark:text-black"
+          <span
+            class="text-3xl font-semibold group-hover:text-blue-200 dark:group-hover:text-blue-400 transition-all duration-700 text-white dark:text-black"
             >Scrolle</span
           >
         </NuxtLink>
