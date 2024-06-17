@@ -1,6 +1,4 @@
-<template>
-  <p>Online classes</p>
-</template>
+<template><p>Student grading</p></template>
 
 <script setup></script>
 

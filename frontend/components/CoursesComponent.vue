@@ -1,5 +1,5 @@
 <template>
-  <p>CoursesComponent</p>
+  <p>Courses</p>
 </template>
 
 <script setup></script>

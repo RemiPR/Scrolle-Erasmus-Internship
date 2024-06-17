@@ -1,6 +1,4 @@
-<template>
-  <p>Online classes</p>
-</template>
+<template><p>Calendar7</p></template>
 
 <script setup></script>
 

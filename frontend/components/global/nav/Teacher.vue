@@ -3,7 +3,7 @@
   <div class="flex">
     <!-- Sidebar -->
     <Sidebar
-      class="w-80"
+      class="w-72 3xl:w-80"
       :links="sidebarLinks"
       @link-clicked="setActiveComponent"
     />

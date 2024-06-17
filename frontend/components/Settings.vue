@@ -1,6 +1,4 @@
-<template>
-  <p>Online classes</p>
-</template>
+<template><p>Settings</p></template>
 
 <script setup></script>
 
