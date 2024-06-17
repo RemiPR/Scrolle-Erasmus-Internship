@@ -6,7 +6,7 @@
     >
       <nav class="mb-2">
         <ul
-          class="space-y-1 p-4 max-h-[790px] 3xl:max-h-[975px] overflow-y-hidden hover:overflow-y-scroll"
+          class="space-y-1 p-4 max-h-[700px] 3xl:max-h-[975px] overflow-y-hidden hover:overflow-y-scroll"
         >
           <li class="mb-12 flex items-center">
             <NuxtLink
