@@ -1,17 +1,25 @@
+<!-- components/shared/user/profile/Avatar.vue-->
 <template>
   <div class="relative">
     <div class="group">
       <div
-        class="flex items-center cursor-pointer p-2 avatar hover:opacity-80"
-        @click="toggleMenu"
+        class="flex items-center p-2 avatar"
+        :class="[
+          widthClass,
+          heightClass,
+          { 'cursor-pointer hover:opacity-80': clickable },
+        ]"
+        @click="clickable && toggleMenu()"
       >
         <NuxtImg
           :src="'/lecturer_avatar.png'"
           alt="Avatar"
-          class="h-12 w-12 rounded-full relative"
+          class="rounded-full relative"
+          :class="[imgWidthClass, imgHeightClass]"
         />
       </div>
       <span
+        v-if="clickable"
         class="absolute left-1/2 transform -translate-x-1/2 px-3 py-1 text-sm text-white bg-gray-700 rounded-md opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
       >
         Account
@@ -71,6 +79,26 @@ const props = defineProps({
   avatarClasses: {
     type: String,
     default: "",
+  },
+  widthClass: {
+    type: String,
+    default: "w-12",
+  },
+  heightClass: {
+    type: String,
+    default: "h-12",
+  },
+  imgWidthClass: {
+    type: String,
+    default: "w-full",
+  },
+  imgHeightClass: {
+    type: String,
+    default: "h-full",
+  },
+  clickable: {
+    type: Boolean,
+    default: true,
   },
 });
 

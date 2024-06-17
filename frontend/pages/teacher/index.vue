@@ -1,6 +1,6 @@
 <!-- pages/teacher.vue -->
 <template>
-  <div class="relative min-h-screen ml-4">
+  <div class="relative min-h-screen bg-gray-100">
     <Sidebar />
   </div>
 </template>
@@ -53,7 +53,7 @@ const sidebarLinks = ref([
   {
     label: "My digital library",
     component: markRaw(CoursesComponent),
-    icon: "mdi:library-shelves",
+    icon: "clarity:library-solid",
   },
   {
     label: "My Erasmus",
@@ -68,7 +68,30 @@ const sidebarLinks = ref([
   // Add more sidebar links as needed
 ]);
 
-provideSidebar(sidebarLinks.value, sidebarLinks.value[0].component);
+const additionalLinks = ref([
+  {
+    label: "Help & Support",
+    component: markRaw(CoursesComponent),
+    icon: "mdi:help-circle-outline",
+  },
+  {
+    label: "Settings",
+    component: markRaw(CoursesComponent),
+    icon: "mdi:cog-outline",
+  },
+]);
+
+const teacherInfo = {
+  name: "Elīna Bērziņa",
+  email: "elina.berzina@example.com",
+};
+
+provideSidebar(
+  sidebarLinks.value,
+  additionalLinks.value,
+  sidebarLinks.value[0].component,
+  teacherInfo
+);
 
 definePageMeta({
   layout: "nav",

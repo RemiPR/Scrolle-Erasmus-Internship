@@ -3,7 +3,7 @@
   <div class="flex">
     <!-- Sidebar -->
     <Sidebar
-      class="w-72"
+      class="w-80"
       :links="sidebarLinks"
       @link-clicked="setActiveComponent"
     />
@@ -11,15 +11,15 @@
     <div class="flex-1">
       <!-- Header (Nav Menu) -->
       <header
-        class="flex justify-end font-semibold items-center m-6 fixed top-0 right-0 z-50 bg-white"
+        class="flex justify-end font-semibold items-center m-6 fixed top-0 right-0 z-50 p-3"
       >
         <nav class="flex items-center gap-4">
-          <IndexLangSwitcher class="text-gray-800 font-semibold" />
+          <IndexLangSwitcher class="text-white font-semibold" />
           <div class="relative group">
             <button
               ref="messengerIcon"
               @click="messengerStore.toggleMessenger"
-              class="flex h-12 w-12 items-center justify-center rounded-full outline-none bg-gray-200 hover:bg-gray-300 text-gray-600 transition duration-300 ease-in-out messenger-icon"
+              class="flex h-12 w-12 items-center justify-center rounded-full outline-none bg-gray-300 hover:bg-gray-600 text-gray-600 hover:text-white transition duration-300 ease-in-out messenger-icon"
             >
               <Icon
                 name="mingcute:messenger-fill"
@@ -35,7 +35,7 @@
           </div>
           <div class="relative group">
             <button
-              class="flex h-12 w-12 items-center justify-center rounded-full outline-none bg-gray-200 hover:bg-gray-300 text-gray-600 transition duration-300 ease-in-out"
+              class="flex h-12 w-12 items-center justify-center rounded-full outline-none bg-gray-300 hover:bg-gray-600 text-gray-600 hover:text-white transition duration-300 ease-in-out"
             >
               <Icon
                 name="clarity:notification-solid"
