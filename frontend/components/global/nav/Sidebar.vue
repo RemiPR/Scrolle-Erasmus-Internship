@@ -2,12 +2,12 @@
 <template>
   <div class="flex">
     <aside
-      class="w-72 3xl:w-80 bg-gray-800 text-white min-h-screen fixed left-0 top-0"
+      class="flex flex-col justify-between h-full w-72 3xl:w-80 bg-gray-800 text-white min-h-screen fixed left-0 top-0"
     >
-      <nav class="mb-2">
-        <ul
-          class="space-y-1 p-4 max-h-[700px] 3xl:max-h-[975px] overflow-y-hidden hover:overflow-y-scroll"
-        >
+      <nav
+        class="mb-2 flex overflow-hidden hover:overflow-y-scroll max-h-[700px] 3xl:max-h-[975px]"
+      >
+        <ul class="space-y-1 p-4 w-full">
           <li class="mb-12 flex items-center">
             <NuxtLink
               to="#"
@@ -76,14 +76,14 @@
         </ul>
       </nav>
       <!-- Avatar -->
-      <div class="absolute bottom-0 left-0 right-0 p-4">
+      <div class="bottom-0 left-0 right-0 p-4">
         <ul class="space-y-1 border-t border-gray-600">
           <li v-for="link in additionalLinks" :key="link.label" class="group">
             <a
               href="#"
               @click.prevent="setActiveComponent(link.component)"
               :tabindex="0"
-              class="flex items-center space-x-4 px-4 py-3 rounded-lg transition duration-300 ease-in-out group"
+              class="flex items-center space-x-4 px-3 3xl:px-4 py-3 rounded-lg transition duration-300 ease-in-out group"
               :class="{
                 'bg-gray-700 text-white': activeComponent === link.component,
                 'hover:bg-gray-600 hover:text-blue-400':
