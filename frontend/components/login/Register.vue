@@ -240,7 +240,7 @@ function loginWithFacebook(baseAuthUrl) {
 const onSubmit = handleSubmit(async (values) => {
   try {
     const response = await $fetch(
-      `${config.public.authBaseUrl}/api/auth/guest/registerUser`,
+      `${config.public.authBaseUrl}/api/auth/guest/register`,
       {
         method: "POST",
         body: {

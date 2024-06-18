@@ -6,9 +6,9 @@ import { checkUserType } from "../middleware/checkUserType.js";
 const router = express.Router();
 
 router.post("/createUser", UserGuestController.createUser);
-router.post("/registerUser", UserGuestController.registerUser);
-router.post("/loginUser", UserGuestController.loginUser);
-router.post("/logoutUser", authenticateToken, UserGuestController.logoutUser);
+router.post("/register", UserGuestController.registerUser);
+router.post("/login", UserGuestController.loginUser);
+router.post("/logout", UserGuestController.logoutUser);
 router.post("/refresh", UserGuestController.refreshToken);
 router.post(
   "/addPersonalInfo",

@@ -13,6 +13,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
+const authRouter = express.Router();
+
 dotenv.config();
 
 const app = express();
@@ -28,21 +30,22 @@ app.use(json());
 app.use(cookieParser());
 
 // routes
-app.use("/api/debug", debugRoutes); // for debugging
+authRouter.use("/debug", debugRoutes); // for debugging
 
-app.use("/api/auth/guest", guestRoutes); // handles guest auth
-app.use("/api/oauth", oauthRoutes); // handles OAuth facebook and google log in for guests
+authRouter.use("/guest", guestRoutes); // handles guest auth
+authRouter.use("/oauth", oauthRoutes); // handles OAuth facebook and google log in for guests
+authRouter.use("/organisation", organisationRoutes); // mainly handles log in for organisation users
+authRouter.use("/student", studentRoutes);
+authRouter.use("/management", managementRoutes);
 
-app.use("/api/auth/organisation", organisationRoutes); // mainly handles log in for organisation users
-app.use("/api/auth/student", studentRoutes);
-app.use("/api/auth/management", managementRoutes);
+app.use("/api/auth", authRouter);
 
 // Database connection
 connect(process.env.MONGODB_URI_USERS, {})
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
-app.get("/", (req, res) => {
+app.get("/api/auth", (req, res) => {
   res.send("Hello World! Auth micro service");
 });
 
