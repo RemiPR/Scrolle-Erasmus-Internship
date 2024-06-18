@@ -13,22 +13,26 @@
     >
       <!-- Left nav: Logo + Logo Text and Home button -->
       <nav class="flex items-center space-x-12 text-xl">
-        <NuxtLink to="#" class="flex items-center">
+        <NuxtLink
+          to="#"
+          class="group flex items-center justify-center space-x-2 px-2 py-2"
+        >
           <Icon
             name="fluent:hat-graduation-24-regular"
-            class="mr-2 h-10 w-10"
+            class="h-8 w-8 3xl:h-10 3xl:w-10 group-hover:-rotate-[25deg] transition-transform duration-500 group-hover:text-blue-400"
             alt="Graduation hat icon"
           />
-          <span class="text-3xl font-semibold">Scrolle</span>
+          <span
+            class="text-3xl font-semibold group-hover:text-blue-200 dark:group-hover:text-blue-400 transition-transform duration-700"
+            >Scrolle</span
+          >
         </NuxtLink>
         <NuxtLink :to="localePath('/guest')" class="hover:underline">{{
           $t("nav_home_btn")
         }}</NuxtLink>
-        <NuxtLink
-          :to="localePath('/guest/myCourses')"
-          class="hover:underline"
-          >{{ $t("nav_my_courses_btn") }}</NuxtLink
-        >
+        <NuxtLink :to="localePath('#')" class="hover:underline">{{
+          $t("nav_my_courses_btn")
+        }}</NuxtLink>
         <NuxtLink
           :to="localePath('/guest/admission')"
           class="hover:underline"
@@ -47,7 +51,12 @@
         <IndexLangSwitcher
           class="text-white dark:text-gray-800 font-semibold"
         />
-        <SharedUserProfileAvatar />
+        <SharedUserProfileAvatar
+          width-class="w-12"
+          height-class="h-12"
+          img-width-class="w-full"
+          img-height-class="h-full"
+        />
       </nav>
     </header>
     <!-- Page content -->

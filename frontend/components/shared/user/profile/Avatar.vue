@@ -3,7 +3,7 @@
   <div class="relative">
     <div class="group">
       <div
-        class="flex items-center p-2 avatar"
+        class="flex items-center avatar"
         :class="[
           widthClass,
           heightClass,
