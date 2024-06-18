@@ -18,15 +18,8 @@ import TestsComponent from "@/components/TestsComponent.vue";
 import StudentGradingComponent from "@/components/StudentGradingComponent.vue";
 import DigitalLibraryComponent from "@/components/DigitalLibraryComponent.vue";
 import ErasmusComponent from "@/components/ErasmusComponent.vue";
-import Calendar1Component from "@/components/Calendar1Component.vue";
-import Calendar2Component from "@/components/Calendar2Component.vue";
-import Calendar3Component from "@/components/Calendar3Component.vue";
-import Calendar4Component from "@/components/Calendar4Component.vue";
-import Calendar5Component from "@/components/Calendar5Component.vue";
-import Calendar6Component from "@/components/Calendar6Component.vue";
-import Calendar7Component from "@/components/Calendar7Component.vue";
-import Calendar8Component from "@/components/Calendar8Component.vue";
-import Calendar9Component from "@/components/Calendar9Component.vue";
+import CalendarComponent from "@/components/CalendarComponent.vue";
+
 import HelpComponent from "@/components/Help.vue";
 import SettingsComponent from "@/components/Settings.vue";
 const sidebarLinks = ref([
@@ -76,48 +69,28 @@ const sidebarLinks = ref([
     icon: "mdi:earth",
   },
   {
-    label: "Calendar1",
-    component: markRaw(Calendar1Component),
+    label: "Calendar",
+    component: markRaw(CalendarComponent),
     icon: "mdi:calendar-outline",
   },
   {
-    label: "Calendar2",
-    component: markRaw(Calendar2Component),
+    label: "Calendar",
+    component: markRaw(CalendarComponent),
     icon: "mdi:calendar-outline",
   },
   {
-    label: "Calendar3",
-    component: markRaw(Calendar3Component),
+    label: "Calendar",
+    component: markRaw(CalendarComponent),
     icon: "mdi:calendar-outline",
   },
   {
-    label: "Calendar4",
-    component: markRaw(Calendar4Component),
+    label: "Calendar",
+    component: markRaw(CalendarComponent),
     icon: "mdi:calendar-outline",
   },
   {
-    label: "Calendar5",
-    component: markRaw(Calendar5Component),
-    icon: "mdi:calendar-outline",
-  },
-  {
-    label: "Calendar6",
-    component: markRaw(Calendar6Component),
-    icon: "mdi:calendar-outline",
-  },
-  {
-    label: "Calendar7",
-    component: markRaw(Calendar7Component),
-    icon: "mdi:calendar-outline",
-  },
-  {
-    label: "Calendar8",
-    component: markRaw(Calendar8Component),
-    icon: "mdi:calendar-outline",
-  },
-  {
-    label: "Calendar9",
-    component: markRaw(Calendar9Component),
+    label: "Calendar",
+    component: markRaw(CalendarComponent),
     icon: "mdi:calendar-outline",
   },
   // Add more sidebar links as needed

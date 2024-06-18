@@ -5,7 +5,7 @@
       class="flex flex-col justify-between h-full w-72 3xl:w-80 bg-gray-800 text-white min-h-screen fixed left-0 top-0"
     >
       <nav
-        class="mb-2 flex overflow-hidden hover:overflow-y-scroll max-h-[700px] 3xl:max-h-[975px]"
+        class="mb-2 flex overflow-hidden hover:overflow-y-scroll max-h-[700px] 3xl:max-h-[975px] custom-scrollbar"
       >
         <ul class="space-y-1 p-4 w-full">
           <li class="mb-12 flex items-center">
@@ -165,3 +165,24 @@ const {
   teacherInfo,
 } = useSidebar();
 </script>
+
+<style scoped>
+/* Scrollbar Styling for the nav element */
+nav::-webkit-scrollbar {
+  width: 8px;
+}
+
+nav::-webkit-scrollbar-track {
+  background-color: #4b5563;
+  border-radius: 4px;
+}
+
+nav::-webkit-scrollbar-thumb {
+  background-color: #6b7280;
+  border-radius: 4px;
+}
+
+nav::-webkit-scrollbar-thumb:hover {
+  background-color: #9ca3af;
+}
+</style>

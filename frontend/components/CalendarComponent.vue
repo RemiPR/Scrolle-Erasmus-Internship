@@ -1,4 +1,4 @@
-<template><p>Calendar2</p></template>
+<template><p>Calendar</p></template>
 
 <script setup></script>
 
