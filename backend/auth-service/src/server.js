@@ -4,6 +4,7 @@ import { connect } from "mongoose";
 import debugRoutes from "./routes/debugRoutes.js";
 import guestRoutes from "./routes/userGuestRoutes.js";
 import oauthRoutes from "./routes/oauthRoutes.js";
+import validationRoutes from "./routes/validationRoutes.js";
 
 import organisationRoutes from "./routes/userOrgRoutes.js";
 import studentRoutes from "./routes/userStudentRoutes.js";
@@ -32,6 +33,7 @@ app.use(cookieParser());
 // routes
 authRouter.use("/debug", debugRoutes); // for debugging
 
+authRouter.use("/validation", validationRoutes);
 authRouter.use("/guest", guestRoutes); // handles guest auth
 authRouter.use("/oauth", oauthRoutes); // handles OAuth facebook and google log in for guests
 authRouter.use("/organisation", organisationRoutes); // mainly handles log in for organisation users
