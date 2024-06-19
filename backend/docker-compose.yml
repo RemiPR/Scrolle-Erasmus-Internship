@@ -5,7 +5,9 @@ services:
 
   traefik:
     image: traefik:v3.0  # Traefik version
-    command: --api.insecure=true --providers.docker
+    command: 
+    - "--api.insecure=true"
+    - "--providers.docker"
     ports:
       - "80:80"  # Expose HTTP port
       - "8080:8080" # The Web UI (enabled by --api.insecure=true)
@@ -25,6 +27,8 @@ services:
     build: ./courses-service  # Path to the Dockerfile
     labels:
       - "traefik.enable=true"
+      - "traefik.http.middlewares.courses-service.forwardauth.address=http://auth-service:3001/api/auth/validation/jwt"
+      - "traefik.http.routers.courses-service.middlewares=courses-service@docker"
       - "traefik.http.routers.courses-service.rule=PathPrefix(`/api/courses`)"
     env_file:
       - .env
