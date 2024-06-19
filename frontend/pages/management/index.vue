@@ -6,30 +6,23 @@
 </template>
 
 <script setup>
-import { ref, markRaw, provide } from "vue";
+import { ref, markRaw } from "vue";
 import { provideSidebar } from "@/composables/useSidebar";
 import Sidebar from "@/components/global/nav/shared/Sidebar.vue";
 import DashboardComponent from "@/components/DashboardComponent.vue";
 import OnlineClassesComponent from "@/components/OnlineClassesComponent.vue";
 import CoursesComponent from "@/components/CoursesComponent.vue";
 import GroupsComponent from "@/components/GroupsComponent.vue";
-import AssignmentsComponent from "@/components/AssignmentsComponent.vue";
-import TestsComponent from "@/components/TestsComponent.vue";
-import StudentGradingComponent from "@/components/StudentGradingComponent.vue";
-import DigitalLibraryComponent from "@/components/DigitalLibraryComponent.vue";
 import ErasmusComponent from "@/components/ErasmusComponent.vue";
 import CalendarComponent from "@/components/CalendarComponent.vue";
 
 import HelpComponent from "@/components/Help.vue";
 import SettingsComponent from "@/components/Settings.vue";
-import { useNavigationStore } from "@/stores/navigationStore";
-
 const sidebarLinks = ref([
   {
     label: "Dashboard",
     component: markRaw(DashboardComponent),
     icon: "ri:home-3-fill",
-    title: "Have a wonderful day, Elīna!",
   },
   {
     label: "Online Classes",
@@ -45,26 +38,6 @@ const sidebarLinks = ref([
     label: "Groups",
     component: markRaw(GroupsComponent),
     icon: "mdi:account-group-outline",
-  },
-  {
-    label: "Assignments",
-    component: markRaw(AssignmentsComponent),
-    icon: "mdi:clipboard-text-outline",
-  },
-  {
-    label: "Tests",
-    component: markRaw(TestsComponent),
-    icon: "mdi:file-document-outline",
-  },
-  {
-    label: "Student grading",
-    component: markRaw(StudentGradingComponent),
-    icon: "mdi:chart-bar",
-  },
-  {
-    label: "My digital library",
-    component: markRaw(DigitalLibraryComponent),
-    icon: "clarity:library-solid",
   },
   {
     label: "My Erasmus",
@@ -97,9 +70,6 @@ const teacherInfo = {
   email: "elina.berzina@example.com",
 };
 
-const navigationStore = useNavigationStore();
-navigationStore.setTitle(sidebarLinks.value[0].title);
-
 provideSidebar(
   sidebarLinks.value,
   additionalLinks.value,
@@ -109,7 +79,7 @@ provideSidebar(
 
 definePageMeta({
   layout: "nav",
-  navigation: "teacher",
+  navigation: "management",
   enableScrollStyling: true,
 });
 </script>

@@ -1,4 +1,4 @@
-<!-- components/global/nav/Sidebar.vue -->
+<!-- components/global/nav/shared/Sidebar.vue -->
 <template>
   <div class="flex">
     <aside
@@ -42,7 +42,9 @@
           >
             <a
               href="#"
-              @click.prevent="setActiveComponent(link.component)"
+              @click.prevent="
+                setActiveComponentWithTitle(link.component, link.title)
+              "
               :tabindex="0"
               class="flex items-center space-x-4 px-3 3xl:px-4 py-3 rounded-lg transition duration-300 ease-in-out group"
               :class="{
@@ -81,7 +83,9 @@
           <li v-for="link in additionalLinks" :key="link.label" class="group">
             <a
               href="#"
-              @click.prevent="setActiveComponent(link.component)"
+              @click.prevent="
+                setActiveComponentWithTitle(link.component, link.title)
+              "
               :tabindex="0"
               class="flex items-center space-x-4 px-3 3xl:px-4 py-3 rounded-lg transition duration-300 ease-in-out group"
               :class="{
@@ -148,7 +152,7 @@
       </div>
     </aside>
 
-    <main class="flex-1 min-h-screen m-6 3xl:m-8">
+    <main class="flex-1 min-h-screen mx-8 my-4">
       <component :is="activeComponent" />
     </main>
   </div>
@@ -156,6 +160,7 @@
 
 <script setup>
 import { useSidebar } from "@/composables/useSidebar";
+import { useNavigationStore } from "@/stores/navigationStore";
 
 const {
   sidebarLinks,
@@ -164,6 +169,13 @@ const {
   setActiveComponent,
   teacherInfo,
 } = useSidebar();
+
+const navigationStore = useNavigationStore();
+
+function setActiveComponentWithTitle(component, title) {
+  setActiveComponent(component);
+  navigationStore.setTitle(title);
+}
 </script>
 
 <style scoped>
