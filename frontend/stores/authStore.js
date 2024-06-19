@@ -25,7 +25,7 @@ export const useAuthStore = defineStore("auth", {
     },
     async addPersonalInfo(form, authBaseUrl) {
       try {
-        await $fetch(`${authBaseUrl}/api/auth/guest/addPersonalInfo`, {
+        await $fetch(`/api/auth/guest/addPersonalInfo`, {
           method: "POST",
           body: {
             name: form.value.firstName,
@@ -36,6 +36,7 @@ export const useAuthStore = defineStore("auth", {
             education: form.value.education,
             reason: form.value.reason,
           },
+          baseURL: authBaseUrl,
           credentials: "include",
         });
         this.user.isConfirmed = true;
@@ -46,8 +47,9 @@ export const useAuthStore = defineStore("auth", {
     async loginGuest(email, password, redirectPath, authBaseUrl) {
       try {
         // http request to login
-        await $fetch(`${authBaseUrl}/api/auth/guest/loginUser`, {
+        await $fetch(`/api/auth/guest/login`, {
           method: "POST",
+          baseURL: authBaseUrl,
           body: {
             email,
             password,
@@ -56,6 +58,7 @@ export const useAuthStore = defineStore("auth", {
         });
 
         // retrieves cookie with user info, this one doesn't have JWT token.
+
         const userCookie = useCookie("auth").value;
         if (userCookie) {
           const parsedUser = JSON.parse(
@@ -75,10 +78,12 @@ export const useAuthStore = defineStore("auth", {
         }
       }
     },
+    // TODO clear all cookies
     async logoutGuest(redirectPath, authBaseUrl) {
       try {
-        await $fetch(`${authBaseUrl}/api/auth/guest/logoutUser`, {
+        await $fetch(`/api/auth/guest/logout`, {
           method: "POST",
+          baseURL: authBaseUrl,
         });
         this.clearUser();
         navigateTo(redirectPath);
@@ -89,9 +94,10 @@ export const useAuthStore = defineStore("auth", {
     async refreshToken(authBaseUrl) {
       const { toLogin } = useRedirectPath();
       try {
-        await $fetch(`${authBaseUrl}/api/auth/guest/refresh`, {
+        await $fetch(`/api/auth/guest/refresh`, {
           method: "POST",
           credentials: "include",
+          baseURL: authBaseUrl,
         });
       } catch (error) {
         this.clearUser();

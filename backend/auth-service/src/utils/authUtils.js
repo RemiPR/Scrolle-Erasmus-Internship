@@ -134,20 +134,26 @@ const loginGuestUser = async function (userGuest, response) {
       type: type,
       isConfirmed: isConfirmed,
     },
-    { httpOnly: false, secure: true, maxAge: COOKIE_AGE_ACCESS }
+    {
+      httpOnly: false,
+      secure: false, // Set to false for local development, true for production
+      maxAge: COOKIE_AGE_ACCESS,
+      sameSite: "Lax",
+    }
   );
 
   response.cookie("authRefresh", refreshToken, {
     httpOnly: true,
-    secure: true,
+    secure: false, // Set to false for local development, true for production
     maxAge: COOKIE_AGE_REFRESH,
+    sameSite: "Lax",
   });
 
   return response
     .status(200)
     .cookie("authToken", accessToken, {
       httpOnly: true,
-      secure: true,
+      secure: false, // Set to false for local development, true for production
       sameSite: "Lax",
       maxAge: COOKIE_AGE_ACCESS,
     })

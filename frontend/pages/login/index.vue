@@ -171,10 +171,10 @@ async function handleLogin(values) {
 }
 
 async function loginWithGoogle(baseAuthUrl) {
-  window.location.href = `${baseAuthUrl.public.authBaseUrl}/api/oauth/google`;
+  window.location.href = `${baseAuthUrl.public.authBaseUrl}/api/auth/oauth/google`;
 }
 function loginWithFacebook(baseAuthUrl) {
-  window.location.href = `${baseAuthUrl.public.authBaseUrl}/api/oauth/facebook`;
+  window.location.href = `${baseAuthUrl.public.authBaseUrl}/api/auth/oauth/facebook`;
 }
 </script>
 

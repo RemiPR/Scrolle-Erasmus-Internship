@@ -25,7 +25,7 @@ connect(process.env.MONGODB_URI_USERS, {})
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
-app.get("/", (req, res) => {
+app.get("/api/courses", (req, res) => {
   res.send("Hello World! Courses micro service");
 });
 
