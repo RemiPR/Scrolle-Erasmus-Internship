@@ -7,7 +7,7 @@ import cookieParser from "cookie-parser";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT_COURSES;
+const PORT = process.env.PORT_LEARNING;
 const corsOptions = {
   origin: process.env.FRONTEND_DOMAIN, // Adjust this to match your frontend host
   credentials: true, // This is critical for cookies to be sent and received
@@ -25,10 +25,10 @@ connect(process.env.MONGODB_URI_USERS, {})
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
-app.get("/api/courses", (req, res) => {
-  res.send("Hello World! Courses micro service");
+app.get("/api/learning", (req, res) => {
+  res.send("Hello World! Learning micro service");
 });
 
 app.listen(PORT, () => {
-  console.log(`Courses micro-service running on port ${PORT}`);
+  console.log(`Learning micro-service running on port ${PORT}`);
 });
