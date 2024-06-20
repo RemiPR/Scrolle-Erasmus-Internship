@@ -1,6 +1,8 @@
 <template>
-  <form class="max-w-4xl mx-auto p-8 bg-white shadow-md rounded mt-16">
-    <div class="mb-4">
+  <form
+    class="max-w-4xl mx-auto p-8 bg-white shadow-md rounded mt-16 select-none"
+  >
+    <div class="mb-4 select-none">
       <label class="block text-gray-700 font-bold mb-2"
         >What type of course?*</label
       >
@@ -73,13 +75,13 @@
       <div class="flex items-center">
         <button
           type="button"
-          class="bg-indigo-500 text-white px-4 py-2 rounded mr-2"
+          class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded mr-2"
         >
           Upload image
         </button>
         <button
           type="button"
-          class="bg-indigo-500 text-white px-4 py-2 rounded"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
         >
           Generate image
         </button>
@@ -96,13 +98,13 @@
       <div class="flex items-center">
         <button
           type="button"
-          class="bg-indigo-500 text-white px-4 py-2 rounded mr-2"
+          class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded mr-2"
         >
           Upload video
         </button>
         <button
           type="button"
-          class="bg-indigo-500 text-white px-4 py-2 rounded"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
         >
           Select pre-uploaded
         </button>
@@ -147,7 +149,7 @@
     </div>
 
     <div class="flex items-center justify-between">
-      <button type="submit" class="bg-indigo-500 text-white px-4 py-2 rounded">
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
         Create Course
       </button>
     </div>
