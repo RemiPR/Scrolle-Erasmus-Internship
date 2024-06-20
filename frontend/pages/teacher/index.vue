@@ -17,7 +17,7 @@ import OnlineClassesComponent from "@/components/OnlineClassesComponent.vue";
 import Courses from "@/components/teacher/courses/index.vue";
 
 import GroupsComponent from "@/components/GroupsComponent.vue";
-import AssignmentsComponent from "@/components/AssignmentsComponent.vue";
+import Assignments from "@/components/teacher/assignments/index.vue";
 import TestsComponent from "@/components/TestsComponent.vue";
 import StudentGradingComponent from "@/components/StudentGradingComponent.vue";
 import DigitalLibraryComponent from "@/components/DigitalLibraryComponent.vue";
@@ -55,7 +55,7 @@ const sidebarLinks = ref([
   },
   {
     label: "Assignments",
-    component: markRaw(AssignmentsComponent),
+    component: markRaw(Assignments),
     icon: "mdi:clipboard-text-outline",
     title: "Assignments",
   },
@@ -97,11 +97,13 @@ const additionalLinks = ref([
     label: "Help & Support",
     component: markRaw(HelpComponent),
     icon: "mdi:help-circle-outline",
+    title: "Help & Support",
   },
   {
     label: "Settings",
     component: markRaw(SettingsComponent),
     icon: "mdi:cog-outline",
+    title: "Settings",
   },
 ]);
 
