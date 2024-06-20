@@ -8,7 +8,7 @@ dotenv.config();
 const JWT_EXPIRY = process.env.JWT_EXPIRY;
 const COOKIE_AGE = process.env.COOKIE_AGE;
 
-const loginUser = async (request, response) => {
+const login = async (request, response) => {
   try {
     const { email, password } = request.body;
 
@@ -27,4 +27,4 @@ const loginUser = async (request, response) => {
   }
 };
 
-export const UserOrganisationController = { loginUser };
+export const UserOrganisationController = { login };

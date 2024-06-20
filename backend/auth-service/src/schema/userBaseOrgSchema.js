@@ -25,6 +25,10 @@ const userBaseOrgSchema = new mongoose.Schema(
       required: false,
       default: null,
     },
+    faculty: {
+      type: String,
+      required: true,
+    },
   },
   {
     discriminatorKey: "type",

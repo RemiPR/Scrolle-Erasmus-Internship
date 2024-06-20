@@ -1,38 +1,71 @@
 import { UserTeacher } from "../schema/userTeacherSchema.js";
+import { validationUtils } from "../utils/validationUtils.js";
+import { authOrgUtils } from "../utils/authOrgUtils.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const createUser = async (request, response) => {
+const register = async (request, response) => {
   try {
-    if (
-      !request.body.name ||
-      !request.body.surname ||
-      !request.body.email ||
-      !request.body.password ||
-      !request.body.subject
-    ) {
+    const { name, surname, email, password, faculty } = request.body;
+
+    // Validation if any fields are missing
+    if (!name || !surname || !password || !email || !faculty) {
       return response.status(400).send({
         message: "Missing required fields",
       });
     }
-    const newUser = new UserStudent({
-      name: request.body.name,
-      surname: request.body.surname,
-      email: request.body.email,
-      password: request.body.password,
-      subject: request.body.subject,
+
+    // Check if email is valid
+    if (!(await validationUtils.isValidEmail(email))) {
+      return response.status(400).json({ message: "Email is not valid" });
+    }
+
+    // Validation if email already exists
+    const existingUser = await UserTeacher.findOne({ email: email }).exec();
+    if (existingUser) {
+      return response.status(409).json({ message: "Email already exists" });
+    }
+
+    // check if password is strong
+    if (!(await validationUtils.isStrongPassword(password))) {
+      return response.status(400).json({ message: "Password is too weak" });
+    }
+
+    // Creates newOrgUser object
+    const newOrgUser = new UserTeacher({
+      name: name,
+      surname: surname,
+      email: email,
+      password: password,
+      faculty: faculty,
     });
 
     // Save the new user to the database
-    const user = await UserTeacher.create(newUser);
+    // Hashing done in the UserTeacherSchema.js
+    const user = await UserTeacher.create(newOrgUser);
 
-    return response.status(201).send(user);
+    authOrgUtils.loginUser(user, response);
   } catch (error) {
-    console.error(error);
     response.status(500).json({ message: error.message });
   }
 };
 
-export const UserStudentController = { createUser };
+const login = async (request, response) => {
+  try {
+    const { email, password } = request.body;
+
+    // Checks if credentials are valid
+    const user = await UserTeacher.findOne({ email });
+    if (!userGuest || !(await user.isValidPassword(password))) {
+      return response.status(401).json({ message: "Invalid Credentials" });
+    }
+
+    authGuestUtils.loginUser(user, response);
+  } catch (error) {
+    return response.status(500).send({ message: error.message });
+  }
+};
+
+export const UserTeacherController = { register, login };

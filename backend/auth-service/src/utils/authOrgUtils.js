@@ -33,7 +33,7 @@ const refreshAccessToken = async function (refreshToken) {
   }
 };
 
-const loginUser = async function (userOrg, response) {
+const login = async function (userOrg, response) {
   console.log("Logged in with payload:");
   console.log(userOrg.id, userOrg.email, userOrg.name, userOrg.type);
 
@@ -96,7 +96,7 @@ const generateAccessToken = async function (userOrg) {
 
 export const authOrgUtils = {
   refreshAccessToken,
-  loginUser,
+  login,
   generateAccessToken,
   generateRefreshToken,
 };

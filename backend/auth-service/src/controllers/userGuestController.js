@@ -54,7 +54,7 @@ const refreshToken = async (request, response) => {
   }
 };
 
-const logoutUser = async (request, response) => {
+const logout = async (request, response) => {
   try {
     response.clearCookie("authToken"); // if using HttpOnly cookies to store JWT
     return response.status(200).send("Logged out");
@@ -63,7 +63,7 @@ const logoutUser = async (request, response) => {
   }
 };
 
-const loginUser = async (request, response) => {
+const login = async (request, response) => {
   try {
     const { email, password } = request.body;
 
@@ -73,13 +73,13 @@ const loginUser = async (request, response) => {
       return response.status(401).json({ message: "Invalid Credentials" });
     }
 
-    authGuestUtils.loginUser(userGuest, response);
+    authGuestUtils.login(userGuest, response);
   } catch (error) {
     return response.status(500).send({ message: error.message });
   }
 };
 
-const registerUser = async (request, response) => {
+const register = async (request, response) => {
   try {
     const { name, surname, email, password } = request.body;
 
@@ -118,7 +118,7 @@ const registerUser = async (request, response) => {
     // Hashing done in the userGuestSchema.js
     const user = await UserGuest.create(newGuestUser);
 
-    authGuestUtils.loginUser(user, response);
+    authGuestUtils.login(user, response);
   } catch (error) {
     response.status(500).json({ message: error.message });
   }
@@ -174,9 +174,9 @@ const addPersonalInfo = async (request, response) => {
 
 export const UserGuestController = {
   createUser,
-  registerUser,
-  loginUser,
-  logoutUser,
+  register,
+  login,
+  logout,
   addPersonalInfo,
   refreshToken,
 };

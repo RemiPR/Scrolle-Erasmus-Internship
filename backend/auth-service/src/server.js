@@ -9,6 +9,7 @@ import validationRoutes from "./routes/validationRoutes.js";
 import organisationRoutes from "./routes/userOrgRoutes.js";
 import studentRoutes from "./routes/userStudentRoutes.js";
 import managementRoutes from "./routes/userManagementRoutes.js";
+import teacherRoutes from "./routes/userTeacherRoutes.js";
 
 import cors from "cors";
 import dotenv from "dotenv";
@@ -39,6 +40,7 @@ authRouter.use("/oauth", oauthRoutes); // handles OAuth facebook and google log 
 authRouter.use("/organisation", organisationRoutes); // mainly handles log in for organisation users
 authRouter.use("/student", studentRoutes);
 authRouter.use("/management", managementRoutes);
+authRouter.use("/teacher", teacherRoutes);
 
 app.use("/api/auth", authRouter);
 

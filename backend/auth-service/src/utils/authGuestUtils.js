@@ -16,7 +16,7 @@ const COOKIE_AGE_REFRESH = process.env.COOKIE_AGE_REFRESH;
 
 const FRONTEND_DOMAIN = process.env.FRONTEND_DOMAIN;
 
-const oauthLoginUser = async function (userGuest, locale, response) {
+const oauthLogin = async function (userGuest, locale, response) {
   console.log("Logged in with payload:");
   console.log(userGuest.id, userGuest.email, userGuest.name, userGuest.type);
   const localePath = locale;
@@ -75,7 +75,7 @@ const refreshAccessToken = async function (refreshToken) {
   }
 };
 
-const loginUser = async function (userGuest, response) {
+const login = async function (userGuest, response) {
   console.log("Logged in with payload:");
   console.log(userGuest.id, userGuest.email, userGuest.name, userGuest.type);
 
@@ -141,7 +141,7 @@ const generateAccessToken = async function (userGuest) {
 };
 
 export const authGuestUtils = {
-  oauthLoginUser,
-  loginUser,
+  oauthLogin,
+  login,
   refreshAccessToken,
 };
