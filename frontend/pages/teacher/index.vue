@@ -39,6 +39,7 @@ const sidebarLinks = ref([
     label: "Online Classes",
     component: markRaw(OnlineClassesComponent),
     icon: "mdi:video",
+    title: "Online Classes",
   },
   {
     label: "Courses",
@@ -50,36 +51,43 @@ const sidebarLinks = ref([
     label: "Groups",
     component: markRaw(GroupsComponent),
     icon: "mdi:account-group-outline",
+    title: "Groups",
   },
   {
     label: "Assignments",
     component: markRaw(AssignmentsComponent),
     icon: "mdi:clipboard-text-outline",
+    title: "Assignments",
   },
   {
     label: "Tests",
     component: markRaw(TestsComponent),
     icon: "mdi:file-document-outline",
+    title: "Tests",
   },
   {
     label: "Student grading",
     component: markRaw(StudentGradingComponent),
     icon: "mdi:chart-bar",
+    title: "Student grading",
   },
   {
-    label: "My digital library",
+    label: "My Digital library",
     component: markRaw(DigitalLibraryComponent),
     icon: "clarity:library-solid",
+    title: "My Digital library",
   },
   {
     label: "My Erasmus",
     component: markRaw(ErasmusComponent),
     icon: "mdi:earth",
+    title: "My Erasmus",
   },
   {
     label: "Calendar",
     component: markRaw(CalendarComponent),
     icon: "mdi:calendar-outline",
+    title: "Calendar",
   },
   // Add more sidebar links as needed
 ]);
