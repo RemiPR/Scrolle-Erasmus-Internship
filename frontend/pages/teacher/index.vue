@@ -9,9 +9,13 @@
 import { ref, markRaw, provide } from "vue";
 import { provideSidebar } from "@/composables/useSidebar";
 import Sidebar from "@/components/global/nav/shared/Sidebar.vue";
-import DashboardComponent from "@/components/DashboardComponent.vue";
+
+import Dashboard from "@/components/teacher/dashboard/index.vue";
+
 import OnlineClassesComponent from "@/components/OnlineClassesComponent.vue";
-import CoursesComponent from "@/components/CoursesComponent.vue";
+
+import Courses from "@/components/teacher/courses/index.vue";
+
 import GroupsComponent from "@/components/GroupsComponent.vue";
 import AssignmentsComponent from "@/components/AssignmentsComponent.vue";
 import TestsComponent from "@/components/TestsComponent.vue";
@@ -27,7 +31,7 @@ import { useNavigationStore } from "@/stores/navigationStore";
 const sidebarLinks = ref([
   {
     label: "Dashboard",
-    component: markRaw(DashboardComponent),
+    component: markRaw(Dashboard),
     icon: "ri:home-3-fill",
     title: "Have a wonderful day, Elīna!",
   },
@@ -38,8 +42,9 @@ const sidebarLinks = ref([
   },
   {
     label: "Courses",
-    component: markRaw(CoursesComponent),
+    component: markRaw(Courses),
     icon: "mdi:book-open-outline",
+    title: "Courses",
   },
   {
     label: "Groups",

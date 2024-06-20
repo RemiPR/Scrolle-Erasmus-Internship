@@ -1,5 +1,5 @@
 <template>
-  <p>Courses</p>
+  <p>free courses</p>
 </template>
 
 <script setup></script>

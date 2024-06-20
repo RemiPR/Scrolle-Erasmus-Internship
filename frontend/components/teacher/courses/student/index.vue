@@ -1,5 +1,5 @@
 <template>
-  <h1>Home dashboard</h1>
+  <p>Student courses</p>
 </template>
 
 <script setup></script>
