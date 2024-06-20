@@ -43,7 +43,7 @@ authRouter.use("/management", managementRoutes);
 app.use("/api/auth", authRouter);
 
 // Database connection
-connect(process.env.MONGODB_URI_USERS, {})
+connect(process.env.MONGODB_URI_AUTH, {})
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 

@@ -21,7 +21,7 @@ app.use(cookieParser());
 // routes
 
 // Database connection
-connect(process.env.MONGODB_URI_USERS, {})
+connect(process.env.MONGODB_URI_LEARNING, {})
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
