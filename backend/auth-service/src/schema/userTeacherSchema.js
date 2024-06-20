@@ -3,7 +3,7 @@ import { UserBaseOrganisation } from "./userBaseOrgSchema.js";
 
 // This schema contains base schema for organisation, adds roles
 const userTeacherSchema = UserBaseOrganisation.discriminator(
-  "UserTeacher",
+  "Teacher",
   new mongoose.Schema({
     biography: {
       type: String,

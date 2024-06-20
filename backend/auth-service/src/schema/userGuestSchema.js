@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { UserBaseGuest } from "./userBaseGuestSchema.js";
 
 const userGuestSchema = UserBaseGuest.discriminator(
-  "UserGuest",
+  "Guest",
   new mongoose.Schema({
     surname: {
       type: String,

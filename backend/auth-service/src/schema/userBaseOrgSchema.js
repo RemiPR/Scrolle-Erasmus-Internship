@@ -27,7 +27,7 @@ const userBaseOrgSchema = new mongoose.Schema(
     },
   },
   {
-    discriminatorKey: "userType",
+    discriminatorKey: "type",
     collection: "organisationUsers",
     timestamps: true,
   }

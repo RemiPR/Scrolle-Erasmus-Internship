@@ -1,7 +1,5 @@
 import express from "express";
 import { UserManagementController } from "../controllers/userManagementController.js";
-import { authenticateToken } from "../middleware/authentication.js";
-
 const router = express.Router();
 
 //router.post("/createUser", UserManagementController.createUser);

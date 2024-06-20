@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import axios from "axios";
-import { authUtils } from "../utils/authUtils.js";
+import { authGuestUtils } from "../utils/authGuestUtils.js";
 import { OAuth2Client } from "google-auth-library";
 import { UserGuest } from "../schema/userGuestSchema.js";
 
@@ -71,7 +71,7 @@ const authenticateGoogle = async (request, response) => {
         });
       }
       //console.log(request.cookies.i18n_redirected);
-      authUtils.oauthLoginGuestUser(userGuest, locale, response);
+      authGuestUtils.oauthLoginUser(userGuest, locale, response);
     } else {
       // if user doesn't exist at all, new account is created
       const newGuestUser = new UserGuest({
@@ -85,7 +85,7 @@ const authenticateGoogle = async (request, response) => {
       const userGuest = await UserGuest.create(newGuestUser).catch((error) => {
         response.status(500).send({ message: error.message });
       });
-      authUtils.oauthLoginGuestUser(userGuest, locale, response);
+      authGuestUtils.oauthLoginUser(userGuest, locale, response);
     }
   } catch (error) {
     console.error("Google OAuth error:", error);
@@ -135,7 +135,7 @@ const authenticateFacebook = async (request, response) => {
           response.status(500).send({ message: error.message });
         });
       }
-      authUtils.oauthLoginGuestUser(userGuest, locale, response);
+      authGuestUtils.oauthLoginUser(userGuest, locale, response);
     } else {
       // if user doesn't exist at all, new account is created
       const newGuestUser = new UserGuest({
@@ -149,7 +149,7 @@ const authenticateFacebook = async (request, response) => {
       const userGuest = await UserGuest.create(newGuestUser).catch((error) => {
         response.status(500).send({ message: error.message });
       });
-      authUtils.oauthLoginGuestUser(userGuest, locale, response);
+      authGuestUtils.oauthLoginUser(userGuest, locale, response);
     }
   } catch (error) {
     response.status(500).send(error.message).redirect(`${FRONTEND_DOMAIN}`);

@@ -1,6 +1,6 @@
 import express from "express";
 import { UserGuestController } from "../controllers/userGuestController.js";
-import { authenticateToken } from "../middleware/authentication.js";
+import { authenticateGuestToken } from "../middleware/authenticationGuest.js";
 import { checkUserType } from "../middleware/checkUserType.js";
 
 const router = express.Router();
@@ -12,7 +12,7 @@ router.post("/logout", UserGuestController.logoutUser);
 router.post("/refresh", UserGuestController.refreshToken);
 router.post(
   "/addPersonalInfo",
-  authenticateToken,
+  authenticateGuestToken,
   checkUserType(["UserGuest"]),
   UserGuestController.addPersonalInfo
 );

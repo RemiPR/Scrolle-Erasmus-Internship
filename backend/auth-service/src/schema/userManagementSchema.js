@@ -3,7 +3,7 @@ import { UserBaseOrganisation } from "./userBaseOrgSchema.js";
 
 // This schema contains base schema for organisation, adds roles
 const userManagementSchema = UserBaseOrganisation.discriminator(
-  "UserManagement",
+  "Management",
   new mongoose.Schema({})
 );
 

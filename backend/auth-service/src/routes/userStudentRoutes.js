@@ -1,6 +1,5 @@
 import express from "express";
 import { UserStudentController } from "../controllers/userStudentController.js";
-import { authenticateToken } from "../middleware/authentication.js";
 
 const router = express.Router();
 

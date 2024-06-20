@@ -22,7 +22,7 @@ const userBaseGuestSchema = new mongoose.Schema(
     },
   },
   {
-    discriminatorKey: "userType",
+    discriminatorKey: "type",
     collection: "guestUsers",
     timestamps: true,
   }
