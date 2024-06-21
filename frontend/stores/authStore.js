@@ -45,6 +45,7 @@ export const useAuthStore = defineStore("auth", {
       }
     },
     async loginGuest(email, password, redirectPath, authBaseUrl) {
+      const { parseAuthCookie } = useAuth();
       try {
         // http request to login
         await $fetch(`/api/auth/guest/login`, {
@@ -57,17 +58,8 @@ export const useAuthStore = defineStore("auth", {
           credentials: "include",
         });
 
-        // retrieves cookie with user info, this one doesn't have JWT token.
-
-        const userCookie = useCookie("auth").value;
-        if (userCookie) {
-          const parsedUser = JSON.parse(
-            userCookie.startsWith("j:") ? userCookie.slice(2) : userCookie
-          );
-          this.setUser(parsedUser);
-        } else {
-          console.error("No cookies received");
-        }
+        const user = await parseAuthCookie();
+        this.setUser(user);
         navigateTo(redirectPath);
       } catch (error) {
         if (error.data && error.status === 401) {
