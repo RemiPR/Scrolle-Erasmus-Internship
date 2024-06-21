@@ -172,7 +172,7 @@ async function handleLogin(values) {
       await loginOrg(values.email, values.password, config.public.authBaseUrl);
       break;
     case "guest":
-      await loginGuest(values.email, values.password, localePath("/teacher"), config.public.authBaseUrl);
+      await loginGuest(values.email, values.password, localePath("/guest"), config.public.authBaseUrl);
       break;
   }
 }

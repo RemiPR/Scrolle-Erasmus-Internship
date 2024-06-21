@@ -244,8 +244,12 @@ const courses = ref([
 ]);
 
 const enrolledCourses = computed(() => {
+  if(!authStore.user) return [];
+  const enrolledCourses = authStore.user.enrolledCourses;
+  if(!enrolledCourses || enrolledCourses.length === 0) return [];
+
   return courses.value.filter((course) =>
-    authStore.enrolledCourses.includes(course.id)
+    enrolledCourses.includes(course.id)
   );
 });
 

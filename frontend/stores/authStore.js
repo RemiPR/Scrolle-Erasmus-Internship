@@ -5,14 +5,13 @@ export const useAuthStore = defineStore("auth", {
   state: () => ({
     user: null,
     isAuthenticated: false,
-    enrolledCourses: [],
   }),
   persist: true,
   getters: {
     getUser: (state) => state.user,
     isLoggedIn: (state) => state.isAuthenticated,
     isConfirmed: (state) => !!state.user?.isConfirmed,
-    getEnrolledCourses: (state) => state.enrolledCourses,
+    getEnrolledCourses: (state) => !!state.user?.enrolledCourses,
   },
   actions: {
     async setUser(user) {
@@ -22,7 +21,6 @@ export const useAuthStore = defineStore("auth", {
     clearUser() {
       this.user = null;
       this.isAuthenticated = false;
-      this.enrolledCourses = [];
     },
     // guest section -----------------------
     async addPersonalInfo(form, authBaseUrl) {
@@ -76,7 +74,7 @@ export const useAuthStore = defineStore("auth", {
         });
 
         const user = await parseAuthCookie();
-        this.setUser(user);
+        await this.setUser(user);
         navigateTo(redirectPath);
       } catch (error) {
         if (error.data && error.status === 401) {
@@ -87,7 +85,7 @@ export const useAuthStore = defineStore("auth", {
         }
       }
     },
-    // TODO clear all cookies
+    // TODO: clear all cookies
     async logoutGuest(redirectPath, authBaseUrl) {
       try {
         await $fetch(`/api/auth/guest/logout`, {
@@ -139,8 +137,8 @@ export const useAuthStore = defineStore("auth", {
 
     // common section -----------------------
     enrollCourse(courseId) {
-      if (!this.enrolledCourses.includes(courseId)) {
-        this.enrolledCourses.push(courseId);
+      if (!this.user.enrolledCourses.includes(courseId)) {
+        this.user.enrolledCourses.push(courseId);
       }
     },
   },
