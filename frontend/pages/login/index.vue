@@ -167,7 +167,16 @@ function setCurrentForm(form) {
 }
 // Login funkcija
 async function handleLogin(values) {
-  await loginGuest(values.email, values.password, localePath("/guest"), config.public.authBaseUrl);
+  switch (currentForm.value) {
+    case "org":
+      console.log("login org");
+      //await loginOrg(values.email, values.password, localePath("/org"), config.public.authBaseUrl);
+      break;
+    case "guest":
+      console.log("login guest");
+      await loginGuest(values.email, values.password, localePath("/guest"), config.public.authBaseUrl);
+      break;
+  }
 }
 
 async function loginWithGoogle(baseAuthUrl) {

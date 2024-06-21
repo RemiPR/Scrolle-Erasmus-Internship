@@ -242,11 +242,13 @@ const courses = ref([
     description: t("courses.body_massage_and_feet_reflexology.description"),
   },
 ]);
+
 const enrolledCourses = computed(() => {
   return courses.value.filter((course) =>
     authStore.enrolledCourses.includes(course.id)
   );
 });
+
 const openModal = (course) => {
   document.body.classList.add("overflow-hidden");
   selectedCourse.value = { ...course };
