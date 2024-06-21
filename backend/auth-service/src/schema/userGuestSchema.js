@@ -26,6 +26,11 @@ const userGuestSchema = UserBaseGuest.discriminator(
       education: { type: String, default: null },
       reason: { type: String, default: null },
     },
+    // TODO: Change type to ObjectID once course schema is created
+    enrolledCourses: {
+      type: [String],
+      default: [],
+    },
   })
 );
 

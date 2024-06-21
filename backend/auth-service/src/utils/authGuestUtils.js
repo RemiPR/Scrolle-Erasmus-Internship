@@ -30,7 +30,8 @@ const oauthLogin = async function (userGuest, locale, response) {
       id: userGuest.id,
       name: userGuest.name,
       type: userGuest.type,
-      isConfirmed: userGuest.isConfirmed,
+      isConfirmed: userGuest.personalInfo.isFilled,
+      enrolledCourses: userGuest.enrolledCourses,
     },
     {
       httpOnly: false,
@@ -88,7 +89,8 @@ const login = async function (userGuest, response) {
       id: userGuest.id,
       name: userGuest.name,
       type: userGuest.type,
-      isConfirmed: userGuest.isConfirmed,
+      isConfirmed: userGuest.personalInfo.isFilled,
+      enrolledCourses: userGuest.enrolledCourses,
     },
     {
       httpOnly: false,
@@ -128,7 +130,7 @@ const generateAccessToken = async function (userGuest) {
   const id = userGuest.id;
   const email = userGuest.email;
   const name = userGuest.name;
-  const type = userGuest.userType;
+  const type = userGuest.type;
   const isConfirmed = userGuest.personalInfo.isFilled;
 
   const accessToken = jwt.sign(
