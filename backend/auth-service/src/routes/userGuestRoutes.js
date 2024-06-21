@@ -13,7 +13,7 @@ router.post("/refresh", UserGuestController.refreshToken);
 router.post(
   "/addPersonalInfo",
   authenticateGuestToken,
-  checkUserType(["UserGuest"]),
+  checkUserType(["Guest"]),
   UserGuestController.addPersonalInfo
 );
 

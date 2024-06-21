@@ -25,7 +25,7 @@ const refreshAccessToken = async function (refreshToken) {
       response.status(401).send({ message: "Unauthorized" });
     }
 
-    const accessToken = generateAccessToken(userOrg);
+    const accessToken = await generateAccessToken(userOrg);
 
     return accessToken;
   } catch (error) {
@@ -37,8 +37,8 @@ const login = async function (userOrg, response) {
   console.log("Logged in with payload:");
   console.log(userOrg.id, userOrg.email, userOrg.name, userOrg.type);
 
-  const accessToken = generateAccessToken(userOrg);
-  const refreshToken = generateRefreshToken(userOrg);
+  const accessToken = await generateAccessToken(userOrg);
+  const refreshToken = await generateRefreshToken(userOrg);
 
   response.cookie(
     "auth",
@@ -85,7 +85,7 @@ const generateAccessToken = async function (userOrg) {
   const id = userOrg.id;
   const email = userOrg.email;
   const name = userOrg.name;
-  const type = userOrg.userType;
+  const type = userOrg.type;
 
   const accessToken = jwt.sign({ id, email, name, type }, JWT_ACCESS_SECRET, {
     expiresIn: JWT_ACCESS_EXPIRY,
