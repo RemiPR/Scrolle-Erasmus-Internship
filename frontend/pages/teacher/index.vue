@@ -17,8 +17,11 @@ import OnlineClassesComponent from "@/components/OnlineClassesComponent.vue";
 import Courses from "@/components/teacher/courses/index.vue";
 
 import GroupsComponent from "@/components/GroupsComponent.vue";
+
 import Assignments from "@/components/teacher/assignments/index.vue";
-import TestsComponent from "@/components/TestsComponent.vue";
+
+import Tests from "@/components/teacher/tests/index.vue";
+
 import StudentGradingComponent from "@/components/StudentGradingComponent.vue";
 import DigitalLibraryComponent from "@/components/DigitalLibraryComponent.vue";
 import ErasmusComponent from "@/components/ErasmusComponent.vue";
@@ -61,7 +64,7 @@ const sidebarLinks = ref([
   },
   {
     label: "Tests",
-    component: markRaw(TestsComponent),
+    component: markRaw(Tests),
     icon: "mdi:file-document-outline",
     title: "Tests",
   },

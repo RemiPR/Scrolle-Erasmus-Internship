@@ -38,7 +38,7 @@
                     name="mdi:currency-usd"
                     class="text-gray-800 font-bold"
                   />
-                  <p class="text-gray-600 ml-3">{{ $t("modal.price") }}</p>
+                  <p class="text-gray-600 ml-3">{{ $t("modal.price") }}ą</p>
                 </div>
                 <p class="font-semibold">{{ data.price }}</p>
               </div>
