@@ -145,7 +145,7 @@ import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
 
 const { t } = useI18n();
-const { loginGuest } = useAuthStore();
+const { loginGuest, loginOrg } = useAuthStore();
 const config = useRuntimeConfig();
 const localePath = useLocalePath();
 
@@ -169,12 +169,10 @@ function setCurrentForm(form) {
 async function handleLogin(values) {
   switch (currentForm.value) {
     case "org":
-      console.log("login org");
-      //await loginOrg(values.email, values.password, localePath("/org"), config.public.authBaseUrl);
+      await loginOrg(values.email, values.password, config.public.authBaseUrl);
       break;
     case "guest":
-      console.log("login guest");
-      await loginGuest(values.email, values.password, localePath("/guest"), config.public.authBaseUrl);
+      await loginGuest(values.email, values.password, localePath("/teacher"), config.public.authBaseUrl);
       break;
   }
 }

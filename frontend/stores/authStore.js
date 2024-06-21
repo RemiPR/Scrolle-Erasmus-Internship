@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { useLocalePath } from "#imports";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
@@ -23,6 +24,7 @@ export const useAuthStore = defineStore("auth", {
       this.isAuthenticated = false;
       this.enrolledCourses = [];
     },
+    // guest section -----------------------
     async addPersonalInfo(form, authBaseUrl) {
       try {
         await $fetch(`/api/auth/guest/addPersonalInfo`, {
@@ -44,6 +46,21 @@ export const useAuthStore = defineStore("auth", {
         console.error(error);
       }
     },
+
+    async refreshToken(authBaseUrl) {
+      const { toLogin } = useRedirectPath();
+      try {
+        await $fetch(`/api/auth/guest/refresh`, {
+          method: "POST",
+          credentials: "include",
+          baseURL: authBaseUrl,
+        });
+      } catch (error) {
+        this.clearUser();
+        navigateTo(toLogin);
+      }
+    },
+
     async loginGuest(email, password, redirectPath, authBaseUrl) {
       const { parseAuthCookie } = useAuth();
       try {
@@ -83,19 +100,44 @@ export const useAuthStore = defineStore("auth", {
         throw error;
       }
     },
-    async refreshToken(authBaseUrl) {
-      const { toLogin } = useRedirectPath();
+    // organisation section -----------------------
+    async loginOrg(email, password, authBaseUrl) {
+      const { parseAuthCookie } = useAuth();
+      const localePath = useLocalePath();
       try {
-        await $fetch(`/api/auth/guest/refresh`, {
+        // http request to login
+        await $fetch(`/api/auth/organisation/login`, {
           method: "POST",
-          credentials: "include",
           baseURL: authBaseUrl,
+          body: {
+            email,
+            password,
+          },
+          credentials: "include",
         });
+
+        const user = await parseAuthCookie();
+        this.setUser(user);
+        switch (user.type) {
+          case "Teacher":
+            navigateTo(localePath("/teacher"));
+            break;
+          default:
+            this.clearUser();
+            navigateTo(localePath("/"));
+        }
+        navigateTo(localePath("/teacher"));
       } catch (error) {
-        this.clearUser();
-        navigateTo(toLogin);
+        if (error.data && error.status === 401) {
+          this.clearUser();
+        } else {
+          console.error(error);
+          this.clearUser();
+        }
       }
     },
+
+    // common section -----------------------
     enrollCourse(courseId) {
       if (!this.enrolledCourses.includes(courseId)) {
         this.enrolledCourses.push(courseId);
