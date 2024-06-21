@@ -1,4 +1,4 @@
-<template><p>Assignments</p></template>
+<template><p>dashboard</p></template>
 
 <script setup></script>
 

@@ -7,7 +7,7 @@
     <div class="flex-1 bg-gray-100">
       <!-- Header (Nav Menu) -->
       <header class="mx-8 bg-gray-100 pb-4 my-4 border-b-2 border-gray-300">
-        <h1 class="text-4xl text-black font-semibold">
+        <h1 class="text-4xl text-gray-700 font-semibold">
           {{ navigationStore.title }}
         </h1>
       </header>
