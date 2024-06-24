@@ -16,7 +16,7 @@ import OnlineClassesComponent from "@/components/OnlineClassesComponent.vue";
 
 import Courses from "@/components/teacher/courses/index.vue";
 
-import GroupsComponent from "@/components/GroupsComponent.vue";
+import Groups from "@/components/teacher/groups/index.vue";
 
 import Assignments from "@/components/teacher/assignments/index.vue";
 
@@ -52,7 +52,7 @@ const sidebarLinks = ref([
   },
   {
     label: "Groups",
-    component: markRaw(GroupsComponent),
+    component: markRaw(Groups),
     icon: "mdi:account-group-outline",
     title: "Groups",
   },

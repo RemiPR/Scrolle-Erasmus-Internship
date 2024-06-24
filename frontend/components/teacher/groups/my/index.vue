@@ -1,4 +1,4 @@
-<template><p>Groups</p></template>
+<template><p>My groups</p></template>
 
 <script setup></script>
 
