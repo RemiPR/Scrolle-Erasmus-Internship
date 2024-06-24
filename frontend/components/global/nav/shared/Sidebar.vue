@@ -152,8 +152,10 @@
       </div>
     </aside>
 
-    <main class="flex-1 min-h-screen mx-8 my-4">
-      <component :is="activeComponent" />
+    <main class="flex-1 min-h-screen mx-8 my-4 overflow-hidden">
+      <Transition name="slide-fade-scale" mode="out-in">
+        <component :is="activeComponent" />
+      </Transition>
     </main>
   </div>
 </template>
@@ -196,5 +198,21 @@ nav::-webkit-scrollbar-thumb {
 
 nav::-webkit-scrollbar-thumb:hover {
   background-color: #9ca3af;
+}
+
+/* Slide-fade-scale transition */
+.slide-fade-scale-enter-active,
+.slide-fade-scale-leave-active {
+  transition: all 0.4s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.slide-fade-scale-enter-from {
+  transform: translateX(20px) scale(0.9);
+  opacity: 0;
+}
+
+.slide-fade-scale-leave-to {
+  transform: translateX(-20px) scale(0.9);
+  opacity: 0;
 }
 </style>
