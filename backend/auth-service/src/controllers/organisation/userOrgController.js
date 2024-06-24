@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
-import { authOrgUtils } from "../utils/authOrgUtils.js";
+import { authOrgUtils } from "../../utils/authOrgUtils.js";
 import dotenv from "dotenv";
-import { UserBaseOrganisation } from "../schema/userBaseOrgSchema.js";
+import { UserBaseOrganisation } from "../../schema/organisation/userBaseOrgSchema.js";
 
 dotenv.config();
 

@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
 import axios from "axios";
-import { authGuestUtils } from "../utils/authGuestUtils.js";
+import { authGuestUtils } from "../../utils/authGuestUtils.js";
 import { OAuth2Client } from "google-auth-library";
-import { UserGuest } from "../schema/userGuestSchema.js";
+import { UserGuest } from "../../schema/guest/userGuestSchema.js";
 
 dotenv.config();
 

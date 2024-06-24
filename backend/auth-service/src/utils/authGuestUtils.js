@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { UserGuest } from "../schema/userGuestSchema.js";
+import { UserGuest } from "../schema/guest/userGuestSchema.js";
 
 dotenv.config();
 

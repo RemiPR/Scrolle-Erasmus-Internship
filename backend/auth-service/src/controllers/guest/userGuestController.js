@@ -1,6 +1,6 @@
-import { UserGuest } from "../schema/userGuestSchema.js";
-import { validationUtils } from "../utils/validationUtils.js";
-import { authGuestUtils } from "../utils/authGuestUtils.js";
+import { UserGuest } from "../../schema/guest/userGuestSchema.js";
+import { validationUtils } from "../../utils/validationUtils.js";
+import { authGuestUtils } from "../../utils/authGuestUtils.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 

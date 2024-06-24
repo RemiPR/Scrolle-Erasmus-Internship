@@ -1,5 +1,5 @@
 import express from "express";
-import { OauthController } from "../controllers/oauthController.js";
+import { OauthController } from "../../controllers/guest/oauthController.js";
 
 const router = express.Router();
 

@@ -1,4 +1,4 @@
-import { UserStudent } from "../schema/userStudentSchema.js";
+import { UserManagement } from "../../schema/organisation/userManagementSchema.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
@@ -14,22 +14,22 @@ const createUser = async (request, response) => {
       !request.body.surname ||
       !request.body.email ||
       !request.body.password ||
-      !request.body.subject
+      !request.body.roles
     ) {
       return response.status(400).send({
         message: "Missing required fields",
       });
     }
-    const newUser = new UserStudent({
+    const newUser = new UserManagement({
       name: request.body.name,
       surname: request.body.surname,
       email: request.body.email,
       password: request.body.password,
-      subject: request.body.subject,
+      roles: request.body.roles,
     });
 
     // Save the new user to the database
-    const user = await UserStudent.create(newUser);
+    const user = await UserManagement.create(newUser);
 
     return response.status(201).send(user);
   } catch (error) {
@@ -38,4 +38,4 @@ const createUser = async (request, response) => {
   }
 };
 
-export const UserStudentController = { createUser };
+export const UserManagementController = { createUser };

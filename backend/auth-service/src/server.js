@@ -2,14 +2,15 @@ import express, { json } from "express";
 import { connect } from "mongoose";
 
 import debugRoutes from "./routes/debugRoutes.js";
-import guestRoutes from "./routes/userGuestRoutes.js";
-import oauthRoutes from "./routes/oauthRoutes.js";
 import validationRoutes from "./routes/validationRoutes.js";
 
-import organisationRoutes from "./routes/userOrgRoutes.js";
-import studentRoutes from "./routes/userStudentRoutes.js";
-import managementRoutes from "./routes/userManagementRoutes.js";
-import teacherRoutes from "./routes/userTeacherRoutes.js";
+import guestRoutes from "./routes/guest/userGuestRoutes.js";
+import oauthRoutes from "./routes/guest/oauthRoutes.js";
+
+import organisationRoutes from "./routes/organisation/userOrgRoutes.js";
+import studentRoutes from "./routes/organisation/userStudentRoutes.js";
+import managementRoutes from "./routes/organisation/userManagementRoutes.js";
+import teacherRoutes from "./routes/organisation/userTeacherRoutes.js";
 
 import cors from "cors";
 import dotenv from "dotenv";

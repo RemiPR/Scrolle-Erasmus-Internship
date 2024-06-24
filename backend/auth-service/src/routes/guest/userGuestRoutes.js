@@ -1,7 +1,7 @@
 import express from "express";
-import { UserGuestController } from "../controllers/userGuestController.js";
-import { authenticateGuestToken } from "../middleware/authenticationGuest.js";
-import { checkUserType } from "../middleware/checkUserType.js";
+import { UserGuestController } from "../../controllers/guest/userGuestController.js";
+import { authenticateGuestToken } from "../../middleware/authenticationGuest.js";
+import { checkUserType } from "../../middleware/checkUserType.js";
 
 const router = express.Router();
 

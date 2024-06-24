@@ -1,6 +1,6 @@
-import { UserTeacher } from "../schema/userTeacherSchema.js";
-import { validationUtils } from "../utils/validationUtils.js";
-import { authOrgUtils } from "../utils/authOrgUtils.js";
+import { UserTeacher } from "../../schema/organisation/userTeacherSchema.js";
+import { validationUtils } from "../../utils/validationUtils.js";
+import { authOrgUtils } from "../../utils/authOrgUtils.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
