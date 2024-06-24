@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { UserBaseGuest } from "./userBaseGuestSchema.js";
 
 const userGuestSchema = UserBaseGuest.discriminator(
-  "UserGuest",
+  "Guest",
   new mongoose.Schema({
     surname: {
       type: String,
@@ -25,6 +25,11 @@ const userGuestSchema = UserBaseGuest.discriminator(
       phoneNumber: { type: String, default: null },
       education: { type: String, default: null },
       reason: { type: String, default: null },
+    },
+    // TODO: Change type to ObjectID once course schema is created
+    enrolledCourses: {
+      type: [String],
+      default: [],
     },
   })
 );

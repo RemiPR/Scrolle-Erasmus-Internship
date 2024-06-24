@@ -145,7 +145,7 @@ import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
 
 const { t } = useI18n();
-const { loginGuest } = useAuthStore();
+const { loginGuest, loginOrg } = useAuthStore();
 const config = useRuntimeConfig();
 const localePath = useLocalePath();
 
@@ -167,7 +167,14 @@ function setCurrentForm(form) {
 }
 // Login funkcija
 async function handleLogin(values) {
-  await loginGuest(values.email, values.password, localePath("/guest"), config.public.authBaseUrl);
+  switch (currentForm.value) {
+    case "org":
+      await loginOrg(values.email, values.password, config.public.authBaseUrl);
+      break;
+    case "guest":
+      await loginGuest(values.email, values.password, localePath("/guest"), config.public.authBaseUrl);
+      break;
+  }
 }
 
 async function loginWithGoogle(baseAuthUrl) {

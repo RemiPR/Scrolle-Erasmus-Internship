@@ -1,9 +1,13 @@
 import express from "express";
 import { ValidationController } from "../controllers/validationController.js";
-import { authenticateToken } from "../middleware/authentication.js";
+import { authenticateGuestToken } from "../middleware/authenticationGuest.js";
 
 const router = express.Router();
 
-router.get("/jwt", authenticateToken, ValidationController.authenticateToken);
+router.get(
+  "/jwt",
+  authenticateGuestToken,
+  ValidationController.authenticateToken
+);
 
 export default router;

@@ -1,17 +1,17 @@
 import { defineStore } from "pinia";
+import { useLocalePath } from "#imports";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
     user: null,
     isAuthenticated: false,
-    enrolledCourses: [],
   }),
   persist: true,
   getters: {
     getUser: (state) => state.user,
     isLoggedIn: (state) => state.isAuthenticated,
     isConfirmed: (state) => !!state.user?.isConfirmed,
-    getEnrolledCourses: (state) => state.enrolledCourses,
+    getEnrolledCourses: (state) => !!state.user?.enrolledCourses,
   },
   actions: {
     async setUser(user) {
@@ -21,8 +21,8 @@ export const useAuthStore = defineStore("auth", {
     clearUser() {
       this.user = null;
       this.isAuthenticated = false;
-      this.enrolledCourses = [];
     },
+    // guest section -----------------------
     async addPersonalInfo(form, authBaseUrl) {
       try {
         await $fetch(`/api/auth/guest/addPersonalInfo`, {
@@ -44,53 +44,7 @@ export const useAuthStore = defineStore("auth", {
         console.error(error);
       }
     },
-    async loginGuest(email, password, redirectPath, authBaseUrl) {
-      try {
-        // http request to login
-        await $fetch(`/api/auth/guest/login`, {
-          method: "POST",
-          baseURL: authBaseUrl,
-          body: {
-            email,
-            password,
-          },
-          credentials: "include",
-        });
 
-        // retrieves cookie with user info, this one doesn't have JWT token.
-
-        const userCookie = useCookie("auth").value;
-        if (userCookie) {
-          const parsedUser = JSON.parse(
-            userCookie.startsWith("j:") ? userCookie.slice(2) : userCookie
-          );
-          this.setUser(parsedUser);
-        } else {
-          console.error("No cookies received");
-        }
-        navigateTo(redirectPath);
-      } catch (error) {
-        if (error.data && error.status === 401) {
-          this.clearUser();
-        } else {
-          console.error(error);
-          this.clearUser();
-        }
-      }
-    },
-    // TODO clear all cookies
-    async logoutGuest(redirectPath, authBaseUrl) {
-      try {
-        await $fetch(`/api/auth/guest/logout`, {
-          method: "POST",
-          baseURL: authBaseUrl,
-        });
-        this.clearUser();
-        navigateTo(redirectPath);
-      } catch (error) {
-        throw error;
-      }
-    },
     async refreshToken(authBaseUrl) {
       const { toLogin } = useRedirectPath();
       try {
@@ -104,9 +58,87 @@ export const useAuthStore = defineStore("auth", {
         navigateTo(toLogin);
       }
     },
+
+    async loginGuest(email, password, redirectPath, authBaseUrl) {
+      const { parseAuthCookie } = useAuth();
+      try {
+        // http request to login
+        await $fetch(`/api/auth/guest/login`, {
+          method: "POST",
+          baseURL: authBaseUrl,
+          body: {
+            email,
+            password,
+          },
+          credentials: "include",
+        });
+
+        const user = await parseAuthCookie();
+        await this.setUser(user);
+        navigateTo(redirectPath);
+      } catch (error) {
+        if (error.data && error.status === 401) {
+          this.clearUser();
+        } else {
+          console.error(error);
+          this.clearUser();
+        }
+      }
+    },
+    // TODO: clear all cookies
+    async logoutGuest(redirectPath, authBaseUrl) {
+      try {
+        await $fetch(`/api/auth/guest/logout`, {
+          method: "POST",
+          baseURL: authBaseUrl,
+        });
+        this.clearUser();
+        navigateTo(redirectPath);
+      } catch (error) {
+        throw error;
+      }
+    },
+    // organisation section -----------------------
+    async loginOrg(email, password, authBaseUrl) {
+      const { parseAuthCookie } = useAuth();
+      const localePath = useLocalePath();
+      try {
+        // http request to login
+        await $fetch(`/api/auth/organisation/login`, {
+          method: "POST",
+          baseURL: authBaseUrl,
+          body: {
+            email,
+            password,
+          },
+          credentials: "include",
+        });
+
+        const user = await parseAuthCookie();
+        this.setUser(user);
+        switch (user.type) {
+          case "Teacher":
+            navigateTo(localePath("/teacher"));
+            break;
+          default:
+            this.clearUser();
+            navigateTo(localePath("/"));
+        }
+        navigateTo(localePath("/teacher"));
+      } catch (error) {
+        if (error.data && error.status === 401) {
+          this.clearUser();
+        } else {
+          console.error(error);
+          this.clearUser();
+        }
+      }
+    },
+
+    // common section -----------------------
     enrollCourse(courseId) {
-      if (!this.enrolledCourses.includes(courseId)) {
-        this.enrolledCourses.push(courseId);
+      if (!this.user.enrolledCourses.includes(courseId)) {
+        this.user.enrolledCourses.push(courseId);
       }
     },
   },

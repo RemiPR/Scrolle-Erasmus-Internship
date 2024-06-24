@@ -81,10 +81,6 @@ const handleOpenModal = (data) => {
   emit("openModal", data);
 };
 
-const workloadCoefficient = (assignmenttAmount, maxAmount) => {
-  return assignmenttAmount / maxAmount;
-};
-
 const currentPage = computed(() => {
   const result = route.path.substring(6);
   return result;

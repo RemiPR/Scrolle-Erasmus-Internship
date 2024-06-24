@@ -23,13 +23,13 @@ services:
       - .env
     image: auth-service:latest
 
-  courses-service:
-    build: ./courses-service  # Path to the Dockerfile
+  learning-service:
+    build: ./learning-service  # Path to the Dockerfile
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.courses-service.forwardauth.address=http://auth-service:3001/api/auth/validation/jwt"
-      - "traefik.http.routers.courses-service.middlewares=courses-service@docker"
-      - "traefik.http.routers.courses-service.rule=PathPrefix(`/api/courses`)"
+      - "traefik.http.middlewares.learning-service.forwardauth.address=http://auth-service:3001/api/auth/validation/jwt"
+      - "traefik.http.routers.learning-service.middlewares=learning-service@docker"
+      - "traefik.http.routers.learning-service.rule=PathPrefix(`/api/learning`)"
     env_file:
       - .env
-    image: courses-service:latest
+    image: learning-service:latest

@@ -1,19 +1,19 @@
 import express from "express";
 import { UserGuestController } from "../controllers/userGuestController.js";
-import { authenticateToken } from "../middleware/authentication.js";
+import { authenticateGuestToken } from "../middleware/authenticationGuest.js";
 import { checkUserType } from "../middleware/checkUserType.js";
 
 const router = express.Router();
 
 router.post("/createUser", UserGuestController.createUser);
-router.post("/register", UserGuestController.registerUser);
-router.post("/login", UserGuestController.loginUser);
-router.post("/logout", UserGuestController.logoutUser);
+router.post("/register", UserGuestController.register);
+router.post("/login", UserGuestController.login);
+router.post("/logout", UserGuestController.logout);
 router.post("/refresh", UserGuestController.refreshToken);
 router.post(
   "/addPersonalInfo",
-  authenticateToken,
-  checkUserType(["UserGuest"]),
+  authenticateGuestToken,
+  checkUserType(["Guest"]),
   UserGuestController.addPersonalInfo
 );
 

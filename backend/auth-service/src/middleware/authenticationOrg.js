@@ -1,12 +1,12 @@
 import jwt from "jsonwebtoken";
-import { authUtils } from "../utils/authUtils.js";
+import { authOrgUtils } from "../utils/authOrgUtils.js";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 // Middleware to verify JWT and extract user info
 // It also provides a new access token if current one is expired and refresh token is valid
-export const authenticateToken = async (request, response, next) => {
+export const authenticateOrgToken = async (request, response, next) => {
   const accessToken = request.cookies.authToken; // Retrieve the JWT from a cookie
   const refreshToken = request.cookies.authRefresh;
 
@@ -17,7 +17,9 @@ export const authenticateToken = async (request, response, next) => {
           .status(401)
           .send({ message: "Unautorized: No token provided" });
       }
-      const newAccessToken = await authUtils.refreshAccessToken(refreshToken);
+      const newAccessToken = await authOrgUtils.refreshAccessToken(
+        refreshToken
+      );
 
       response.cookie("authToken", newAccessToken, {
         httpOnly: true,
@@ -44,7 +46,7 @@ export const authenticateToken = async (request, response, next) => {
             .status(401)
             .send({ message: "Unauthorized: No token provided" });
         }
-        const newAccessToken = authUtils.refreshAccessToken(refreshToken);
+        const newAccessToken = authOrgUtils.refreshAccessToken(refreshToken);
 
         response.cookie("authToken", newAccessToken, {
           httpOnly: true,
