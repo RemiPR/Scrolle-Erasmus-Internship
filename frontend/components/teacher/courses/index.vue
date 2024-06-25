@@ -6,7 +6,7 @@
 
 <script setup>
 import DynamicTab from "@/components/shared/ui/DynamicTab.vue";
-import CoursesBuilder from "@/components/teacher/courses/builder/index.vue";
+import CoursesBuilder from "@/components/teacher/courses/builder/Index.vue";
 import StudentCourses from "@/components/teacher/courses/student/Index.vue";
 import FreeCourses from "@/components/teacher/courses/free/Index.vue";
 
