@@ -8,7 +8,7 @@
 <script setup>
 import { ref, markRaw, provide } from "vue";
 import { provideSidebar } from "@/composables/useSidebar";
-import Sidebar from "@/components/global/nav/shared/Sidebar.vue";
+import Sidebar from "@/components/global/nav/shared/sidebar.vue";
 
 import Dashboard from "@/components/teacher/dashboard/index.vue";
 

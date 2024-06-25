@@ -1,4 +1,4 @@
-<!-- pages/teacher.vue -->
+<!-- pages/management.vue -->
 <template>
   <div class="relative min-h-screen bg-gray-100">
     <!-- <Sidebar /> -->
@@ -9,7 +9,7 @@
 <script setup>
 // import { ref, markRaw } from "vue";
 // import { provideSidebar } from "@/composables/useSidebar";
-// import Sidebar from "@/components/global/nav/shared/Sidebar.vue";
+// import Sidebar from "@/components/global/nav/shared/sidebar.vue";
 // import DashboardComponent from "@/components/DashboardComponent.vue";
 // import OnlineClassesComponent from "@/components/OnlineClassesComponent.vue";
 // import GroupsComponent from "@/components/GroupsComponent.vue";

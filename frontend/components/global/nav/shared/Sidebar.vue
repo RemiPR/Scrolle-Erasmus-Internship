@@ -1,4 +1,4 @@
-<!-- components/global/nav/shared/Sidebar.vue -->
+<!-- components/global/nav/shared/sidebar.vue -->
 <template>
   <div class="flex">
     <aside
