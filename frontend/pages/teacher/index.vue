@@ -10,17 +10,17 @@ import { ref, markRaw, provide } from "vue";
 import { provideSidebar } from "@/composables/useSidebar";
 import Sidebar from "@/components/global/nav/shared/Sidebar.vue";
 
-import Dashboard from "@/components/teacher/dashboard/index.vue";
+import Dashboard from "@/components/teacher/dashboard/Index.vue";
 
 import OnlineClassesComponent from "@/components/OnlineClassesComponent.vue";
 
 import Courses from "~/components/teacher/courses/Index.vue";
 
-import Assignments from "~/components/teacher/assignments/index.vue";
+import Assignments from "~/components/teacher/assignments/Index.vue";
 
-import Groups from "@/components/teacher/groups/index.vue";
+import Groups from "@/components/teacher/groups/Index.vue";
 
-import Tests from "@/components/teacher/tests/index.vue";
+import Tests from "@/components/teacher/tests/Index.vue";
 
 import StudentGradingComponent from "@/components/StudentGradingComponent.vue";
 import DigitalLibraryComponent from "@/components/DigitalLibraryComponent.vue";
