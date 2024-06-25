@@ -16,9 +16,8 @@ import OnlineClassesComponent from "@/components/OnlineClassesComponent.vue";
 
 import Courses from "~/components/teacher/courses/Index.vue";
 
-import GroupsComponent from "@/components/GroupsComponent.vue";
-import Assignments from "~/components/teacher/assignments/Index.vue";
-import TestsComponent from "@/components/TestsComponent.vue";
+import Assignments from "~/components/teacher/assignments/index.vue";
+
 import Groups from "@/components/teacher/groups/index.vue";
 
 import Tests from "@/components/teacher/tests/index.vue";
