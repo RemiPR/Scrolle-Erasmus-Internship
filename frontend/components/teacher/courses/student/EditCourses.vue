@@ -15,13 +15,6 @@ import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
 
-definePageMeta({
-  layout: "nav",
-  navigation: "teacher",
-  enableScrollStyling: false,
-  // middleware: ["auth", "guest"],
-});
-
 const EditCoursesTabs = [
   {
     name: "course info",

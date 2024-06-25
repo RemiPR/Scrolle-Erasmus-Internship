@@ -61,7 +61,7 @@
 <script setup>
 import { useLocalePath } from "#imports";
 import { useRoute } from "vue-router";
-import { defineProps, defineEmits, computed, ref } from "vue";
+import { computed, ref } from "vue";
 
 const props = defineProps({
   title: {
