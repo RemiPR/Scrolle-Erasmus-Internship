@@ -6,7 +6,7 @@
 
 <script setup>
 import DynamicTab from "@/components/shared/ui/DynamicTab.vue";
-import AssignmentsBuilder from "@/components/teacher/assignments/builder/index.vue";
+import AssignmentsBuilder from "~/components/teacher/assignments/builder/Index.vue";
 import CreatedAssignments from "@/components/teacher/assignments/created/index.vue";
 
 const tabs = [

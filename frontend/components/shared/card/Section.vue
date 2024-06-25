@@ -9,16 +9,32 @@
       />
     </div>
     <div v-if="dataArray.length > 0" class="flex gap-4">
-      <SharedCard
-        v-for="data in dataArray"
-        :key="data.id"
-        :data="data"
-        :hiddenContent="hiddenContent"
-        :assignmentGrades="assignmentGrades"
-        :assignmentList="assignmentList"
-        :playVideo="playVideo"
-        @openModal="handleOpenModal($event)"
-      />
+      <div v-if="currentPage == '/teacher'" class="flex gap-4">
+        <TeacherCoursesStudentCard
+          v-for="data in dataArray"
+          :key="data.id"
+          :data="data"
+          :hiddenContent="hiddenContent"
+          :assignmentGrades="assignmentGrades"
+          :assignmentList="assignmentList"
+          :playVideo="playVideo"
+          @handleEditCourse="handleEditCourse($event)"
+          @openMyCourses="handleOpenMyCourses"
+        />
+      </div>
+      <div v-else class="flex gap-4">
+        <SharedCard
+          v-for="data in dataArray"
+          :key="data.id"
+          :data="data"
+          :hiddenContent="hiddenContent"
+          :assignmentGrades="assignmentGrades"
+          :assignmentList="assignmentList"
+          :playVideo="playVideo"
+          @openModal="handleOpenModal($event)"
+          @openMyCourses="handleOpenMyCourses"
+        />
+      </div>
     </div>
     <div
       v-else
@@ -45,6 +61,7 @@
 <script setup>
 import { useLocalePath } from "#imports";
 import { useRoute } from "vue-router";
+import { defineProps, defineEmits, computed, ref } from "vue";
 
 const props = defineProps({
   title: {
@@ -69,22 +86,25 @@ const props = defineProps({
   },
   assignmentList: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
 
-const route = useRoute();
-const localePath = useLocalePath();
-const emit = defineEmits(["openModal"]);
+const emit = defineEmits(["openModal", "openMyCourses"]);
 
 const handleOpenModal = (data) => {
   emit("openModal", data);
 };
 
-const workloadCoefficient = (assignmenttAmount, maxAmount) => {
-  return assignmenttAmount / maxAmount;
+const handleEditCourse = (data) => {
+  // Assuming you have some logic here
 };
 
+const handleOpenMyCourses = (course) => {
+  emit("openMyCourses", course);
+};
+
+const route = useRoute();
 const currentPage = computed(() => {
   const result = route.path.substring(6);
   return result;

@@ -14,10 +14,10 @@ import Dashboard from "@/components/teacher/dashboard/index.vue";
 
 import OnlineClassesComponent from "@/components/OnlineClassesComponent.vue";
 
-import Courses from "@/components/teacher/courses/index.vue";
+import Courses from "~/components/teacher/courses/Index.vue";
 
 import GroupsComponent from "@/components/GroupsComponent.vue";
-import Assignments from "@/components/teacher/assignments/index.vue";
+import Assignments from "~/components/teacher/assignments/Index.vue";
 import TestsComponent from "@/components/TestsComponent.vue";
 import StudentGradingComponent from "@/components/StudentGradingComponent.vue";
 import DigitalLibraryComponent from "@/components/DigitalLibraryComponent.vue";
