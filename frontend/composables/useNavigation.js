@@ -1,9 +1,9 @@
 // useNavigation
-import Guest from "@/components/global/nav/guest.vue";
-import Index from "@/components/global/nav/index.vue";
-import Student from "@/components/global/nav/student.vue";
-import Teacher from "@/components/global/nav/teacher.vue";
-import Management from "@/components/global/nav/management.vue";
+import guest from "@/components/global/nav/guest.vue";
+import index from "@/components/global/nav/index.vue";
+import student from "@/components/global/nav/student.vue";
+import teacher from "@/components/global/nav/teacher.vue";
+import management from "@/components/global/nav/management.vue";
 
 export const useNavigation = (sidebarLinks) => {
   const route = useRoute();
@@ -12,16 +12,16 @@ export const useNavigation = (sidebarLinks) => {
     const navType = route.meta.navigation || "index";
     switch (navType) {
       case "guest":
-        return Guest;
+        return guest;
       case "student":
-        return Student;
+        return student;
       case "teacher":
-        return Teacher;
+        return teacher;
       case "management":
-        return Management;
+        return management;
       case "index":
       default:
-        return Index;
+        return index;
     }
   });
 
