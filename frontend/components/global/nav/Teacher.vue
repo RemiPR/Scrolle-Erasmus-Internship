@@ -2,7 +2,7 @@
 <template>
   <div class="flex">
     <!-- Sidebar -->
-    <Sidebar class="w-72 3xl:w-80" :links="sidebarLinks" />
+    <GlobalNavSharedSidebar class="w-72 3xl:w-80" :links="sidebarLinks" />
 
     <div class="flex-1 bg-gray-100">
       <!-- Header (Nav Menu) -->
@@ -73,7 +73,6 @@
 import { useMessengerStore } from "@/stores/messenger";
 import { useDashboardStore } from "@/stores/dashboardStore";
 import { inject, provide, computed, ref } from "vue";
-import Sidebar from "@/components/global/nav/shared/sidebar.vue";
 import { useSidebar } from "@/composables/useSidebar";
 import { useNavigationStore } from "@/stores/navigationStore";
 

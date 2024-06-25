@@ -1,14 +1,13 @@
 <!-- pages/teacher.vue -->
 <template>
   <div class="relative min-h-screen bg-gray-100">
-    <Sidebar />
+    <GlobalNavSharedSidebar />
   </div>
 </template>
 
 <script setup>
 import { ref, markRaw, provide } from "vue";
 import { provideSidebar } from "@/composables/useSidebar";
-import Sidebar from "@/components/global/nav/shared/sidebar.vue";
 
 import Dashboard from "@/components/teacher/dashboard/index.vue";
 
