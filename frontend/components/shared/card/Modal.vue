@@ -69,7 +69,7 @@
                   <Icon name="mdi:timer-sand" class="text-gray-800 font-bold" />
                   <p class="text-gray-600 ml-3">{{ $t("modal.duration") }}</p>
                 </div>
-                <p class="font-semibold">{{ data.duration }}</p>
+                <p class="font-semibold">{{ data.duration }} weeks</p>
               </div>
               <div
                 v-if="data.selfLearningMaterial"
@@ -93,7 +93,7 @@
                     class="text-gray-800 font-bold"
                   />
                   <p class="text-gray-600 ml-3 italic font-medium">
-                    <span class="tet-gray-700 font-bold">{{
+                    <span class="text-gray-700 font-bold mr-2">{{
                       $t("modal.important")
                     }}</span
                     >{{ $t("modal.warning") }}

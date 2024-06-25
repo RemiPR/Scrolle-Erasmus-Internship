@@ -134,7 +134,7 @@
             value="now"
             class="form-radio text-indigo-600"
           />
-          <span class="ml-2">Yes</span>
+          <span class="ml-2">Now</span>
         </label>
         <label class="inline-flex items-center">
           <input
@@ -143,7 +143,7 @@
             value="later"
             class="form-radio text-indigo-600"
           />
-          <span class="ml-2">No</span>
+          <span class="ml-2">Later</span>
         </label>
       </div>
     </div>

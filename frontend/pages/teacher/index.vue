@@ -19,6 +19,10 @@ import Courses from "~/components/teacher/courses/Index.vue";
 import GroupsComponent from "@/components/GroupsComponent.vue";
 import Assignments from "~/components/teacher/assignments/Index.vue";
 import TestsComponent from "@/components/TestsComponent.vue";
+import Groups from "@/components/teacher/groups/index.vue";
+
+import Tests from "@/components/teacher/tests/index.vue";
+
 import StudentGradingComponent from "@/components/StudentGradingComponent.vue";
 import DigitalLibraryComponent from "@/components/DigitalLibraryComponent.vue";
 import ErasmusComponent from "@/components/ErasmusComponent.vue";
@@ -49,7 +53,7 @@ const sidebarLinks = ref([
   },
   {
     label: "Groups",
-    component: markRaw(GroupsComponent),
+    component: markRaw(Groups),
     icon: "mdi:account-group-outline",
     title: "Groups",
   },
@@ -61,7 +65,7 @@ const sidebarLinks = ref([
   },
   {
     label: "Tests",
-    component: markRaw(TestsComponent),
+    component: markRaw(Tests),
     icon: "mdi:file-document-outline",
     title: "Tests",
   },

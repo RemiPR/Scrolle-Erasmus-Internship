@@ -16,7 +16,11 @@
         {{ tab.label }}
       </button>
     </div>
-    <component :is="activeComponent.component" v-bind="activeComponent.props"  class="p-4"></component>
+    <component
+      :is="activeComponent.component"
+      v-bind="activeComponent.props"
+      class="p-4"
+    ></component>
   </div>
 </template>
 
@@ -36,8 +40,7 @@ const activeComponent = computed(() => {
   const tab = props.tabs.find((tab) => tab.name === activeTab.value);
   return {
     component: tab.component,
-    props: tab.props
-  }
+    props: tab.props,
+  };
 });
-
 </script>

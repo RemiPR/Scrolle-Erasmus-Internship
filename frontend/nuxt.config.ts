@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
     "@nuxt/image",
+    "@nuxtjs/cloudinary",
   ],
   pages: true,
   app: {
@@ -39,6 +40,10 @@ export default defineNuxtConfig({
   },
   veeValidate: {
     autoImports: true,
+  },
+  cloudinary: {
+    cloudName: 'dcvye5gx6',
+    apiKey: '447834266514223',
   },
   i18n: {
     lazy: true,

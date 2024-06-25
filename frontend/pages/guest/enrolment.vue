@@ -426,6 +426,7 @@ const onSubmit = async () => {
     errors.value = {};
     await userStore.addPersonalInfo(form, config.public.authBaseUrl);
     console.log("Pushing to guest after submit");
+    // TODO: Actually enroll the user into the course
     navigateTo(localePath("/guest")); // Redirect to the courses page after enrollment
   } catch (err) {
     console.log("Error Pushing to guest after submit");

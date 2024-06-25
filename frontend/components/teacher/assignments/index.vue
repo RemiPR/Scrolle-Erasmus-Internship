@@ -15,6 +15,10 @@ const tabs = [
     label: "Assignments Builder",
     component: AssignmentsBuilder,
   },
-  { name: "student", label: "My assignments", component: CreatedAssignments },
+  {
+    name: "assignments",
+    label: "My Assignments",
+    component: CreatedAssignments,
+  },
 ];
 </script>

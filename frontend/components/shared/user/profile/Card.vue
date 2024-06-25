@@ -8,13 +8,15 @@
         class="h-16 w-16 rounded-full"
       />
       <!-- Edit button overlay -->
-      <button
-        @click="triggerFileInput"
-        class="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 text-white text-xs h-full w-full rounded-full"
-        title="Change avatar"
-      >
-        Edit
-      </button>
+      <CldUploadWidget v-slot="{ open }" signatureEndpoint="http://localhost/api/auth/cloudinary/sign" uploadPreset="ScrolleDefault">
+        <button
+         type="button" 
+         class="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 text-white text-xs h-full w-full rounded-full"
+         title="Change avatar"
+         @click="open"
+
+         >Edit</button>
+    </CldUploadWidget>
       <input
         type="file"
         ref="fileInput"
