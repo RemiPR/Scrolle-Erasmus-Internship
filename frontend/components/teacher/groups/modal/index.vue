@@ -12,8 +12,8 @@
         >
           <div class="flex justify-between items-center p-6 border-b">
             <div class="flex items-center space-x-4">
-              <h2 class="text-2xl font-semibold text-gray-800">
-                {{ group.name }} - Students
+              <h2 class="text-2xl font-bold text-gray-700">
+                {{ group.name }} Students
               </h2>
               <label class="flex items-center">
                 <input
@@ -26,25 +26,34 @@
                 >
               </label>
             </div>
-            <button
-              @click="closeModal"
-              class="text-gray-600 hover:text-gray-900 focus:outline-none p-1 rounded-full hover:bg-gray-100 transition-colors duration-200"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+            <div class="flex items-center space-x-2">
+              <button
+                class="text-gray-600 hover:text-gray-900 focus:outline-none p-1 rounded-full hover:bg-gray-100 transition-colors duration-200 flex items-center"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+                <Icon name="mdi:file-document-outline" class="w-6 h-6 mr-1" />
+                <span class="text-sm">Generate Report</span>
+              </button>
+              <button
+                @click="closeModal"
+                class="text-gray-600 hover:text-gray-900 focus:outline-none p-1 rounded-full hover:bg-gray-100 transition-colors duration-200"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
+          <!-- Students expanded card -->
           <div class="flex-grow overflow-y-auto p-6">
             <TransitionGroup name="list" tag="div">
               <div
@@ -57,13 +66,15 @@
                   class="flex items-center justify-between p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                 >
                   <div class="flex items-center space-x-4">
-                    <span class="text-gray-500 font-medium"
+                    <span class="text-gray-500 font-medium select-none"
                       >{{ index + 1 }}.</span
                     >
                     <span class="font-semibold"
                       >{{ student.firstName }} {{ student.lastName }}</span
                     >
-                    <span class="text-gray-600">({{ student.status }})</span>
+                    <span class="text-gray-600 select-none"
+                      >({{ student.status }})</span
+                    >
                   </div>
                   <svg
                     :class="{
@@ -89,22 +100,48 @@
                   ]"
                 >
                   <div class="p-4 bg-white rounded-lg border">
+                    <div class="flex justify-between items-start mb-4">
+                      <h3 class="text-lg font-semibold text-gray-800">
+                        {{ student.firstName }} {{ student.lastName }}'s Details
+                      </h3>
+                      <button
+                        class="flex items-center space-x-1 text-sm text-blue-600 hover:text-blue-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-md px-2 py-1"
+                      >
+                        <Icon
+                          name="mdi:file-document-outline"
+                          class="w-5 h-5"
+                        />
+                        <span>Generate Report</span>
+                      </button>
+                    </div>
                     <div class="grid grid-cols-2 gap-4">
                       <div>
+                        <p class="font-semibold text-sm text-gray-700">
+                          Middle name
+                        </p>
+                        <p>{{ student.middleName || "-" }}</p>
+                      </div>
+                      <div>
                         <p class="font-semibold text-sm text-gray-700">Email</p>
-                        <p>{{ student.email }}</p>
+                        <p>{{ student.email || "N/A" }}</p>
+                      </div>
+                      <div>
+                        <p class="font-semibold text-sm text-gray-700">
+                          Status
+                        </p>
+                        <p>{{ student.enrolmentStatus || "N/A" }}</p>
                       </div>
                       <div>
                         <p class="font-semibold text-sm text-gray-700">
                           Attendance
                         </p>
-                        <p>{{ student.attendance }}</p>
+                        <p>{{ student.attendance || "N/A" }}</p>
                       </div>
                       <div>
                         <p class="font-semibold text-sm text-gray-700">
-                          Start Date
+                          Enrolment Date
                         </p>
-                        <p>{{ student.startDate }}</p>
+                        <p>{{ student.startDate || "N/A" }}</p>
                       </div>
                       <div>
                         <p class="font-semibold text-sm text-gray-700">
@@ -112,32 +149,6 @@
                         </p>
                         <p>{{ student.endDate || "N/A" }}</p>
                       </div>
-                      <div>
-                        <p class="font-semibold text-sm text-gray-700">
-                          Date of Birth
-                        </p>
-                        <p>{{ student.dateOfBirth }}</p>
-                      </div>
-                      <div>
-                        <p class="font-semibold text-sm text-gray-700">
-                          Academic Leave
-                        </p>
-                        <p>{{ student.academicHolidays ? "Yes" : "No" }}</p>
-                      </div>
-                    </div>
-                    <div v-if="student.academicHistory" class="mt-4">
-                      <p class="font-semibold text-sm text-gray-700">
-                        Academic History
-                      </p>
-                      <p>{{ student.academicHistory }}</p>
-                    </div>
-                    <div v-if="student.academicHolidays" class="mt-4">
-                      <p class="font-semibold text-sm text-gray-700">
-                        Academic Leave Period
-                      </p>
-                      <p>
-                        {{ student.holidayFrom }} to {{ student.holidayTo }}
-                      </p>
                     </div>
                   </div>
                 </div>
