@@ -6,7 +6,7 @@
 
 <script setup>
 import DynamicTab from "@/components/shared/ui/DynamicTab.vue";
-import AllGroups from "@/components/teacher/groups/all/Index.vue";
+import AllGroups from "@/components/teacher/groups/all/index.vue";
 
 const tabs = [
   {
