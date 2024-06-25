@@ -28,7 +28,7 @@
 
 <script setup>
 import { ref } from "vue";
-import EditCourses from "/components/teacher/courses/student/EditCourses.vue"; // Adjust path
+import EditCourses from "@/components/teacher/courses/student/EditCourses.vue";
 
 const courses = ref([
   {

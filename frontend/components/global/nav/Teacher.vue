@@ -73,7 +73,7 @@
 import { useMessengerStore } from "@/stores/messenger";
 import { useDashboardStore } from "@/stores/dashboardStore";
 import { inject, provide, computed, ref } from "vue";
-import Sidebar from "@/components/global/nav/shared/Sidebar.vue";
+import Sidebar from "@/components/global/nav/shared/sidebar.vue";
 import { useSidebar } from "@/composables/useSidebar";
 import { useNavigationStore } from "@/stores/navigationStore";
 

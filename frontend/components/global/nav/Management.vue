@@ -75,7 +75,7 @@
 import { useMessengerStore } from "@/stores/messenger";
 import { useDashboardStore } from "@/stores/dashboardStore";
 import { inject, provide, computed, ref } from "vue";
-import Sidebar from "@/components/global/nav/shared/Sidebar.vue";
+import Sidebar from "@/components/global/nav/shared/sidebar.vue";
 
 const messengerIcon = ref(null);
 provide("messengerIcon", messengerIcon);
