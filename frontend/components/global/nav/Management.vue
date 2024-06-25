@@ -1,8 +1,8 @@
-<!-- components/global/nav/Teacher.vue -->
+<!-- components/global/nav/management.vue -->
 <template>
   <div class="flex">
     <!-- Sidebar -->
-    <Sidebar
+    <GlobalNavSharedSidebar
       class="w-72 3xl:w-80"
       :links="sidebarLinks"
       @link-clicked="setActiveComponent"
@@ -75,7 +75,6 @@
 import { useMessengerStore } from "@/stores/messenger";
 import { useDashboardStore } from "@/stores/dashboardStore";
 import { inject, provide, computed, ref } from "vue";
-import Sidebar from "@/components/global/nav/shared/sidebar.vue";
 
 const messengerIcon = ref(null);
 provide("messengerIcon", messengerIcon);
