@@ -36,7 +36,7 @@
           class="text-white dark:text-black hover:underline"
           >{{ $t("nav_login_btn") }}</NuxtLink
         >
-        <ColorModeToggle class="bg-gray-800 dark:bg-white" />
+        <SharedThemeColorModeToggle class="bg-gray-800 dark:bg-white" />
       </nav>
     </header>
     <!-- Page content -->

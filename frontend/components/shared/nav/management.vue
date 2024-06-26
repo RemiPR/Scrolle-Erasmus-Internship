@@ -2,7 +2,7 @@
 <template>
   <div class="flex">
     <!-- Sidebar -->
-    <GlobalNavSharedSidebar
+    <SharedNavSidebar
       class="w-72 3xl:w-80"
       :links="sidebarLinks"
       @link-clicked="setActiveComponent"

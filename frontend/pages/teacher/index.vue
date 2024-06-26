@@ -1,7 +1,7 @@
 <!-- pages/teacher.vue -->
 <template>
   <div class="relative min-h-screen bg-gray-100">
-    <GlobalNavSharedSidebar />
+    <SharedNavSidebar />
   </div>
 </template>
 

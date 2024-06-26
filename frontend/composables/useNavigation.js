@@ -1,9 +1,9 @@
 // useNavigation
-import guest from "@/components/global/nav/guest.vue";
-import index from "@/components/global/nav/index.vue";
-import student from "@/components/global/nav/student.vue";
-import teacher from "@/components/global/nav/teacher.vue";
-import management from "@/components/global/nav/management.vue";
+import guest from "@/components/shared/nav/guest.vue";
+import index from "@/components/shared/nav/index.vue";
+import student from "@/components/shared/nav/student.vue";
+import teacher from "@/components/shared/nav/teacher.vue";
+import management from "@/components/shared/nav/management.vue";
 
 export const useNavigation = (sidebarLinks) => {
   const route = useRoute();

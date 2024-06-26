@@ -2,7 +2,7 @@
 <template>
   <div class="flex">
     <!-- Sidebar -->
-    <GlobalNavSharedSidebar class="w-72 3xl:w-80" :links="sidebarLinks" />
+    <SharedNavSidebar class="w-72 3xl:w-80" :links="sidebarLinks" />
 
     <div class="flex-1 bg-gray-100">
       <!-- Header (Nav Menu) -->

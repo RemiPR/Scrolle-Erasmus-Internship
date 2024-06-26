@@ -35,7 +35,7 @@
         <li
           class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center rounded-lg"
         >
-          <TextColorModeToggle />
+          <SharedThemeTextColorModeToggle />
         </li>
         <li
           class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center"
@@ -68,7 +68,6 @@
 </template>
 
 <script setup>
-import TextColorModeToggle from "@/components/global/TextColorModeToggle.vue";
 import { useLocalePath } from "#imports";
 import { useAuthStore } from "@/stores/authStore";
 import { vOnClickOutside } from "@vueuse/components";
