@@ -4,6 +4,31 @@
   >
     <div class="mb-4 select-none">
       <label class="block text-gray-700 font-bold mb-2"
+        >This course will be virtual or in person?*</label
+      >
+      <div>
+        <label class="inline-flex items-center mr-4">
+          <input
+            type="radio"
+            name="courseLocationType"
+            value="students"
+            class="form-radio text-indigo-600"
+          />
+          <span class="ml-2">Virtual</span>
+        </label>
+        <label class="inline-flex items-center">
+          <input
+            type="radio"
+            name="courseLocationType"
+            value="free"
+            class="form-radio text-indigo-600"
+          />
+          <span class="ml-2">In person</span>
+        </label>
+      </div>
+    </div>
+    <div class="mb-4 select-none">
+      <label class="block text-gray-700 font-bold mb-2"
         >What type of course?*</label
       >
       <div>
@@ -124,7 +149,7 @@
 
     <div class="mb-4">
       <label class="block text-gray-700 font-bold mb-2"
-        >Add topics, learning material, assignments etc. now or later?</label
+        >Add topics, learning material, assignments etc. now or later?*</label
       >
       <div>
         <label class="inline-flex items-center mr-4">
@@ -132,6 +157,7 @@
             type="radio"
             name="addNowOrLater"
             value="now"
+            v-model="addNowOrLater"
             class="form-radio text-indigo-600"
           />
           <span class="ml-2">Now</span>
@@ -141,6 +167,7 @@
             type="radio"
             name="addNowOrLater"
             value="later"
+            v-model="addNowOrLater"
             class="form-radio text-indigo-600"
           />
           <span class="ml-2">Later</span>
@@ -148,10 +175,20 @@
       </div>
     </div>
 
-    <div class="flex items-center justify-between">
+    <TeacherAssignmentsBuilder v-if="addNowOrLater === 'now'" />
+
+    <div
+      :class="{
+        'flex justify-center mt-8': addNowOrLater === 'now',
+        'flex items-center justify-between': addNowOrLater === 'later',
+      }"
+    >
       <button
         type="submit"
         class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+        :class="{
+          'font-semibold text-lg': addNowOrLater === 'now',
+        }"
       >
         Create Course
       </button>
@@ -159,4 +196,6 @@
   </form>
 </template>
 
-<script setup></script>
+<script setup>
+const addNowOrLater = ref("later");
+</script>
