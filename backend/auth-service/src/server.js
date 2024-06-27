@@ -9,6 +9,7 @@ import oauthRoutes from "./routes/guest/oauthRoutes.js";
 import cloudinaryRoutes from "./routes/cloudinaryRoutes.js";
 
 import organisationRoutes from "./routes/organisation/userOrgRoutes.js";
+import studentGroupRoutes from "./routes/organisation/studentGroupRoutes.js";
 import studentRoutes from "./routes/organisation/userStudentRoutes.js";
 import managementRoutes from "./routes/organisation/userManagementRoutes.js";
 import teacherRoutes from "./routes/organisation/userTeacherRoutes.js";
@@ -42,6 +43,7 @@ authRouter.use("/cloudinary", cloudinaryRoutes); // handles cloudinary operation
 authRouter.use("/guest", guestRoutes); // handles guest auth
 authRouter.use("/oauth", oauthRoutes); // handles OAuth facebook and google log in
 // organisation routes
+authRouter.use("/studentGroup", studentGroupRoutes); // handles student group operations
 authRouter.use("/organisation", organisationRoutes); // mainly handles log in for organisation users
 authRouter.use("/student", studentRoutes);
 authRouter.use("/management", managementRoutes);
