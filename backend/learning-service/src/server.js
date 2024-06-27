@@ -4,21 +4,27 @@ import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
+import freeCourseRoutes from "./routes/courses/freeCourseRoutes"
+
 dotenv.config();
+
+const courseRouter = express.Router();
 
 const app = express();
 const PORT = process.env.PORT_LEARNING;
 const corsOptions = {
-  origin: process.env.FRONTEND_DOMAIN, // Adjust this to match your frontend host
-  credentials: true, // This is critical for cookies to be sent and received
+  origin: process.env.FRONTEND_DOMAIN,
+  credentials: true, 
   optionsSuccessStatus: 200, // For legacy browser support
 };
-
 app.use(cors(corsOptions));
 app.use(json());
 app.use(cookieParser());
 
-// routes
+courseRouter.use("/courses/free", freeCourseRoutes);
+
+app.use("/api/learning", courseRouter)
+
 
 // Database connection
 connect(process.env.MONGODB_URI_LEARNING, {})
