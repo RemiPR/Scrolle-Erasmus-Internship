@@ -3,6 +3,7 @@ import { connect } from "mongoose";
 
 import debugRoutes from "./routes/debugRoutes.js";
 import validationRoutes from "./routes/validationRoutes.js";
+import zoomRoutes from "./routes/zoomRoutes.js";
 
 import guestRoutes from "./routes/guest/userGuestRoutes.js";
 import oauthRoutes from "./routes/guest/oauthRoutes.js";
@@ -39,6 +40,7 @@ app.use(cookieParser());
 authRouter.use("/debug", debugRoutes); // for debugging
 authRouter.use("/validation", validationRoutes); // API proxy middleware for validation
 authRouter.use("/cloudinary", cloudinaryRoutes); // handles cloudinary operations
+authRouter.use("/zoom", zoomRoutes); // handles zoom operations
 // guest routes
 authRouter.use("/guest", guestRoutes); // handles guest auth
 authRouter.use("/oauth", oauthRoutes); // handles OAuth facebook and google log in
