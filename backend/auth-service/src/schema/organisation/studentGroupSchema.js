@@ -35,6 +35,4 @@ const studentGroupSchema = new mongoose.Schema(
   }
 );
 
-const StudentGroup = mongoose.model("StudentGroup", studentGroupSchema);
-
-export default StudentGroup;
+export const StudentGroup = mongoose.model("StudentGroup", studentGroupSchema);

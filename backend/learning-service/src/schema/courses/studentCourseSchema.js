@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { BaseCourse } from "./baseCourseSchema";
+import { BaseCourse } from "./baseCourseSchema.js";
 
 const studentCourseSchema = BaseCourse.discriminator(
   "Student",

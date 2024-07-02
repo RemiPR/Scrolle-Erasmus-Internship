@@ -1,4 +1,4 @@
-import { FreeCourseController } from "../../controllers/courses/freeCourseController";
+import { FreeCourseController } from "../../controllers/courses/freeCourseController.js";
 import express from "express";
 
 const router = express.Router();

@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
-import freeCourseRoutes from "./routes/courses/freeCourseRoutes"
+import freeCourseRoutes from "./routes/courses/freeCourseRoutes.js";
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ const app = express();
 const PORT = process.env.PORT_LEARNING;
 const corsOptions = {
   origin: process.env.FRONTEND_DOMAIN,
-  credentials: true, 
+  credentials: true,
   optionsSuccessStatus: 200, // For legacy browser support
 };
 app.use(cors(corsOptions));
@@ -23,8 +23,7 @@ app.use(cookieParser());
 
 courseRouter.use("/courses/free", freeCourseRoutes);
 
-app.use("/api/learning", courseRouter)
-
+app.use("/api/learning", courseRouter);
 
 // Database connection
 connect(process.env.MONGODB_URI_LEARNING, {})
