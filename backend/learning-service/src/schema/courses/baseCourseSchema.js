@@ -46,6 +46,10 @@ const baseCourseSchema = new mongoose.Schema(
       ref: "Test",
       default: [],
     },
+    virtual: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     discriminatorKey: "type",

@@ -23,7 +23,7 @@ export const useAuthStore = defineStore("auth", {
       this.isAuthenticated = false;
     },
     // guest section -----------------------
-    async addPersonalInfo(form, authBaseUrl) {
+    async addPersonalInfo(form, apiBaseUrl) {
       try {
         await $fetch(`/api/auth/guest/addPersonalInfo`, {
           method: "POST",
@@ -36,7 +36,7 @@ export const useAuthStore = defineStore("auth", {
             education: form.value.education,
             reason: form.value.reason,
           },
-          baseURL: authBaseUrl,
+          baseURL: apiBaseUrl,
           credentials: "include",
         });
         this.user.isConfirmed = true;
@@ -45,13 +45,13 @@ export const useAuthStore = defineStore("auth", {
       }
     },
 
-    async refreshToken(authBaseUrl) {
+    async refreshToken(apiBaseUrl) {
       const { toLogin } = useRedirectPath();
       try {
         await $fetch(`/api/auth/guest/refresh`, {
           method: "POST",
           credentials: "include",
-          baseURL: authBaseUrl,
+          baseURL: apiBaseUrl,
         });
       } catch (error) {
         this.clearUser();
@@ -59,13 +59,13 @@ export const useAuthStore = defineStore("auth", {
       }
     },
 
-    async loginGuest(email, password, redirectPath, authBaseUrl) {
+    async loginGuest(email, password, redirectPath, apiBaseUrl) {
       const { parseAuthCookie } = useAuth();
       try {
         // http request to login
         await $fetch(`/api/auth/guest/login`, {
           method: "POST",
-          baseURL: authBaseUrl,
+          baseURL: apiBaseUrl,
           body: {
             email,
             password,
@@ -86,11 +86,11 @@ export const useAuthStore = defineStore("auth", {
       }
     },
     // TODO: clear all cookies
-    async logoutGuest(redirectPath, authBaseUrl) {
+    async logoutGuest(redirectPath, apiBaseUrl) {
       try {
         await $fetch(`/api/auth/guest/logout`, {
           method: "POST",
-          baseURL: authBaseUrl,
+          baseURL: apiBaseUrl,
         });
         this.clearUser();
         navigateTo(redirectPath);
@@ -99,14 +99,14 @@ export const useAuthStore = defineStore("auth", {
       }
     },
     // organisation section -----------------------
-    async loginOrg(email, password, authBaseUrl) {
+    async loginOrg(email, password, apiBaseUrl) {
       const { parseAuthCookie } = useAuth();
       const localePath = useLocalePath();
       try {
         // http request to login
         await $fetch(`/api/auth/organisation/login`, {
           method: "POST",
-          baseURL: authBaseUrl,
+          baseURL: apiBaseUrl,
           body: {
             email,
             password,

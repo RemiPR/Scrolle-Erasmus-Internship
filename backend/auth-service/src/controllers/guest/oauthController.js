@@ -53,8 +53,7 @@ const authenticateGoogle = async (request, response) => {
     const userName = payload["given_name"];
     const userSurname = payload["family_name"];
 
-    // use this later request.cookies.i18n_redirected
-    const locale = "en-US";
+    const locale = request.cookies.i18n_redirected;
 
     // check if such user with such email already exists
     const userGuest = await UserGuest.findOne({ email: userEmail });
@@ -117,8 +116,7 @@ const authenticateFacebook = async (request, response) => {
     const userGuestName = fullnameSplit[0];
     const userGuestSurname = fullnameSplit[1];
 
-    // use this later request.cookies.i18n_redirected
-    const locale = "en-US";
+    const locale = request.cookies.i18n_redirected;
 
     const userGuest = await UserGuest.findOne({
       email: userGuestFacebookProfile.email,
