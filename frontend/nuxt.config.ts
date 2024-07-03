@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      authBaseUrl: process.env.AUTH_BASE_URL,
+      apiBaseUrl: process.env.API_BASE_URL,
     },
   },
   modules: [

@@ -169,19 +169,19 @@ function setCurrentForm(form) {
 async function handleLogin(values) {
   switch (currentForm.value) {
     case "org":
-      await loginOrg(values.email, values.password, config.public.authBaseUrl);
+      await loginOrg(values.email, values.password, config.public.apiBaseUrl);
       break;
     case "guest":
-      await loginGuest(values.email, values.password, localePath("/guest"), config.public.authBaseUrl);
+      await loginGuest(values.email, values.password, localePath("/guest"), config.public.apiBaseUrl);
       break;
   }
 }
 
 async function loginWithGoogle(baseAuthUrl) {
-  window.location.href = `${baseAuthUrl.public.authBaseUrl}/api/auth/oauth/google`;
+  window.location.href = `${baseAuthUrl.public.apiBaseUrl}/api/auth/oauth/google`;
 }
 function loginWithFacebook(baseAuthUrl) {
-  window.location.href = `${baseAuthUrl.public.authBaseUrl}/api/auth/oauth/facebook`;
+  window.location.href = `${baseAuthUrl.public.apiBaseUrl}/api/auth/oauth/facebook`;
 }
 </script>
 

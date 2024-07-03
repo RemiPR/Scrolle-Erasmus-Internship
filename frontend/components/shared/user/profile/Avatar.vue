@@ -116,7 +116,7 @@ const toggleMenu = () => {
 };
 
 const handleLogout = async () => {
-  await logoutGuest(localePath("/"), config.public.authBaseUrl);
+  await logoutGuest(localePath("/"), config.public.apiBaseUrl);
 };
 </script>
 
