@@ -1,18 +1,21 @@
 <template>
   <form
-    class="max-w-4xl mx-auto p-8 bg-white shadow-md rounded mt-16 select-none"
+    @submit.prevent="onSubmit"
+    class="max-w-4xl mx-auto p-8 bg-white shadow-md rounded mt-16 select-none" 
   >
     <div class="mb-4 select-none">
       <label class="block text-gray-700 font-bold mb-2"
-        >This course will be virtual or in person?*</label
+        >This course will be virtual or in class?*</label
       >
+      <span class="text-red-500">{{ errors["courseLocationType"] }}</span>
       <div>
         <label class="inline-flex items-center mr-4">
           <input
             type="radio"
             name="courseLocationType"
-            value="students"
+            value="inclass"
             class="form-radio text-indigo-600"
+            v-model="courseLocationType"
           />
           <span class="ml-2">Virtual</span>
         </label>
@@ -20,10 +23,11 @@
           <input
             type="radio"
             name="courseLocationType"
-            value="free"
+            value="virtual"
             class="form-radio text-indigo-600"
+            v-model="courseLocationType"
           />
-          <span class="ml-2">In person</span>
+          <span class="ml-2">In class</span>
         </label>
       </div>
     </div>
@@ -31,6 +35,7 @@
       <label class="block text-gray-700 font-bold mb-2"
         >What type of course?*</label
       >
+      <span class="text-red-500">{{ errors["courseType"] }}</span>
       <div>
         <label class="inline-flex items-center mr-4">
           <input
@@ -38,6 +43,7 @@
             name="courseType"
             value="students"
             class="form-radio text-indigo-600"
+            v-model="courseType"
           />
           <span class="ml-2">Students course</span>
         </label>
@@ -47,6 +53,7 @@
             name="courseType"
             value="free"
             class="form-radio text-indigo-600"
+            v-model="courseType"
           />
           <span class="ml-2">Free course</span>
         </label>
@@ -57,11 +64,13 @@
       <label for="courseName" class="block text-gray-700 font-bold mb-2"
         >Name of the course*</label
       >
+      <span class="text-red-500">{{ errors["courseName"] }}</span>
       <input
         type="text"
         id="courseName"
         name="courseName"
         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        v-model="courseName"
       />
     </div>
 
@@ -69,10 +78,12 @@
       <label for="category" class="block text-gray-700 font-bold mb-2"
         >Category*</label
       >
+      <span class="text-red-500">{{ errors["category"] }}</span>
       <select
         id="category"
         name="category"
         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        v-model="category"
       >
         <option>Informatics</option>
         <option>Cosmetology</option>
@@ -84,10 +95,12 @@
       <label for="language" class="block text-gray-700 font-bold mb-2"
         >Language*</label
       >
+       <span class="text-red-500">{{ errors["language"] }}</span>
       <select
         id="language"
         name="language"
         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        v-model="language"
       >
         <option>English</option>
         <option>Russian</option>
@@ -96,14 +109,26 @@
     </div>
 
     <div class="mb-4">
-      <label class="block text-gray-700 font-bold mb-2">Image*</label>
+      <label class="block text-gray-700 font-bold mb-2">Image</label>
+      
       <div class="flex items-center">
-        <button
-          type="button"
-          class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded mr-2"
+        <CldUploadWidget 
+        v-slot="{ open }" 
+        :options="{
+          sources: ['local'], 
+          multiple: false, 
+          cropping: true, 
+          showSkipCropButton: false,
+          croppingAspectRatio: 1.5, 
+          resourceType: 'image',
+          cropptingCoordinatesMode: 'face'
+          }"
+        :signatureEndpoint="apiBaseUrl" 
+        uploadPreset="ScrolleDefault"
+        @success="handleSuccess"
         >
-          Upload image
-        </button>
+        <button class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded mr-2" type="button" @click="open">Upload an Image</button>
+        </CldUploadWidget>
         <button
           type="button"
           class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
@@ -111,15 +136,14 @@
           Generate image
         </button>
       </div>
-      <div
-        class="mt-4 bg-gray-100 h-32 w-full flex items-center justify-center border border-dashed border-gray-300"
-      >
-        Image preview
-      </div>
+      <div v-if="uploadedImageUrl">
+      <h3>Uploaded Image Preview:</h3>
+      <img :src="uploadedImageUrl" alt="Uploaded Image" />
+    </div>
     </div>
 
     <div class="mb-4">
-      <label class="block text-gray-700 font-bold mb-2">Video*</label>
+      <label class="block text-gray-700 font-bold mb-2">Video</label>
       <div class="flex items-center">
         <button
           type="button"
@@ -140,10 +164,12 @@
       <label for="description" class="block text-gray-700 font-bold mb-2"
         >Description*</label
       >
+      <span class="text-red-500">{{ errors["description"] }}</span>
       <textarea
         id="description"
         name="description"
         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
+        v-model="description"
       ></textarea>
     </div>
 
@@ -151,6 +177,7 @@
       <label class="block text-gray-700 font-bold mb-2"
         >Add topics, learning material, assignments etc. now or later?*</label
       >
+            <span class="text-red-500">{{ errors["addNowOrLater"] }}</span>
       <div>
         <label class="inline-flex items-center mr-4">
           <input
@@ -197,5 +224,79 @@
 </template>
 
 <script setup>
-const addNowOrLater = ref("later");
+import { useForm } from "vee-validate";
+import * as yup from "yup";
+import { coursesService } from "../../../../services/learning/freeCoursesService.js";
+
+const config = useRuntimeConfig();
+const apiBaseUrl = config.public.apiBaseUrl + "/api/auth/cloudinary/sign";
+const uploadedImageUrl = ref(null);
+
+const schema = yup.object({
+  courseLocationType: yup
+    .string()
+    .required("Please select course location type"),
+  courseType: yup
+    .string()
+    .required("Please select course type"),
+  courseName: yup
+    .string()
+    .required("Please enter course name"),
+  category: yup
+    .string()
+    .required("Please select category"),
+  language: yup
+    .string()
+    .required("Please select language"),
+  description: yup
+    .string()
+    .required("Please enter description"),
+  addNowOrLater: yup
+    .string()
+    .required("Please select add now or later"),
+});
+
+
+const { defineField, errors, handleSubmit } = useForm({
+  validationSchema: schema,
+});
+
+
+const [courseLocationType] = defineField("courseLocationType");
+const [courseType] = defineField("courseType");
+const [courseName] = defineField("courseName");
+const [category] = defineField("category");
+const [language] = defineField("language");
+const [description] = defineField("description");
+const [addNowOrLater] = defineField("addNowOrLater");
+
+const handleSuccess = (result) => {
+  console.log("Upload successful:", result);
+  uploadedImageUrl.value = result.info.secure_url;  // Get the uploaded image URL
+};
+
+const onSubmit = handleSubmit(async (values) => {
+  try {
+    const course = {
+      title: values.courseName,
+      description: values.description,
+      language: values.language,
+      subject: "placeholder",
+      durationWeeks: 4,
+      selfLearningMaterial: true,
+      teacher: "6674282d092f7b31f596d58a",
+      virtual: true,
+      difficulty: "Beginner",
+      timeCommitment: "2 hours per week",
+      lecturesDuration: "1 hour",
+      start: "2022-01-01",
+      end: "2022-01-28",
+    }
+    coursesService.createCourse(values, config.public.apiBaseUrl);
+    console.log("Form submitted", values);
+  } catch(error) {
+    console.error(error);
+  }
+});
+
 </script>
