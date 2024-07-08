@@ -10,7 +10,9 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBaseUrl: process.env.API_BASE_URL,
+      authBaseUrl: process.env.AUTH_BASE_URL,
+      zoomApiKey: process.env.ZOOM_API_KEY,
+      zoomApiSecret: process.env.ZOOM_API_SECRET,
     },
   },
   modules: [
@@ -42,8 +44,8 @@ export default defineNuxtConfig({
     autoImports: true,
   },
   cloudinary: {
-    cloudName: 'dcvye5gx6',
-    apiKey: '447834266514223',
+    cloudName: "dcvye5gx6",
+    apiKey: "447834266514223",
   },
   i18n: {
     lazy: true,
