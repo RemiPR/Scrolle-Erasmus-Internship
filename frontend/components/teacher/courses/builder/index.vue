@@ -1,4 +1,6 @@
+<!-- Components/teacher/courses/builder/index.vue -->
 <template>
+<div>
   <form
     @submit.prevent="onSubmit"
     class="max-w-4xl mx-auto p-8 bg-white shadow-md rounded mt-16 select-none" 
@@ -202,7 +204,7 @@
       </div>
     </div>
 
-    <TeacherAssignmentsBuilder v-if="addNowOrLater === 'now'" />
+        <TeacherAssignmentsBuilder v-if="addNowOrLater === 'now'" />
 
     <div
       :class="{
@@ -221,6 +223,7 @@
       </button>
     </div>
   </form>
+</div>
 </template>
 
 <script setup>

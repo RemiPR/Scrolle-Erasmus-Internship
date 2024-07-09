@@ -11,7 +11,7 @@ import { provideSidebar } from "@/composables/useSidebar";
 
 import Dashboard from "@/components/teacher/dashboard/index.vue";
 
-import OnlineClassesComponent from "@/components/OnlineClassesComponent.vue";
+import OnlineClasses from "@/components/teacher/courses/list.vue";
 
 import Courses from "~/components/teacher/courses/index.vue";
 
@@ -39,7 +39,7 @@ const sidebarLinks = ref([
   },
   {
     label: "Online Classes",
-    component: markRaw(OnlineClassesComponent),
+    component: markRaw(OnlineClasses),
     icon: "mdi:video",
     title: "Online Classes",
   },
