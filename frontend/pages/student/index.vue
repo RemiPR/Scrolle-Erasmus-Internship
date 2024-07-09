@@ -9,6 +9,7 @@
       />
 
       <SharedVideoOverlay
+        :scrollToElement="$refs.scrollToElement"
         title="Welcome, Emīlija!"
         :description="`You currently have ${assignmentCount(activeAssignments)} unfinished assignments.`"
         freeCoursesText="Check lectures timetable"
@@ -40,7 +41,7 @@
         @toggleVideo="toggleVideo"
       />
     </div>
-    <div class="container mx-auto p-4 h-screen relative">
+    <div ref="scrollToElement" class="container mx-auto p-4 h-screen relative">
       <SharedCardSection
         id="trending"
         title="Trending"

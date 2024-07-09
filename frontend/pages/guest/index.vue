@@ -8,6 +8,7 @@
         @update:videoPlaying="updateVideoPlaying"
       />
       <SharedVideoOverlay
+        :scrollToElement="$refs.scrollToElement"
         :title="$t('shared_video_overlay.title')"
         :description="$t('shared_video_overlay.description')"
         :freeCoursesText="$t('shared_video_overlay.free_courses_text')"
@@ -23,7 +24,7 @@
         @toggleVideo="toggleVideo"
       />
     </div>
-    <div class="container mx-auto p-4 h-screen">
+    <div ref="scrollToElement" class="container mx-auto p-4 h-screen">
       <SharedCardSection
         :title="$t('shared_card_section_first.title')"
         :dataArray="enrolledCourses"

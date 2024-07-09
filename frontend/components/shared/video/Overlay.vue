@@ -46,14 +46,14 @@ const props = defineProps({
   accreditedProgramsText: String,
   checkFreeCoursesLink: String,
   checkProgramsLink: String,
+  scrollToElement: Object,
 });
 
-const firstSection = ref(null);
 
 const scrollToSection = async () => {
-  await nextTick();
-  if (firstSection.value) {
-    firstSection.value.scrollIntoView({ behavior: "smooth" });
+  if (props.scrollToElement) {
+    await nextTick();
+    props.scrollToElement.scrollIntoView({ behavior: "smooth" });
   }
 };
 
