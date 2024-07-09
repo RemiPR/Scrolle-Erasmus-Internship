@@ -1,16 +1,24 @@
 <template>
   <div
     v-if="isVisible"
-    class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto pt-20 mt-6 outline-none"
+    class="fixed inset-0 z-50 flex items-center justify-center overflow-y-hidden pt-4 mt-6 outline-none nav-scrollbar-light"
     @keydown.esc="closeModal"
     tabindex="0"
     ref="modalRef"
   >
     <div class="fixed inset-0 bg-black opacity-50" @click="closeModal"></div>
     <div
-      class="bg-white rounded-xl shadow-lg relative z-10 lg:w-6/12 max-h-screen overflow-y-auto"
+      class="bg-white rounded-xl shadow-lg relative z-10 lg:w-6/12 max-h-[90vh] overflow-y-auto"
       @click.stop
     >
+      <!-- Close button -->
+      <button
+        class="absolute top-4 right-4 p-2 text-white bg-gray-800 hover:bg-gray-700 rounded-full shadow-md transition-colors duration-200 z-20"
+        @click="closeModal"
+      >
+        <Icon name="ic:baseline-close" size="24" />
+      </button>
+
       <!-- Scrollable Content -->
       <div class="flex flex-col">
         <!-- Video/Image Background Container -->
@@ -27,7 +35,7 @@
         >
           {{ data.title }}
         </div>
-        <div class="p-6">
+        <div class="p-6 pb-10">
           <!-- Two Column Layout -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
             <!-- Left Column -->
@@ -216,7 +224,7 @@
             <div class="tracking-wider" v-html="formattedBiography"></div>
           </div>
           <!-- Course Description -->
-          <div class="mt-6 pt-6 mb-16" v-if="formattedDescription">
+          <div class="mt-6 pt-6" v-if="formattedDescription">
             <div class="border-b-2 border-gray-200 mb-4">
               <p class="text-gray-800 mb-2 text-2xl">
                 {{ $t("modal.course_description") }}
@@ -226,7 +234,7 @@
             <div class="flex justify-center mt-6">
               <button
                 @click="enrollNow"
-                class="text-white font-bold w-full sm:w-40 h-12 sm:h-14 mt-4 sm:mt-0 sm:ml-2 rounded-lg bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 select-none"
+                class="text-white font-semibold py-3 px-5 rounded-lg bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 select-none"
               >
                 {{ $t("modal.enrol") }}
               </button>
@@ -235,12 +243,6 @@
         </div>
       </div>
     </div>
-    <button
-      class="absolute top-0 right-0 m-2 text-white hover:text-gray-300"
-      @click="closeModal"
-    >
-      <Icon name="ic:baseline-close" size="24" />
-    </button>
   </div>
 </template>
 

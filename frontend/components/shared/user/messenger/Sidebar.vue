@@ -3,7 +3,7 @@
     <!-- Main Sidebar Container -->
     <div
       ref="sidebar"
-      class="fixed top-24 right-0 h-[calc(100%-7rem)] bg-white shadow-lg z-40 mr-4 transition-all duration-700 rounded-lg"
+      class="fixed top-24 right-0 h-[calc(100%-7rem)] bg-white shadow-lg z-40 mr-4 transition-all duration-700 rounded-lg nav-scrollbar-light"
       :class="{
         'translate-x-full': !messengerStore.isMessengerOpen,
       }"

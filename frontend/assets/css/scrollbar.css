@@ -1,0 +1,51 @@
+/* assets/css/scrollbar.css */
+
+/* Scrollbar Styling for dark bg */
+.nav-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.nav-scrollbar::-webkit-scrollbar-track {
+  background-color: #4b5563;
+  border-radius: 4px;
+}
+
+.nav-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #6b7280;
+  border-radius: 4px;
+}
+
+.nav-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #9ca3af;
+}
+
+/* For Firefox - Dark bg Scrollbar */
+.nav-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #6b7280 #4b5563;
+}
+
+/* Scrollbar Styling for light bg */
+.nav-scrollbar-light::-webkit-scrollbar {
+  width: 8px;
+}
+
+.nav-scrollbar-light::-webkit-scrollbar-track {
+  background-color: #e5e7eb;
+  border-radius: 4px;
+}
+
+.nav-scrollbar-light::-webkit-scrollbar-thumb {
+  background-color: #9ca3af;
+  border-radius: 4px;
+}
+
+.nav-scrollbar-light::-webkit-scrollbar-thumb:hover {
+  background-color: #4b5563;
+}
+
+/* For Firefox - Light bg Scrollbar */
+.nav-scrollbar-light {
+  scrollbar-width: thin;
+  scrollbar-color: #9ca3af #e5e7eb;
+}

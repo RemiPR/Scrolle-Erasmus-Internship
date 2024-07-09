@@ -34,7 +34,11 @@ export default defineNuxtConfig({
       title: "Scrolle - Interactive Learning Platform",
     },
   },
-  css: ["@/assets/css/transitions.css", "@/assets/css/main.css"],
+  css: [
+    "@/assets/css/transitions.css",
+    "@/assets/css/main.css",
+    "@/assets/css/scrollbar.css",
+  ],
   colorMode: {
     preference: "light", // default value of $colorMode.preference
     fallback: "light", // fallback value if no system preference is detected

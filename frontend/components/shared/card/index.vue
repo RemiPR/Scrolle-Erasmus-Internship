@@ -245,9 +245,9 @@ const { assignmentsGraded, assignmentsNotGraded } = useAssignmentsFilter(
   computed(() => props.data.assignments)
 );
 
-const debugData = (data) => {
-  console.log(data);
-};
+// const debugData = (data) => {
+//   console.log(data);
+// };
 
 const handleMouseEnter = (id, playVideo) => {
   hoveredTileIndex.value = id;
