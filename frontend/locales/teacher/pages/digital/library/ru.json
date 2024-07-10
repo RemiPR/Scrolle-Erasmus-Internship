@@ -1,0 +1,16 @@
+{
+  "search": "Поиск...",
+  "allSubjects": "Все предметы",
+  "allResourceTypes": "Все типы ресурсов",
+  "allLanguages": "Все языки",
+  "title": "Название",
+  "subject": "Предмет",
+  "subTopic": "Подтема",
+  "resourceType": "Тип ресурса",
+  "author": "Автор",
+  "institution": "Учреждение",
+  "language": "Язык",
+  "publishDate": "Дата публикации",
+  "abstract": "Аннотация",
+  "downloadResource": "Скачать ресурс"
+}

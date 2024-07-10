@@ -1,0 +1,16 @@
+{
+  "search": "Search...",
+  "allSubjects": "All Subjects",
+  "allResourceTypes": "All Resource Types",
+  "allLanguages": "All Languages",
+  "title": "Title",
+  "subject": "Subject",
+  "subTopic": "Sub-Topic",
+  "resourceType": "Resource Type",
+  "author": "Author",
+  "institution": "Institution",
+  "language": "Language",
+  "publishDate": "Publish Date",
+  "abstract": "Abstract",
+  "downloadResource": "Download Resource"
+}

@@ -1,0 +1,16 @@
+{
+  "search": "Meklēt...",
+  "allSubjects": "Visi priekšmeti",
+  "allResourceTypes": "Visi resursu veidi",
+  "allLanguages": "Visas valodas",
+  "title": "Nosaukums",
+  "subject": "Priekšmets",
+  "subTopic": "Apakštēma",
+  "resourceType": "Resursa veids",
+  "author": "Autors",
+  "institution": "Iestāde",
+  "language": "Valoda",
+  "publishDate": "Publicēšanas datums",
+  "abstract": "Kopsavilkums",
+  "downloadResource": "Lejupielādēt resursu"
+}

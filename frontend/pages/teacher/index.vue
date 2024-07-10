@@ -22,7 +22,7 @@ import Groups from "@/components/teacher/groups/index.vue";
 import Tests from "@/components/teacher/tests/index.vue";
 
 import StudentGradingComponent from "@/components/StudentGradingComponent.vue";
-import DigitalLibraryComponent from "@/components/DigitalLibraryComponent.vue";
+import DigitalLibrary from "@/components/teacher/digital/library/index.vue";
 import ErasmusComponent from "@/components/ErasmusComponent.vue";
 import CalendarComponent from "@/components/CalendarComponent.vue";
 
@@ -75,7 +75,7 @@ const sidebarLinks = ref([
   },
   {
     label: "My Digital library",
-    component: markRaw(DigitalLibraryComponent),
+    component: markRaw(DigitalLibrary),
     icon: "clarity:library-solid",
     title: "My Digital library",
   },

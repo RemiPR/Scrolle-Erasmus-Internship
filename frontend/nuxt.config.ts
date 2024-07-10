@@ -71,6 +71,7 @@ export default defineNuxtConfig({
           "guest/pages/admission/shared/en.json",
           "guest/pages/contacts/en.json",
           "guest/pages/index/en.json",
+          "teacher/pages/digital/library/en.json",
         ],
       },
       {
@@ -88,6 +89,7 @@ export default defineNuxtConfig({
           "guest/pages/admission/shared/lv.json",
           "guest/pages/contacts/lv.json",
           "guest/pages/index/lv.json",
+          "teacher/pages/digital/library/lv.json",
         ],
       },
       {
@@ -105,6 +107,7 @@ export default defineNuxtConfig({
           "guest/pages/admission/shared/ru.json",
           "guest/pages/contacts/ru.json",
           "guest/pages/index/ru.json",
+          "teacher/pages/digital/library/ru.json",
         ],
       },
     ],
