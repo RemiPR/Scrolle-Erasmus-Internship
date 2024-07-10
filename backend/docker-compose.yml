@@ -20,7 +20,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.auth-service.rule=PathPrefix(`/api/auth`)" 
     env_file:
-      - .env
+      - ./auth-service/.env
     image: auth-service:latest
 
   learning-service:
@@ -31,5 +31,5 @@ services:
      # - "traefik.http.routers.learning-service.middlewares=learning-service@docker"
       - "traefik.http.routers.learning-service.rule=PathPrefix(`/api/learning`)"
     env_file:
-      - .env
+      - ./learning-service/.env
     image: learning-service:latest

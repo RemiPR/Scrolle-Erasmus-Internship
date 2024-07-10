@@ -24,7 +24,7 @@ const authRouter = express.Router();
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT_AUTH;
+const PORT = process.env.PORT;
 const corsOptions = {
   origin: process.env.FRONTEND_DOMAIN,
   credentials: true, // This is critical for cookies to be sent and received

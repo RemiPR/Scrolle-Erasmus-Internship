@@ -11,7 +11,7 @@ dotenv.config();
 const courseRouter = express.Router();
 
 const app = express();
-const PORT = process.env.PORT_LEARNING;
+const PORT = process.env.PORT;
 const corsOptions = {
   origin: process.env.FRONTEND_DOMAIN,
   credentials: true,
