@@ -22,10 +22,10 @@
           >
         </NuxtLink>
         <!-- Navigation Links -->
-        <NuxtLink
-          :to="localePath('/')"
+        <button
+          @click="scrollTop"
           class="text-white dark:text-black hover:underline"
-          >{{ $t("nav_home_btn") }}</NuxtLink
+          >{{ $t("nav_home_btn") }}</button
         >
       </nav>
       <!-- Right nav: Language toggler, Login button, Light/Dark theme toggler -->
@@ -46,6 +46,10 @@
 
 <script setup>
 import { useLocalePath } from "#imports";
+
+const scrollTop = () => {
+  window.scrollTo({top:0, behavior: 'smooth'})
+}
 
 const localePath = useLocalePath();
 </script>
