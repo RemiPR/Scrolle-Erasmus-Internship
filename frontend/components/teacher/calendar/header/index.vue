@@ -8,7 +8,7 @@
           :value="searchQuery"
           @input="$emit('update:search-query', $event.target.value)"
           placeholder="Filter by..."
-          class="w-1/2 p-2 border rounded pl-8"
+          class="w-1/3 p-2 border rounded pl-8"
         />
         <span class="absolute left-2 top-2 text-gray-400">
           <svg

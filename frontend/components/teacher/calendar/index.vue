@@ -1,6 +1,6 @@
 <!--components/teacher/calendar/index.vue-->
 <template>
-  <div class="p-4 w-10/12 mx-auto">
+  <div class="w-11/12">
     <TeacherCalendarHeader
       :current-date-range="currentDateRange"
       :search-query="searchQuery"
