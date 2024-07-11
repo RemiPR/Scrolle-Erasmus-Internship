@@ -24,6 +24,7 @@
     "@vee-validate/rules": "^4.12.6",
     "@vee-validate/yup": "^4.12.8",
     "@zoomus/websdk": "^2.18.3",
+    "date-fns": "^3.6.0",
     "fuse.js": "^7.0.0",
     "material-icons": "^1.13.12",
     "nuxt": "^3.11.2",

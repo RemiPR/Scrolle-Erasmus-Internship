@@ -20,11 +20,11 @@ import Assignments from "~/components/teacher/assignments/index.vue";
 import Groups from "@/components/teacher/groups/index.vue";
 
 import Tests from "@/components/teacher/tests/index.vue";
+import Calendar from "@/components/teacher/calendar/index.vue";
 
 import StudentGradingComponent from "@/components/StudentGradingComponent.vue";
 import DigitalLibrary from "@/components/teacher/digital/library/index.vue";
 import ErasmusComponent from "@/components/ErasmusComponent.vue";
-import CalendarComponent from "@/components/CalendarComponent.vue";
 
 import HelpComponent from "@/components/Help.vue";
 import SettingsComponent from "@/components/Settings.vue";
@@ -87,7 +87,7 @@ const sidebarLinks = ref([
   },
   {
     label: "Calendar",
-    component: markRaw(CalendarComponent),
+    component: markRaw(Calendar),
     icon: "mdi:calendar-outline",
     title: "Calendar",
   },
