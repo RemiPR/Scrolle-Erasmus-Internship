@@ -30,7 +30,7 @@
         <NuxtLink :to="localePath('/guest')" class="hover:underline">{{
           $t("nav_home_btn")
         }}</NuxtLink>
-        <NuxtLink :to="localePath('#')" class="hover:underline">{{
+        <NuxtLink :to="localePath('/guest/myCourses')" class="hover:underline">{{
           $t("nav_my_courses_btn")
         }}</NuxtLink>
         <NuxtLink

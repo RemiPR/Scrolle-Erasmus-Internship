@@ -61,6 +61,30 @@
       ></textarea>
     </div>
 
+    <div> 
+        <label class="block text-gray-700 font-bold mb-2">Add time limit to each question?</label>
+        <div class="inline-flex items-center mr-4">
+          <input
+            type="radio"
+            name="questionTimeLimit"
+            value="yes"
+            class="form-radio text-indigo-600"
+            v-model="questionTimeLimit"
+          />
+          <label class="ml-2">Yes</label>
+        </div>
+        <div class="inline-flex items-center">
+          <input
+            type="radio"
+            name="questionTimeLimit"
+            value="no"
+            class="form-radio text-indigo-600"
+            v-model="questionTimeLimit"
+          />
+          <label class="ml-2">No</label>
+        </div>
+    </div>
+
     <div class="mb-4 flex space-x-4">
       <div class="w-1/2">
         <label for="startDateTime" class="block text-gray-700 font-bold mb-2"
@@ -75,22 +99,32 @@
         />
       </div>
       <div class="w-1/2">
-        <label for="length" class="block text-gray-700 font-bold mb-2"
-          >Length</label
+        <label for="duration" class="block text-gray-700 font-bold mb-2"
+          >Duration in minutes</label
         >
         <input
-          v-model="length"
-          type="text"
-          id="length"
-          name="length"
-          placeholder="30 m"
+          v-model="duration"
+          type="number"
+          id="duration"
+          name="duration"
+          placeholder="30"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          :disabled="questionTimeLimit === 'yes'"
         />
       </div>
     </div>
 
     <div class="mb-8">
       <label class="block text-gray-700 font-bold mb-2">Questions*</label>
+      <button
+      class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      >Generate questions with AI</button>
+      <textarea
+        id="prompt"
+        name="prompt"
+        class="shadow appearance-none border rounded w-full mt-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
+        placeholder="Enter the prompt for the AI to generate questions... For example, 'Create 10 questions about the solar system.'"
+      ></textarea>
       <div
         v-for="(question, index) in questions"
         :key="question.id"
@@ -106,6 +140,18 @@
             ×
           </button>
         </div>
+        <label
+        v-if="questionTimeLimit === 'yes'"
+        >
+        <input
+        type="number"
+        min="0"
+        class="shadow appearance-none border rounded w-2/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
+        placeholder="Limit"
+        v-model="question.timeLimit"
+        />
+        <span class="text-gray-700 mb-2"> minutes</span>
+        </label>
         <input
           v-model="question.text"
           type="text"
@@ -164,14 +210,15 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, watchEffect } from "vue";
 
+const questionTimeLimit = ref("no");
 const testName = ref("");
 const selectedCourse = ref("My course 1");
 const selectedTopic = ref("My topic 1");
 const description = ref("");
 const startDateTime = ref("2024-06-01T08:30");
-const length = ref("30");
+const duration = ref(0);
 const questions = reactive([
   {
     id: 1,
@@ -194,6 +241,15 @@ const questions = reactive([
 
 const courses = ["My course 1", "My course 2", "My course 3"];
 const topics = ["My topic 1", "My topic 2", "My topic 3"];
+
+watchEffect(() => {
+  if (questionTimeLimit.value === "yes") {
+    duration.value = 0;
+    questions.forEach(element => {
+       duration.value = duration.value + (element.timeLimit || 0);
+    });
+  }
+});
 
 const addNewQuestion = () => {
   const newId = questions.length + 1;
