@@ -14,62 +14,75 @@
     </div>
 
     <!-- Days columns -->
-    <div v-for="day in daysInWeek" :key="day.date" class="border-r">
-      <div
-        class="h-12 font-bold text-center border-b flex items-center justify-center bg-gray-100"
-      >
-        {{ formatDate(day.date) }}
-      </div>
-      <div class="relative" style="height: calc(14 * 64px)">
-        <div
-          v-for="event in filteredEventsForDay(day.date)"
-          :key="event.id"
-          :style="getEventStyle(event)"
-          @click="$emit('open-event', event)"
-          class="absolute w-full bg-white border border-gray-300 rounded-md shadow-sm overflow-hidden cursor-pointer hover:shadow-md transition-shadow duration-200 ease-in-out"
-          ref="eventCard"
-          :data-event-id="event.id"
-        >
-          <div class="p-2 flex flex-col h-full">
-            <div class="flex-grow">
-              <div class="flex justify-between items-start mb-1">
-                <h3 class="font-semibold text-sm line-clamp-2 flex-grow">
-                  {{ event.title }}
-                </h3>
-                <span
-                  class="text-sm font-medium px-1.5 py-0.5 rounded-full ml-1 whitespace-nowrap"
-                  :class="getTagClass('eventType', event.eventType)"
-                >
-                  {{ event.eventType }}
-                </span>
-              </div>
-              <p
-                v-if="isCardTallEnough(event.id)"
-                class="text-gray-600 text-xs"
-              >
-                {{ event.teacher }}
-              </p>
-            </div>
-            <div class="mt-auto">
-              <div class="text-gray-700 text-xs font-semibold mb-1">
-                {{ formatTime(event.startTime) }} -
-                {{ formatTime(event.endTime) }}
-              </div>
-              <div class="flex gap-1 flex-wrap">
-                <span
-                  v-for="tag in ['classroom', 'group']"
-                  :key="tag"
-                  class="px-2 py-0.5 rounded-full text-xs font-medium truncate"
-                  :class="getTagClass(tag, event[tag])"
-                >
-                  {{ event[tag] }}
-                </span>
-              </div>
-            </div>
+    <TransitionGroup name="day-column" tag="div" class="contents">
+      <div v-for="day in daysInWeek" :key="day.date" class="border-r">
+        <Transition name="day-header" mode="out-in">
+          <div
+            :key="day.date"
+            class="h-12 font-bold text-center border-b flex items-center justify-center bg-gray-100"
+          >
+            {{ formatDate(day.date) }}
           </div>
+        </Transition>
+        <div class="relative" style="height: calc(14 * 64px)">
+          <TransitionGroup
+            name="event"
+            tag="div"
+            class="relative"
+            style="height: 100%"
+          >
+            <div
+              v-for="event in filteredEventsForDay(day.date)"
+              :key="event.id"
+              :style="getEventStyle(event)"
+              @click="$emit('open-event', event)"
+              class="absolute w-full bg-white border border-gray-300 rounded-md shadow-sm overflow-hidden cursor-pointer hover:shadow-md transition-all duration-300 ease-in-out"
+              ref="eventCard"
+              :data-event-id="event.id"
+            >
+              <!-- Events -->
+              <div class="p-2 flex flex-col h-full">
+                <div class="flex-grow">
+                  <div class="flex justify-between items-start mb-1">
+                    <h3 class="font-semibold text-sm line-clamp-2 flex-grow">
+                      {{ event.title }}
+                    </h3>
+                    <span
+                      class="text-sm font-medium px-1.5 py-0.5 rounded-full ml-1 whitespace-nowrap"
+                      :class="getTagClass('eventType', event.eventType)"
+                    >
+                      {{ event.eventType }}
+                    </span>
+                  </div>
+                  <p
+                    v-if="isCardTallEnough(event.id)"
+                    class="text-gray-600 text-xs"
+                  >
+                    {{ event.teacher }}
+                  </p>
+                </div>
+                <div class="mt-auto">
+                  <div class="text-gray-700 text-xs font-semibold mb-1">
+                    {{ formatTime(event.startTime) }} -
+                    {{ formatTime(event.endTime) }}
+                  </div>
+                  <div class="flex gap-1 flex-wrap">
+                    <span
+                      v-for="tag in ['classroom', 'group']"
+                      :key="tag"
+                      class="px-2 py-0.5 rounded-full text-xs font-medium truncate"
+                      :class="getTagClass(tag, event[tag])"
+                    >
+                      {{ event[tag] }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </TransitionGroup>
         </div>
       </div>
-    </div>
+    </TransitionGroup>
   </div>
 </template>
 

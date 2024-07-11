@@ -13,7 +13,7 @@ import { provideSidebar } from "@/composables/useSidebar";
 import DashboardHome from "@/components/management/dashboard/index.vue";
 import Events from "@/components/management/events/upcoming/index.vue";
 import Balance from "@/components/management/balance/index.vue";
-import Calendar from "@/components/management/calendar/index.vue";
+import Calendar from "@/components/teacher/calendar/index.vue";
 import Certificates from "@/components/management/certificates/index.vue";
 import Erasmus from "@/components/management/erasmus/index.vue";
 import Payments from "@/components/management/payments/index.vue";

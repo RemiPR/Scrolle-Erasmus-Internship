@@ -1,6 +1,5 @@
-<!--components/teacher/calendar/index.vue-->
 <template>
-  <div class="w-11/12">
+  <div class="mt-1">
     <TeacherCalendarHeader
       :current-date-range="currentDateRange"
       :search-query="searchQuery"
@@ -14,6 +13,7 @@
     />
 
     <TeacherCalendarGrid
+      :key="currentWeekKey"
       :days-in-week="daysInWeek"
       :working-hours="workingHours"
       :filtered-events="filteredEvents"
@@ -23,6 +23,7 @@
     <TeacherCalendarModal
       v-if="selectedEvent"
       :event="selectedEvent"
+      :isOpen="isModalOpen"
       @close="closeEventModal"
     />
   </div>
@@ -45,42 +46,161 @@ const workingHours = Array.from({ length: 15 }, (_, i) => i + 7); // 07:00 to 21
 const currentDate = ref(new Date());
 const searchQuery = ref("");
 const activeFilters = ref({});
-const selectedEvent = ref(null);
 const filters = ref([]);
 
+const isModalOpen = ref(false);
+const selectedEvent = ref(null);
+const currentWeekKey = computed(() =>
+  currentDate.value.toISOString().slice(0, 10)
+);
 // Dummy data
 const events = ref([
   {
     id: 1,
-    title: "Sample Lecture",
-    location: "Room 101",
+    title: "Advanced Aesthetics Cosmetology",
     startTime: "09:00",
     endTime: "10:30",
-    description: "This is a sample lecture",
-    attendees: ["John Doe", "Jane Smith"],
-    group: "A1",
-    classroom: "101",
+    description: "Introduction lecture to Advanced Aesthetics Cosmetelogy",
+    group: "C13",
+    classroom: "Aud. 101",
     eventType: "Lecture",
     teacher: "Dr. Smith",
     date: "2024-07-08",
   },
   {
     id: 2,
-    title: "Lab Session",
-    location: "Lab 202",
-    startTime: "14:00",
-    endTime: "16:00",
-    description: "Practical lab session",
-    attendees: ["Alice Johnson", "Bob Brown"],
-    group: "B2",
-    classroom: "202",
-    eventType: "Lab",
-    teacher: "Prof. Johnson",
+    title: "Advanced Aesthetics Cosmetology",
+    startTime: "10:45",
+    endTime: "12:15",
+    description: "Lecture on advanced cosmetology techniques",
+    group: "C13",
+    classroom: "Aud. 101",
+    eventType: "Lecture",
+    teacher: "Dr. Smith",
+    date: "2024-07-08",
+  },
+  {
+    id: 3,
+    title: "Hair Styling Workshop",
+    startTime: "13:00",
+    endTime: "15:00",
+    description: "Hands-on workshop on hair styling techniques",
+    group: "C13",
+    classroom: "Salon Room",
+    eventType: "Workshop",
+    teacher: "Ms. Johnson",
+    date: "2024-07-09",
+  },
+  {
+    id: 4,
+    title: "Makeup Masterclass",
+    startTime: "15:30",
+    endTime: "17:00",
+    description: "Masterclass on makeup application and techniques",
+    group: "C13",
+    classroom: "Aud. 201",
+    eventType: "Masterclass",
+    teacher: "Ms. Anderson",
+    date: "2024-07-09",
+  },
+  {
+    id: 5,
+    title: "Math",
+    startTime: "09:00",
+    endTime: "10:30",
+    description: "Lecture on Math",
+    group: "C13",
+    classroom: "Aud. 201",
+    eventType: "Exam",
+    teacher: "Dr. Johnson",
     date: "2024-07-10",
+  },
+  {
+    id: 6,
+    title: "Physics",
+    startTime: "10:45",
+    endTime: "12:15",
+    description: "Lecture on Physics",
+    group: "C13",
+    classroom: "Aud. 201",
+    eventType: "Test",
+    teacher: "Dr. Anderson",
+    date: "2024-07-10",
+  },
+  {
+    id: 7,
+    title: "Chemistry",
+    startTime: "13:00",
+    endTime: "14:30",
+    description: "Lecture on Chemistry",
+    group: "C13",
+    classroom: "Aud. 301",
+    eventType: "Lecture",
+    teacher: "Dr. Smith",
+    date: "2024-07-10",
+  },
+  {
+    id: 8,
+    title: "Biology",
+    startTime: "14:45",
+    endTime: "16:15",
+    description: "Lecture on Biology",
+    group: "C13",
+    classroom: "Aud. 401",
+    eventType: "Lecture",
+    teacher: "Dr. Johnson",
+    date: "2024-07-10",
+  },
+  {
+    id: 9,
+    title: "History",
+    startTime: "09:00",
+    endTime: "10:30",
+    description: "Lecture on History",
+    group: "C13",
+    classroom: "Aud. 401",
+    eventType: "Lecture",
+    teacher: "Dr. Anderson",
+    date: "2024-07-11",
+  },
+  {
+    id: 10,
+    title: "Geography",
+    startTime: "10:45",
+    endTime: "12:15",
+    description: "Lecture on Geography",
+    group: "C13",
+    classroom: "Aud. 401",
+    eventType: "Lecture",
+    teacher: "Dr. Smith",
+    date: "2024-07-11",
+  },
+  {
+    id: 11,
+    title: "English",
+    startTime: "13:00",
+    endTime: "14:30",
+    description: "Lecture on English",
+    group: "C13",
+    classroom: "Aud. 201",
+    eventType: "Lecture",
+    teacher: "Dr. Johnson",
+    date: "2024-07-11",
+  },
+  {
+    id: 12,
+    title: "Computer Science",
+    startTime: "14:45",
+    endTime: "16:15",
+    description: "Lecture on Computer Science",
+    group: "C13",
+    classroom: "Remote",
+    eventType: "Lecture",
+    teacher: "Dr. Anderson",
+    date: "2024-07-11",
   },
   // Add more events as needed
 ]);
-
 // Computed
 const currentDateRange = computed(() => {
   const start = startOfWeek(currentDate.value, { weekStartsOn: 1 });
@@ -96,9 +216,25 @@ const daysInWeek = computed(() => {
 
 const filteredEvents = computed(() => {
   return events.value.filter((event) => {
-    const matchesSearch =
-      event.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-      event.description.toLowerCase().includes(searchQuery.value.toLowerCase());
+    const searchFields = [
+      "title",
+      "description",
+      "group",
+      "classroom",
+      "eventType",
+      "teacher",
+      "date",
+      "startTime",
+      "endTime",
+    ];
+
+    const matchesSearch = searchFields.some((field) =>
+      event[field]
+        .toString()
+        .toLowerCase()
+        .includes(searchQuery.value.toLowerCase())
+    );
+
     const matchesFilters = Object.entries(activeFilters.value).every(
       ([key, value]) => {
         if (!value) return true;
@@ -138,10 +274,13 @@ const navigate = (direction) => {
 
 const openEventModal = (event) => {
   selectedEvent.value = event;
+  nextTick(() => {
+    isModalOpen.value = true;
+  });
 };
 
 const closeEventModal = () => {
-  selectedEvent.value = null;
+  isModalOpen.value = false;
 };
 
 const updateFilters = () => {
