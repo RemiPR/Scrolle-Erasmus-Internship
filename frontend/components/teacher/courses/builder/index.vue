@@ -110,6 +110,31 @@
       </select>
     </div>
 
+    <div class="flex">
+      <div class="mb-4 mr-4">
+        <label for="startDate" class="block text-gray-700 font-bold mb-2"
+          >Start:</label
+        >
+        <input
+          type="date"
+          id="startDate"
+          name="startDate"
+          class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
+      </div>
+      <div>
+        <label for="endDate" class="block text-gray-700 font-bold mb-2"
+          >End:</label
+        >
+        <input
+          type="date"
+          id="endDate"
+          name="endDate"
+          class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
+      </div>
+    </div>
+
     <div class="mb-4">
       <label class="block text-gray-700 font-bold mb-2">Image</label>
       
@@ -265,11 +290,9 @@ const schema = yup.object({
     .required("Please select add now or later"),
 });
 
-
 const { defineField, errors, handleSubmit } = useForm({
   validationSchema: schema,
 });
-
 
 const [courseLocationType] = defineField("courseLocationType");
 const [courseType] = defineField("courseType");
