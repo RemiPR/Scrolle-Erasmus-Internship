@@ -24,7 +24,7 @@ import Calendar from "@/components/teacher/calendar/index.vue";
 
 import StudentGradingComponent from "@/components/StudentGradingComponent.vue";
 import DigitalLibrary from "@/components/teacher/digital/library/index.vue";
-import ErasmusComponent from "@/components/ErasmusComponent.vue";
+import Erasmus from "@/components/management/erasmus/index.vue";
 
 import HelpComponent from "@/components/Help.vue";
 import SettingsComponent from "@/components/Settings.vue";
@@ -81,7 +81,7 @@ const sidebarLinks = ref([
   },
   {
     label: "My Erasmus",
-    component: markRaw(ErasmusComponent),
+    component: markRaw(Erasmus),
     icon: "mdi:earth",
     title: "My Erasmus",
   },
