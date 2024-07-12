@@ -11,7 +11,9 @@
       <SharedVideoOverlay
         :scrollToElement="$refs.scrollToElement"
         title="Welcome, Emīlija!"
-        :description="`You currently have ${assignmentCount(activeAssignments)} unfinished assignments.`"
+        :description="`You currently have ${assignmentCount(
+          activeAssignments
+        )} unfinished assignments.`"
         freeCoursesText="Check lectures timetable"
         accreditedProgramsText="Check my assignments"
         checkFreeCoursesLink="/free-courses"
@@ -150,12 +152,12 @@ const handleOpenModal = (data) => {
 // Functions
 
 const assignmentCount = (activeAssignments) => {
-  if(activeAssignments.length > 0) {
+  if (activeAssignments.length > 0) {
     return activeAssignments.length;
   } else {
     return 0;
   }
-}
+};
 
 // Placeholder data
 
@@ -165,7 +167,7 @@ const trending = ref([
     title: "Top 10 cosmetology hacks",
     imageUrl: "/trending_dummy.jpg",
     imageUrlLowRes: "/low_res_trending_dummy.jpg",
-   },
+  },
 ]);
 
 const courses = ref([
@@ -175,9 +177,9 @@ const courses = ref([
     imageUrl: "/advanced_aesthetic_cosmetology.jpg",
     imageUrlLowRes: "/low_res_advanced_aesthetic_cosmetology.jpg",
     videoUrl: "/advanced_aesthetic_cosmetology.mp4",
-    ects:3,
-    nextLectureDate:"2024/06/01",
-    nextLectureTime:"15:00",
+    ects: 3,
+    nextLectureDate: "2024/06/01",
+    nextLectureTime: "15:00",
     finalGrade: 8,
     completed: false,
     lecturer: "Dr. Laima Bērziņa",
@@ -194,43 +196,43 @@ const courses = ref([
         assignDeadlineDate: "2024/06/25",
         assignDeadlineTime: "00:00",
         handedIn: true,
-        grade: 8
+        grade: 8,
       },
       {
-        id:"2",
+        id: "2",
         title: "Microdermabrasion theory task",
         assignDeadlineDate: "2024/06/27",
         assignDeadlineTime: "15:00",
         handedIn: false,
-        grade: null
+        grade: null,
       },
       {
-        id:"3",
+        id: "3",
         title: "Collagen Induction Therapy (Microneedling)",
         assignDeadlineDate: "2024/06/22",
         assignDeadlineTime: "18:00",
         handedIn: false,
-        grade: null
+        grade: null,
       },
       {
-        id:"4",
+        id: "4",
         title: "Non-Surgical Body Contouring Techniques",
         assignDeadlineDate: "2024/06/27",
         assignDeadlineTime: "17:00",
         completed: false,
-        grade: null
-      }
+        grade: null,
+      },
     ],
-   },
+  },
   {
     id: 3,
     title: "Physiotherapy",
     imageUrl: "/physiotherapy.jpg",
     imageUrlLowRes: "/low_res_physiotherapy.jpg",
     videoUrl: "/physiotherapy.mp4",
-    ects:3,
-    nextLectureDate:"2024/06/01",
-    nextLectureTime:"15:00",
+    ects: 3,
+    nextLectureDate: "2024/06/01",
+    nextLectureTime: "15:00",
     finalGrade: 6.25,
     completed: true,
     lecturer: "Dr. Alex Thompson",
@@ -243,7 +245,7 @@ const courses = ref([
         assignDeadlineDate: "2024/06/25",
         assignDeadlineTime: "12:00",
         handedIn: true,
-        grade: 6
+        grade: 6,
       },
       {
         id: "2",
@@ -251,7 +253,7 @@ const courses = ref([
         assignDeadlineDate: "2024/06/30",
         assignDeadlineTime: "16:00",
         handedIn: true,
-        grade: 7
+        grade: 7,
       },
       {
         id: "3",
@@ -259,7 +261,7 @@ const courses = ref([
         assignDeadlineDate: "2024/06/20",
         assignDeadlineTime: "14:00",
         handedIn: true,
-        grade: 6.7
+        grade: 6.7,
       },
       {
         id: "4",
@@ -267,13 +269,13 @@ const courses = ref([
         assignDeadlineDate: "2024/06/28",
         assignDeadlineTime: "11:00",
         handedIn: true,
-        grade: 6.5
-      }
-    ]
+        grade: 6.5,
+      },
+    ],
   },
 ]);
 
 // This is down here cuz courses data need to initialize first
-const {activeAssignments, completedCourses, incompleteCourses} = useCoursesFilter(courses)
-
+const { activeAssignments, completedCourses, incompleteCourses } =
+  useCoursesFilter(courses);
 </script>
