@@ -9,12 +9,13 @@
                     <span class="block text-gray-700 font-bold mb-2">Enter a new topic name</span>
                     <input
                     type="text"
+                    v-model="newTopicName"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                     <div class="flex justify-between">
                         <button 
                         class="bg-green-500 hover:bg-green-600 text-white font-bold mt-2 py-1 px-3 rounded focus:outline-none focus:shadow-outline"
-                        @click="closeModal" 
+                        @click="submitValue" 
                         >Done</button>
                         <button 
                         class="bg-red-500 hover:bg-red-600 text-white font-bold mt-2 py-1 px-3 rounded focus:outline-none focus:shadow-outline"
@@ -31,9 +32,17 @@
     const props = defineProps({
         modalActive: Boolean
     })
-    const emit = defineEmits(["close"]);
+    const newTopicName = ref("");
 
+    const emit = defineEmits(["close", "submit"]);
+
+    const submitValue = () => {
+        emit("submit", newTopicName.value)
+        newTopicName.value = "";
+        emit("close");
+    }
     const closeModal = () => {
+        newTopicName.value = "";
         emit("close")
     }
 

@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <TeacherModalAddtopic @close="toggleModal" :modalActive="modalActive" />
+    <TeacherModalAddtopic @submit="submitNewTopic" @close="toggleModal" :modalActive="modalActive" />
     <form
       class="max-w-4xl mx-auto p-8 bg-white shadow-md rounded mt-16 select-none"
     >
@@ -77,7 +77,7 @@
           id="topic"
           name="topic"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          @change="addNewTopic"
+          @change="openNewTopicModal"
         >
           <option v-for="topic in topics" :key="topic" :value="topic">
             {{ topic }}
@@ -307,7 +307,6 @@ const questionTimeLimit = ref("no");
 const timeLimitForEachQuestion = ref(0);
 const testName = ref("");
 const selectedCourse = ref("My course 1");
-const selectedTopic = ref("My topic 1");
 const description = ref("");
 const startDateTime = ref("2024-06-01T08:30");
 const duration = ref(0);
@@ -337,18 +336,20 @@ const toggleModal = () => {
 };
 
 const courses = ["My course 1", "My course 2", "My course 3"];
-const topics = ["My topic 1", "My topic 2", "My topic 3"];
+const topics = ref(["My topic 1", "My topic 2", "My topic 3"]);
+const selectedTopic = ref("My topic 1");
 
-const addNewTopic = () => {
+const submitNewTopic = (value) => {
+  if (value) {
+      topics.value.push(value);
+      selectedTopic.value = value;
+    }
+};
+
+const openNewTopicModal = () => {
   if(selectedTopic.value === "Add new topic...") {
     toggleModal();
-    selectedTopic.value = "My topic 1";
-    /*
-    const newTopic = prompt("Enter the new topic name:");
-    if (newTopic) {
-      topics.push(newTopic);
-      selectedTopic.value = newTopic;
-    }*/
+    selectedTopic.value = "";
   }
 };
 
