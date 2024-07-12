@@ -19,6 +19,7 @@ import Erasmus from "@/components/management/erasmus/index.vue";
 import Payments from "@/components/management/payments/index.vue";
 import Projects from "@/components/management/projects/index.vue";
 import Reports from "@/components/management/reports/index.vue";
+import CampusLayout from "@/components/management/campus/layout/index.vue";
 // Staff
 import Staff from "@/components/management/staff/index.vue";
 // Students
@@ -81,6 +82,12 @@ const sidebarLinks = ref([
     component: markRaw(Calendar),
     icon: "mdi:calendar-outline",
     title: "View and manage calendar events",
+  },
+  {
+    label: "Campus Layout",
+    component: markRaw(CampusLayout),
+    icon: "mdi:map-outline",
+    title: "View and manage campus layout",
   },
   {
     label: "Staff",

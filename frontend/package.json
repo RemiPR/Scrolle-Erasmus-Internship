@@ -20,6 +20,7 @@
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@pinia/nuxt": "^0.5.1",
     "@types/node": "^20.12.11",
+    "@types/three": "^0.166.0",
     "@vee-validate/nuxt": "^4.12.8",
     "@vee-validate/rules": "^4.12.6",
     "@vee-validate/yup": "^4.12.8",
@@ -29,6 +30,7 @@
     "material-icons": "^1.13.12",
     "nuxt": "^3.11.2",
     "sharp": "^0.33.4",
+    "three": "^0.166.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
