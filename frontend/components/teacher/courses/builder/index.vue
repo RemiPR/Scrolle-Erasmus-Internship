@@ -167,6 +167,12 @@
         >Description*</label
       >
       <span class="text-red-500">{{ errors["description"] }}</span>
+      <button
+          type="button"
+          class="bg-blue-600 hover:bg-blue-700 text-white mb-2 px-4 py-2 rounded"
+        >
+          Generate description
+      </button>
       <textarea
         id="description"
         name="description"

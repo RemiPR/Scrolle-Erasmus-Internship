@@ -85,6 +85,12 @@
       <label for="description" class="block text-gray-700 font-bold mb-2"
         >Description*</label
       >
+      <button
+          type="button"
+          class="bg-blue-600 hover:bg-blue-700 text-white mb-2 px-4 py-2 rounded"
+        >
+          Generate description
+      </button>
       <textarea
         v-model="description"
         id="description"
