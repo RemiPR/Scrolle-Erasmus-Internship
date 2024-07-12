@@ -22,7 +22,8 @@ import Groups from "@/components/teacher/groups/index.vue";
 import Tests from "@/components/teacher/tests/index.vue";
 import Calendar from "@/components/teacher/calendar/index.vue";
 
-import StudentGradingComponent from "@/components/StudentGradingComponent.vue";
+import StudentGrading from "@/components/teacher/grading/index.vue";
+
 import DigitalLibrary from "@/components/teacher/digital/library/index.vue";
 import Erasmus from "@/components/management/erasmus/index.vue";
 
@@ -69,7 +70,7 @@ const sidebarLinks = ref([
   },
   {
     label: "Student grading",
-    component: markRaw(StudentGradingComponent),
+    component: markRaw(StudentGrading),
     icon: "mdi:chart-bar",
     title: "Student grading",
   },

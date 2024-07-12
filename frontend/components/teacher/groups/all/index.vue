@@ -1,5 +1,6 @@
+<!-- components/teacher/groups/all/index.vue -->
 <template>
-  <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg">
+  <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-4">
     <div class="flex flex-col sm:flex-row justify-between py-6 px-2">
       <label class="flex items-center mb-2 sm:mb-0">
         <input
@@ -15,6 +16,14 @@
         v-model="searchTerm"
         class="mt-2 sm:mt-0 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full sm:w-64 select-none"
       />
+      <label class="flex items-center mb-2 sm:mb-0 ml-4">
+        <input
+          type="checkbox"
+          v-model="gradingMode"
+          class="mr-2 form-checkbox h-5 w-5 text-blue-600 transition-all duration-300 ease-in-out"
+        />
+        <span class="text-gray-700 select-none">Grading Mode</span>
+      </label>
     </div>
     <div class="overflow-x-auto">
       <table class="w-full table-auto">
@@ -52,6 +61,7 @@
       <StudentModal
         v-if="selectedGroup"
         :group="selectedGroup"
+        :grading-mode="gradingMode"
         @close="closeModal"
       />
     </Transition>
@@ -65,6 +75,8 @@ import StudentModal from "@/components/teacher/groups/modal/index.vue";
 const showInactiveGroups = ref(false);
 const searchTerm = ref("");
 const selectedGroup = ref(null);
+const gradingMode = ref(false);
+
 const groups = ref([
   {
     id: 1,
