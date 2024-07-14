@@ -32,7 +32,7 @@
               v-for="item in legal"
               :key="item.name"
               :to="item.to"
-              class="text-base hover:text-blue-600 dark:hover:text-blue-400"
+              class="text-base cursor-pointer hover:text-blue-600 dark:hover:text-blue-400"
             >
               {{ item.name }}
             </NuxtLink>
@@ -58,8 +58,5 @@
 <script setup>
 import { ref } from "vue";
 
-const legal = ref([
-  { name: "Privacy Policy", to: "/privacy-policy" },
-  { name: "Terms of Service", to: "/terms-of-service" },
-]);
+const legal = ref([{ name: "Privacy Policy" }, { name: "Terms of Service" }]);
 </script>
