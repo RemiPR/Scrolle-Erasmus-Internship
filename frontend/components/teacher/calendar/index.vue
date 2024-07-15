@@ -65,7 +65,7 @@ const events = ref([
     classroom: "Aud. 101",
     eventType: "Lecture",
     teacher: "Dr. Smith",
-    date: "2024-07-08",
+    date: "2024-07-19",
   },
   {
     id: 2,
@@ -77,7 +77,7 @@ const events = ref([
     classroom: "Aud. 101",
     eventType: "Lecture",
     teacher: "Dr. Smith",
-    date: "2024-07-08",
+    date: "2024-07-19",
   },
   {
     id: 3,
@@ -89,7 +89,7 @@ const events = ref([
     classroom: "Salon Room",
     eventType: "Workshop",
     teacher: "Ms. Johnson",
-    date: "2024-07-09",
+    date: "2024-07-18",
   },
   {
     id: 4,
@@ -101,7 +101,7 @@ const events = ref([
     classroom: "Aud. 201",
     eventType: "Masterclass",
     teacher: "Ms. Anderson",
-    date: "2024-07-09",
+    date: "2024-07-18",
   },
   {
     id: 5,
@@ -113,7 +113,7 @@ const events = ref([
     classroom: "Aud. 201",
     eventType: "Exam",
     teacher: "Dr. Johnson",
-    date: "2024-07-10",
+    date: "2024-07-15",
   },
   {
     id: 6,
@@ -125,7 +125,7 @@ const events = ref([
     classroom: "Aud. 201",
     eventType: "Test",
     teacher: "Dr. Anderson",
-    date: "2024-07-10",
+    date: "2024-07-17",
   },
   {
     id: 7,
@@ -137,7 +137,7 @@ const events = ref([
     classroom: "Aud. 301",
     eventType: "Lecture",
     teacher: "Dr. Smith",
-    date: "2024-07-10",
+    date: "2024-07-15",
   },
   {
     id: 8,
@@ -149,7 +149,7 @@ const events = ref([
     classroom: "Aud. 401",
     eventType: "Lecture",
     teacher: "Dr. Johnson",
-    date: "2024-07-10",
+    date: "2024-07-15",
   },
   {
     id: 9,
@@ -161,7 +161,7 @@ const events = ref([
     classroom: "Aud. 401",
     eventType: "Lecture",
     teacher: "Dr. Anderson",
-    date: "2024-07-11",
+    date: "2024-07-16",
   },
   {
     id: 10,
@@ -173,7 +173,7 @@ const events = ref([
     classroom: "Aud. 401",
     eventType: "Lecture",
     teacher: "Dr. Smith",
-    date: "2024-07-11",
+    date: "2024-07-17",
   },
   {
     id: 11,
@@ -185,7 +185,7 @@ const events = ref([
     classroom: "Aud. 201",
     eventType: "Lecture",
     teacher: "Dr. Johnson",
-    date: "2024-07-11",
+    date: "2024-07-16",
   },
   {
     id: 12,
@@ -197,7 +197,7 @@ const events = ref([
     classroom: "Remote",
     eventType: "Lecture",
     teacher: "Dr. Anderson",
-    date: "2024-07-11",
+    date: "2024-07-16",
   },
   // Add more events as needed
 ]);
