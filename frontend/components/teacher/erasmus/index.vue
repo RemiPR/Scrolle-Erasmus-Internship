@@ -36,15 +36,15 @@ const erasmusResources = [
     link: "https://learning-agreement.eu/",
   },
   {
-    title: "Erasmus+ Staff Mobility",
+    title: "Erasmus+ Student & Staff Mobility",
     description: "Search for staff mobility opportunities",
     image: "/erasmus+_student_and_staff_mobility.png",
     link: "http://staffmobility.eu/staff-week-search",
   },
   {
-    title: "Erasmus+ Project Platform",
-    description: "Explore Erasmus+ projects and resources",
-    image: "/erasmus+_project_platform.png",
+    title: "Erasmus+ Blended Intensive Programmes(BIP)",
+    description: "Explore Erasmus+ BIP",
+    image: "/erasmus+_bip.jpg",
     link: "https://erasmusbip.org/",
   },
   {

@@ -25,7 +25,7 @@ import Calendar from "@/components/teacher/calendar/index.vue";
 import StudentGrading from "@/components/teacher/grading/index.vue";
 
 import DigitalLibrary from "@/components/teacher/digital/library/index.vue";
-import Erasmus from "@/components/management/erasmus/index.vue";
+import Erasmus from "@/components/teacher/erasmus/index.vue";
 
 import HelpComponent from "@/components/Help.vue";
 import SettingsComponent from "@/components/Settings.vue";
