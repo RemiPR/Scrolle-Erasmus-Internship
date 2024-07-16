@@ -122,6 +122,8 @@ const managementInfo = {
   name: "Elīna Bērziņa",
   email: "elina.berzina@example.com",
 };
+const navigationStore = useNavigationStore();
+navigationStore.setTitle(sidebarLinks.value[0].title);
 
 provideSidebar(
   sidebarLinks.value,
